@@ -3,35 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zqzneptune.github.io/2018/12/12/awsome_scrna_cluster/</loc>
+    <loc>/2018/12/12/awsome_scrna_cluster/</loc>
     <lastmod>2018-12-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/about/</loc>
-    <lastmod>2016-04-21T02:50:28+02:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2016-04-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/</loc>
-    <lastmod>2018-12-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zqzneptune.github.io/tags/awsome/</loc>
+    <loc>/</loc>
     <lastmod>2018-12-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/tags/</loc>
+    <loc>/tags/awsome/</loc>
     <lastmod>2018-12-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/topics/</loc>
+    <loc>/tags/</loc>
+    <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/topics/</loc>
     <priority>0</priority>
   </url>
   

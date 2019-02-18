@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Awsome on </title>
-    <link>https://zqzneptune.github.io/tags/awsome/</link>
+    <link>/tags/awsome/</link>
     <description>Recent content in Awsome on </description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zqzneptune@hotmail.com (Qingzhou Zhang)</managingEditor>
     <webMaster>zqzneptune@hotmail.com (Qingzhou Zhang)</webMaster>
     <lastBuildDate>Wed, 12 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zqzneptune.github.io/tags/awsome/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/awsome/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Awsome single cell RNA-seq clustering</title>
-      <link>https://zqzneptune.github.io/2018/12/12/awsome_scrna_cluster/</link>
+      <link>/2018/12/12/awsome_scrna_cluster/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       <author>zqzneptune@hotmail.com (Qingzhou Zhang)</author>
-      <guid>https://zqzneptune.github.io/2018/12/12/awsome_scrna_cluster/</guid>
+      <guid>/2018/12/12/awsome_scrna_cluster/</guid>
       <description>Introduction There are growing numbers of single cell RNA-seq (scRNA-Seq) researches. Due to the nature of scRNA-Seq design, the volume and velocity of generated data spans several orders of magnitude than current bulk RNA-seq. This, however, poses great challenges post sequencing data analysis.
 Test Figures
 par(mar = c(0, 1, 0, 1)) pie( c(280, 60, 20), c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;), col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;), init.</description>
