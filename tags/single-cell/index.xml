@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Single Cell on </title>
-    <link>/tags/single-cell/</link>
+    <link>https://zqzneptune.github.io/tags/single-cell/</link>
     <description>Recent content in Single Cell on </description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zqzneptune@hotmail.com (Qingzhou Zhang)</managingEditor>
     <webMaster>zqzneptune@hotmail.com (Qingzhou Zhang)</webMaster>
     <lastBuildDate>Wed, 12 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/single-cell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zqzneptune.github.io/tags/single-cell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Awsome single cell RNA-seq clustering</title>
-      <link>/2018/12/12/awsome_scrna_cluster/</link>
+      <link>https://zqzneptune.github.io/2018/12/12/awsome_scrna_cluster/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       <author>zqzneptune@hotmail.com (Qingzhou Zhang)</author>
-      <guid>/2018/12/12/awsome_scrna_cluster/</guid>
+      <guid>https://zqzneptune.github.io/2018/12/12/awsome_scrna_cluster/</guid>
       <description>Introduction Recently developed single cell RNA sequencing technologies are revolutionizing our understanding of cellular functions. Massive parallel sequencing of thousands of cells has provided the research community a window into the transcriptional landscape of living organisms. In the meantime, great challenges have been posed due to the large volume and complexity of the data. Therefore, algorithms, as well as their software applications, have been developed to help investigate biological meaningful information.</description>
     </item>
     

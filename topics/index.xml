@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Topics on </title>
-    <link>/topics/</link>
+    <link>https://zqzneptune.github.io/topics/</link>
     <description>Recent content in Topics on </description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zqzneptune@hotmail.com (Qingzhou Zhang)</managingEditor>
     <webMaster>zqzneptune@hotmail.com (Qingzhou Zhang)</webMaster>
     
-	<atom:link href="/topics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zqzneptune.github.io/topics/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
