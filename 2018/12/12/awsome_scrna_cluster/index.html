@@ -14,7 +14,7 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="Awsome, ">
+<meta name="keywords" content="Awsome, Single Cell, ">
 
 
 <meta property="og:title" content="Awsome single cell RNA-seq clustering  &middot;  ">
@@ -31,6 +31,8 @@
   
     
 <meta property="og:article:tag" content="Awsome">
+    
+<meta property="og:article:tag" content="Single Cell">
     
   
 
@@ -56,7 +58,7 @@
     },
     "datePublished": "2018-12-12",
     "description": "",
-    "wordCount": 82
+    "wordCount": 1948
   }
 </script>
   
@@ -65,7 +67,16 @@
 
 <link rel="canonical" href="/2018/12/12/awsome_scrna_cluster/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.ico">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
 <meta name="generator" content="Hugo 0.54.0" />
 
   <!--[if lt IE 9]>
@@ -161,8 +172,8 @@
   <small>
     &middot; by Qingzhou Zhang
   
-  &middot; Read in about 1 min
-  &middot; (82 words)
+  &middot; Read in about 10 min
+  &middot; (1948 words)
   &middot; 
 <span class="share-box">Share this on:
     <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2018%2f12%2f12%2fawsome_scrna_cluster%2f" onclick="window.open(this.href, 'mywin',
@@ -190,6 +201,8 @@
   
   <a href="/tags/awsome" class="label label-primary">Awsome</a>
   
+  <a href="/tags/single-cell" class="label label-primary">Single Cell</a>
+  
 
 
 </div>
@@ -205,22 +218,79 @@
   
 
 
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>There are growing numbers of single cell RNA-seq (scRNA-Seq) researches. Due to the nature of scRNA-Seq design, the volume and velocity of generated data spans several orders of magnitude than current bulk RNA-seq. This, however, poses great challenges post sequencing data analysis.</p>
-<p>Test Figures</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span id="fig:pie"></span>
-<img src="/post/awsome_scRNA_cluster_files/figure-html/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Recently developed single cell RNA sequencing technologies are revolutionizing our understanding of cellular functions. Massive parallel sequencing of thousands of cells has provided the research community a window into the transcriptional landscape of living organisms. In the meantime, great challenges have been posed due to the large volume and complexity of the data. Therefore, algorithms, as well as their software applications, have been developed to help investigate biological meaningful information.</p>
+</div>
+<div id="publications" class="section level2">
+<h2>Publications</h2>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Kiselev, Vladimir Yu, Tallulah S. Andrews, and Martin Hemberg. “<a href="https://doi.org/10.1038/s41576-018-0088-9">Challenges in unsupervised clustering of single-cell RNA-seq data.</a>” Nature Reviews Genetics (2019): 1.</li>
+</ol>
+</blockquote>
+<p>This paper is currently up-to-date and has summarized both biological and computational challenges.</p>
+</div>
+<div id="challenges" class="section level2">
+<h2>Challenges</h2>
+<div id="dimension-reduction" class="section level3">
+<h3>1. Dimension Reduction</h3>
+<p>Raw FASTQ files that contain millions of reads composed of RNA sequences were retrieved from the sequencing machine, and then they were subject to the data preprocessing pipeline to generate the expression table, which is usually a N <span class="math inline">\(\times\)</span> D data matrix. For the matrix, N indicates the number of cells and D indicates the number of genes. Since, D is far greater than N, this poses a challenge, “curse of dimensionality” in analyzing scRNA-seq data. Initially, Principle Component Analysis (PCA) was used to reduce the dimension.</p>
+<p>Principle components are the weighted sum of the original data, of which the first principle component (PC1) captures as much as of the variances as possible. This approach is based on a linear factor model and aims to decrease amount of variation in the original data.</p>
+<p>Later, by integrating PCA with hierarchical clustering, the pcaReduce [41] provided an agglomerative approach which seeks to establish a connection between the reduced dimensions and the number of potential clusters. This strategy is similar to that in another study, where PCA was iteratively applied in 622 single mouse neurons [42] to identify eleven neuronal types. The PCA algorithm can also be combined with expectation-maximization (EM) clustering to partition cells based on their positions in the PC space [43]. Recently, locality-sensitive PCA (LSPCA) has been proposed with structure-aware data sample at its core to deal with droplet-based scRNA-seq data [44]. LSPCA aims to reduce the bias of the redundant data dominating by major cell types and is able to detect the minor population of cells.</p>
+<p>Although powerful, the linear transformation based PCA may not faithfully recapitulate the nonlinear relationships of high dimension gene expression data. Thus, the <em>t</em>-Distributed Stochastic Neighbor Embedding (<em>t</em>-SNE) algorithm [45] was proposed in this study [46]. The <em>t</em>-SNE algorithm models each high-dimensional sample by a two-dimensional point in a way that nearby samples in high-dimensional space should be close in the low-dimensional embedding.</p>
+</div>
+<div id="dealing-with-dropout-events" class="section level3">
+<h3>2. Dealing with Dropout Events</h3>
+<p>Due to the sequencing artifacts, scRNA-seq data contain an abundance of zero expression values, termed as “dropout event”, which is another challenge [50]. This would make commonly used similarity metrics, such as Euclidean distances, Pearson and Spearman correlation, less informative [36]. Zero Inflated Factor Analysis (ZIFA) is the first algorithm that addressed the problem of dropout events [50]. This algorithm is based on probabilistic principle components analysis (PPCA) and factor analysis (FA) that focuses on correlations rather than covariances. It first generates the data by modeling the separable cell states (cell types) in a latent low-dimensional space and then projected onto points in a high-dimensional gene expression space via a linear transformation with addition of Gaussian-distributed measurement noise (Figure 4).</p>
+<p>In this way, each measurement of gene expression will be assigned a distribution model indicating the probability to set zero, which would be removed from the analysis. The authors implemented this algorithm in Python programming language and proposed as a substitute of PCA functions. However, this algorithm intends to impute gene expression with zero values only limiting its ability to yield further information for those genes with low expression levels.</p>
+<p>Clustering through Imputation and Dimensionality Reduction (CIDR) [51] is on the other hand addresses the limitation of ZIFA by dealing with the dropout events using the Principle coordinate analysis (PCoA). Similar to PCA, PCoA is based on the cell-to-cell Euclidean distance matrix. Instead of directly treating the zero as lack of gene expression, CIDR argues that the probability of a gene expression value being dropout is anti-correlated with the its actual expression, meaning those genes with low expression levels are more likely to dropout than those with high expressions [50,52]. Motivated by this theory, CIDR computes the relationship between dropout rates and gene expression levels, and then performs clustering using the first few principle coordinates from PCoA results. Comparing to ZIFA, CIDR requires less running time while maintaining high accuracy.</p>
+</div>
+<div id="generating-suitable-similarity-metrics-for-clustering" class="section level3">
+<h3>3. Generating Suitable Similarity Metrics for Clustering</h3>
+<p>The increased dimensions and frequent dropout events have posed another challenge when choosing suitable similarity metrics, when the conventional Euclidean or Cosine measure become less informative [36]. Therefore, attempts have been made to develop scRNA-seq tailored similarity metrics.</p>
+<p>The Shared Nearest Neighbor (SNN) algorithm utilized an alternative similarity measure, that is based on the notion of shared nearest neighbor [53]. In other words, the similarity of two samples were measured by counting the number of their shared neighbors within fixed-sized distances. The consideration of surrounding points in terms of weighted edge can be used to construct SNN graph facilitating the capture of meaningful information from the high-dimensional space. Then, an optimal method for finding maximal cliques was applied to the SNN graph to identify clusters. This strategy was termed as SNN-Cliq as reported from this study [53]. The authors later proposed an extended application using iterative biclustering approach, “BiSNN-Walk” [54]. This algorithm could produce a ranked list of clusters as well as ranked genes with their affiliation to the associated cell cluster. The prioritized list made the results more biologically interpretable.</p>
+<p>The random forest based approach for similarity learning (RAFSIL) algorithms [55] provided a supervised approach to compute cell-cell similarities. It consists of two-step procedures, feature construction and similarity learning. The feature constructions step is mainly based on PCA with all or subset of genes as input. For the second step, the authors proposed two types of strategies. RAFSIL1 was applied to a ‘synthetic’ dataset, and the RF model was trained to distinguish randomly generated data from the true data. RAFSIL2 used the leave-one-out strategy, where the RF classifier repeatedly learns from the data without one feature (gene) at a time. This is also a good demonstration that classical machine learning strategy is applied. As the authors indicated, great performances have been achieved.</p>
+</div>
+<div id="identifying-rare-cell-type" class="section level3">
+<h3>4. Identifying Rare Cell Type</h3>
+<p>It cannot be neglected that cells of low abundance also play important roles in development or disease progression. Such rare cells include cancer stem cells, circulating tumor cells and progenitor cells. The rare cell type identification (RaceID) algorithm [10] was the first one to address the challenge of identifying rare cell. After K-means clustering with gap statistics, RaceID included one additional step, where clustered cells were assessed based on their gene expression distributions using ANOVA models. Using RaceID, Reg4 was identified as a novel marker for a rare population of hormone-producing intestinal cells. The authors later proposed, RaceID2 [56], by replacing <em>k</em>-means clustering with <em>k</em>-medoids clustering. In this way, the number of clusters were increased, while eliminating within-cluster separation.</p>
+<p>Another algorithm, GiniClust, is based on Gini index with the capability to detect rare cell-type-specific genes [57]. Modified for the detection of rare cell types, GiniClust managed to identify a cluster of cells with high expression hemoglobin genes in the mouse cortex and hippocampus, which was not reported in the original study. This raised the interests in studying biological functions of hemoglobin genes in dopaminergic neurons as it was commonly considered as a unique feature of erythroid cells [57].</p>
+</div>
+</div>
+<div id="applications" class="section level2">
+<h2>Applications</h2>
+<div id="seurat" class="section level3">
+<h3>Seurat</h3>
+<p>This <a href="https://satijalab.org/seurat/">R package</a> is one of popular and being actively developed packages. The initial Version 1.1 was released in 2015 [38] for inferring cellular localization of 851 cells from dissociated zebrafish embryos. Until the Version 1.2, the clustering functions were included, where PCA first used to the “training set” and generated the scores for the input for <em>t</em>-SNE analysis. The density [58] clustering, a graph-based partitioning method, was implemented to identify cell types.</p>
+</div>
+<div id="sc3" class="section level3">
+<h3>SC3</h3>
+<p>The SC3 pipeline utilized a parallel approach, where the parameters were evaluated simultaneously to optimize the clustering output by combining into a consensus matrix [59]. One of the advantages of this approach is that users do not have to struggle to determine the parameters. SC3 could also identify marker genes by identifying differentially expressed genes.</p>
+</div>
+<div id="dimm-sc" class="section level3">
+<h3>DIMM-SC</h3>
+<p>DIMM-SC [60], a Dirichlet mixture model was designed particularly for clustering droplet-based scRNA-seq data. It uses UMI count data and characterizes variations across different cell clusters via a Dirichlet mixture prior. The modelling approaches couple with expectation-maximization (E-M) algorithm [61] for fast convergence and provides cluster uncertainty for each cell. This could allow rigorous statistical inference and biological interpretations. The key limitation of this method is that it ignores multiple factors including dropout events, sequencing depths, and PCR efficiency. Therefore, extended design to overcome these caveats are anticipated.</p>
+</div>
+<div id="saic" class="section level3">
+<h3>SAIC</h3>
+<p>Single cell Analysis via Iterative Clustering (SAIC) identifies signature genes to separate single cells into distinct groups. Signature genes were selected from iterative K-means clustering of the data [12]. The clustering is initialized with the user defined K and ANOVA was conducted to compare gene expressions among clusters. Only genes with P-values below certain threshold, for example, 0.05, were retrained. The iterative process continues until the number of genes after filtration remains unchanged. The authors demonstrated the improved performances by comparing to Seurat. However, the algorithm still relies the user defined parameter which could lead to arbitrary results.</p>
+</div>
+<div id="rca" class="section level3">
+<h3>RCA</h3>
+<p>Reference Component Analysis (RCA) projected scRNA-seq data into a space based on variability in the reference set and selected sample-specific feature genes based on their expression levels [34]. The authors later applied the hierarchical clustering to identify cell types both in normal mucosa and colon rectal cancer tumors in an unbiased manner. From the identified cell types, differential expression analysis could reveal gene dysfunctions at cell-type resolution when comparing normal and cancerous tissues, which cannot be achieved in the traditional bulk RNA-seq method. This is a novel method that aims to leverage bulk RNA-seq to remove background noise.</p>
+</div>
+<div id="sincera" class="section level3">
+<h3>SINCERA</h3>
+<p>Single cell RNA-profiling analysis (SINCERA) [62] is a computational pipeline aims to provide one-stop scRNA-seq analyses including 1) the distinction of cell types, 2) the identification of cell type specific gene signatures and 3) the determination of driving forces of given cell types. For the clustering analysis, the conventional Person’s correlation was computed for the unsupervised hierarchical clustering. In addition, consensus clustering and tight clustering are included with optimized similarity measurements using ward linkage. The significances of clusters were assessed by a permutation analysis. This is a pipeline based application, however, has been updated since its first version was released in 2015. Therefore, some functions may not be feasible for the analyzing data generated using latest technologies, for example UMI count data.</p>
+</div>
+<div id="backspin" class="section level3">
+<h3>BackSPIN</h3>
+<p>BackSPIN is a divisive biclustering approach [63] based on the previously published algorithm, “sorting points into neighborhoods” (SPIN) [64], which is an alternative similarity metrics. One of the advantages of BackSPIN is that it can cluster genes and cells simultaneously, from which specific makers can be identified for each clusters. However, similar to SINCERA, BackSPIN is also lack of update.</p>
+</div>
+<div id="safe" class="section level3">
+<h3>SAFE</h3>
+<p>One recent published study proposed an ensemble clustering approach, Single-cell Aggregated (From Ensemble) Clustering (SAFE) [65]. SAFE provides a pipeline that first performs independent clustering using SC3, CIDR, Seurat and <em>t</em>-SNE + <em>k</em>-means, then combines the results using statistical modelling. This provides a novel strategy to leverage multiple algorithms, and performances did get improved. However, this brought in dramatic increases in computational cost. The ensemble strategy still needs to be optimized to tailor to different biological settings.</p>
 </div>
 </div>
 

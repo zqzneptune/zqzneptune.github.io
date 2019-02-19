@@ -25,6 +25,12 @@
   </url>
   
   <url>
+    <loc>/tags/single-cell/</loc>
+    <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2018-12-12T00:00:00+00:00</lastmod>
     <priority>0</priority>

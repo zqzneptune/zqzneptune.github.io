@@ -18,9 +18,7 @@
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       <author>zqzneptune@hotmail.com (Qingzhou Zhang)</author>
       <guid>/2018/12/12/awsome_scrna_cluster/</guid>
-      <description>Introduction There are growing numbers of single cell RNA-seq (scRNA-Seq) researches. Due to the nature of scRNA-Seq design, the volume and velocity of generated data spans several orders of magnitude than current bulk RNA-seq. This, however, poses great challenges post sequencing data analysis.
-Test Figures
-par(mar = c(0, 1, 0, 1)) pie( c(280, 60, 20), c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;), col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;), init.</description>
+      <description>Introduction Recently developed single cell RNA sequencing technologies are revolutionizing our understanding of cellular functions. Massive parallel sequencing of thousands of cells has provided the research community a window into the transcriptional landscape of living organisms. In the meantime, great challenges have been posed due to the large volume and complexity of the data. Therefore, algorithms, as well as their software applications, have been developed to help investigate biological meaningful information.</description>
     </item>
     
     <item>
