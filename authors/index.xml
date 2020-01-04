@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | zqzneptune</title>
+    <link>https://zqzneptune.github.io/authors/</link>
+      <atom:link href="https://zqzneptune.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright>
+    <image>
+      <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
+      <title>Authors</title>
+      <link>https://zqzneptune.github.io/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>https://zqzneptune.github.io/authors/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://zqzneptune.github.io/authors/admin/</guid>
+      <description>&lt;p&gt;I am currently enrolled in the PhD Biochemitry program in &lt;a href=&#34;http://uregina.ca/~babu200m/&#34;&gt;Dr. Mohan Babu&#39;s group&lt;/a&gt;, &lt;a href=&#34;https://www.uregina.ca/&#34;&gt;University of Regina&lt;/a&gt;. In light of the deluge of omics data in life sciences, my research interests focus on computational approaches in systems biology including developing &lt;a href=&#34;http://rged.wall-eva.net/&#34;&gt;gene expression database&lt;/a&gt;, &lt;a href=&#34;https://bioconductor.org/packages/release/bioc/html/SMAD.html&#34;&gt;Bioconductor R package&lt;/a&gt;. My &lt;a href=&#34;publication/j.isci.2019.08.057/&#34;&gt;recent publication&lt;/a&gt; revealed rewiring the mitochondrial interactome during neurogensis using both &lt;strong&gt;biochemical fractionation proteomics&lt;/strong&gt; and &lt;strong&gt;single cell RNA-seq&lt;/strong&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
