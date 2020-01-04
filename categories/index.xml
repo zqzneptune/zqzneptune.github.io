@@ -5,7 +5,7 @@
     <link>https://zqzneptune.github.io/categories/</link>
       <atom:link href="https://zqzneptune.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Thu, 23 Jul 2015 21:13:14 -0500</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Wed, 23 Jul 2014 21:13:14 +0800</lastBuildDate>
     <image>
       <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
       <title>Categories</title>
@@ -13,10 +13,18 @@
     </image>
     
     <item>
-      <title>R</title>
-      <link>https://zqzneptune.github.io/categories/r/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>https://zqzneptune.github.io/categories/r/</guid>
+      <title>Database</title>
+      <link>https://zqzneptune.github.io/categories/database/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/categories/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Publication</title>
+      <link>https://zqzneptune.github.io/categories/publication/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/categories/publication/</guid>
       <description></description>
     </item>
     

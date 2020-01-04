@@ -125,30 +125,6 @@
     </item>
     
     <item>
-      <title>plot</title>
-      <link>https://zqzneptune.github.io/tags/plot/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>https://zqzneptune.github.io/tags/plot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R Markdown</title>
-      <link>https://zqzneptune.github.io/tags/r-markdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>https://zqzneptune.github.io/tags/r-markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>regression</title>
-      <link>https://zqzneptune.github.io/tags/regression/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>https://zqzneptune.github.io/tags/regression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Database</title>
       <link>https://zqzneptune.github.io/tags/database/</link>
       <pubDate>Tue, 07 Oct 2014 00:00:00 +0000</pubDate>
@@ -161,6 +137,38 @@
       <link>https://zqzneptune.github.io/tags/gene-expression/</link>
       <pubDate>Tue, 07 Oct 2014 00:00:00 +0000</pubDate>
       <guid>https://zqzneptune.github.io/tags/gene-expression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gene Expresssion</title>
+      <link>https://zqzneptune.github.io/tags/gene-expresssion/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/tags/gene-expresssion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHP</title>
+      <link>https://zqzneptune.github.io/tags/php/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://zqzneptune.github.io/tags/r/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Renal Disease</title>
+      <link>https://zqzneptune.github.io/tags/renal-disease/</link>
+      <pubDate>Wed, 23 Jul 2014 21:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/tags/renal-disease/</guid>
       <description></description>
     </item>
     
