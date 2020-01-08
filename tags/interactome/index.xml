@@ -58,7 +58,7 @@ head(TestDatInput)&lt;/code&gt;&lt;/pre&gt;
 ## 4 70380  ISG20     RCN1         4     331
 ## 5 70380  ISG20     YBX1         9     324
 ## 6 70380  ISG20    BASP1         6     227&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The test data is for demo only, there are in total &lt;strong&gt;65&lt;/strong&gt; AP-MS expriments covering &lt;strong&gt;65&lt;/strong&gt; bait proteins.&lt;/p&gt;
+&lt;p&gt;The test data is for demo only, there are in total &lt;strong&gt;65&lt;/strong&gt; AP-MS expriments covering &lt;strong&gt;65&lt;/strong&gt; bait proteins and &lt;strong&gt;26441&lt;/strong&gt; bait-prey pairs.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comppass&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;CompPASS&lt;/h2&gt;
