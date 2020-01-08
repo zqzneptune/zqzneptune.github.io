@@ -3,21 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zqzneptune.github.io/courses/example/example1/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zqzneptune.github.io/courses/example/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zqzneptune.github.io/courses/example/example2/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://zqzneptune.github.io/talk/example/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
@@ -103,6 +88,41 @@
   </url>
   
   <url>
+    <loc>https://zqzneptune.github.io/tags/ap-ms/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/categories/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/post/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/tags/proteomics/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/tags/r/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/post/2019-05-22-smad/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/categories/software/</loc>
+    <lastmod>2019-05-22T09:13:14-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zqzneptune.github.io/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
@@ -110,11 +130,6 @@
   <url>
     <loc>https://zqzneptune.github.io/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zqzneptune.github.io/tags/ap-ms/</loc>
-    <lastmod>2017-11-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -173,11 +188,6 @@
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/categories/</loc>
-    <lastmod>2014-07-23T21:13:14+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://zqzneptune.github.io/categories/database/</loc>
     <lastmod>2014-07-23T21:13:14+08:00</lastmod>
   </url>
@@ -198,17 +208,7 @@
   </url>
   
   <url>
-    <loc>https://zqzneptune.github.io/post/</loc>
-    <lastmod>2014-07-23T21:13:14+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://zqzneptune.github.io/categories/publication/</loc>
-    <lastmod>2014-07-23T21:13:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zqzneptune.github.io/tags/r/</loc>
     <lastmod>2014-07-23T21:13:14+08:00</lastmod>
   </url>
   
@@ -222,11 +222,19 @@
   </url>
   
   <url>
+    <loc>https://zqzneptune.github.io/project/01_qc_preprocess/</loc>
+  </url>
+  
+  <url>
     <loc>https://zqzneptune.github.io/authors/</loc>
   </url>
   
   <url>
     <loc>https://zqzneptune.github.io/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zqzneptune.github.io/project/</loc>
   </url>
   
 </urlset>

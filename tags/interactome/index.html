@@ -302,11 +302,6 @@
     
 
     
-    <button type="button" class="navbar-toggler" data-toggle="collapse"
-            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span><i class="fas fa-bars"></i></span>
-    </button>
-    
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
@@ -320,64 +315,6 @@
 
       
       <ul class="navbar-nav d-md-inline-flex">
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-        
-        
-        
-        
-        
-          
-          
-          
-            
-          
-          
-        
-
-        <li class="nav-item">
-          <a class="nav-link " href="/#posts"><span>Posts</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-        
-        
-        
-        
-        
-          
-          
-          
-            
-          
-          
-        
-
-        <li class="nav-item">
-          <a class="nav-link " href="/#publication"><span>Publications</span></a>
-        </li>
-
-        
         
 
       
@@ -456,6 +393,20 @@
     <div class="article-style">
       
       2018
+      
+    </div>
+  </div>
+  
+  <div>
+    <h2><a href="/post/2019-05-22-smad/">SMAD</a></h2>
+    <div class="article-style">
+      
+      The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to protein-protein interactions. Currently, there are two algorithms implemented as in seperated functions: CompPASS and HG.
+Installation Use Bioconductor:
+BiocManager::install(&quot;SMAD&quot;) Alternatively, you can install from my Github repository:
+devtools::install_github(&quot;zqzneptune/SMAD&quot;)  Quick start Loading the package:
+library(SMAD) Use the test data delivered with the package:
+data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPrey lenPrey ## 1 70380 ISG20 ARPC2 17 300 ## 2 70380 ISG20 RPL4 8 427 ## 3 70380 ISG20 MARCKSL1 4 195 ## 4 70380 ISG20 RCN1 4 331 ## 5 70380 ISG20 YBX1 9 324 ## 6 70380 ISG20 BASP1 6 227 The test data is for demo only, there are in total 65 AP-MS expriments covering 65 bait proteins.
       
     </div>
   </div>
