@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Publication | zqzneptune</title>
-    <link>https://zqzneptune.github.io/categories/publication/</link>
-      <atom:link href="https://zqzneptune.github.io/categories/publication/index.xml" rel="self" type="application/rss+xml" />
-    <description>Publication</description>
+    <title>Python | zqzneptune</title>
+    <link>https://zqzneptune.github.io/tags/python/</link>
+      <atom:link href="https://zqzneptune.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <description>Python</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Thu, 12 Dec 2019 18:13:14 -0600</lastBuildDate>
     <image>
       <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
-      <title>Publication</title>
-      <link>https://zqzneptune.github.io/categories/publication/</link>
+      <title>Python</title>
+      <link>https://zqzneptune.github.io/tags/python/</link>
     </image>
     
     <item>
@@ -62,16 +62,6 @@ python -mpip install -U matplotlib
        -m COMB \
        -f STRING
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello, RGED!</title>
-      <link>https://zqzneptune.github.io/post/2014-09-23-rged/</link>
-      <pubDate>Wed, 23 Jul 2014 01:13:14 +0800</pubDate>
-      <guid>https://zqzneptune.github.io/post/2014-09-23-rged/</guid>
-      <description>&lt;p&gt;The Renal Gene Expression Database (RGED) is online. Number of samples colleceted in the database reached around ~10,000, including DNA microarray and RNA-seq experiments.&lt;/p&gt;
-&lt;p&gt;Just go ahead to this URL: &lt;a href=&#34;http://rged.wall-eva.net/&#34;&gt;http://rged.wall-eva.net/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
