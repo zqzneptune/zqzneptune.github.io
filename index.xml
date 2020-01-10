@@ -302,6 +302,82 @@ Three
     </item>
     
     <item>
+      <title>Awsome protein interactions from AP-MS data</title>
+      <link>https://zqzneptune.github.io/post/2018-07-08-apms/</link>
+      <pubDate>Sun, 08 Jul 2018 09:23:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2018-07-08-apms/</guid>
+      <description>&lt;p&gt;A collection of resources regarding affinity purification mass spectrometry proteomics for the identification of protein-protein interactions.&lt;/p&gt;
+&lt;h2 id=&#34;algorithms&#34;&gt;Algorithms&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Year&lt;/th&gt;
+&lt;th&gt;Algorithm&lt;/th&gt;
+&lt;th&gt;Publication&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2002&lt;/td&gt;
+&lt;td&gt;socio-affinity index&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature04532&#34;&gt;Anne-Claude Gavin et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;partial least squares (PLS)‐based regression model&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.embopress.org/doi/10.1038/msb4100134&#34;&gt;Rob M Ewing et al., Mol Syst Biol&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;purification enrichment (PE)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.mcponline.org/content/6/3/439&#34;&gt;Sean R. Collins et al., Molecular &amp;amp; Cellular Proteomics&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;Hart&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-8-236&#34;&gt;G Traver Hart et al., BMC Bioinformatics&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2008&lt;/td&gt;
+&lt;td&gt;PP-NSAF&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.pnas.org/content/105/5/1454.short&#34;&gt;Mihaela E. Sardiu et al., PNAS&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;td&gt;CompPASS&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2009.04.042&#34;&gt;Mathew E.Sowa et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2010&lt;/td&gt;
+&lt;td&gt;Decontaminator&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://pubs.acs.org/doi/abs/10.1021/pr100795z&#34;&gt;MathieLavallée-Adam et al. J. Proteome Res. &lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;MiST&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature10719&#34;&gt;Stefanie Jäger et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;HGScore&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2011.08.047&#34;&gt;K.G.Guruharsha et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;SAINT&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1038/nmeth.1541&#34;&gt;Hyungwon Choi et al., Nature Methods&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;SFINX&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00666&#34;&gt;Kevin Titeca et al. J. Proteome Res.&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Global landscape of cell envelope protein complexes in Escherichia coli</title>
       <link>https://zqzneptune.github.io/publication/nbt.4024/</link>
       <pubDate>Mon, 27 Nov 2017 00:00:00 +0000</pubDate>
