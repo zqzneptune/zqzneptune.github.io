@@ -205,6 +205,42 @@ Algorithms    Year Algorithm Publication     2002 socio-affinity index Anne-Clau
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156259873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-156259873-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -443,7 +479,7 @@ Algorithms    Year Algorithm Publication     2002 socio-affinity index Anne-Clau
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -551,6 +587,81 @@ Algorithms    Year Algorithm Publication     2002 socio-affinity index Anne-Clau
 </tr>
 </tbody>
 </table>
+<h3 id="comppass">CompPASS</h3>
+<p>CompPASS was first proposed to elucidate human deubiquitinating enzyme interaction network by Sowa et al. The output includes Z-score, S-score, D-score and WD-score. In its implementation in <a href="https://doi.org/10.1016/j.cell.2015.06.043">BioPlex 1.0</a> and <a href="https://doi.org/10.1038/nature22366">BioPlex 2.0</a>, a naive Bayes classifier that learns to distinguish true interacting proteins from non-specific background and false positive identifications was included in the compPASS pipline. Here, referenced from the <a href="http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi">author</a>, we recapitulated the formulas:</p>
+<ol>
+<li>First things first, the so-called <strong>&ldquo;stats-table&rdquo;</strong>:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Bait 1</th>
+<th>Bait 2</th>
+<th>Bait 3</th>
+<th>Bait 4</th>
+<th>&hellip;</th>
+<th>Bait k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prey 1</td>
+<td>x<sub>1,1</sub></td>
+<td>x<sub>2,1</sub></td>
+<td>x<sub>3,1</sub></td>
+<td>x<sub>4,1</sub></td>
+<td>&hellip;</td>
+<td>x<sub>k,1</sub></td>
+</tr>
+<tr>
+<td>Prey 2</td>
+<td>x<sub>1,2</sub></td>
+<td>x<sub>2,2</sub></td>
+<td>x<sub>3,1</sub></td>
+<td>x<sub>4,1</sub></td>
+<td>&hellip;</td>
+<td>x<sub>k,1</sub></td>
+</tr>
+<tr>
+<td>Prey 3</td>
+<td>x<sub>1,3</sub></td>
+<td>x<sub>2,3</sub></td>
+<td>x<sub>3,1</sub></td>
+<td>x<sub>4,1</sub></td>
+<td>&hellip;</td>
+<td>x<sub>k,1</sub></td>
+</tr>
+<tr>
+<td>Prey 4</td>
+<td>x<sub>1,4</sub></td>
+<td>x<sub>2,4</sub></td>
+<td>x<sub>3,1</sub></td>
+<td>x<sub>4,1</sub></td>
+<td>&hellip;</td>
+<td>x<sub>k,1</sub></td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>Prey m</td>
+<td>x<sub>1,m</sub></td>
+<td>x<sub>2,m</sub></td>
+<td>x<sub>3,1</sub></td>
+<td>x<sub>4,1</sub></td>
+<td>&hellip;</td>
+<td>x<sub>k,1</sub></td>
+</tr>
+</tbody>
+</table>
+<p>Denotations:</p>
 
     </div>
 
