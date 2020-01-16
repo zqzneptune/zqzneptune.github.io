@@ -82,74 +82,76 @@ python -mpip install -U matplotlib
     </item>
     
     <item>
-      <title>SMAD</title>
+      <title>Statistical Modelling of AP-MS Data (SMAD)</title>
       <link>https://zqzneptune.github.io/post/2019-05-22-smad/</link>
       <pubDate>Wed, 22 May 2019 09:13:14 -0600</pubDate>
       <guid>https://zqzneptune.github.io/post/2019-05-22-smad/</guid>
-      <description>&lt;p&gt;The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to
-protein-protein interactions. Currently, there are two algorithms
-implemented as in seperated functions: &lt;strong&gt;CompPASS&lt;/strong&gt; and &lt;strong&gt;HG&lt;/strong&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify &lt;em&gt;bona fide&lt;/em&gt; protein-protein interactions (PPI).&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;p&gt;Use Bioconductor:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BiocManager::install(&amp;quot;SMAD&amp;quot;)
+&lt;p&gt;The development version can be installed through github:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt; devtools::install_github(repo=&amp;quot;zqzneptune/SMAD&amp;quot;)
+ library(SMAD)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Alternatively, you can install from my Github repository:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;devtools::install_github(&amp;quot;zqzneptune/SMAD&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
-&lt;p&gt;Loading the package:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;library(SMAD)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Use the test data delivered with the package:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;data(&amp;quot;TestDatInput&amp;quot;)
-head(TestDatInput)
+&lt;h2 id=&#34;input-data&#34;&gt;Input Data&lt;/h2&gt;
+&lt;p&gt;A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;data(TestDatInput)
+colnames(TestDataInput)
 
-##   idRun idBait   idPrey countPrey lenPrey
-## 1 70380  ISG20    ARPC2        17     300
-## 2 70380  ISG20     RPL4         8     427
-## 3 70380  ISG20 MARCKSL1         4     195
-## 4 70380  ISG20     RCN1         4     331
-## 5 70380  ISG20     YBX1         9     324
-## 6 70380  ISG20    BASP1         6     227
+[1] &amp;quot;idRun&amp;quot; &amp;quot;idBait&amp;quot; &amp;quot;idPrey&amp;quot; &amp;quot;countPrey&amp;quot; &amp;quot;lenPrey&amp;quot; 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The test data is for demo only, there are in total &lt;strong&gt;65&lt;/strong&gt; AP-MS
-expriments covering &lt;strong&gt;65&lt;/strong&gt; bait proteins and &lt;strong&gt;26441&lt;/strong&gt; bait-prey pairs.&lt;/p&gt;
-&lt;h2 id=&#34;comppass&#34;&gt;CompPASS&lt;/h2&gt;
-&lt;p&gt;Comparative Proteomic Analysis Software Suite (CompPASS) is based on
-spoke model. The implementation of this algorithm was inspired by
-&lt;a href=&#34;http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi&#34;&gt;Dr. Sowa’s online
-tutorial&lt;/a&gt;.
-The output includes Z-score, S-score, D-score and WD-score.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;scoreCompPASS &amp;lt;- CompPASS(TestDatInput)
-head(scoreCompPASS)
-
-##   idBait idPrey AvePSM      scoreZ    scoreS    scoreD Entropy    scoreWD
-## 1  AIFM3   ACTB     19 -0.62875216  4.358899  4.358899       0 0.05209068
-## 2  AIFM3  ACTC1     15  0.03766105  4.135851  4.135851       0 0.06942625
-## 3  AIFM3  ACTN2      2 -0.36323536  2.081666  2.081666       0 0.05954275
-## 4  AIFM3  ACTN4      5 -1.00689296  2.271284  2.271284       0 0.05000186
-## 5  AIFM3   AHCY      6 -0.58996199  2.571025  2.571025       0 0.04553311
-## 6  AIFM3  AIFM1     20  1.95142442 10.871146 10.871146       0 0.41566770
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;idRun&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;idBait&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;idPrey&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;countPrey&lt;/th&gt;
+&lt;th&gt;lenPrey&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Unique ID of one AP-MS run&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Bait ID&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Prey ID&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Prey peptide count&lt;/td&gt;
+&lt;td&gt;Protein sequence length of the prey&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In case of duplcates, a suffix or prefix of e.g. &amp;ldquo;A&amp;rdquo;, &amp;ldquo;B&amp;rdquo; could be added to &lt;strong&gt;idRun&lt;/strong&gt; in order to make &lt;strong&gt;&amp;ldquo;idRun-idBait&amp;rdquo;&lt;/strong&gt; combination unique to each replicate.&lt;/p&gt;
+&lt;h2 id=&#34;run-scoring&#34;&gt;Run scoring&lt;/h2&gt;
+&lt;h3 id=&#34;1-comppass&#34;&gt;1. CompPASS&lt;/h3&gt;
+&lt;p&gt;Comparative Proteomic Analysis Software Suite (CompPASS) is based on spoke model. This algorithm was developed by Dr. Mathew Sowa for defining the human deubiquitinating enzyme interaction landscape &lt;a href=&#34;https://doi.org/10.1016/j.cell.2009.04.042&#34;&gt;(Sowa, Mathew E., et al., 2009)&lt;/a&gt;. The implementation of this algorithm was inspired by Dr. Sowa&#39;s &lt;a href=&#34;http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi&#34;&gt;online tutorial&lt;/a&gt;. The output includes Z-score, S-score, D-score and WD-score. In its implementation in BioPlex 1.0 &lt;a href=&#34;https://doi.org/10.1016/j.cell.2015.06.043&#34;&gt;(Huttlin, Edward L., et al., 2015)&lt;/a&gt; and
+BioPlex 2.0 &lt;a href=&#34;https://www.nature.com/articles/nature22366&#34;&gt;(Huttlin, Edward L., et al., 2017)&lt;/a&gt;, a naive
+Bayes classifier that learns to distinguish true interacting proteins from
+non-specific background and false positive identifications was included in the
+compPASS pipline. This function was optimized from the &lt;a href=&#34;https://github.com/dnusinow/cRomppass&#34;&gt;source code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idBait&lt;/strong&gt;, &lt;strong&gt;idPrey&lt;/strong&gt; and &lt;strong&gt;countPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- CompPASS(datInput)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;hgscore&#34;&gt;HGscore&lt;/h2&gt;
-&lt;p&gt;HGScore scoring algorithm used a hypergeometric distribution error model
-with incorporation of NSAF. As a matrix model, it computes prey-prey
-associations. Unlike CompPASS, we need protein length for each prey in
-the additional column.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;scoreHG &amp;lt;- HG(TestDatInput)
-head(scoreHG)
-
-##   InteractorA InteractorB         HG
-## 1         A2M       ABCB1 8.27071788
-## 2         A2M       ABCC4 7.18157099
-## 3         A2M       ABCD3 0.75126610
-## 4         A2M      ACADSB 2.70799149
-## 5         A2M       ACAT1 0.09892875
-## 6         A2M        ACLY 0.38878476
+&lt;h3 id=&#34;2-dice&#34;&gt;2. DICE&lt;/h3&gt;
+&lt;p&gt;The Dice coefficient is used to score the interaction scores across prey pair-wise combinations, which was proposed by &lt;a href=&#34;https://doi.org/10.1093/bioinformatics/btn036&#34;&gt;(Bing Zhang et al., 2008)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- DICE(datInput)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;SMAD is actively under development, and will include more scoring
-algorithms. Stay tuned for updates.&lt;/p&gt;
+&lt;h3 id=&#34;3-hart&#34;&gt;3. Hart&lt;/h3&gt;
+&lt;p&gt;Hart scoring algorithm is based on a hypergeometric distribution error model &lt;a href=&#34;https://doi.org/10.1186/1471-2105-8-236&#34;&gt;(Hart et al., 2007)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- Hart(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-hgscore&#34;&gt;4. HGScore&lt;/h3&gt;
+&lt;p&gt;HGScore algorithm is based on a hypergeometric distribution error model &lt;a href=&#34;https://doi.org/10.1186/1471-2105-8-236&#34;&gt;(Hart et al., 2007)&lt;/a&gt; with incorporation of NSAF &lt;a href=&#34;https://doi.org/10.1021/pr060161n&#34;&gt;(Zybailov, Boris, et al., 2006)&lt;/a&gt;. This algorithm was first introduced to predict the protein complex network of Drosophila melanogaster &lt;a href=&#34;https://doi.org/10.1016/j.cell.2011.08.047&#34;&gt;(Guruharsha, K. G., et al., 2011)&lt;/a&gt;. This scoring algorithm was based on matrix model.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idPrey&lt;/strong&gt;, &lt;strong&gt;countPrey&lt;/strong&gt; and &lt;strong&gt;lenPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- HG(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;5-pe&#34;&gt;5. PE&lt;/h3&gt;
+&lt;p&gt;PE incorporated both spoke and matrix model as repored in &lt;a href=&#34;https://doi.org/10.1074/mcp.M600381-MCP200&#34;&gt;(Sean R. Collins, et al., 2007)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idBait&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- PE(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;MIT @ Qingzhou Zhang&lt;/p&gt;
 </description>
     </item>
     

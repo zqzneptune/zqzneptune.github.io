@@ -28,12 +28,10 @@
   
     
   
-  <meta name="description" content="The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to protein-protein interactions. Currently, there are two algorithms implemented as in seperated functions: CompPASS and HG.
-Installation Use Bioconductor:
-BiocManager::install(&quot;SMAD&quot;)  Alternatively, you can install from my Github repository:
-devtools::install_github(&quot;zqzneptune/SMAD&quot;)  Quick start Loading the package:
-library(SMAD)  Use the test data delivered with the package:
-data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPrey lenPrey ## 1 70380 ISG20 ARPC2 17 300 ## 2 70380 ISG20 RPL4 8 427 ## 3 70380 ISG20 MARCKSL1 4 195 ## 4 70380 ISG20 RCN1 4 331 ## 5 70380 ISG20 YBX1 9 324 ## 6 70380 ISG20 BASP1 6 227  The test data is for demo only, there are in total 65 AP-MS expriments covering 65 bait proteins and 26441 bait-prey pairs.">
+  <meta name="description" content="This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify bona fide protein-protein interactions (PPI).
+Installation The development version can be installed through github:
+devtools::install_github(repo=&quot;zqzneptune/SMAD&quot;) library(SMAD)  Input Data A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:
+data(TestDatInput) colnames(TestDataInput) [1] &quot;idRun&quot; &quot;idBait&quot; &quot;idPrey&quot; &quot;countPrey&quot; &quot;lenPrey&quot;     idRun idBait idPrey countPrey lenPrey     Unique ID of one AP-MS run Bait ID Prey ID Prey peptide count Protein sequence length of the prey    In case of duplcates, a suffix or prefix of e.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://zqzneptune.github.io/post/2019-05-22-smad/">
@@ -272,13 +270,11 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
   
   <meta property="og:site_name" content="zqzneptune">
   <meta property="og:url" content="https://zqzneptune.github.io/post/2019-05-22-smad/">
-  <meta property="og:title" content="SMAD | zqzneptune">
-  <meta property="og:description" content="The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to protein-protein interactions. Currently, there are two algorithms implemented as in seperated functions: CompPASS and HG.
-Installation Use Bioconductor:
-BiocManager::install(&quot;SMAD&quot;)  Alternatively, you can install from my Github repository:
-devtools::install_github(&quot;zqzneptune/SMAD&quot;)  Quick start Loading the package:
-library(SMAD)  Use the test data delivered with the package:
-data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPrey lenPrey ## 1 70380 ISG20 ARPC2 17 300 ## 2 70380 ISG20 RPL4 8 427 ## 3 70380 ISG20 MARCKSL1 4 195 ## 4 70380 ISG20 RCN1 4 331 ## 5 70380 ISG20 YBX1 9 324 ## 6 70380 ISG20 BASP1 6 227  The test data is for demo only, there are in total 65 AP-MS expriments covering 65 bait proteins and 26441 bait-prey pairs."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
+  <meta property="og:title" content="Statistical Modelling of AP-MS Data (SMAD) | zqzneptune">
+  <meta property="og:description" content="This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify bona fide protein-protein interactions (PPI).
+Installation The development version can be installed through github:
+devtools::install_github(repo=&quot;zqzneptune/SMAD&quot;) library(SMAD)  Input Data A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:
+data(TestDatInput) colnames(TestDataInput) [1] &quot;idRun&quot; &quot;idBait&quot; &quot;idPrey&quot; &quot;countPrey&quot; &quot;lenPrey&quot;     idRun idBait idPrey countPrey lenPrey     Unique ID of one AP-MS run Bait ID Prey ID Prey peptide count Protein sequence length of the prey    In case of duplcates, a suffix or prefix of e."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -312,7 +308,7 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
     "@type": "WebPage",
     "@id": "https://zqzneptune.github.io/post/2019-05-22-smad/"
   },
-  "headline": "SMAD",
+  "headline": "Statistical Modelling of AP-MS Data (SMAD)",
   
   "datePublished": "2019-05-22T09:13:14-06:00",
   "dateModified": "2019-05-22T09:13:14-06:00",
@@ -330,7 +326,7 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
       "url": "img/https://zqzneptune.github.io"
     }
   },
-  "description": "The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to protein-protein interactions. Currently, there are two algorithms implemented as in seperated functions: CompPASS and HG.\nInstallation Use Bioconductor:\nBiocManager::install(\u0026quot;SMAD\u0026quot;)  Alternatively, you can install from my Github repository:\ndevtools::install_github(\u0026quot;zqzneptune/SMAD\u0026quot;)  Quick start Loading the package:\nlibrary(SMAD)  Use the test data delivered with the package:\ndata(\u0026quot;TestDatInput\u0026quot;) head(TestDatInput) ## idRun idBait idPrey countPrey lenPrey ## 1 70380 ISG20 ARPC2 17 300 ## 2 70380 ISG20 RPL4 8 427 ## 3 70380 ISG20 MARCKSL1 4 195 ## 4 70380 ISG20 RCN1 4 331 ## 5 70380 ISG20 YBX1 9 324 ## 6 70380 ISG20 BASP1 6 227  The test data is for demo only, there are in total 65 AP-MS expriments covering 65 bait proteins and 26441 bait-prey pairs."
+  "description": "This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify bona fide protein-protein interactions (PPI).\nInstallation The development version can be installed through github:\ndevtools::install_github(repo=\u0026quot;zqzneptune/SMAD\u0026quot;) library(SMAD)  Input Data A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:\ndata(TestDatInput) colnames(TestDataInput) [1] \u0026quot;idRun\u0026quot; \u0026quot;idBait\u0026quot; \u0026quot;idPrey\u0026quot; \u0026quot;countPrey\u0026quot; \u0026quot;lenPrey\u0026quot;     idRun idBait idPrey countPrey lenPrey     Unique ID of one AP-MS run Bait ID Prey ID Prey peptide count Protein sequence length of the prey    In case of duplcates, a suffix or prefix of e."
 }
 </script>
 
@@ -348,7 +344,7 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
 
 
 
-  <title>SMAD | zqzneptune</title>
+  <title>Statistical Modelling of AP-MS Data (SMAD) | zqzneptune</title>
 
 </head>
 
@@ -462,7 +458,7 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
   
   
 <div class="article-container pt-3">
-  <h1>SMAD</h1>
+  <h1>Statistical Modelling of AP-MS Data (SMAD)</h1>
 
   
 
@@ -530,70 +526,72 @@ data(&quot;TestDatInput&quot;) head(TestDatInput) ## idRun idBait idPrey countPr
   <div class="article-container">
 
     <div class="article-style">
-      <p>The SMAD (Statistical Modelling of AP-MS Data) aims to assgin scores to
-protein-protein interactions. Currently, there are two algorithms
-implemented as in seperated functions: <strong>CompPASS</strong> and <strong>HG</strong>.</p>
+      <p>This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify <em>bona fide</em> protein-protein interactions (PPI).</p>
 <h2 id="installation">Installation</h2>
-<p>Use Bioconductor:</p>
-<pre><code>BiocManager::install(&quot;SMAD&quot;)
+<p>The development version can be installed through github:</p>
+<pre><code class="language-{r}"> devtools::install_github(repo=&quot;zqzneptune/SMAD&quot;)
+ library(SMAD)
 </code></pre>
-<p>Alternatively, you can install from my Github repository:</p>
-<pre><code>devtools::install_github(&quot;zqzneptune/SMAD&quot;)
-</code></pre>
-<h2 id="quick-start">Quick start</h2>
-<p>Loading the package:</p>
-<pre><code>library(SMAD)
-</code></pre>
-<p>Use the test data delivered with the package:</p>
-<pre><code>data(&quot;TestDatInput&quot;)
-head(TestDatInput)
+<h2 id="input-data">Input Data</h2>
+<p>A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:</p>
+<pre><code class="language-{r}">data(TestDatInput)
+colnames(TestDataInput)
 
-##   idRun idBait   idPrey countPrey lenPrey
-## 1 70380  ISG20    ARPC2        17     300
-## 2 70380  ISG20     RPL4         8     427
-## 3 70380  ISG20 MARCKSL1         4     195
-## 4 70380  ISG20     RCN1         4     331
-## 5 70380  ISG20     YBX1         9     324
-## 6 70380  ISG20    BASP1         6     227
+[1] &quot;idRun&quot; &quot;idBait&quot; &quot;idPrey&quot; &quot;countPrey&quot; &quot;lenPrey&quot; 
 </code></pre>
-<p>The test data is for demo only, there are in total <strong>65</strong> AP-MS
-expriments covering <strong>65</strong> bait proteins and <strong>26441</strong> bait-prey pairs.</p>
-<h2 id="comppass">CompPASS</h2>
-<p>Comparative Proteomic Analysis Software Suite (CompPASS) is based on
-spoke model. The implementation of this algorithm was inspired by
-<a href="http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi">Dr. Sowa’s online
-tutorial</a>.
-The output includes Z-score, S-score, D-score and WD-score.</p>
-<pre><code>scoreCompPASS &lt;- CompPASS(TestDatInput)
-head(scoreCompPASS)
-
-##   idBait idPrey AvePSM      scoreZ    scoreS    scoreD Entropy    scoreWD
-## 1  AIFM3   ACTB     19 -0.62875216  4.358899  4.358899       0 0.05209068
-## 2  AIFM3  ACTC1     15  0.03766105  4.135851  4.135851       0 0.06942625
-## 3  AIFM3  ACTN2      2 -0.36323536  2.081666  2.081666       0 0.05954275
-## 4  AIFM3  ACTN4      5 -1.00689296  2.271284  2.271284       0 0.05000186
-## 5  AIFM3   AHCY      6 -0.58996199  2.571025  2.571025       0 0.04553311
-## 6  AIFM3  AIFM1     20  1.95142442 10.871146 10.871146       0 0.41566770
+<table>
+<thead>
+<tr>
+<th>idRun</th>
+<th align="center">idBait</th>
+<th align="center">idPrey</th>
+<th align="center">countPrey</th>
+<th>lenPrey</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unique ID of one AP-MS run</td>
+<td align="center">Bait ID</td>
+<td align="center">Prey ID</td>
+<td align="center">Prey peptide count</td>
+<td>Protein sequence length of the prey</td>
+</tr>
+</tbody>
+</table>
+<p>In case of duplcates, a suffix or prefix of e.g. &ldquo;A&rdquo;, &ldquo;B&rdquo; could be added to <strong>idRun</strong> in order to make <strong>&ldquo;idRun-idBait&rdquo;</strong> combination unique to each replicate.</p>
+<h2 id="run-scoring">Run scoring</h2>
+<h3 id="1-comppass">1. CompPASS</h3>
+<p>Comparative Proteomic Analysis Software Suite (CompPASS) is based on spoke model. This algorithm was developed by Dr. Mathew Sowa for defining the human deubiquitinating enzyme interaction landscape <a href="https://doi.org/10.1016/j.cell.2009.04.042">(Sowa, Mathew E., et al., 2009)</a>. The implementation of this algorithm was inspired by Dr. Sowa's <a href="http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi">online tutorial</a>. The output includes Z-score, S-score, D-score and WD-score. In its implementation in BioPlex 1.0 <a href="https://doi.org/10.1016/j.cell.2015.06.043">(Huttlin, Edward L., et al., 2015)</a> and
+BioPlex 2.0 <a href="https://www.nature.com/articles/nature22366">(Huttlin, Edward L., et al., 2017)</a>, a naive
+Bayes classifier that learns to distinguish true interacting proteins from
+non-specific background and false positive identifications was included in the
+compPASS pipline. This function was optimized from the <a href="https://github.com/dnusinow/cRomppass">source code</a>.</p>
+<p>The input data.frame, <em>datInput</em>, should include:<strong>idRun</strong>, <strong>idBait</strong>, <strong>idPrey</strong> and <strong>countPrey</strong>.</p>
+<pre><code class="language-{r}">datScore &lt;- CompPASS(datInput)
 </code></pre>
-<h2 id="hgscore">HGscore</h2>
-<p>HGScore scoring algorithm used a hypergeometric distribution error model
-with incorporation of NSAF. As a matrix model, it computes prey-prey
-associations. Unlike CompPASS, we need protein length for each prey in
-the additional column.</p>
-<pre><code>scoreHG &lt;- HG(TestDatInput)
-head(scoreHG)
-
-##   InteractorA InteractorB         HG
-## 1         A2M       ABCB1 8.27071788
-## 2         A2M       ABCC4 7.18157099
-## 3         A2M       ABCD3 0.75126610
-## 4         A2M      ACADSB 2.70799149
-## 5         A2M       ACAT1 0.09892875
-## 6         A2M        ACLY 0.38878476
+<h3 id="2-dice">2. DICE</h3>
+<p>The Dice coefficient is used to score the interaction scores across prey pair-wise combinations, which was proposed by <a href="https://doi.org/10.1093/bioinformatics/btn036">(Bing Zhang et al., 2008)</a></p>
+<p>The input data.frame, <em>datInput</em>, should include:<strong>idRun</strong> and <strong>idPrey</strong>.</p>
+<pre><code class="language-{r}">datScore &lt;- DICE(datInput)
 </code></pre>
-<h2 id="conclusion">Conclusion</h2>
-<p>SMAD is actively under development, and will include more scoring
-algorithms. Stay tuned for updates.</p>
+<h3 id="3-hart">3. Hart</h3>
+<p>Hart scoring algorithm is based on a hypergeometric distribution error model <a href="https://doi.org/10.1186/1471-2105-8-236">(Hart et al., 2007)</a>.</p>
+<p>The input data.frame, <em>datInput</em>, should include:<strong>idRun</strong> and <strong>idPrey</strong>.</p>
+<pre><code class="language-{r}">datScore &lt;- Hart(datInput)
+</code></pre>
+<h3 id="4-hgscore">4. HGScore</h3>
+<p>HGScore algorithm is based on a hypergeometric distribution error model <a href="https://doi.org/10.1186/1471-2105-8-236">(Hart et al., 2007)</a> with incorporation of NSAF <a href="https://doi.org/10.1021/pr060161n">(Zybailov, Boris, et al., 2006)</a>. This algorithm was first introduced to predict the protein complex network of Drosophila melanogaster <a href="https://doi.org/10.1016/j.cell.2011.08.047">(Guruharsha, K. G., et al., 2011)</a>. This scoring algorithm was based on matrix model.</p>
+<p>The input data.frame, <em>datInput</em>, should include:<strong>idRun</strong>, <strong>idPrey</strong>, <strong>countPrey</strong> and <strong>lenPrey</strong>.</p>
+<pre><code class="language-{r}">datScore &lt;- HG(datInput)
+</code></pre>
+<h3 id="5-pe">5. PE</h3>
+<p>PE incorporated both spoke and matrix model as repored in <a href="https://doi.org/10.1074/mcp.M600381-MCP200">(Sean R. Collins, et al., 2007)</a>.</p>
+<p>The input data.frame, <em>datInput</em>, should include:<strong>idRun</strong>, <strong>idBait</strong> and <strong>idPrey</strong>.</p>
+<pre><code class="language-{r}">datScore &lt;- PE(datInput)
+</code></pre>
+<h2 id="license">License</h2>
+<p>MIT @ Qingzhou Zhang</p>
 
     </div>
 
@@ -626,7 +624,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;text=SMAD" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;text=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -639,7 +637,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;t=SMAD" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;t=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -652,7 +650,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="mailto:?subject=SMAD&amp;body=https://zqzneptune.github.io/post/2019-05-22-smad/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29&amp;body=https://zqzneptune.github.io/post/2019-05-22-smad/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -665,7 +663,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;title=SMAD" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;title=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -678,7 +676,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=SMAD%20https://zqzneptune.github.io/post/2019-05-22-smad/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29%20https://zqzneptune.github.io/post/2019-05-22-smad/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -691,7 +689,7 @@ algorithms. Stay tuned for updates.</p>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;title=SMAD" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2019-05-22-smad/&amp;title=Statistical%20Modelling%20of%20AP-MS%20Data%20%28SMAD%29" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
