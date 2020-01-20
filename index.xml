@@ -33,6 +33,16 @@
     </item>
     
     <item>
+      <title>Dropout or not?</title>
+      <link>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</link>
+      <pubDate>Mon, 20 Jan 2020 11:26:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</guid>
+      <description>&lt;p&gt;The &amp;ldquo;dropout event&amp;rdquo; was termed from the observations  of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1038/s41587-019-0379-5&#34;&gt;&lt;strong&gt;Droplet scRNA-seq is not zero-inflated&lt;/strong&gt;&lt;/a&gt; Nature Biotechnology (2020), by Valentine Svensson&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Run EPIC</title>
       <link>https://zqzneptune.github.io/post/2019-12-12-runepic/</link>
       <pubDate>Thu, 12 Dec 2019 18:13:14 -0600</pubDate>

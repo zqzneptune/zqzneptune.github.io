@@ -5,12 +5,20 @@
     <link>https://zqzneptune.github.io/categories/</link>
       <atom:link href="https://zqzneptune.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Thu, 12 Dec 2019 18:13:14 -0600</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Mon, 20 Jan 2020 11:26:14 -0600</lastBuildDate>
     <image>
       <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
       <title>Categories</title>
       <link>https://zqzneptune.github.io/categories/</link>
     </image>
+    
+    <item>
+      <title>scRNA-seq</title>
+      <link>https://zqzneptune.github.io/categories/scrna-seq/</link>
+      <pubDate>Mon, 20 Jan 2020 11:26:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/categories/scrna-seq/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Publication</title>

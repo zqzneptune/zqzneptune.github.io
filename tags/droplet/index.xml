@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Droplet | zqzneptune</title>
+    <link>https://zqzneptune.github.io/tags/droplet/</link>
+      <atom:link href="https://zqzneptune.github.io/tags/droplet/index.xml" rel="self" type="application/rss+xml" />
+    <description>Droplet</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2020 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Mon, 20 Jan 2020 11:26:14 -0600</lastBuildDate>
+    <image>
+      <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
+      <title>Droplet</title>
+      <link>https://zqzneptune.github.io/tags/droplet/</link>
+    </image>
+    
+    <item>
+      <title>Dropout or not?</title>
+      <link>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</link>
+      <pubDate>Mon, 20 Jan 2020 11:26:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</guid>
+      <description>&lt;p&gt;The &amp;ldquo;dropout event&amp;rdquo; was termed from the observations  of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1038/s41587-019-0379-5&#34;&gt;&lt;strong&gt;Droplet scRNA-seq is not zero-inflated&lt;/strong&gt;&lt;/a&gt; Nature Biotechnology (2020), by Valentine Svensson&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
