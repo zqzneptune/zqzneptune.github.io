@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts | zqzneptune</title>
+    <link>https://zqzneptune.github.io/post/</link>
+      <atom:link href="https://zqzneptune.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2024 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Mon, 20 Jan 2020 11:26:14 -0600</lastBuildDate>
+    <image>
+      <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
+      <title>Posts</title>
+      <link>https://zqzneptune.github.io/post/</link>
+    </image>
+    
+    <item>
+      <title>Dropout or not?</title>
+      <link>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</link>
+      <pubDate>Mon, 20 Jan 2020 11:26:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</guid>
+      <description>&lt;p&gt;The &amp;ldquo;dropout event&amp;rdquo; was termed from the observations  of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1038/s41587-019-0379-5&#34;&gt;&lt;strong&gt;Droplet scRNA-seq is not zero-inflated&lt;/strong&gt;&lt;/a&gt; Nature Biotechnology (2020), by Valentine Svensson&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Run EPIC</title>
+      <link>https://zqzneptune.github.io/post/2019-12-12-runepic/</link>
+      <pubDate>Thu, 12 Dec 2019 18:13:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2019-12-12-runepic/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;EPIC&lt;/strong&gt; toolkit was initially published here: Hu, L. Z., et al. &amp;ldquo;EPIC: software toolkit for elution profile-based inference of protein complexes.&amp;rdquo; Nature methods 16.8 (2019): 737-742. &lt;a href=&#34;https://www.nature.com/articles/s41592-019-0461-4&#34;&gt;Link to the publication&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Forked from the orignial &lt;a href=&#34;https://github.com/BaderLab/EPIC&#34;&gt;repository&lt;/a&gt;, I have created &lt;strong&gt;RunEPIC&lt;/strong&gt;  to provide the code to run &lt;strong&gt;EPIC&lt;/strong&gt; locally.&lt;/p&gt;
+&lt;h2 id=&#34;1-environment&#34;&gt;1. Environment&lt;/h2&gt;
+&lt;p&gt;The main function in &lt;strong&gt;EPIC&lt;/strong&gt; was implemented in Python, given the headache caused by various libraries, the Anaconda enrionment was used. Simply install Anaconda Python 2.7 version for your convience, and we will start from there.&lt;/p&gt;
+&lt;h2 id=&#34;2-prerequisite&#34;&gt;2. Prerequisite&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s create the virtual enrionment:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;path to the anaconda directory/bin/conda create -n EPIC python=2.7 anaconda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;then we need step up some chanels:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(EPIC)conda config --add channels defaults
+(EPIC)conda config --add channels bioconda
+(EPIC)conda config --add channels conda-forge
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;get R installed:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(EPIC)conda install r
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;start R:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(EPIC)R
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;install wccsom for computing WCC scores:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; install.packages(&amp;quot;kohonen&amp;quot;)
+&amp;gt; install.packages(&amp;quot;https://cran.r-project.org/src/contrib/Archive/wccsom/wccsom_1.2.11.tar.gz&amp;quot;,
+                 type = &amp;quot;source&amp;quot;)
+&amp;gt; q()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;install conda packages:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda install requests scikit-learn beautifulsoup4 mock numpy rpy2
+python -mpip install -U matplotlib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;lastly, make sure Java is installed, so that ClusterOne.jar could be used.&lt;/p&gt;
+&lt;h2 id=&#34;3-run-epic&#34;&gt;3. Run EPIC&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/zqzneptune/RunEPIC.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The main.py in &lt;strong&gt;EPIC&lt;/strong&gt; implemented all the functions:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python directory to RunEPIC/src/main.py \
+       -s 11101001 \
+       [Directory to Input Folder/] \
+       -c [path to the gold standard file ] \
+       [Directory to Output Folder/] \
+       -o PrefixName \
+       -M RF \
+       -n 6 \
+       -m COMB \
+       -f STRING
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Statistical Modelling of AP-MS Data (SMAD)</title>
+      <link>https://zqzneptune.github.io/post/2019-05-22-smad/</link>
+      <pubDate>Wed, 22 May 2019 09:13:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2019-05-22-smad/</guid>
+      <description>&lt;p&gt;This R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify &lt;em&gt;bona fide&lt;/em&gt; protein-protein interactions (PPI).&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;The development version can be installed through github:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt; devtools::install_github(repo=&amp;quot;zqzneptune/SMAD&amp;quot;)
+ library(SMAD)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;input-data&#34;&gt;Input Data&lt;/h2&gt;
+&lt;p&gt;A demo data.frame was provided as a hint how the input data should strcutured in order to run the scoring functions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;data(TestDatInput)
+colnames(TestDataInput)
+
+[1] &amp;quot;idRun&amp;quot; &amp;quot;idBait&amp;quot; &amp;quot;idPrey&amp;quot; &amp;quot;countPrey&amp;quot; &amp;quot;lenPrey&amp;quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;idRun&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;idBait&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;idPrey&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;countPrey&lt;/th&gt;
+&lt;th&gt;lenPrey&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Unique ID of one AP-MS run&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Bait ID&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Prey ID&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Prey peptide count&lt;/td&gt;
+&lt;td&gt;Protein sequence length of the prey&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In case of duplcates, a suffix or prefix of e.g. &amp;ldquo;A&amp;rdquo;, &amp;ldquo;B&amp;rdquo; could be added to &lt;strong&gt;idRun&lt;/strong&gt; in order to make &lt;strong&gt;&amp;ldquo;idRun-idBait&amp;rdquo;&lt;/strong&gt; combination unique to each replicate.&lt;/p&gt;
+&lt;h2 id=&#34;run-scoring&#34;&gt;Run scoring&lt;/h2&gt;
+&lt;h3 id=&#34;1-comppass&#34;&gt;1. CompPASS&lt;/h3&gt;
+&lt;p&gt;Comparative Proteomic Analysis Software Suite (CompPASS) is based on spoke model. This algorithm was developed by Dr. Mathew Sowa for defining the human deubiquitinating enzyme interaction landscape &lt;a href=&#34;https://doi.org/10.1016/j.cell.2009.04.042&#34;&gt;(Sowa, Mathew E., et al., 2009)&lt;/a&gt;. The implementation of this algorithm was inspired by Dr. Sowa&amp;rsquo;s &lt;a href=&#34;http://besra.hms.harvard.edu/ipmsmsdbs/cgi-bin/tutorial.cgi&#34;&gt;online tutorial&lt;/a&gt;. The output includes Z-score, S-score, D-score and WD-score. In its implementation in BioPlex 1.0 &lt;a href=&#34;https://doi.org/10.1016/j.cell.2015.06.043&#34;&gt;(Huttlin, Edward L., et al., 2015)&lt;/a&gt; and
+BioPlex 2.0 &lt;a href=&#34;https://www.nature.com/articles/nature22366&#34;&gt;(Huttlin, Edward L., et al., 2017)&lt;/a&gt;, a naive
+Bayes classifier that learns to distinguish true interacting proteins from
+non-specific background and false positive identifications was included in the
+compPASS pipline. This function was optimized from the &lt;a href=&#34;https://github.com/dnusinow/cRomppass&#34;&gt;source code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idBait&lt;/strong&gt;, &lt;strong&gt;idPrey&lt;/strong&gt; and &lt;strong&gt;countPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- CompPASS(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-dice&#34;&gt;2. DICE&lt;/h3&gt;
+&lt;p&gt;The Dice coefficient is used to score the interaction scores across prey pair-wise combinations, which was proposed by &lt;a href=&#34;https://doi.org/10.1093/bioinformatics/btn036&#34;&gt;(Bing Zhang et al., 2008)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- DICE(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-hart&#34;&gt;3. Hart&lt;/h3&gt;
+&lt;p&gt;Hart scoring algorithm is based on a hypergeometric distribution error model &lt;a href=&#34;https://doi.org/10.1186/1471-2105-8-236&#34;&gt;(Hart et al., 2007)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- Hart(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-hgscore&#34;&gt;4. HGScore&lt;/h3&gt;
+&lt;p&gt;HGScore algorithm is based on a hypergeometric distribution error model &lt;a href=&#34;https://doi.org/10.1186/1471-2105-8-236&#34;&gt;(Hart et al., 2007)&lt;/a&gt; with incorporation of NSAF &lt;a href=&#34;https://doi.org/10.1021/pr060161n&#34;&gt;(Zybailov, Boris, et al., 2006)&lt;/a&gt;. This algorithm was first introduced to predict the protein complex network of Drosophila melanogaster &lt;a href=&#34;https://doi.org/10.1016/j.cell.2011.08.047&#34;&gt;(Guruharsha, K. G., et al., 2011)&lt;/a&gt;. This scoring algorithm was based on matrix model.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idPrey&lt;/strong&gt;, &lt;strong&gt;countPrey&lt;/strong&gt; and &lt;strong&gt;lenPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- HG(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;5-pe&#34;&gt;5. PE&lt;/h3&gt;
+&lt;p&gt;PE incorporated both spoke and matrix model as repored in &lt;a href=&#34;https://doi.org/10.1074/mcp.M600381-MCP200&#34;&gt;(Sean R. Collins, et al., 2007)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The input data.frame, &lt;em&gt;datInput&lt;/em&gt;, should include:&lt;strong&gt;idRun&lt;/strong&gt;, &lt;strong&gt;idBait&lt;/strong&gt; and &lt;strong&gt;idPrey&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;datScore &amp;lt;- PE(datInput)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;MIT @ Qingzhou Zhang&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Awsome affinity purification mass spectrometry (AP-MS)</title>
+      <link>https://zqzneptune.github.io/post/2018-07-08-apms/</link>
+      <pubDate>Sun, 08 Jul 2018 09:23:14 -0600</pubDate>
+      <guid>https://zqzneptune.github.io/post/2018-07-08-apms/</guid>
+      <description>&lt;p&gt;A collection of resources regarding affinity purification mass spectrometry proteomics for the identification of protein-protein interactions.&lt;/p&gt;
+&lt;h2 id=&#34;algorithms&#34;&gt;Algorithms&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Year&lt;/th&gt;
+&lt;th&gt;Algorithm&lt;/th&gt;
+&lt;th&gt;Publication&lt;/th&gt;
+&lt;th&gt;Implementation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2006&lt;/td&gt;
+&lt;td&gt;SAI (socio-affinity index)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature04532&#34;&gt;Anne-Claude Gavin et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;partial least squares based regression model&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.embopress.org/doi/10.1038/msb4100134&#34;&gt;Rob M Ewing et al., Mol Syst Biol&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;PE (purification enrichment)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.mcponline.org/content/6/3/439&#34;&gt;Sean R. Collins et al., Molecular &amp;amp; Cellular Proteomics&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/zqzneptune/SMAD&#34;&gt;SMAD&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;Hart&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-8-236&#34;&gt;G Traver Hart et al., BMC Bioinformatics&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/zqzneptune/SMAD&#34;&gt;SMAD&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2008&lt;/td&gt;
+&lt;td&gt;Dice coefficient&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1093/bioinformatics/btn036&#34;&gt;Bing Zhang et al., Bioinformatics&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/zqzneptune/SMAD&#34;&gt;SMAD&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2008&lt;/td&gt;
+&lt;td&gt;PP-NSAF&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.pnas.org/content/105/5/1454.short&#34;&gt;Mihaela E. Sardiu et al., PNAS&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;td&gt;CompPASS&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2009.04.042&#34;&gt;Mathew E.Sowa et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/zqzneptune/SMAD&#34;&gt;SMAD&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2010&lt;/td&gt;
+&lt;td&gt;Decontaminator&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://pubs.acs.org/doi/abs/10.1021/pr100795z&#34;&gt;MathieLavallée-Adam et al. J. Proteome Res. &lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;MiST&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature10719&#34;&gt;Stefanie Jäger et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/kroganlab/mist&#34;&gt;mist&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;HGScore&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2011.08.047&#34;&gt;K.G.Guruharsha et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/zqzneptune/SMAD&#34;&gt;SMAD&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;SAINT&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1038/nmeth.1541&#34;&gt;Hyungwon Choi et al., Nature Methods&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://saint-apms.sourceforge.net/Main.html&#34;&gt;SAINT&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;SFINX&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00666&#34;&gt;Kevin Titeca et al. J. Proteome Res.&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/sfinx/index.html&#34;&gt;SFINX&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;datasets&#34;&gt;Datasets&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Year&lt;/th&gt;
+&lt;th&gt;Species&lt;/th&gt;
+&lt;th&gt;Abstract&lt;/th&gt;
+&lt;th&gt;Publication&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2002&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;S.cerevisiae&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;725 bait proteins, one-step immuno-affinity purification based on the Flag epitope tag&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/415180a&#34;&gt;Yuen Ho et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2002&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;S.cerevisiae&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;tandem-affinity purification processed 1,739 genes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/415141a&#34;&gt;Anne-Claude Gavin et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2006&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;S.cerevisiae&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;Genome-wide TAP–MS, first introduced&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature04532&#34;&gt;Anne-Claude Gavin et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;Human Deubiquitinating Enzyme Interaction Landscape(DUB)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2009.04.042&#34;&gt;Mathew E.Sowa et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2010&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;S.cerevisiae&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;kinase and phosphatase interaction (KPI) network&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://science.sciencemag.org/content/328/5981/1043&#34;&gt;Ashton Breitkreutz et al., Science&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;autophagy interaction network (AIN)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature09204&#34;&gt;Christian Behrends et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;D.melanogaster&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;a Drosophila protein interaction map (DPiM)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2011.08.047&#34;&gt;K.G.Guruharsha et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2012&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;S.cerevisiae&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;membrane-protein complexes in yeast&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature11354&#34;&gt;Mohan Babu et al., Nature&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2014&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;A comprehensive chromatin-related protein-protein interaction map&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.celrep.2014.05.050&#34;&gt;Edyta Marcon et al., Cell Reports&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;BioPlex v1&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2015.06.043&#34;&gt;Edward L. Huttlin et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;Autism Spectrum Disorders related&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cels.2015.11.002&#34;&gt;Jingjing Li et al., Cell Systems&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2016&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;PPI mapping of 50 unannotated mitochondrial proteins&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.molcel.2016.06.033&#34;&gt;Brendan J.Floyd et al., Molecular Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2016&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;Comprehensive mitochondrial sirtuin interactome&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cell.2016.10.016&#34;&gt;Wen Yang et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;BioPlex v2&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nature22366&#34;&gt;Edward L. Huttlin et al., Cell&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;E.coli&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;Global landscape of cell envelope protein complexes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.nature.com/articles/nbt.4024&#34;&gt;Mohan Babu et al., Nature Biotech&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;H.sapiens&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;A Map of Human Mitochondrial Protein Interactions related to Neurodegeneration&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://doi.org/10.1016/j.cels.2017.10.010&#34;&gt;Ramy H.Malty et al., Cell Systems&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello, RGED!</title>
+      <link>https://zqzneptune.github.io/post/2014-09-23-rged/</link>
+      <pubDate>Wed, 23 Jul 2014 01:13:14 +0800</pubDate>
+      <guid>https://zqzneptune.github.io/post/2014-09-23-rged/</guid>
+      <description>&lt;p&gt;The Renal Gene Expression Database (RGED) is online. Number of samples colleceted in the database reached around ~10,000, including DNA microarray and RNA-seq experiments.&lt;/p&gt;
+&lt;p&gt;Just go ahead to this URL: &lt;a href=&#34;http://rged.wall-eva.net/&#34;&gt;http://rged.wall-eva.net/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
