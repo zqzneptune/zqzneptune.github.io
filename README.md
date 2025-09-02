@@ -1,3 +1,3 @@
-# Personsl website
+# Qingzhou Zhang personal website
 
-Theme template from https://bootstrapmade.com/
+URL https://zqzneptune.github.io/
