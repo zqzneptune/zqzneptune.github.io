@@ -28,7 +28,7 @@
   
     
   
-  <meta name="description" content="The seminal Perturb-seq paper established a scalable method to link CRISPR perturbations to their full transcriptomic consequences in single cells, enabling causal network inference.">
+  <meta name="description" content="Perturb-seq combines pooled CRISPR screens with single-cell transcriptomics to systematically link genetic perturbations to their complex molecular phenotypes at scale.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/">
@@ -267,8 +267,8 @@
   
   <meta property="og:site_name" content="Qingzhou Zhang">
   <meta property="og:url" content="https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/">
-  <meta property="og:title" content="From What to Why: How Perturb-seq Rewrote the Rules of Functional Genomics | Qingzhou Zhang">
-  <meta property="og:description" content="The seminal Perturb-seq paper established a scalable method to link CRISPR perturbations to their full transcriptomic consequences in single cells, enabling causal network inference."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
+  <meta property="og:title" content="Perturb-Seq: Moving from &#39;What Is&#39; to &#39;What If&#39; in a Single Experiment | Qingzhou Zhang">
+  <meta property="og:description" content="Perturb-seq combines pooled CRISPR screens with single-cell transcriptomics to systematically link genetic perturbations to their complex molecular phenotypes at scale."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -302,7 +302,7 @@
     "@type": "WebPage",
     "@id": "https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/"
   },
-  "headline": "From What to Why: How Perturb-seq Rewrote the Rules of Functional Genomics",
+  "headline": "Perturb-Seq: Moving from 'What Is' to 'What If' in a Single Experiment",
   
   "datePublished": "2021-02-03T00:00:00Z",
   "dateModified": "2021-02-03T00:00:00Z",
@@ -320,7 +320,7 @@
       "url": "img/https://zqzneptune.github.io"
     }
   },
-  "description": "The seminal Perturb-seq paper established a scalable method to link CRISPR perturbations to their full transcriptomic consequences in single cells, enabling causal network inference."
+  "description": "Perturb-seq combines pooled CRISPR screens with single-cell transcriptomics to systematically link genetic perturbations to their complex molecular phenotypes at scale."
 }
 </script>
 
@@ -338,7 +338,7 @@
 
 
 
-  <title>From What to Why: How Perturb-seq Rewrote the Rules of Functional Genomics | Qingzhou Zhang</title>
+  <title>Perturb-Seq: Moving from &#39;What Is&#39; to &#39;What If&#39; in a Single Experiment | Qingzhou Zhang</title>
 
 </head>
 
@@ -573,10 +573,10 @@
   
   
 <div class="article-container pt-3">
-  <h1>From What to Why: How Perturb-seq Rewrote the Rules of Functional Genomics</h1>
+  <h1>Perturb-Seq: Moving from &#39;What Is&#39; to &#39;What If&#39; in a Single Experiment</h1>
 
   
-  <p class="page-subtitle">A foundational look at the technology that bridges the gap between genetic cause and transcriptional effect.</p>
+  <p class="page-subtitle">A landmark paper that combines CRISPR screens with single-cell RNA-seq, paving the way for causal, high-content genomics.</p>
   
 
   
@@ -616,7 +616,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -656,24 +656,28 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="the-core-finding-in-a-nutshell">The Core Finding in a Nutshell</h2>
-<p>I’m taking a look back at the foundational 2016 paper from the Regev and Friedman labs that introduced Perturb-seq. At its core, they developed a method that welds a pooled CRISPR screen to single-cell RNA sequencing. For the first time, this allowed them to systematically knock out genes and read out the full downstream transcriptional consequences in thousands of individual cells at once, in a single experiment.</p>
-<h2 id="the-problem-a-chasm-between-scale-and-depth">The Problem: A Chasm Between Scale and Depth</h2>
-<p>Before this work, functional genomics was a frustrating trade-off. We could either go big with pooled screens that measured simple, one-dimensional outputs like cell survival, or go deep with low-throughput, one-gene-at-a-time transcriptomics. There was simply no way to causally link hundreds of genetic perturbations to high-dimensional phenotypes at scale. How do you build a causal map of a cell&rsquo;s regulatory network if you can only see one intersection at a time? This paper provided the first practical roadmap to bridge that chasm.</p>
-<h2 id="their-analytical-engine-a-linear-model-with-biological-awareness">Their Analytical Engine: A Linear Model with Biological Awareness</h2>
-<p>The elegance of Perturb-seq isn&rsquo;t just in the wet lab design. Computationally, they built a framework called MIMOSCA (Multi-Input-Multi-Output-Single-Cell-Analysis). At its heart, it&rsquo;s a regularized linear model that attributes changes in each gene&rsquo;s expression to the presence of a specific sgRNA. The real genius, however, is how they layered in covariates. The model doesn&rsquo;t just capture the perturbation&rsquo;s effect; it systematically models and subtracts the confounding effects of technical noise (like sequencing depth per cell) and, most importantly, pre-existing biological heterogeneity (like cell cycle or differentiation state). This layered approach allows them to isolate the true, direct impact of the gene knockout from other sources of variation.</p>
-<h2 id="the-result-that-demands-attention">The Result That Demands Attention</h2>
-<p>The most profound insight for me was their ability to disentangle direct transcriptional regulation from shifts in cell state proportions. When they first modeled the data from dendritic cells, the inferred regulatory network was a bit blurry (Fig 3A). The &lsquo;aha!&rsquo; moment came after they accounted for cell state. They realized that a transcription factor knockout might not create an entirely <em>new</em> cellular program, but rather push cells from, say, a &ldquo;pro-inflammatory&rdquo; state to an &ldquo;antiviral&rdquo; state—both of which already exist in the unperturbed population. After computationally correcting for this cell state shifting, the direct regulatory links became razor-sharp (Fig 3E). This is a fundamental lesson: a perturbation&rsquo;s effect isn&rsquo;t always to create something novel, but often to change the balance of what&rsquo;s already there. This is a critical concept for understanding drug resistance, where a therapy might simply select for a pre-existing resistant subclone rather than inducing a new program from scratch.</p>
-<h2 id="how-this-informs-my-predictive-modeling-roadmap">How This Informs My Predictive Modeling Roadmap</h2>
-<p>This paper is not just another publication; it is the technical and philosophical blueprint for my entire research program. My mission is to build causal, predictive models of tissues, and Perturb-seq is the engine that generates the necessary data to make that possible. My focus on youth leukemia chemoresistance and solid tumor immunology hinges on understanding how cancer cells rewire their networks to survive therapy.</p>
-<p>With the Perturb-seq framework, I can move beyond merely correlating gene expression with a resistant phenotype. I can now systematically knock out transcription factors, signaling molecules, or metabolic enzymes in a patient-derived model and directly observe which pathways are causally required for survival. This provides the raw, causal data needed to build a digital twin that doesn&rsquo;t just describe the resistant state, but can <em>predict</em> which nodes to target to reverse it. This paper provides the practical embodiment of my &ldquo;Causality over Correlation&rdquo; philosophy.</p>
-<h2 id="the-horizon-my-next-move-and-the-fields-next-challenge">The Horizon: My Next Move and the Field&rsquo;s Next Challenge</h2>
-<p><strong>My Next Computational Step:</strong> The linear model in MIMOSCA was a brilliant and necessary starting point, but biology is rarely linear. My immediate goal is to build on this foundation by developing non-linear models, likely leveraging graph neural networks or variational autoencoders, to capture more complex, synergistic relationships between perturbed genes. The ultimate objective is to build a model that can predict the transcriptional outcome of a <em>combination</em> of perturbations it has never seen before, moving from inference to true out-of-sample prediction.</p>
-<p><strong>Key Experiment for the Field:</strong> The next frontier is to take this technology from 2D cell culture into more complex, in-vivo like systems. A critical experiment would be to combine Perturb-seq with co-culture organoid models or even direct in-vivo delivery in mouse models of leukemia. Imagine perturbing every known kinase in leukemia cells and then observing how those perturbations causally alter not only the cancer cell&rsquo;s transcriptome but also its communication with the surrounding bone marrow stroma. That is how we will begin to map the networks that drive therapeutic resistance in a truly relevant biological context.</p>
-<h2 id="a-necessary-word-of-caution">A Necessary Word of Caution</h2>
-<p>While this work is foundational, it&rsquo;s important to view this 2016 paper through a modern lens. The reliance on gene knockout is a blunt instrument; we now have access to CRISPR interference (CRISPRi) and activation (CRISPRa) for more subtle modulation. The computational model also has to contend with imperfect guide capture and variable knockout efficiency, requiring statistical inference to decide which cells were &ldquo;truly&rdquo; perturbed. This introduces a potential source of modeling noise. Finally, the scale, while groundbreaking for its time, is now more routine. The core challenge they identified—deconvolving combinatorial perturbations—remains the key bottleneck, as the experimental possibility space grows exponentially. Their work laid the foundation, but scaling the analysis to true combinatorial complexity is still the grand challenge for the field.</p>
+      <h2 id="the-bottom-line-up-front">The Bottom Line Up Front</h2>
+<p>I&rsquo;ve just revisited the foundational 2016 <em>Cell</em> paper from the Regev and Weissman labs describing Perturb-seq, and its importance has only grown over time. They ingeniously fused pooled CRISPR-based genetic screens with high-throughput single-cell RNA-sequencing. This creates a system where, in a single experiment, you can knock out hundreds of different genes across a population of cells and read out the full transcriptional consequence of each specific perturbation inside each individual cell. It&rsquo;s a landmark in functional genomics.</p>
+<h2 id="breaking-the-screen-or-profile-dilemma">Breaking the Screen-or-Profile Dilemma</h2>
+<p>The scientific quest here was to resolve a frustrating tradeoff that defined functional genomics for years. On one side, we had pooled CRISPR screens. These are incredibly scalable—you can test thousands of genes at once—but the readout is typically a single, low-content metric like cell survival or the expression of one fluorescent reporter. You learn <em>that</em> a gene is important, but not <em>why</em>. On the other side, we could perform RNA-seq on cells after knocking out a single gene. This gives an incredibly rich, high-content view of the molecular fallout, but it&rsquo;s painstakingly slow and expensive, done one gene at a time. The central challenge was how to get the best of both: the massive scale of a pooled screen combined with the deep, mechanistic insight of whole-transcriptome profiling.</p>
+<h2 id="the-barcode-is-the-rosetta-stone">The Barcode is the Rosetta Stone</h2>
+<p>The core of Perturb-seq is an elegant technical and computational solution. The key is a lentiviral vector that delivers not only a specific single-guide RNA (sgRNA) to enact a CRISPR knockout but also a transcribed &ldquo;guide barcode&rdquo; (GBC). When the cells are processed using droplet-based scRNA-seq, this GBC is captured along with all the other mRNAs from that cell. The GBC is the Rosetta Stone: it allows the authors to definitively link a specific genetic perturbation to a specific high-dimensional transcriptomic profile for thousands of cells in parallel.</p>
+<p>Computationally, they then developed a framework (MIMOSCA) to make sense of this massive dataset. Using a regularized linear model, they can deconvolve the specific effect of each perturbation from the complex, pooled data. Crucially, the model is designed to parse out the true perturbation effects from other sources of variation, like the cell cycle, technical noise, or batch effects, which is essential for isolating a clean biological signal.</p>
+<h2 id="from-single-genes-to-a-network-diagram">From Single Genes to a Network Diagram</h2>
+<p>The finding that truly drives home the power of this method isn&rsquo;t just the ability to see which genes go up or down after a knockout. The &lsquo;aha!&rsquo; moment is seeing how they use these rich phenotypes to reconstruct biological circuits. In their demonstration in bone marrow-derived dendritic cells (BMDCs), they perturbed 24 different transcription factors (TFs) involved in the immune response. By clustering the resulting transcriptional signatures, they could group TFs into functional modules—for example, correctly identifying Stat1 and Stat2 as a cooperative module in the anti-viral response. They went beyond a simple list of gene-phenotype links and generated a data-driven wiring diagram of the regulatory network, complete with activating and repressive relationships. This is a monumental step towards interpretability and systems-level understanding.</p>
+<h2 id="this-isnt-just-a-paper-its-my-labs-foundation">This Isn&rsquo;t Just a Paper; It&rsquo;s My Lab&rsquo;s Foundation</h2>
+<p>I can&rsquo;t overstate this: Perturb-seq is the bedrock of my research philosophy and the engine for my entire lab&rsquo;s mission. My goal is to build predictive, causal models of tissues, and this technology is the single most effective tool for generating the necessary causal data at scale.</p>
+<p>I can use this exact framework to knock out hundreds of candidate genes in T-ALL cell lines, expose them to chemotherapy, and identify the complete transcriptional programs that are <em>causally</em> responsible for driving chemoresistance. I can also screen for genes in cancer cells that causally alter the expression of checkpoint ligands or, in co-culture systems, screen for genes in T-cells that drive the exhaustion phenotype.</p>
+<p>This method is the physical embodiment of my guiding principles. It moves beyond correlation to <strong>causality</strong> via direct perturbation. It enables <strong>prediction</strong> by showing what happens to the entire cellular system <em>if</em> a specific gene is removed. And the high-content transcriptomic readout provides the raw material needed to build <strong>interpretable</strong> models of the underlying gene regulatory networks.</p>
+<h2 id="scaling-causality-multi-omics-and-in-vivo-screens">Scaling Causality: Multi-omics and In Vivo Screens</h2>
+<p>The original Perturb-seq paper was a starting pistol, not a finish line. It immediately opened doors to even more powerful applications, which is where I plan to focus my own computational efforts.</p>
+<p><strong>My Next Computational Step:</strong> The logical evolution is to move from a single RNA readout to a multi-modal one. My immediate focus is on building the analytical frameworks to handle Perturb-Multiome, where we simultaneously profile the transcriptome and the epigenome (via scATAC-seq) from each perturbed cell. This allows us to ask deeper causal questions: how does knocking out a transcription factor causally rewire the chromatin landscape, and how do those changes then propagate to the transcriptome? This gives us a much more mechanistic, multi-layered view of gene regulation.</p>
+<p><strong>Key Experiment for the Field:</strong> The experiments in this paper were performed in cell culture. The ultimate challenge and next frontier is to take this technology <em>in vivo</em>. The key experiment would be to transduce a population of tumor cells with a Perturb-seq library, implant them into an immunocompetent mouse model, and allow a tumor to form. Upon excision, performing scRNA-seq on the tumor would reveal which genetic knockouts causally impact a cell&rsquo;s fitness, metastatic potential, and its interaction with the native immune system within the true complexity of the tumor microenvironment.</p>
+<h2 id="reading-the-fine-print-limitations-and-lookouts">Reading the Fine Print: Limitations and Lookouts</h2>
+<p>For all its power, the approach isn&rsquo;t without its caveats. First, the model has to infer which cells actually had a successful gene knockout, as CRISPR is not 100% efficient. This introduces a potential source of noise, as the &ldquo;unaffected&rdquo; cells can dampen the measured average effect size for a given perturbation. Second, the biological context is critical. An effect observed in a cell line grown in a dish may not translate directly to a complex tissue <em>in vivo</em>, where extrinsic signals from neighboring cells can buffer or modify the outcome of a perturbation. Finally, while the paper demonstrated simple pairwise interactions, the combinatorial space of genetic interactions is astronomically large. Systematically screening all pairs, triplets, and higher-order combinations remains a monumental challenge, forcing us to rely on assumptions of sparsity—that most factors don&rsquo;t interact—which may not always be true.</p>
 <hr>
-<p>Reference: <a href="http://dx.doi.org/10.1016/j.cell.2016.11.038">Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens</a></p>
+<h3 id="reference">Reference</h3>
+<p>Dixit, Atray, et al. <a href="http://dx.doi.org/10.1016/j.cell.2016.11.038">&ldquo;Perturb-Seq: dissecting molecular circuits with scalable single-cell RNA profiling of pooled genetic screens.&quot;</a> cell 167.7 (2016): 1853-1866.</p>
 
     </div>
 
@@ -685,13 +689,13 @@
   
   <a class="badge badge-light" href="/tags/perturb-seq/">Perturb-seq</a>
   
-  <a class="badge badge-light" href="/tags/functional-genomics/">Functional-Genomics</a>
+  <a class="badge badge-light" href="/tags/crispr/">CRISPR</a>
   
-  <a class="badge badge-light" href="/tags/causality/">Causality</a>
+  <a class="badge badge-light" href="/tags/causal-inference/">Causal-Inference</a>
   
   <a class="badge badge-light" href="/tags/scrna-seq/">scRNA-seq</a>
   
-  <a class="badge badge-light" href="/tags/computational-methods/">Computational-Methods</a>
+  <a class="badge badge-light" href="/tags/systems-biology/">Systems-Biology</a>
   
 </div>
 
@@ -708,7 +712,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;text=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;text=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -721,7 +725,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;t=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;t=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -734,7 +738,7 @@
       
       
       <li>
-        <a href="mailto:?subject=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics&amp;body=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment&amp;body=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -747,7 +751,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;title=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;title=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -760,7 +764,7 @@
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics%20https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment%20https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -773,7 +777,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;title=From%20What%20to%20Why:%20How%20Perturb-seq%20Rewrote%20the%20Rules%20of%20Functional%20Genomics" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2021-02-03_perturbseqinit/&amp;title=Perturb-Seq:%20Moving%20from%20&amp;#39;What%20Is&amp;#39;%20to%20&amp;#39;What%20If&amp;#39;%20in%20a%20Single%20Experiment" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
