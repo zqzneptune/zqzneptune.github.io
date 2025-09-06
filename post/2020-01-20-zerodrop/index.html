@@ -28,8 +28,7 @@
   
     
   
-  <meta name="description" content="The &ldquo;dropout event&rdquo; was termed from the observations of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.
-Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine Svensson">
+  <meta name="description" content="This analysis elegantly demonstrates that the high number of zeros in droplet-based scRNA-seq is not a technical artifact but is well-explained by standard count statistics, implying &#34;excess&#34; zeros are biological.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://zqzneptune.github.io/post/2020-01-20-zerodrop/">
@@ -268,15 +267,14 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   
   <meta property="og:site_name" content="Qingzhou Zhang">
   <meta property="og:url" content="https://zqzneptune.github.io/post/2020-01-20-zerodrop/">
-  <meta property="og:title" content="Dropout or not? | Qingzhou Zhang">
-  <meta property="og:description" content="The &ldquo;dropout event&rdquo; was termed from the observations of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.
-Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine Svensson"><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
+  <meta property="og:title" content="Busting the Myth of the scRNA-seq &#34;Dropout&#34; | Qingzhou Zhang">
+  <meta property="og:description" content="This analysis elegantly demonstrates that the high number of zeros in droplet-based scRNA-seq is not a technical artifact but is well-explained by standard count statistics, implying &#34;excess&#34; zeros are biological."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-01-20T11:26:14-06:00">
+      <meta property="article:published_time" content="2020-01-20T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-01-20T11:26:14-06:00">
+    <meta property="article:modified_time" content="2020-01-20T00:00:00&#43;00:00">
   
 
   
@@ -304,10 +302,10 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
     "@type": "WebPage",
     "@id": "https://zqzneptune.github.io/post/2020-01-20-zerodrop/"
   },
-  "headline": "Dropout or not?",
+  "headline": "Busting the Myth of the scRNA-seq \"Dropout\"",
   
-  "datePublished": "2020-01-20T11:26:14-06:00",
-  "dateModified": "2020-01-20T11:26:14-06:00",
+  "datePublished": "2020-01-20T00:00:00Z",
+  "dateModified": "2020-01-20T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -322,7 +320,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       "url": "img/https://zqzneptune.github.io"
     }
   },
-  "description": "The \u0026ldquo;dropout event\u0026rdquo; was termed from the observations of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.\nDroplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine Svensson"
+  "description": "This analysis elegantly demonstrates that the high number of zeros in droplet-based scRNA-seq is not a technical artifact but is well-explained by standard count statistics, implying \"excess\" zeros are biological."
 }
 </script>
 
@@ -340,7 +338,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
 
 
 
-  <title>Dropout or not? | Qingzhou Zhang</title>
+  <title>Busting the Myth of the scRNA-seq &#34;Dropout&#34; | Qingzhou Zhang</title>
 
 </head>
 
@@ -575,8 +573,10 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   
   
 <div class="article-container pt-3">
-  <h1>Dropout or not?</h1>
+  <h1>Busting the Myth of the scRNA-seq &#34;Dropout&#34;</h1>
 
+  
+  <p class="page-subtitle">Why the zeros in your data are probably real biology, not just technical noise?</p>
   
 
   
@@ -585,6 +585,19 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
 
 <div class="article-metadata">
 
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  
+  <span><a href="/authors/admin/">Qingzhou Zhang</a></span>
+
+  </div>
   
   
 
@@ -603,7 +616,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    5 min read
   </span>
   
 
@@ -615,7 +628,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/categories/scrna-seq/">scRNA-seq</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/categories/computational-methods/">Computational Methods</a></span>
   
 
 </div>
@@ -643,8 +656,28 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   <div class="article-container">
 
     <div class="article-style">
-      <p>The &ldquo;dropout event&rdquo; was termed from the observations  of an abundance of zero expression values from the scRNA-seq data. The recent publishsed study demonstrated that genes with zero counts may not have to be dropout anymore, due to their potential biological variations.</p>
-<p><a href="https://doi.org/10.1038/s41587-019-0379-5"><strong>Droplet scRNA-seq is not zero-inflated</strong></a> Nature Biotechnology (2020), by Valentine Svensson</p>
+      <h2 id="the-30-second-lowdown">The 30-Second Lowdown</h2>
+<p>I love papers that challenge a core assumption we&rsquo;ve all been working with. In this short but powerful correspondence, Valentine Svensson re-examines the widely held belief that droplet-based single-cell RNA-seq data has &ldquo;too many&rdquo; zeros due to technical failures, a phenomenon often called &ldquo;dropout.&rdquo; Using a series of clever analyses on negative control datasets, he demonstrates that the number of observed zeros is almost perfectly explained by standard statistical models of molecule counting. The punchline? The &ldquo;excess&rdquo; zeros we see in our biological data aren&rsquo;t technical noise to be corrected; they are a reflection of real biology.</p>
+<h2 id="the-ghost-in-the-machine-are-zeros-signal-or-noise">The Ghost in the Machine: Are Zeros Signal or Noise?</h2>
+<p>A fundamental question in single-cell genomics has always been this: when my data matrix shows a zero for a given gene in a specific cell, what does it mean? Did the technology simply fail to capture an expressed transcript (a &ldquo;technical zero&rdquo;), or is that gene genuinely not being expressed (a &ldquo;biological zero&rdquo;)?</p>
+<p>This isn&rsquo;t just an academic question—it dictates how we build our models. For years, the field has leaned heavily on the idea that technical zeros are rampant, especially in high-throughput droplet methods. This assumption has spawned an entire cottage industry of computational methods for &ldquo;imputation&rdquo;—algorithms designed to predict and fill in these supposed missing values. But if that foundational assumption is shaky, it means we might be spending our time &ldquo;fixing&rdquo; a problem that doesn&rsquo;t exist, and potentially even corrupting the real biological signal in the process.</p>
+<h2 id="a-clean-experiment-to-settle-the-score">A Clean Experiment to Settle the Score</h2>
+<p>The beauty of this paper lies not in a complex new algorithm, but in its elegant application of statistical first principles to the right kind of data. Svensson leverages public negative control datasets where, instead of single cells, a uniform solution of RNA is encapsulated into droplets. This creates a perfect testbed: a system with zero biological variation, where any deviation from a simple sampling model must be technical.</p>
+<p>He then fits a standard count model—the negative binomial distribution—to this data. This model is a workhorse for count data and accounts for the fact that capturing molecules is a random process. The result is striking: the model perfectly predicts the observed fraction of zeros without needing any extra &ldquo;zero-inflation&rdquo; component. It’s a textbook case of Occam&rsquo;s razor; the simplest model fits the technical data perfectly.</p>
+<h2 id="the-finding-that-changes-things">The Finding That Changes Things</h2>
+<p>The &lsquo;aha!&rsquo; moment for me is the stark visual contrast in Figure 1. When you look at the plots from the technical control experiments (panels a-e), the black dots (observed zero fraction) sit right on top of the gray line (the model&rsquo;s prediction). There is no &ldquo;excess&rdquo; zero problem.</p>
+<p>Then, you look at the plots from real biological samples (panels f-h). Here, you see a clear deviation: many genes have more zeros than predicted by a simple model with a single &ldquo;dispersion&rdquo; parameter for all genes. This is the deviation that has fueled the dropout narrative. But the author shows that once you allow each gene to have its own biological variability (a gene-wise dispersion), the model once again explains the data much better. The takeaway is unambiguous: the platform itself isn&rsquo;t systematically failing. The extra zeros come from biological heterogeneity. Some cells express a gene, others don&rsquo;t. That’s biology, not a bug.</p>
+<h2 id="why-this-matters-for-building-predictive-models">Why This Matters for Building Predictive Models</h2>
+<p>This paper lands squarely on my intellectual home turf. My entire research program is geared towards building interpretable, predictive models of living tissues, and that starts with respecting the data. For years, we&rsquo;ve seen increasingly complex imputation models, many of which are black boxes that fundamentally alter the raw counts before any biological questions are asked. This work provides strong evidence that this entire preprocessing step might be a misguided effort.</p>
+<p>If the zeros are real, then trying to &ldquo;fill them in&rdquo; isn&rsquo;t just unnecessary; it&rsquo;s actively destroying information. This gives me much more confidence in using models that work directly with the raw count data, like negative binomial generalized linear models (GLMs). These models are statistically appropriate, more interpretable, and keep us closer to the ground truth of the experiment.</p>
+<p>For my work in leukemia chemoresistance, this is critical. A gene being truly &ldquo;off&rdquo; in a drug-resistant subclone versus &ldquo;on&rdquo; in a sensitive one is a powerful piece of causal evidence. It&rsquo;s a signal I want to model directly, not a technical error to be smoothed over by an imputation algorithm.</p>
+<h2 id="untapped-potential-and-the-road-ahead">Untapped Potential and the Road Ahead</h2>
+<p>This work clarifies our thinking, but also points to new directions.</p>
+<p><strong>My Next Computational Step:</strong> The immediate implication is to challenge my own preprocessing pipelines. I plan to systematically benchmark how much imputation actually <em>hurts</em> the ability to identify the effects of genetic perturbations in my Perturb-seq data. My hypothesis, strengthened by this paper, is that for detecting the strong, often binary on/off gene expression changes induced by CRISPR guides, working directly with the counts will be more powerful and robust than working with imputed data. I&rsquo;ll design this benchmark using my existing T-ALL datasets.</p>
+<p><strong>Key Experiment for the Field:</strong> The author correctly points out that there&rsquo;s a lack of comparable negative control data for plate-based scRNA-seq methods. To truly settle this debate across technologies, the community needs a gold-standard &ldquo;zero-free&rdquo; control experiment for a popular plate-based method like SMART-seq3. This would allow for a definitive, apples-to-apples comparison of the noise profiles and tell us if those platforms <em>do</em> have unique technical artifacts that might warrant a different statistical approach.</p>
+<h2 id="a-healthy-dose-of-skepticism">A Healthy Dose of Skepticism</h2>
+<p>My main critique is that as a &ldquo;correspondence&rdquo; piece, the analysis is necessarily brief. The conclusion—&ldquo;Droplet scRNA-seq is not zero-inflated&rdquo;—is very broad, but the evidence is strongest for UMI-based droplet platforms. The argument against plate-based methods is less direct, relying on re-analysis of a single dataset and another group&rsquo;s simulation study. While the evidence presented for droplet methods is compelling, I&rsquo;d be cautious about over-generalizing this to <em>all</em> scRNA-seq technologies without more direct, controlled comparisons. The core message is a crucial course correction for the field, but the nuanced differences between technologies still matter.</p>
+<p>Reference: <a href="https://doi.org/10.1038/s41587-019-0379-5"><strong>Droplet scRNA-seq is not zero-inflated</strong></a> Nature Biotechnology (2020), by Valentine Svensson</p>
 
     </div>
 
@@ -656,9 +689,11 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
   
   <a class="badge badge-light" href="/tags/scrna-seq/">scRNA-seq</a>
   
-  <a class="badge badge-light" href="/tags/droplet/">Droplet</a>
+  <a class="badge badge-light" href="/tags/computational-methods/">Computational-Methods</a>
   
-  <a class="badge badge-light" href="/tags/zero-inflation/">Zero-inflation</a>
+  <a class="badge badge-light" href="/tags/statistical-modeling/">Statistical-Modeling</a>
+  
+  <a class="badge badge-light" href="/tags/zero-inflation/">Zero-Inflation</a>
   
 </div>
 
@@ -675,7 +710,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;text=Dropout%20or%20not?" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;text=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -688,7 +723,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;t=Dropout%20or%20not?" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;t=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -701,7 +736,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="mailto:?subject=Dropout%20or%20not?&amp;body=https://zqzneptune.github.io/post/2020-01-20-zerodrop/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;&amp;body=https://zqzneptune.github.io/post/2020-01-20-zerodrop/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -714,7 +749,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;title=Dropout%20or%20not?" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;title=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -727,7 +762,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=Dropout%20or%20not?%20https://zqzneptune.github.io/post/2020-01-20-zerodrop/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;%20https://zqzneptune.github.io/post/2020-01-20-zerodrop/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -740,7 +775,7 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;title=Dropout%20or%20not?" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2020-01-20-zerodrop/&amp;title=Busting%20the%20Myth%20of%20the%20scRNA-seq%20&amp;#34;Dropout&amp;#34;" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -759,6 +794,10 @@ Droplet scRNA-seq is not zero-inflated Nature Biotechnology (2020), by Valentine
 
 
 
+  
+  
+    
+  
   
 
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computational Methods | Qingzhou Zhang</title>
+    <link>https://zqzneptune.github.io/categories/computational-methods/</link>
+      <atom:link href="https://zqzneptune.github.io/categories/computational-methods/index.xml" rel="self" type="application/rss+xml" />
+    <description>Computational Methods</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2025 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Fri, 29 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
+      <title>Computational Methods</title>
+      <link>https://zqzneptune.github.io/categories/computational-methods/</link>
+    </image>
+    
+    <item>
+      <title>Stitching the Atlas Together: How Tangram Puts Single Cells on the Map</title>
+      <link>https://zqzneptune.github.io/post/2021-10-29-tangram/</link>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://zqzneptune.github.io/post/2021-10-29-tangram/</guid>
+      <description>&lt;h2 id=&#34;the-30-second-lowdown&#34;&gt;The 30-Second Lowdown&lt;/h2&gt;
+&lt;p&gt;For years, we&amp;rsquo;ve faced a frustrating tradeoff in genomics. We could either grind up a tissue to get deep, single-cell transcriptomic data (losing all spatial context), or we could use spatial methods that told us where a few genes were, but missed the full picture. The team behind Tangram has developed a powerful computational method to get the best of both worlds. In short, Tangram takes your high-content scRNA-seq data and intelligently &amp;ldquo;maps&amp;rdquo; each cell onto a spatial coordinate system, effectively creating a complete, spatially-resolved transcriptome at single-cell resolution.&lt;/p&gt;
+&lt;h2 id=&#34;bridging-the-gap-from-cell-soup-to-tissue-architecture&#34;&gt;Bridging the Gap: From Cell Soup to Tissue Architecture&lt;/h2&gt;
+&lt;p&gt;The fundamental problem here is one of integration. We have incredible tools for generating parts lists of tissues—scRNA-seq tells us we have X% T-cells, Y% cancer cells, and Z% fibroblasts. We also have emerging blueprints—spatial transcriptomics shows us the rough neighborhoods where different cell types live. But the parts list isn&amp;rsquo;t connected to the blueprint. We can&amp;rsquo;t see which specific T-cell subtype is talking to which specific cancer clone in its native environment. This is the gap Tangram aims to close. How do we computationally reassemble the &amp;ldquo;cell soup&amp;rdquo; from single-cell sequencing back into the complex, structured tissue it came from?&lt;/p&gt;
+&lt;h2 id=&#34;under-the-hood-solving-the-cellular-jigsaw-puzzle&#34;&gt;Under the Hood: Solving the Cellular Jigsaw Puzzle&lt;/h2&gt;
+&lt;p&gt;I love the intuition behind this method. Tangram treats the scRNA-seq profiles as individual &amp;ldquo;puzzle pieces&amp;rdquo; and the spatial data (from methods like MERFISH or Visium) as the &amp;ldquo;puzzle board.&amp;rdquo; The key is that both datasets measure a common set of genes. The algorithm works by testing different arrangements of the single-cell puzzle pieces on the spatial board. The goal is simple: find the arrangement that maximizes the spatial correlation between the gene expression patterns in the original spatial data and the newly placed single-cell data. It&amp;rsquo;s a non-convex optimization problem that results in a probabilistic map, telling us the likelihood of finding each specific cell from our scRNA-seq dataset at every location on the spatial map. It&amp;rsquo;s an elegant way to solve an incredibly complex alignment problem.&lt;/p&gt;
+&lt;h2 id=&#34;the-whoa-interesting-moment&#34;&gt;The &amp;ldquo;Whoa, Interesting&amp;rdquo; Moment&lt;/h2&gt;
+&lt;p&gt;The finding that really made me lean in was their use of Tangram to map multi-omic data. They took SHARE-seq data, which measures both gene expression (RNA) and chromatin accessibility (ATAC) in the same single cells. Here&amp;rsquo;s the brilliant part: they only used the &lt;em&gt;RNA&lt;/em&gt; data to align the cells onto a MERFISH spatial map. But because the ATAC data is linked to the RNA data for each cell, by placing the cell in space, they &lt;em&gt;also&lt;/em&gt; generated a high-resolution spatial map of chromatin accessibility. This is a huge leap. It means we can use one modality (which we can measure spatially) as a scaffold to spatially project another modality (for which we might not have spatial tools). This turns Tangram from a data integration tool into a powerful inference engine.&lt;/p&gt;
+&lt;h2 id=&#34;why-this-lands-on-my-roadmap-for-predictive-modeling&#34;&gt;Why This Lands on My Roadmap for Predictive Modeling&lt;/h2&gt;
+&lt;p&gt;This paper is more than just a cool method; it’s a foundational piece for building the predictive digital twins that drive my research program. Here’s how I see it through my core lens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prediction over Description:&lt;/strong&gt; Tangram is a powerful predictive framework. Given a spatial reference, I can now take scRNA-seq from a new sample—say, a resistant leukemia clone—and predict its spatial organization and cellular neighborhood. This allows me to form testable hypotheses about which microenvironmental niches promote drug resistance before I even run the experiment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Causality over Correlation:&lt;/strong&gt; While Tangram is correlative by nature, it provides the perfect scaffold to overlay causal data. My lab&amp;rsquo;s key differentiator is using large-scale Perturb-seq to establish causal links between genes and cellular states. I can now take this a step further. I can perturb a gene network in a solid tumor model, generate Perturb-seq data, and use Tangram to map these perturbed cells back onto a real patient tumor slice. This allows me to build an &lt;em&gt;in silico&lt;/em&gt; model of how a specific genetic knockout causally remodels the tumor microenvironment. This is the future.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Application to My Pillars:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Leukemia (1A):&lt;/strong&gt; In T-ALL, the bone marrow niche is critical for chemoresistance. I can map scRNA-seq data from patient-derived xenografts (pre- and post-treatment) onto a healthy spatial atlas of the bone marrow. This will allow me to predict which niche interactions are enriched in resistant cells, pointing directly to new therapeutic targets that disrupt the cancer&amp;rsquo;s supportive environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Solid Tumors (1B):&lt;/strong&gt; The application here is immediate and obvious. Building predictive models of immunotherapy response requires understanding the spatial crosstalk between cancer cells and immune cells. Tangram allows me to fuse my Perturb-seq data with spatial atlases of the tumor microenvironment to model how silencing a target gene in a cancer cell alters its proximity to cytotoxic T-cells.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;where-we-go-from-here-from-static-maps-to-dynamic-models&#34;&gt;Where We Go From Here: From Static Maps to Dynamic Models&lt;/h3&gt;
+&lt;p&gt;Tangram provides a fantastic framework for mapping static snapshots. The clear next step is to make it dynamic.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;My Next Computational Step:&lt;/strong&gt; I&amp;rsquo;m already architecting what I call &amp;ldquo;Differential Tangram.&amp;rdquo; The idea is to map two different scRNA-seq datasets—for example, from a tumor before and after immunotherapy—onto the &lt;em&gt;exact same&lt;/em&gt; spatial scaffold. The output wouldn&amp;rsquo;t be two separate maps, but a single, integrated &amp;ldquo;remodeling map.&amp;rdquo; This map would explicitly quantify the change in probability of a cell type occupying a given location, allowing us to visualize and quantify how a tissue reorganizes in response to therapy. This moves from representation to modeling dynamic biological processes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Key Experiment for the Field:&lt;/strong&gt; The field needs a gold-standard benchmark dataset for validation. The ideal, albeit challenging, experiment would be to perform CRISPR-based perturbation screening (like Perturb-seq) and a high-plex spatial technology (like Xenium or MERFISH) &lt;em&gt;on the same tissue section&lt;/em&gt;. This would create a ground-truth dataset where we know precisely how known genetic perturbations spatially reorganize cells, providing the ultimate test for Tangram and other mapping algorithms.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;a-healthy-dose-of-skepticism&#34;&gt;A Healthy Dose of Skepticism&lt;/h3&gt;
+&lt;p&gt;As powerful as Tangram is, it&amp;rsquo;s important to recognize its limitations. First, the model is only as good as its inputs. If your scRNA-seq dataset is missing a cell type that&amp;rsquo;s present in the spatial data (or vice versa), the mapping will be incomplete or forced. This is a critical consideration when trying to map diseased tissue, with its unique cell states, onto a healthy reference atlas. Second, the method relies on assumptions about cell discreteness, which can get complicated in tissues with complex morphology. Finally, by mapping to a reference, there&amp;rsquo;s always a risk of &amp;ldquo;over-normalizing&amp;rdquo; the data—forcing a unique, disease-specific spatial architecture to conform to a pre-existing blueprint, thereby missing novel biology. It&amp;rsquo;s a tool for generating powerful hypotheses, but those hypotheses must always be validated experimentally.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://www.nature.com/articles/s41592-021-01264-7&#34;&gt;Deep learning and alignment of spatially resolved single-cell transcriptomes with Tangram&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Busting the Myth of the scRNA-seq &#34;Dropout&#34;</title>
+      <link>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</link>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>https://zqzneptune.github.io/post/2020-01-20-zerodrop/</guid>
+      <description>&lt;h2 id=&#34;the-30-second-lowdown&#34;&gt;The 30-Second Lowdown&lt;/h2&gt;
+&lt;p&gt;I love papers that challenge a core assumption we&amp;rsquo;ve all been working with. In this short but powerful correspondence, Valentine Svensson re-examines the widely held belief that droplet-based single-cell RNA-seq data has &amp;ldquo;too many&amp;rdquo; zeros due to technical failures, a phenomenon often called &amp;ldquo;dropout.&amp;rdquo; Using a series of clever analyses on negative control datasets, he demonstrates that the number of observed zeros is almost perfectly explained by standard statistical models of molecule counting. The punchline? The &amp;ldquo;excess&amp;rdquo; zeros we see in our biological data aren&amp;rsquo;t technical noise to be corrected; they are a reflection of real biology.&lt;/p&gt;
+&lt;h2 id=&#34;the-ghost-in-the-machine-are-zeros-signal-or-noise&#34;&gt;The Ghost in the Machine: Are Zeros Signal or Noise?&lt;/h2&gt;
+&lt;p&gt;A fundamental question in single-cell genomics has always been this: when my data matrix shows a zero for a given gene in a specific cell, what does it mean? Did the technology simply fail to capture an expressed transcript (a &amp;ldquo;technical zero&amp;rdquo;), or is that gene genuinely not being expressed (a &amp;ldquo;biological zero&amp;rdquo;)?&lt;/p&gt;
+&lt;p&gt;This isn&amp;rsquo;t just an academic question—it dictates how we build our models. For years, the field has leaned heavily on the idea that technical zeros are rampant, especially in high-throughput droplet methods. This assumption has spawned an entire cottage industry of computational methods for &amp;ldquo;imputation&amp;rdquo;—algorithms designed to predict and fill in these supposed missing values. But if that foundational assumption is shaky, it means we might be spending our time &amp;ldquo;fixing&amp;rdquo; a problem that doesn&amp;rsquo;t exist, and potentially even corrupting the real biological signal in the process.&lt;/p&gt;
+&lt;h2 id=&#34;a-clean-experiment-to-settle-the-score&#34;&gt;A Clean Experiment to Settle the Score&lt;/h2&gt;
+&lt;p&gt;The beauty of this paper lies not in a complex new algorithm, but in its elegant application of statistical first principles to the right kind of data. Svensson leverages public negative control datasets where, instead of single cells, a uniform solution of RNA is encapsulated into droplets. This creates a perfect testbed: a system with zero biological variation, where any deviation from a simple sampling model must be technical.&lt;/p&gt;
+&lt;p&gt;He then fits a standard count model—the negative binomial distribution—to this data. This model is a workhorse for count data and accounts for the fact that capturing molecules is a random process. The result is striking: the model perfectly predicts the observed fraction of zeros without needing any extra &amp;ldquo;zero-inflation&amp;rdquo; component. It’s a textbook case of Occam&amp;rsquo;s razor; the simplest model fits the technical data perfectly.&lt;/p&gt;
+&lt;h2 id=&#34;the-finding-that-changes-things&#34;&gt;The Finding That Changes Things&lt;/h2&gt;
+&lt;p&gt;The &amp;lsquo;aha!&amp;rsquo; moment for me is the stark visual contrast in Figure 1. When you look at the plots from the technical control experiments (panels a-e), the black dots (observed zero fraction) sit right on top of the gray line (the model&amp;rsquo;s prediction). There is no &amp;ldquo;excess&amp;rdquo; zero problem.&lt;/p&gt;
+&lt;p&gt;Then, you look at the plots from real biological samples (panels f-h). Here, you see a clear deviation: many genes have more zeros than predicted by a simple model with a single &amp;ldquo;dispersion&amp;rdquo; parameter for all genes. This is the deviation that has fueled the dropout narrative. But the author shows that once you allow each gene to have its own biological variability (a gene-wise dispersion), the model once again explains the data much better. The takeaway is unambiguous: the platform itself isn&amp;rsquo;t systematically failing. The extra zeros come from biological heterogeneity. Some cells express a gene, others don&amp;rsquo;t. That’s biology, not a bug.&lt;/p&gt;
+&lt;h2 id=&#34;why-this-matters-for-building-predictive-models&#34;&gt;Why This Matters for Building Predictive Models&lt;/h2&gt;
+&lt;p&gt;This paper lands squarely on my intellectual home turf. My entire research program is geared towards building interpretable, predictive models of living tissues, and that starts with respecting the data. For years, we&amp;rsquo;ve seen increasingly complex imputation models, many of which are black boxes that fundamentally alter the raw counts before any biological questions are asked. This work provides strong evidence that this entire preprocessing step might be a misguided effort.&lt;/p&gt;
+&lt;p&gt;If the zeros are real, then trying to &amp;ldquo;fill them in&amp;rdquo; isn&amp;rsquo;t just unnecessary; it&amp;rsquo;s actively destroying information. This gives me much more confidence in using models that work directly with the raw count data, like negative binomial generalized linear models (GLMs). These models are statistically appropriate, more interpretable, and keep us closer to the ground truth of the experiment.&lt;/p&gt;
+&lt;p&gt;For my work in leukemia chemoresistance, this is critical. A gene being truly &amp;ldquo;off&amp;rdquo; in a drug-resistant subclone versus &amp;ldquo;on&amp;rdquo; in a sensitive one is a powerful piece of causal evidence. It&amp;rsquo;s a signal I want to model directly, not a technical error to be smoothed over by an imputation algorithm.&lt;/p&gt;
+&lt;h2 id=&#34;untapped-potential-and-the-road-ahead&#34;&gt;Untapped Potential and the Road Ahead&lt;/h2&gt;
+&lt;p&gt;This work clarifies our thinking, but also points to new directions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Next Computational Step:&lt;/strong&gt; The immediate implication is to challenge my own preprocessing pipelines. I plan to systematically benchmark how much imputation actually &lt;em&gt;hurts&lt;/em&gt; the ability to identify the effects of genetic perturbations in my Perturb-seq data. My hypothesis, strengthened by this paper, is that for detecting the strong, often binary on/off gene expression changes induced by CRISPR guides, working directly with the counts will be more powerful and robust than working with imputed data. I&amp;rsquo;ll design this benchmark using my existing T-ALL datasets.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key Experiment for the Field:&lt;/strong&gt; The author correctly points out that there&amp;rsquo;s a lack of comparable negative control data for plate-based scRNA-seq methods. To truly settle this debate across technologies, the community needs a gold-standard &amp;ldquo;zero-free&amp;rdquo; control experiment for a popular plate-based method like SMART-seq3. This would allow for a definitive, apples-to-apples comparison of the noise profiles and tell us if those platforms &lt;em&gt;do&lt;/em&gt; have unique technical artifacts that might warrant a different statistical approach.&lt;/p&gt;
+&lt;h2 id=&#34;a-healthy-dose-of-skepticism&#34;&gt;A Healthy Dose of Skepticism&lt;/h2&gt;
+&lt;p&gt;My main critique is that as a &amp;ldquo;correspondence&amp;rdquo; piece, the analysis is necessarily brief. The conclusion—&amp;ldquo;Droplet scRNA-seq is not zero-inflated&amp;rdquo;—is very broad, but the evidence is strongest for UMI-based droplet platforms. The argument against plate-based methods is less direct, relying on re-analysis of a single dataset and another group&amp;rsquo;s simulation study. While the evidence presented for droplet methods is compelling, I&amp;rsquo;d be cautious about over-generalizing this to &lt;em&gt;all&lt;/em&gt; scRNA-seq technologies without more direct, controlled comparisons. The core message is a crucial course correction for the field, but the nuanced differences between technologies still matter.&lt;/p&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://doi.org/10.1038/s41587-019-0379-5&#34;&gt;&lt;strong&gt;Droplet scRNA-seq is not zero-inflated&lt;/strong&gt;&lt;/a&gt; Nature Biotechnology (2020), by Valentine Svensson&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

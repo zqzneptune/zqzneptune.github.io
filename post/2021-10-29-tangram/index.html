@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.6.3">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Qingzhou Zhang">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Tangram is a deep learning framework that spatially resolves single-cell RNA-seq data by aligning it to various spatial transcriptomics modalities, creating genome-wide expression maps at single-cell resolution.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://zqzneptune.github.io/post/2021-10-29-tangram/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f009b">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono%7CLora:400,700%7CRoboto:400,700&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156259873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-156259873-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://zqzneptune.github.io/post/2021-10-29-tangram/">
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Qingzhou Zhang">
+  <meta property="og:url" content="https://zqzneptune.github.io/post/2021-10-29-tangram/">
+  <meta property="og:title" content="Stitching the Atlas Together: How Tangram Puts Single Cells on the Map | Qingzhou Zhang">
+  <meta property="og:description" content="Tangram is a deep learning framework that spatially resolves single-cell RNA-seq data by aligning it to various spatial transcriptomics modalities, creating genome-wide expression maps at single-cell resolution."><meta property="og:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-10-29T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-10-29T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zqzneptune.github.io/post/2021-10-29-tangram/"
+  },
+  "headline": "Stitching the Atlas Together: How Tangram Puts Single Cells on the Map",
+  
+  "datePublished": "2021-10-29T00:00:00Z",
+  "dateModified": "2021-10-29T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Qingzhou Zhang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Qingzhou (Johnson) Zhang | Predictive Systems Biology \u0026 AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "img/https://zqzneptune.github.io"
+    }
+  },
+  "description": "Tangram is a deep learning framework that spatially resolves single-cell RNA-seq data by aligning it to various spatial transcriptomics modalities, creating genome-wide expression maps at single-cell resolution."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Stitching the Atlas Together: How Tangram Puts Single Cells on the Map | Qingzhou Zhang</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Qingzhou Zhang</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Qingzhou Zhang</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>ABOUT</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>VISION</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>INSIGHTS</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>RESEARCH</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item">
+        <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Stitching the Atlas Together: How Tangram Puts Single Cells on the Map</h1>
+
+  
+  <p class="page-subtitle">A deep dive into the computational toolkit that’s turning dissociated cells back into living tissue maps.</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  
+  <span><a href="/authors/admin/">Qingzhou Zhang</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Oct 29, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/computational-methods/">Computational Methods</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="the-30-second-lowdown">The 30-Second Lowdown</h2>
+<p>For years, we&rsquo;ve faced a frustrating tradeoff in genomics. We could either grind up a tissue to get deep, single-cell transcriptomic data (losing all spatial context), or we could use spatial methods that told us where a few genes were, but missed the full picture. The team behind Tangram has developed a powerful computational method to get the best of both worlds. In short, Tangram takes your high-content scRNA-seq data and intelligently &ldquo;maps&rdquo; each cell onto a spatial coordinate system, effectively creating a complete, spatially-resolved transcriptome at single-cell resolution.</p>
+<h2 id="bridging-the-gap-from-cell-soup-to-tissue-architecture">Bridging the Gap: From Cell Soup to Tissue Architecture</h2>
+<p>The fundamental problem here is one of integration. We have incredible tools for generating parts lists of tissues—scRNA-seq tells us we have X% T-cells, Y% cancer cells, and Z% fibroblasts. We also have emerging blueprints—spatial transcriptomics shows us the rough neighborhoods where different cell types live. But the parts list isn&rsquo;t connected to the blueprint. We can&rsquo;t see which specific T-cell subtype is talking to which specific cancer clone in its native environment. This is the gap Tangram aims to close. How do we computationally reassemble the &ldquo;cell soup&rdquo; from single-cell sequencing back into the complex, structured tissue it came from?</p>
+<h2 id="under-the-hood-solving-the-cellular-jigsaw-puzzle">Under the Hood: Solving the Cellular Jigsaw Puzzle</h2>
+<p>I love the intuition behind this method. Tangram treats the scRNA-seq profiles as individual &ldquo;puzzle pieces&rdquo; and the spatial data (from methods like MERFISH or Visium) as the &ldquo;puzzle board.&rdquo; The key is that both datasets measure a common set of genes. The algorithm works by testing different arrangements of the single-cell puzzle pieces on the spatial board. The goal is simple: find the arrangement that maximizes the spatial correlation between the gene expression patterns in the original spatial data and the newly placed single-cell data. It&rsquo;s a non-convex optimization problem that results in a probabilistic map, telling us the likelihood of finding each specific cell from our scRNA-seq dataset at every location on the spatial map. It&rsquo;s an elegant way to solve an incredibly complex alignment problem.</p>
+<h2 id="the-whoa-interesting-moment">The &ldquo;Whoa, Interesting&rdquo; Moment</h2>
+<p>The finding that really made me lean in was their use of Tangram to map multi-omic data. They took SHARE-seq data, which measures both gene expression (RNA) and chromatin accessibility (ATAC) in the same single cells. Here&rsquo;s the brilliant part: they only used the <em>RNA</em> data to align the cells onto a MERFISH spatial map. But because the ATAC data is linked to the RNA data for each cell, by placing the cell in space, they <em>also</em> generated a high-resolution spatial map of chromatin accessibility. This is a huge leap. It means we can use one modality (which we can measure spatially) as a scaffold to spatially project another modality (for which we might not have spatial tools). This turns Tangram from a data integration tool into a powerful inference engine.</p>
+<h2 id="why-this-lands-on-my-roadmap-for-predictive-modeling">Why This Lands on My Roadmap for Predictive Modeling</h2>
+<p>This paper is more than just a cool method; it’s a foundational piece for building the predictive digital twins that drive my research program. Here’s how I see it through my core lens:</p>
+<ul>
+<li>
+<p><strong>Prediction over Description:</strong> Tangram is a powerful predictive framework. Given a spatial reference, I can now take scRNA-seq from a new sample—say, a resistant leukemia clone—and predict its spatial organization and cellular neighborhood. This allows me to form testable hypotheses about which microenvironmental niches promote drug resistance before I even run the experiment.</p>
+</li>
+<li>
+<p><strong>Causality over Correlation:</strong> While Tangram is correlative by nature, it provides the perfect scaffold to overlay causal data. My lab&rsquo;s key differentiator is using large-scale Perturb-seq to establish causal links between genes and cellular states. I can now take this a step further. I can perturb a gene network in a solid tumor model, generate Perturb-seq data, and use Tangram to map these perturbed cells back onto a real patient tumor slice. This allows me to build an <em>in silico</em> model of how a specific genetic knockout causally remodels the tumor microenvironment. This is the future.</p>
+</li>
+<li>
+<p><strong>Application to My Pillars:</strong></p>
+<ul>
+<li>
+<p><strong>Leukemia (1A):</strong> In T-ALL, the bone marrow niche is critical for chemoresistance. I can map scRNA-seq data from patient-derived xenografts (pre- and post-treatment) onto a healthy spatial atlas of the bone marrow. This will allow me to predict which niche interactions are enriched in resistant cells, pointing directly to new therapeutic targets that disrupt the cancer&rsquo;s supportive environment.</p>
+</li>
+<li>
+<p><strong>Solid Tumors (1B):</strong> The application here is immediate and obvious. Building predictive models of immunotherapy response requires understanding the spatial crosstalk between cancer cells and immune cells. Tangram allows me to fuse my Perturb-seq data with spatial atlases of the tumor microenvironment to model how silencing a target gene in a cancer cell alters its proximity to cytotoxic T-cells.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="where-we-go-from-here-from-static-maps-to-dynamic-models">Where We Go From Here: From Static Maps to Dynamic Models</h3>
+<p>Tangram provides a fantastic framework for mapping static snapshots. The clear next step is to make it dynamic.</p>
+<ul>
+<li>
+<p><strong>My Next Computational Step:</strong> I&rsquo;m already architecting what I call &ldquo;Differential Tangram.&rdquo; The idea is to map two different scRNA-seq datasets—for example, from a tumor before and after immunotherapy—onto the <em>exact same</em> spatial scaffold. The output wouldn&rsquo;t be two separate maps, but a single, integrated &ldquo;remodeling map.&rdquo; This map would explicitly quantify the change in probability of a cell type occupying a given location, allowing us to visualize and quantify how a tissue reorganizes in response to therapy. This moves from representation to modeling dynamic biological processes.</p>
+</li>
+<li>
+<p><strong>Key Experiment for the Field:</strong> The field needs a gold-standard benchmark dataset for validation. The ideal, albeit challenging, experiment would be to perform CRISPR-based perturbation screening (like Perturb-seq) and a high-plex spatial technology (like Xenium or MERFISH) <em>on the same tissue section</em>. This would create a ground-truth dataset where we know precisely how known genetic perturbations spatially reorganize cells, providing the ultimate test for Tangram and other mapping algorithms.</p>
+</li>
+</ul>
+<h3 id="a-healthy-dose-of-skepticism">A Healthy Dose of Skepticism</h3>
+<p>As powerful as Tangram is, it&rsquo;s important to recognize its limitations. First, the model is only as good as its inputs. If your scRNA-seq dataset is missing a cell type that&rsquo;s present in the spatial data (or vice versa), the mapping will be incomplete or forced. This is a critical consideration when trying to map diseased tissue, with its unique cell states, onto a healthy reference atlas. Second, the method relies on assumptions about cell discreteness, which can get complicated in tissues with complex morphology. Finally, by mapping to a reference, there&rsquo;s always a risk of &ldquo;over-normalizing&rdquo; the data—forcing a unique, disease-specific spatial architecture to conform to a pre-existing blueprint, thereby missing novel biology. It&rsquo;s a tool for generating powerful hypotheses, but those hypotheses must always be validated experimentally.</p>
+<hr>
+<p>Reference: <a href="https://www.nature.com/articles/s41592-021-01264-7">Deep learning and alignment of spatially resolved single-cell transcriptomes with Tangram</a></p>
+
+    </div>
+
+    
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/spatial-transcriptomics/">Spatial-Transcriptomics</a>
+  
+  <a class="badge badge-light" href="/tags/scrna-seq/">scRNA-seq</a>
+  
+  <a class="badge badge-light" href="/tags/machine-learning/">Machine-Learning</a>
+  
+  <a class="badge badge-light" href="/tags/computational-biology/">Computational-Biology</a>
+  
+  <a class="badge badge-light" href="/tags/data-integration/">Data-Integration</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://zqzneptune.github.io/post/2021-10-29-tangram/&amp;text=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://zqzneptune.github.io/post/2021-10-29-tangram/&amp;t=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map&amp;body=https://zqzneptune.github.io/post/2021-10-29-tangram/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://zqzneptune.github.io/post/2021-10-29-tangram/&amp;title=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map%20https://zqzneptune.github.io/post/2021-10-29-tangram/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://zqzneptune.github.io/post/2021-10-29-tangram/&amp;title=Stitching%20the%20Atlas%20Together:%20How%20Tangram%20Puts%20Single%20Cells%20on%20the%20Map" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hub8d53297f87883d816c4cfd9dec236f6_774202_250x250_fill_q90_lanczos_center.jpg" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://zqzneptune.github.io">Qingzhou Zhang</a></h5>
+      <h6 class="card-subtitle">A computational systems biologist</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/zqzneptune" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/2021-02-03_perturbseqinit/">From What to Why: How Perturb-seq Rewrote the Rules of Functional Genomics</a></li>
+      
+      <li><a href="/post/2020-01-20-zerodrop/">Busting the Myth of the scRNA-seq &#34;Dropout&#34;</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.600a2e440c16093e23e26e90951c4d4b.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    ©2014-2025 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own. &middot; 
+
+    Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

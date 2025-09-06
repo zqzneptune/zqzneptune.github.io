@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computational-Biology | Qingzhou Zhang</title>
+    <link>https://zqzneptune.github.io/tags/computational-biology/</link>
+      <atom:link href="https://zqzneptune.github.io/tags/computational-biology/index.xml" rel="self" type="application/rss+xml" />
+    <description>Computational-Biology</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2014-2025 Qingzhou Zhang (CC) BY-NC-SA 4.0. All thoughts and opinions here are my own.</copyright><lastBuildDate>Fri, 29 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://zqzneptune.github.io/images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_512x512_fill_lanczos_center_2.png</url>
+      <title>Computational-Biology</title>
+      <link>https://zqzneptune.github.io/tags/computational-biology/</link>
+    </image>
+    
+    <item>
+      <title>Stitching the Atlas Together: How Tangram Puts Single Cells on the Map</title>
+      <link>https://zqzneptune.github.io/post/2021-10-29-tangram/</link>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://zqzneptune.github.io/post/2021-10-29-tangram/</guid>
+      <description>&lt;h2 id=&#34;the-30-second-lowdown&#34;&gt;The 30-Second Lowdown&lt;/h2&gt;
+&lt;p&gt;For years, we&amp;rsquo;ve faced a frustrating tradeoff in genomics. We could either grind up a tissue to get deep, single-cell transcriptomic data (losing all spatial context), or we could use spatial methods that told us where a few genes were, but missed the full picture. The team behind Tangram has developed a powerful computational method to get the best of both worlds. In short, Tangram takes your high-content scRNA-seq data and intelligently &amp;ldquo;maps&amp;rdquo; each cell onto a spatial coordinate system, effectively creating a complete, spatially-resolved transcriptome at single-cell resolution.&lt;/p&gt;
+&lt;h2 id=&#34;bridging-the-gap-from-cell-soup-to-tissue-architecture&#34;&gt;Bridging the Gap: From Cell Soup to Tissue Architecture&lt;/h2&gt;
+&lt;p&gt;The fundamental problem here is one of integration. We have incredible tools for generating parts lists of tissues—scRNA-seq tells us we have X% T-cells, Y% cancer cells, and Z% fibroblasts. We also have emerging blueprints—spatial transcriptomics shows us the rough neighborhoods where different cell types live. But the parts list isn&amp;rsquo;t connected to the blueprint. We can&amp;rsquo;t see which specific T-cell subtype is talking to which specific cancer clone in its native environment. This is the gap Tangram aims to close. How do we computationally reassemble the &amp;ldquo;cell soup&amp;rdquo; from single-cell sequencing back into the complex, structured tissue it came from?&lt;/p&gt;
+&lt;h2 id=&#34;under-the-hood-solving-the-cellular-jigsaw-puzzle&#34;&gt;Under the Hood: Solving the Cellular Jigsaw Puzzle&lt;/h2&gt;
+&lt;p&gt;I love the intuition behind this method. Tangram treats the scRNA-seq profiles as individual &amp;ldquo;puzzle pieces&amp;rdquo; and the spatial data (from methods like MERFISH or Visium) as the &amp;ldquo;puzzle board.&amp;rdquo; The key is that both datasets measure a common set of genes. The algorithm works by testing different arrangements of the single-cell puzzle pieces on the spatial board. The goal is simple: find the arrangement that maximizes the spatial correlation between the gene expression patterns in the original spatial data and the newly placed single-cell data. It&amp;rsquo;s a non-convex optimization problem that results in a probabilistic map, telling us the likelihood of finding each specific cell from our scRNA-seq dataset at every location on the spatial map. It&amp;rsquo;s an elegant way to solve an incredibly complex alignment problem.&lt;/p&gt;
+&lt;h2 id=&#34;the-whoa-interesting-moment&#34;&gt;The &amp;ldquo;Whoa, Interesting&amp;rdquo; Moment&lt;/h2&gt;
+&lt;p&gt;The finding that really made me lean in was their use of Tangram to map multi-omic data. They took SHARE-seq data, which measures both gene expression (RNA) and chromatin accessibility (ATAC) in the same single cells. Here&amp;rsquo;s the brilliant part: they only used the &lt;em&gt;RNA&lt;/em&gt; data to align the cells onto a MERFISH spatial map. But because the ATAC data is linked to the RNA data for each cell, by placing the cell in space, they &lt;em&gt;also&lt;/em&gt; generated a high-resolution spatial map of chromatin accessibility. This is a huge leap. It means we can use one modality (which we can measure spatially) as a scaffold to spatially project another modality (for which we might not have spatial tools). This turns Tangram from a data integration tool into a powerful inference engine.&lt;/p&gt;
+&lt;h2 id=&#34;why-this-lands-on-my-roadmap-for-predictive-modeling&#34;&gt;Why This Lands on My Roadmap for Predictive Modeling&lt;/h2&gt;
+&lt;p&gt;This paper is more than just a cool method; it’s a foundational piece for building the predictive digital twins that drive my research program. Here’s how I see it through my core lens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prediction over Description:&lt;/strong&gt; Tangram is a powerful predictive framework. Given a spatial reference, I can now take scRNA-seq from a new sample—say, a resistant leukemia clone—and predict its spatial organization and cellular neighborhood. This allows me to form testable hypotheses about which microenvironmental niches promote drug resistance before I even run the experiment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Causality over Correlation:&lt;/strong&gt; While Tangram is correlative by nature, it provides the perfect scaffold to overlay causal data. My lab&amp;rsquo;s key differentiator is using large-scale Perturb-seq to establish causal links between genes and cellular states. I can now take this a step further. I can perturb a gene network in a solid tumor model, generate Perturb-seq data, and use Tangram to map these perturbed cells back onto a real patient tumor slice. This allows me to build an &lt;em&gt;in silico&lt;/em&gt; model of how a specific genetic knockout causally remodels the tumor microenvironment. This is the future.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Application to My Pillars:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Leukemia (1A):&lt;/strong&gt; In T-ALL, the bone marrow niche is critical for chemoresistance. I can map scRNA-seq data from patient-derived xenografts (pre- and post-treatment) onto a healthy spatial atlas of the bone marrow. This will allow me to predict which niche interactions are enriched in resistant cells, pointing directly to new therapeutic targets that disrupt the cancer&amp;rsquo;s supportive environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Solid Tumors (1B):&lt;/strong&gt; The application here is immediate and obvious. Building predictive models of immunotherapy response requires understanding the spatial crosstalk between cancer cells and immune cells. Tangram allows me to fuse my Perturb-seq data with spatial atlases of the tumor microenvironment to model how silencing a target gene in a cancer cell alters its proximity to cytotoxic T-cells.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;where-we-go-from-here-from-static-maps-to-dynamic-models&#34;&gt;Where We Go From Here: From Static Maps to Dynamic Models&lt;/h3&gt;
+&lt;p&gt;Tangram provides a fantastic framework for mapping static snapshots. The clear next step is to make it dynamic.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;My Next Computational Step:&lt;/strong&gt; I&amp;rsquo;m already architecting what I call &amp;ldquo;Differential Tangram.&amp;rdquo; The idea is to map two different scRNA-seq datasets—for example, from a tumor before and after immunotherapy—onto the &lt;em&gt;exact same&lt;/em&gt; spatial scaffold. The output wouldn&amp;rsquo;t be two separate maps, but a single, integrated &amp;ldquo;remodeling map.&amp;rdquo; This map would explicitly quantify the change in probability of a cell type occupying a given location, allowing us to visualize and quantify how a tissue reorganizes in response to therapy. This moves from representation to modeling dynamic biological processes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Key Experiment for the Field:&lt;/strong&gt; The field needs a gold-standard benchmark dataset for validation. The ideal, albeit challenging, experiment would be to perform CRISPR-based perturbation screening (like Perturb-seq) and a high-plex spatial technology (like Xenium or MERFISH) &lt;em&gt;on the same tissue section&lt;/em&gt;. This would create a ground-truth dataset where we know precisely how known genetic perturbations spatially reorganize cells, providing the ultimate test for Tangram and other mapping algorithms.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;a-healthy-dose-of-skepticism&#34;&gt;A Healthy Dose of Skepticism&lt;/h3&gt;
+&lt;p&gt;As powerful as Tangram is, it&amp;rsquo;s important to recognize its limitations. First, the model is only as good as its inputs. If your scRNA-seq dataset is missing a cell type that&amp;rsquo;s present in the spatial data (or vice versa), the mapping will be incomplete or forced. This is a critical consideration when trying to map diseased tissue, with its unique cell states, onto a healthy reference atlas. Second, the method relies on assumptions about cell discreteness, which can get complicated in tissues with complex morphology. Finally, by mapping to a reference, there&amp;rsquo;s always a risk of &amp;ldquo;over-normalizing&amp;rdquo; the data—forcing a unique, disease-specific spatial architecture to conform to a pre-existing blueprint, thereby missing novel biology. It&amp;rsquo;s a tool for generating powerful hypotheses, but those hypotheses must always be validated experimentally.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Reference: &lt;a href=&#34;https://www.nature.com/articles/s41592-021-01264-7&#34;&gt;Deep learning and alignment of spatially resolved single-cell transcriptomes with Tangram&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
