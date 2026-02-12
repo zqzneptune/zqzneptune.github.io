@@ -5,35 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qingzhou Zhang - Portfolio</title>
-    <meta name="description"
-        content="Personal portfolio of Qingzhou Zhang, specializing in AI-powered predictive systems biology.">
-    <!-- Ionicons for Icons -->
+    <meta name="description" content="Personal portfolio of Qingzhou Zhang, specializing in AI-powered predictive systems biology.">
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png"
-        href="images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_32x32_fill_lanczos_center_2.png">
-    <link rel="apple-touch-icon" type="image/png"
-        href="images/icon_huf504e8a2f7c5cf9e43cec507892894a0_49847_192x192_fill_lanczos_center_2.png">
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container header-container">
             <a href="#" class="logo">Dr. Qingzhou Zhang</a>
-            <nav class="navbar">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#publications">Publications</a>
-                <a href="#case-studies">Case Studies</a>
-            </nav>
-            <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
-                <ion-icon name="moon-outline"></ion-icon>
-            </button>
+            
+            <div class="header-actions">
+                <nav class="navbar" id="navbar">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#publications" class="nav-link">Publications</a>
+                    <a href="#case-studies" class="nav-link">Case Studies</a>
+                </nav>
+                
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <ion-icon name="moon-outline"></ion-icon>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -41,28 +45,27 @@
         <!-- Hero Section -->
         <section id="about" class="hero">
             <div class="container hero-content">
-                <div class="hero-text">
+                <div class="hero-text fade-in-up">
                     <span class="greeting">Hello, I'm</span>
                     <h1 class="name">Johnson</h1>
                     <h2 class="title">Computational Systems Biologist</h2>
                     <p class="bio">
-                        I dedicated to decoding the complexity of life through <strong>multi-omic integration</strong>. With <strong>15+ years</strong> of experience and a publication record in journals like <strong>Nature Biotechnology</strong> and <strong>Molecular Cell</strong>, I bridge the gap between high-throughput data and biological discovery. Whether it's building parallelized Python tools for millions of cells or leading computational strategy for multi-institutional projects, I focus on making data-driven research rigorous and reproducible. Explore more below.
+                        I am dedicated to decoding the complexity of life through <strong>multi-omic integration</strong>. With <strong>15+ years</strong> of experience and a publication record in journals like <strong>Nature Biotechnology</strong>, I bridge the gap between high-throughput data and biological discovery.
                     </p>
                     <div class="social-links">
                         <a href="https://github.com/zqzneptune" target="_blank" aria-label="GitHub">
                             <ion-icon name="logo-github"></ion-icon>
                         </a>
-
                         <a href="https://x.com/QingzhouZ78967" target="_blank" aria-label="X">
                             <ion-icon name="logo-twitter"></ion-icon>
                         </a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <!-- Placeholder for Avatar -->
-                    <div class="avatar-placeholder"><img
-                            src="images/avatar_hub8d53297f87883d816c4cfd9dec236f6_774202_250x250_fill_q90_lanczos_center.jpg"
-                            alt="Avatar"></div>
+                <div class="hero-image fade-in-up delay-1">
+                    <div class="avatar-bg-glow"></div>
+                    <div class="avatar-placeholder">
+                        <img src="images/avatar_hub8d53297f87883d816c4cfd9dec236f6_774202_250x250_fill_q90_lanczos_center.jpg" alt="Qingzhou Zhang">
+                    </div>
                 </div>
             </div>
         </section>
@@ -70,44 +73,43 @@
         <!-- Projects Section -->
         <section id="projects" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in-up">
                     <h2 class="section-title">Projects</h2>
                     <p class="section-subtitle">A selection of my work in bioinformatics and software</p>
                 </div>
 
-                <div class="filter-container">
+                <div class="filter-container fade-in-up">
                     <ul class="filter-list" id="project-filters">
-                        <!-- Filters will be injected by JS -->
                         <li class="filter-item active" data-filter="all">All</li>
+                        <!-- JS injected filters -->
                     </ul>
                 </div>
 
                 <div class="projects-grid" id="projects-grid">
-                    <!-- Projects will be injected by JS -->
+                    <!-- JS injected projects -->
                 </div>
             </div>
         </section>
 
         <!-- Case Studies Section -->
-        <section id="case-studies" class="section">
+        <section id="case-studies" class="section bg-alt">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in-up">
                     <h2 class="section-title">Case Studies</h2>
                     <p class="section-subtitle">In-depth analyses of omics data</p>
                 </div>
 
-                <div class="filter-container">
+                <div class="filter-container fade-in-up">
                     <ul class="filter-list" id="case-study-filters">
-                        <!-- Filters will be injected by JS -->
                         <li class="filter-item active" data-filter="all">All</li>
                     </ul>
                 </div>
 
                 <div class="case-studies-grid" id="case-studies-grid">
-                    <!-- Case Studies will be injected by JS -->
+                    <!-- JS injected studies -->
                 </div>
 
-                <div class="view-all-container">
+                <div class="view-all-container fade-in-up">
                     <a href="case-studies.html" class="view-all-btn">View All Case Studies →</a>
                 </div>
             </div>
@@ -116,24 +118,22 @@
         <!-- Publications Section -->
         <section id="publications" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header fade-in-up">
                     <h2 class="section-title">Publications</h2>
                     <p class="section-subtitle">Research articles and collaborations</p>
                 </div>
-
-                <div class="filter-container">
+                
+                <div class="filter-container fade-in-up">
                     <ul class="filter-list" id="publication-filters">
-                        <!-- Filters will be injected by JS -->
                         <li class="filter-item active" data-filter="all">All</li>
                     </ul>
                 </div>
 
                 <div class="publications-list" id="publications-list">
-                    <!-- Publications will be injected by JS -->
+                    <!-- JS injected pubs -->
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="footer">
@@ -142,7 +142,30 @@
         </div>
     </footer>
 
+    <!-- Added Mobile Menu Logic Script inline for ease of use, move to script.js -->
     <script src="js/script.js"></script>
-</body>
+    <script>
+        // Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navbar = document.getElementById('navbar');
+        const icon = mobileBtn.querySelector('ion-icon');
 
+        mobileBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            if(navbar.classList.contains('active')) {
+                icon.setAttribute('name', 'close-outline');
+            } else {
+                icon.setAttribute('name', 'menu-outline');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                icon.setAttribute('name', 'menu-outline');
+            });
+        });
+    </script>
+</body>
 </html>

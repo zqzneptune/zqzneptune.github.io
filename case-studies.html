@@ -6,29 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies - Qingzhou Zhang</title>
     <meta name="description" content="Comprehensive case studies from Qingzhou Zhang's research portfolio.">
-    <!-- Ionicons for Icons -->
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container header-container">
             <a href="index.html" class="logo">Dr. Qingzhou Zhang</a>
-            <nav class="navbar">
-                <a href="index.html#about">About</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#publications">Publications</a>
-                <a href="index.html#case-studies">Case Studies</a>
-            </nav>
-            <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
-                <ion-icon name="moon-outline"></ion-icon>
-            </button>
+            <div class="header-actions">
+                <nav class="navbar" id="navbar">
+                    <a href="index.html#about" class="nav-link">About</a>
+                    <a href="index.html#projects" class="nav-link">Projects</a>
+                    <a href="index.html#publications" class="nav-link">Publications</a>
+                    <a href="index.html#case-studies" class="nav-link">Case Studies</a>
+                </nav>
+                
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <ion-icon name="moon-outline"></ion-icon>
+                </button>
+
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -36,24 +43,22 @@
         <!-- Case Studies Full List -->
         <section class="section page-section">
             <div class="container">
-                <div class="page-header">
+                <div class="page-header fade-in-up">
                     <a href="index.html" class="back-link">
                         <ion-icon name="arrow-back-outline"></ion-icon> Back to Home
                     </a>
                     <h1 class="page-title">Case Studies</h1>
-                    <p class="page-subtitle">Comprehensive analyses of real-world applications in systems biology and
-                        bioinformatics.</p>
+                    <p class="page-subtitle">Comprehensive analyses of real-world applications in systems biology.</p>
                 </div>
 
-                <div class="filter-container">
+                <div class="filter-container fade-in-up">
                     <ul class="filter-list" id="case-study-filters-full">
-                        <!-- Filters will be injected by JS -->
                         <li class="filter-item active" data-filter="all">All</li>
                     </ul>
                 </div>
 
-                <div class="case-studies-grid" id="case-studies-grid-full">
-                    <!-- Case Studies will be injected by JS -->
+                <div class="case-studies-grid fade-in-up delay-1" id="case-studies-grid-full">
+                    <!-- JS injected content -->
                 </div>
             </div>
         </section>
@@ -66,6 +71,20 @@
     </footer>
 
     <script src="js/case-studies.js"></script>
-</body>
+    <script>
+        // Inline Mobile Menu Logic (Ideally move this to a shared JS file)
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navbar = document.getElementById('navbar');
+        const icon = mobileBtn.querySelector('ion-icon');
 
+        mobileBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            if(navbar.classList.contains('active')) {
+                icon.setAttribute('name', 'close-outline');
+            } else {
+                icon.setAttribute('name', 'menu-outline');
+            }
+        });
+    </script>
+</body>
 </html>
