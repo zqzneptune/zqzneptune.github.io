@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Qingzhou Zhang (zqzneptune@gmail.com)" />
+
+<meta name="date" content="2025-04-10" />
+
+<title>Data Processing: Download, Indexing, and Quantification</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PRJNA626450</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="00.html">
+    <span class="fa fa-download"></span>
+     
+    1. Data
+  </a>
+</li>
+<li>
+  <a href="01.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    2. QC and Preprocessing
+  </a>
+</li>
+<li>
+  <a href="02.html">
+    <span class="fa fa-layer-group"></span>
+     
+    3. Clustering
+  </a>
+</li>
+<li>
+  <a href="03.html">
+    <span class="fa fa-route"></span>
+     
+    4. Trajectory
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Data Processing: Download, Indexing, and
+Quantification</h1>
+<h4 class="author">Qingzhou Zhang (<a href="mailto:zqzneptune@gmail.com"
+class="email">zqzneptune@gmail.com</a>)</h4>
+<h4 class="date">2025-04-10</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This report outlines the initial bioinformatic steps performed to
+process the raw data for the <strong>Single cell RNA sequencing of
+vascular smooth muscle cells from atherosclerotic lesions of ApoE ko
+mice study</strong> [<a
+href="https://www.ncbi.nlm.nih.gov/bioproject/626450"
+class="uri">https://www.ncbi.nlm.nih.gov/bioproject/626450</a>]. It
+covers:</p>
+<ol style="list-style-type: decimal">
+<li>Downloading the raw sequencing reads (FASTQ files).</li>
+<li>Preparing the reference transcriptome.</li>
+<li>Building the Salmon index required for quantification.</li>
+<li>Running Salmon to quantify transcript abundances for each
+cell/sample.</li>
+</ol>
+<p>The output of this stage is typically a set of quantification files
+(e.g., <code>quant.sf</code>) per sample, which are then further
+processed to generate a count matrix (often represented as a
+<code>SingleCellExperiment</code> object, as detailed in subsequent
+reports).</p>
+</div>
+<div id="raw-data-acquisition" class="section level1">
+<h1>1. Raw Data Acquisition</h1>
+<p>The raw sequencing data (FASTQ files) were obtained from Sequence
+Read Archive (SRA) database with Accession Number
+<strong>PRJNA626450</strong>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-152_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/018/SRR11573318/SRR11573318.fastq.gz</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-152_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/009/SRR11592409/SRR11592409.fastq.gz</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-153_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/017/SRR11573317/SRR11573317.fastq.gz</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-153_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/008/SRR11592408/SRR11592408.fastq.gz</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-154_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/016/SRR11573316/SRR11573316.fastq.gz</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-154_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/007/SRR11592407/SRR11592407.fastq.gz</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-155_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/015/SRR11573315/SRR11573315.fastq.gz</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-155_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/006/SRR11592406/SRR11592406.fastq.gz</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-156_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/014/SRR11573314/SRR11573314.fastq.gz</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-156_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/005/SRR11592405/SRR11592405.fastq.gz</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-157_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/013/SRR11573313/SRR11573313.fastq.gz</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-157_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/004/SRR11592404/SRR11592404.fastq.gz</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-158_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/012/SRR11573312/SRR11573312.fastq.gz</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-158_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/003/SRR11592403/SRR11592403.fastq.gz</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-159_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/011/SRR11573311/SRR11573311.fastq.gz</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-159_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/002/SRR11592402/SRR11592402.fastq.gz</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-160_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/010/SRR11573310/SRR11573310.fastq.gz</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-160_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/001/SRR11592401/SRR11592401.fastq.gz</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-100_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/074/SRR11573374/SRR11573374.fastq.gz</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-100_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/033/SRR11592433/SRR11592433.fastq.gz</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-102_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/073/SRR11573373/SRR11573373.fastq.gz</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-102_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/023/SRR11592523/SRR11592523.fastq.gz</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-103_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/072/SRR11573372/SRR11573372.fastq.gz</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-103_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/022/SRR11592522/SRR11592522.fastq.gz</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-104_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/071/SRR11573371/SRR11573371.fastq.gz</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-104_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/021/SRR11592521/SRR11592521.fastq.gz</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-105_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/070/SRR11573370/SRR11573370.fastq.gz</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-105_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/020/SRR11592520/SRR11592520.fastq.gz</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-106_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/069/SRR11573369/SRR11573369.fastq.gz</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-106_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/019/SRR11592519/SRR11592519.fastq.gz</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-107_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/068/SRR11573368/SRR11573368.fastq.gz</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-107_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/018/SRR11592518/SRR11592518.fastq.gz</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-108_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/067/SRR11573367/SRR11573367.fastq.gz</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-108_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/017/SRR11592517/SRR11592517.fastq.gz</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-109_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/066/SRR11573366/SRR11573366.fastq.gz</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-109_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/016/SRR11592516/SRR11592516.fastq.gz</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-110_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/065/SRR11573365/SRR11573365.fastq.gz</span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-110_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/015/SRR11592515/SRR11592515.fastq.gz</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-111_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/063/SRR11573363/SRR11573363.fastq.gz</span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-111_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/013/SRR11592513/SRR11592513.fastq.gz</span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-112_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/062/SRR11573362/SRR11573362.fastq.gz</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-112_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/012/SRR11592512/SRR11592512.fastq.gz</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-113_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/061/SRR11573361/SRR11573361.fastq.gz</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-113_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/011/SRR11592511/SRR11592511.fastq.gz</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-114_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/060/SRR11573360/SRR11573360.fastq.gz</span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-114_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/010/SRR11592510/SRR11592510.fastq.gz</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-115_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/059/SRR11573359/SRR11573359.fastq.gz</span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-115_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/009/SRR11592509/SRR11592509.fastq.gz</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-116_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/058/SRR11573358/SRR11573358.fastq.gz</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-116_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/008/SRR11592508/SRR11592508.fastq.gz</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-117_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/057/SRR11573357/SRR11573357.fastq.gz</span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-117_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/007/SRR11592507/SRR11592507.fastq.gz</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-118_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/056/SRR11573356/SRR11573356.fastq.gz</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-118_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/006/SRR11592506/SRR11592506.fastq.gz</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-119_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/055/SRR11573355/SRR11573355.fastq.gz</span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-119_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/005/SRR11592505/SRR11592505.fastq.gz</span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-12_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/064/SRR11573364/SRR11573364.fastq.gz</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-12_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/014/SRR11592514/SRR11592514.fastq.gz</span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-120_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/054/SRR11573354/SRR11573354.fastq.gz</span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-120_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/004/SRR11592504/SRR11592504.fastq.gz</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-121_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/052/SRR11573352/SRR11573352.fastq.gz</span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-121_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/002/SRR11592502/SRR11592502.fastq.gz</span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-122_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/051/SRR11573351/SRR11573351.fastq.gz</span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-122_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/001/SRR11592501/SRR11592501.fastq.gz</span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-123_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/050/SRR11573350/SRR11573350.fastq.gz</span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-123_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/000/SRR11592500/SRR11592500.fastq.gz</span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-124_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/049/SRR11573349/SRR11573349.fastq.gz</span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-124_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/099/SRR11592499/SRR11592499.fastq.gz</span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-125_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/048/SRR11573348/SRR11573348.fastq.gz</span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-125_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/098/SRR11592498/SRR11592498.fastq.gz</span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-126_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/047/SRR11573347/SRR11573347.fastq.gz</span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-126_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/097/SRR11592497/SRR11592497.fastq.gz</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-127_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/046/SRR11573346/SRR11573346.fastq.gz</span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-127_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/096/SRR11592496/SRR11592496.fastq.gz</span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-128_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/045/SRR11573345/SRR11573345.fastq.gz</span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-128_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/095/SRR11592495/SRR11592495.fastq.gz</span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-129_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/044/SRR11573344/SRR11573344.fastq.gz</span>
+<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-129_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/094/SRR11592494/SRR11592494.fastq.gz</span>
+<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-13_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/053/SRR11573353/SRR11573353.fastq.gz</span>
+<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-13_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/003/SRR11592503/SRR11592503.fastq.gz</span>
+<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-130_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/043/SRR11573343/SRR11573343.fastq.gz</span>
+<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-130_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/093/SRR11592493/SRR11592493.fastq.gz</span>
+<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-131_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/041/SRR11573341/SRR11573341.fastq.gz</span>
+<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-131_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/032/SRR11592432/SRR11592432.fastq.gz</span>
+<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-132_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11573340/SRR11573340.fastq.gz</span>
+<span id="cb1-87"><a href="#cb1-87" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-132_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/031/SRR11592431/SRR11592431.fastq.gz</span>
+<span id="cb1-88"><a href="#cb1-88" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-133_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11573339/SRR11573339.fastq.gz</span>
+<span id="cb1-89"><a href="#cb1-89" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-133_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/030/SRR11592430/SRR11592430.fastq.gz</span>
+<span id="cb1-90"><a href="#cb1-90" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-134_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/038/SRR11573338/SRR11573338.fastq.gz</span>
+<span id="cb1-91"><a href="#cb1-91" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-134_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/029/SRR11592429/SRR11592429.fastq.gz</span>
+<span id="cb1-92"><a href="#cb1-92" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-135_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/037/SRR11573337/SRR11573337.fastq.gz</span>
+<span id="cb1-93"><a href="#cb1-93" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-135_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/028/SRR11592428/SRR11592428.fastq.gz</span>
+<span id="cb1-94"><a href="#cb1-94" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-136_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/036/SRR11573336/SRR11573336.fastq.gz</span>
+<span id="cb1-95"><a href="#cb1-95" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-136_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/027/SRR11592427/SRR11592427.fastq.gz</span>
+<span id="cb1-96"><a href="#cb1-96" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-137_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/035/SRR11573335/SRR11573335.fastq.gz</span>
+<span id="cb1-97"><a href="#cb1-97" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-137_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/026/SRR11592426/SRR11592426.fastq.gz</span>
+<span id="cb1-98"><a href="#cb1-98" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-138_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/034/SRR11573334/SRR11573334.fastq.gz</span>
+<span id="cb1-99"><a href="#cb1-99" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-138_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/025/SRR11592425/SRR11592425.fastq.gz</span>
+<span id="cb1-100"><a href="#cb1-100" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-139_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/033/SRR11573333/SRR11573333.fastq.gz</span>
+<span id="cb1-101"><a href="#cb1-101" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-139_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/024/SRR11592424/SRR11592424.fastq.gz</span>
+<span id="cb1-102"><a href="#cb1-102" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-14_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11573342/SRR11573342.fastq.gz</span>
+<span id="cb1-103"><a href="#cb1-103" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-14_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/092/SRR11592492/SRR11592492.fastq.gz</span>
+<span id="cb1-104"><a href="#cb1-104" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-140_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/032/SRR11573332/SRR11573332.fastq.gz</span>
+<span id="cb1-105"><a href="#cb1-105" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-140_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/023/SRR11592423/SRR11592423.fastq.gz</span>
+<span id="cb1-106"><a href="#cb1-106" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-141_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/030/SRR11573330/SRR11573330.fastq.gz</span>
+<span id="cb1-107"><a href="#cb1-107" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-141_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/021/SRR11592421/SRR11592421.fastq.gz</span>
+<span id="cb1-108"><a href="#cb1-108" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-142_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/029/SRR11573329/SRR11573329.fastq.gz</span>
+<span id="cb1-109"><a href="#cb1-109" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-142_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/020/SRR11592420/SRR11592420.fastq.gz</span>
+<span id="cb1-110"><a href="#cb1-110" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-143_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/028/SRR11573328/SRR11573328.fastq.gz</span>
+<span id="cb1-111"><a href="#cb1-111" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-143_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/019/SRR11592419/SRR11592419.fastq.gz</span>
+<span id="cb1-112"><a href="#cb1-112" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-144_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/027/SRR11573327/SRR11573327.fastq.gz</span>
+<span id="cb1-113"><a href="#cb1-113" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-144_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/018/SRR11592418/SRR11592418.fastq.gz</span>
+<span id="cb1-114"><a href="#cb1-114" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-145_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/026/SRR11573326/SRR11573326.fastq.gz</span>
+<span id="cb1-115"><a href="#cb1-115" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-145_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/017/SRR11592417/SRR11592417.fastq.gz</span>
+<span id="cb1-116"><a href="#cb1-116" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-146_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/025/SRR11573325/SRR11573325.fastq.gz</span>
+<span id="cb1-117"><a href="#cb1-117" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-146_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/016/SRR11592416/SRR11592416.fastq.gz</span>
+<span id="cb1-118"><a href="#cb1-118" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-147_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/024/SRR11573324/SRR11573324.fastq.gz</span>
+<span id="cb1-119"><a href="#cb1-119" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-147_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/015/SRR11592415/SRR11592415.fastq.gz</span>
+<span id="cb1-120"><a href="#cb1-120" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-148_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/023/SRR11573323/SRR11573323.fastq.gz</span>
+<span id="cb1-121"><a href="#cb1-121" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-148_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/014/SRR11592414/SRR11592414.fastq.gz</span>
+<span id="cb1-122"><a href="#cb1-122" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-149_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/022/SRR11573322/SRR11573322.fastq.gz</span>
+<span id="cb1-123"><a href="#cb1-123" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-149_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/013/SRR11592413/SRR11592413.fastq.gz</span>
+<span id="cb1-124"><a href="#cb1-124" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-15_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/031/SRR11573331/SRR11573331.fastq.gz</span>
+<span id="cb1-125"><a href="#cb1-125" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-15_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/022/SRR11592422/SRR11592422.fastq.gz</span>
+<span id="cb1-126"><a href="#cb1-126" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-150_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/021/SRR11573321/SRR11573321.fastq.gz</span>
+<span id="cb1-127"><a href="#cb1-127" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-150_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/012/SRR11592412/SRR11592412.fastq.gz</span>
+<span id="cb1-128"><a href="#cb1-128" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-151_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/019/SRR11573319/SRR11573319.fastq.gz</span>
+<span id="cb1-129"><a href="#cb1-129" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-151_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/010/SRR11592410/SRR11592410.fastq.gz</span>
+<span id="cb1-130"><a href="#cb1-130" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-16_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/020/SRR11573320/SRR11573320.fastq.gz</span>
+<span id="cb1-131"><a href="#cb1-131" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-16_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/011/SRR11592411/SRR11592411.fastq.gz</span>
+<span id="cb1-132"><a href="#cb1-132" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-96_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/078/SRR11573378/SRR11573378.fastq.gz</span>
+<span id="cb1-133"><a href="#cb1-133" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-96_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/037/SRR11592437/SRR11592437.fastq.gz</span>
+<span id="cb1-134"><a href="#cb1-134" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-97_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/077/SRR11573377/SRR11573377.fastq.gz</span>
+<span id="cb1-135"><a href="#cb1-135" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-97_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/036/SRR11592436/SRR11592436.fastq.gz</span>
+<span id="cb1-136"><a href="#cb1-136" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-98_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/076/SRR11573376/SRR11573376.fastq.gz</span>
+<span id="cb1-137"><a href="#cb1-137" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-98_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/035/SRR11592435/SRR11592435.fastq.gz</span>
+<span id="cb1-138"><a href="#cb1-138" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-99_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/075/SRR11573375/SRR11573375.fastq.gz</span>
+<span id="cb1-139"><a href="#cb1-139" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-99_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/034/SRR11592434/SRR11592434.fastq.gz</span>
+<span id="cb1-140"><a href="#cb1-140" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-10_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/084/SRR11573384/SRR11573384.fastq.gz</span>
+<span id="cb1-141"><a href="#cb1-141" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-10_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/043/SRR11592443/SRR11592443.fastq.gz</span>
+<span id="cb1-142"><a href="#cb1-142" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-60_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/018/SRR11573418/SRR11573418.fastq.gz</span>
+<span id="cb1-143"><a href="#cb1-143" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-60_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/041/SRR11592541/SRR11592541.fastq.gz</span>
+<span id="cb1-144"><a href="#cb1-144" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-61_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/016/SRR11573416/SRR11573416.fastq.gz</span>
+<span id="cb1-145"><a href="#cb1-145" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-61_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11592539/SRR11592539.fastq.gz</span>
+<span id="cb1-146"><a href="#cb1-146" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-62_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/015/SRR11573415/SRR11573415.fastq.gz</span>
+<span id="cb1-147"><a href="#cb1-147" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-62_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/038/SRR11592538/SRR11592538.fastq.gz</span>
+<span id="cb1-148"><a href="#cb1-148" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-63_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/014/SRR11573414/SRR11573414.fastq.gz</span>
+<span id="cb1-149"><a href="#cb1-149" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-63_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/037/SRR11592537/SRR11592537.fastq.gz</span>
+<span id="cb1-150"><a href="#cb1-150" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-64_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/013/SRR11573413/SRR11573413.fastq.gz</span>
+<span id="cb1-151"><a href="#cb1-151" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-64_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/036/SRR11592536/SRR11592536.fastq.gz</span>
+<span id="cb1-152"><a href="#cb1-152" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-65_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/012/SRR11573412/SRR11573412.fastq.gz</span>
+<span id="cb1-153"><a href="#cb1-153" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-65_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/035/SRR11592535/SRR11592535.fastq.gz</span>
+<span id="cb1-154"><a href="#cb1-154" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-66_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/011/SRR11573411/SRR11573411.fastq.gz</span>
+<span id="cb1-155"><a href="#cb1-155" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-66_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/034/SRR11592534/SRR11592534.fastq.gz</span>
+<span id="cb1-156"><a href="#cb1-156" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-67_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/010/SRR11573410/SRR11573410.fastq.gz</span>
+<span id="cb1-157"><a href="#cb1-157" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-67_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/033/SRR11592533/SRR11592533.fastq.gz</span>
+<span id="cb1-158"><a href="#cb1-158" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-68_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/009/SRR11573409/SRR11573409.fastq.gz</span>
+<span id="cb1-159"><a href="#cb1-159" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-68_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/032/SRR11592532/SRR11592532.fastq.gz</span>
+<span id="cb1-160"><a href="#cb1-160" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-69_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/008/SRR11573408/SRR11573408.fastq.gz</span>
+<span id="cb1-161"><a href="#cb1-161" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-69_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/031/SRR11592531/SRR11592531.fastq.gz</span>
+<span id="cb1-162"><a href="#cb1-162" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-7_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/017/SRR11573417/SRR11573417.fastq.gz</span>
+<span id="cb1-163"><a href="#cb1-163" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-7_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11592540/SRR11592540.fastq.gz</span>
+<span id="cb1-164"><a href="#cb1-164" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-70_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/007/SRR11573407/SRR11573407.fastq.gz</span>
+<span id="cb1-165"><a href="#cb1-165" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-70_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/030/SRR11592530/SRR11592530.fastq.gz</span>
+<span id="cb1-166"><a href="#cb1-166" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-71_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/005/SRR11573405/SRR11573405.fastq.gz</span>
+<span id="cb1-167"><a href="#cb1-167" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-71_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/028/SRR11592528/SRR11592528.fastq.gz</span>
+<span id="cb1-168"><a href="#cb1-168" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-72_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/004/SRR11573404/SRR11573404.fastq.gz</span>
+<span id="cb1-169"><a href="#cb1-169" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-72_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/027/SRR11592527/SRR11592527.fastq.gz</span>
+<span id="cb1-170"><a href="#cb1-170" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-73_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/003/SRR11573403/SRR11573403.fastq.gz</span>
+<span id="cb1-171"><a href="#cb1-171" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-73_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/026/SRR11592526/SRR11592526.fastq.gz</span>
+<span id="cb1-172"><a href="#cb1-172" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-74_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/002/SRR11573402/SRR11573402.fastq.gz</span>
+<span id="cb1-173"><a href="#cb1-173" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-74_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/025/SRR11592525/SRR11592525.fastq.gz</span>
+<span id="cb1-174"><a href="#cb1-174" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-75_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/001/SRR11573401/SRR11573401.fastq.gz</span>
+<span id="cb1-175"><a href="#cb1-175" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-75_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/024/SRR11592524/SRR11592524.fastq.gz</span>
+<span id="cb1-176"><a href="#cb1-176" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-76_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/000/SRR11573400/SRR11573400.fastq.gz</span>
+<span id="cb1-177"><a href="#cb1-177" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-76_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/059/SRR11592459/SRR11592459.fastq.gz</span>
+<span id="cb1-178"><a href="#cb1-178" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-77_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/099/SRR11573399/SRR11573399.fastq.gz</span>
+<span id="cb1-179"><a href="#cb1-179" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-77_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/058/SRR11592458/SRR11592458.fastq.gz</span>
+<span id="cb1-180"><a href="#cb1-180" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-78_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/098/SRR11573398/SRR11573398.fastq.gz</span>
+<span id="cb1-181"><a href="#cb1-181" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-78_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/057/SRR11592457/SRR11592457.fastq.gz</span>
+<span id="cb1-182"><a href="#cb1-182" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-79_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/097/SRR11573397/SRR11573397.fastq.gz</span>
+<span id="cb1-183"><a href="#cb1-183" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-79_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/056/SRR11592456/SRR11592456.fastq.gz</span>
+<span id="cb1-184"><a href="#cb1-184" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-8_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/006/SRR11573406/SRR11573406.fastq.gz</span>
+<span id="cb1-185"><a href="#cb1-185" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-8_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/029/SRR11592529/SRR11592529.fastq.gz</span>
+<span id="cb1-186"><a href="#cb1-186" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-80_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/096/SRR11573396/SRR11573396.fastq.gz</span>
+<span id="cb1-187"><a href="#cb1-187" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-80_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/055/SRR11592455/SRR11592455.fastq.gz</span>
+<span id="cb1-188"><a href="#cb1-188" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-81_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/094/SRR11573394/SRR11573394.fastq.gz</span>
+<span id="cb1-189"><a href="#cb1-189" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-81_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/053/SRR11592453/SRR11592453.fastq.gz</span>
+<span id="cb1-190"><a href="#cb1-190" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-82_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/093/SRR11573393/SRR11573393.fastq.gz</span>
+<span id="cb1-191"><a href="#cb1-191" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-82_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/052/SRR11592452/SRR11592452.fastq.gz</span>
+<span id="cb1-192"><a href="#cb1-192" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-83_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/092/SRR11573392/SRR11573392.fastq.gz</span>
+<span id="cb1-193"><a href="#cb1-193" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-83_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/051/SRR11592451/SRR11592451.fastq.gz</span>
+<span id="cb1-194"><a href="#cb1-194" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-84_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/091/SRR11573391/SRR11573391.fastq.gz</span>
+<span id="cb1-195"><a href="#cb1-195" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-84_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/050/SRR11592450/SRR11592450.fastq.gz</span>
+<span id="cb1-196"><a href="#cb1-196" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-85_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/090/SRR11573390/SRR11573390.fastq.gz</span>
+<span id="cb1-197"><a href="#cb1-197" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-85_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/049/SRR11592449/SRR11592449.fastq.gz</span>
+<span id="cb1-198"><a href="#cb1-198" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-86_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/089/SRR11573389/SRR11573389.fastq.gz</span>
+<span id="cb1-199"><a href="#cb1-199" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-86_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/048/SRR11592448/SRR11592448.fastq.gz</span>
+<span id="cb1-200"><a href="#cb1-200" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-87_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/088/SRR11573388/SRR11573388.fastq.gz</span>
+<span id="cb1-201"><a href="#cb1-201" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-87_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/047/SRR11592447/SRR11592447.fastq.gz</span>
+<span id="cb1-202"><a href="#cb1-202" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-88_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/087/SRR11573387/SRR11573387.fastq.gz</span>
+<span id="cb1-203"><a href="#cb1-203" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-88_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/046/SRR11592446/SRR11592446.fastq.gz</span>
+<span id="cb1-204"><a href="#cb1-204" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-89_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/086/SRR11573386/SRR11573386.fastq.gz</span>
+<span id="cb1-205"><a href="#cb1-205" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-89_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/045/SRR11592445/SRR11592445.fastq.gz</span>
+<span id="cb1-206"><a href="#cb1-206" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-9_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/095/SRR11573395/SRR11573395.fastq.gz</span>
+<span id="cb1-207"><a href="#cb1-207" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-9_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/054/SRR11592454/SRR11592454.fastq.gz</span>
+<span id="cb1-208"><a href="#cb1-208" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-90_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/085/SRR11573385/SRR11573385.fastq.gz</span>
+<span id="cb1-209"><a href="#cb1-209" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-90_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/044/SRR11592444/SRR11592444.fastq.gz</span>
+<span id="cb1-210"><a href="#cb1-210" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-91_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/083/SRR11573383/SRR11573383.fastq.gz</span>
+<span id="cb1-211"><a href="#cb1-211" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-91_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11592442/SRR11592442.fastq.gz</span>
+<span id="cb1-212"><a href="#cb1-212" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-92_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/082/SRR11573382/SRR11573382.fastq.gz</span>
+<span id="cb1-213"><a href="#cb1-213" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-92_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/041/SRR11592441/SRR11592441.fastq.gz</span>
+<span id="cb1-214"><a href="#cb1-214" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-93_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/081/SRR11573381/SRR11573381.fastq.gz</span>
+<span id="cb1-215"><a href="#cb1-215" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-93_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11592440/SRR11592440.fastq.gz</span>
+<span id="cb1-216"><a href="#cb1-216" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-94_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/080/SRR11573380/SRR11573380.fastq.gz</span>
+<span id="cb1-217"><a href="#cb1-217" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-94_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11592439/SRR11592439.fastq.gz</span>
+<span id="cb1-218"><a href="#cb1-218" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-95_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/079/SRR11573379/SRR11573379.fastq.gz</span>
+<span id="cb1-219"><a href="#cb1-219" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-95_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/038/SRR11592438/SRR11592438.fastq.gz</span>
+<span id="cb1-220"><a href="#cb1-220" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-177_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/078/SRR11573478/SRR11573478.fastq.gz</span>
+<span id="cb1-221"><a href="#cb1-221" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-177_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/069/SRR11592569/SRR11592569.fastq.gz</span>
+<span id="cb1-222"><a href="#cb1-222" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-178_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/077/SRR11573477/SRR11573477.fastq.gz</span>
+<span id="cb1-223"><a href="#cb1-223" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-178_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/068/SRR11592568/SRR11592568.fastq.gz</span>
+<span id="cb1-224"><a href="#cb1-224" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-179_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/076/SRR11573476/SRR11573476.fastq.gz</span>
+<span id="cb1-225"><a href="#cb1-225" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-179_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/067/SRR11592567/SRR11592567.fastq.gz</span>
+<span id="cb1-226"><a href="#cb1-226" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-180_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/075/SRR11573475/SRR11573475.fastq.gz</span>
+<span id="cb1-227"><a href="#cb1-227" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-180_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/066/SRR11592566/SRR11592566.fastq.gz</span>
+<span id="cb1-228"><a href="#cb1-228" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-181_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/073/SRR11573473/SRR11573473.fastq.gz</span>
+<span id="cb1-229"><a href="#cb1-229" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-181_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/064/SRR11592564/SRR11592564.fastq.gz</span>
+<span id="cb1-230"><a href="#cb1-230" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-182_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/072/SRR11573472/SRR11573472.fastq.gz</span>
+<span id="cb1-231"><a href="#cb1-231" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-182_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/063/SRR11592563/SRR11592563.fastq.gz</span>
+<span id="cb1-232"><a href="#cb1-232" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-183_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/071/SRR11573471/SRR11573471.fastq.gz</span>
+<span id="cb1-233"><a href="#cb1-233" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-183_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/062/SRR11592562/SRR11592562.fastq.gz</span>
+<span id="cb1-234"><a href="#cb1-234" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-184_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/070/SRR11573470/SRR11573470.fastq.gz</span>
+<span id="cb1-235"><a href="#cb1-235" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-184_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/061/SRR11592561/SRR11592561.fastq.gz</span>
+<span id="cb1-236"><a href="#cb1-236" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-185_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/069/SRR11573469/SRR11573469.fastq.gz</span>
+<span id="cb1-237"><a href="#cb1-237" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-185_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/060/SRR11592560/SRR11592560.fastq.gz</span>
+<span id="cb1-238"><a href="#cb1-238" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-186_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/068/SRR11573468/SRR11573468.fastq.gz</span>
+<span id="cb1-239"><a href="#cb1-239" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-186_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/059/SRR11592559/SRR11592559.fastq.gz</span>
+<span id="cb1-240"><a href="#cb1-240" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-187_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/067/SRR11573467/SRR11573467.fastq.gz</span>
+<span id="cb1-241"><a href="#cb1-241" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-187_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/058/SRR11592558/SRR11592558.fastq.gz</span>
+<span id="cb1-242"><a href="#cb1-242" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-188_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/066/SRR11573466/SRR11573466.fastq.gz</span>
+<span id="cb1-243"><a href="#cb1-243" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-188_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/057/SRR11592557/SRR11592557.fastq.gz</span>
+<span id="cb1-244"><a href="#cb1-244" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-189_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/065/SRR11573465/SRR11573465.fastq.gz</span>
+<span id="cb1-245"><a href="#cb1-245" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-189_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/056/SRR11592556/SRR11592556.fastq.gz</span>
+<span id="cb1-246"><a href="#cb1-246" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-19_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/074/SRR11573474/SRR11573474.fastq.gz</span>
+<span id="cb1-247"><a href="#cb1-247" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-19_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/065/SRR11592565/SRR11592565.fastq.gz</span>
+<span id="cb1-248"><a href="#cb1-248" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-190_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/064/SRR11573464/SRR11573464.fastq.gz</span>
+<span id="cb1-249"><a href="#cb1-249" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-190_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/091/SRR11592491/SRR11592491.fastq.gz</span>
+<span id="cb1-250"><a href="#cb1-250" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-191_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/062/SRR11573462/SRR11573462.fastq.gz</span>
+<span id="cb1-251"><a href="#cb1-251" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-191_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/089/SRR11592489/SRR11592489.fastq.gz</span>
+<span id="cb1-252"><a href="#cb1-252" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-20_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/063/SRR11573463/SRR11573463.fastq.gz</span>
+<span id="cb1-253"><a href="#cb1-253" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-20_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/090/SRR11592490/SRR11592490.fastq.gz</span>
+<span id="cb1-254"><a href="#cb1-254" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-21_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/060/SRR11573460/SRR11573460.fastq.gz</span>
+<span id="cb1-255"><a href="#cb1-255" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-21_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/087/SRR11592487/SRR11592487.fastq.gz</span>
+<span id="cb1-256"><a href="#cb1-256" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-22_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/059/SRR11573459/SRR11573459.fastq.gz</span>
+<span id="cb1-257"><a href="#cb1-257" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-22_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/086/SRR11592486/SRR11592486.fastq.gz</span>
+<span id="cb1-258"><a href="#cb1-258" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-23_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/058/SRR11573458/SRR11573458.fastq.gz</span>
+<span id="cb1-259"><a href="#cb1-259" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-23_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/085/SRR11592485/SRR11592485.fastq.gz</span>
+<span id="cb1-260"><a href="#cb1-260" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-24_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/057/SRR11573457/SRR11573457.fastq.gz</span>
+<span id="cb1-261"><a href="#cb1-261" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-24_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/084/SRR11592484/SRR11592484.fastq.gz</span>
+<span id="cb1-262"><a href="#cb1-262" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-25_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/056/SRR11573456/SRR11573456.fastq.gz</span>
+<span id="cb1-263"><a href="#cb1-263" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-25_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/083/SRR11592483/SRR11592483.fastq.gz</span>
+<span id="cb1-264"><a href="#cb1-264" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-26_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/055/SRR11573455/SRR11573455.fastq.gz</span>
+<span id="cb1-265"><a href="#cb1-265" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-26_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/082/SRR11592482/SRR11592482.fastq.gz</span>
+<span id="cb1-266"><a href="#cb1-266" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-27_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/054/SRR11573454/SRR11573454.fastq.gz</span>
+<span id="cb1-267"><a href="#cb1-267" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-27_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/081/SRR11592481/SRR11592481.fastq.gz</span>
+<span id="cb1-268"><a href="#cb1-268" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-28_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/053/SRR11573453/SRR11573453.fastq.gz</span>
+<span id="cb1-269"><a href="#cb1-269" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-28_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/080/SRR11592480/SRR11592480.fastq.gz</span>
+<span id="cb1-270"><a href="#cb1-270" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-29_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/052/SRR11573452/SRR11573452.fastq.gz</span>
+<span id="cb1-271"><a href="#cb1-271" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-29_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/079/SRR11592479/SRR11592479.fastq.gz</span>
+<span id="cb1-272"><a href="#cb1-272" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-3_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/061/SRR11573461/SRR11573461.fastq.gz</span>
+<span id="cb1-273"><a href="#cb1-273" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-3_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/088/SRR11592488/SRR11592488.fastq.gz</span>
+<span id="cb1-274"><a href="#cb1-274" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-30_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/051/SRR11573451/SRR11573451.fastq.gz</span>
+<span id="cb1-275"><a href="#cb1-275" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-30_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/078/SRR11592478/SRR11592478.fastq.gz</span>
+<span id="cb1-276"><a href="#cb1-276" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-31_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/049/SRR11573449/SRR11573449.fastq.gz</span>
+<span id="cb1-277"><a href="#cb1-277" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-31_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/076/SRR11592476/SRR11592476.fastq.gz</span>
+<span id="cb1-278"><a href="#cb1-278" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-32_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/048/SRR11573448/SRR11573448.fastq.gz</span>
+<span id="cb1-279"><a href="#cb1-279" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-32_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/075/SRR11592475/SRR11592475.fastq.gz</span>
+<span id="cb1-280"><a href="#cb1-280" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-33_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/047/SRR11573447/SRR11573447.fastq.gz</span>
+<span id="cb1-281"><a href="#cb1-281" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-33_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/074/SRR11592474/SRR11592474.fastq.gz</span>
+<span id="cb1-282"><a href="#cb1-282" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-34_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/046/SRR11573446/SRR11573446.fastq.gz</span>
+<span id="cb1-283"><a href="#cb1-283" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-34_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/073/SRR11592473/SRR11592473.fastq.gz</span>
+<span id="cb1-284"><a href="#cb1-284" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-35_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/045/SRR11573445/SRR11573445.fastq.gz</span>
+<span id="cb1-285"><a href="#cb1-285" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-35_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/072/SRR11592472/SRR11592472.fastq.gz</span>
+<span id="cb1-286"><a href="#cb1-286" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-36_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/044/SRR11573444/SRR11573444.fastq.gz</span>
+<span id="cb1-287"><a href="#cb1-287" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-36_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/071/SRR11592471/SRR11592471.fastq.gz</span>
+<span id="cb1-288"><a href="#cb1-288" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-37_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/043/SRR11573443/SRR11573443.fastq.gz</span>
+<span id="cb1-289"><a href="#cb1-289" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-37_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/070/SRR11592470/SRR11592470.fastq.gz</span>
+<span id="cb1-290"><a href="#cb1-290" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-38_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11573442/SRR11573442.fastq.gz</span>
+<span id="cb1-291"><a href="#cb1-291" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-38_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/069/SRR11592469/SRR11592469.fastq.gz</span>
+<span id="cb1-292"><a href="#cb1-292" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-39_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/041/SRR11573441/SRR11573441.fastq.gz</span>
+<span id="cb1-293"><a href="#cb1-293" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-39_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/068/SRR11592468/SRR11592468.fastq.gz</span>
+<span id="cb1-294"><a href="#cb1-294" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-4_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/050/SRR11573450/SRR11573450.fastq.gz</span>
+<span id="cb1-295"><a href="#cb1-295" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-4_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/077/SRR11592477/SRR11592477.fastq.gz</span>
+<span id="cb1-296"><a href="#cb1-296" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-40_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11573440/SRR11573440.fastq.gz</span>
+<span id="cb1-297"><a href="#cb1-297" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-40_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/067/SRR11592467/SRR11592467.fastq.gz</span>
+<span id="cb1-298"><a href="#cb1-298" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-41_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/038/SRR11573438/SRR11573438.fastq.gz</span>
+<span id="cb1-299"><a href="#cb1-299" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-41_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/065/SRR11592465/SRR11592465.fastq.gz</span>
+<span id="cb1-300"><a href="#cb1-300" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-42_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/037/SRR11573437/SRR11573437.fastq.gz</span>
+<span id="cb1-301"><a href="#cb1-301" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-42_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/064/SRR11592464/SRR11592464.fastq.gz</span>
+<span id="cb1-302"><a href="#cb1-302" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-43_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/036/SRR11573436/SRR11573436.fastq.gz</span>
+<span id="cb1-303"><a href="#cb1-303" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-43_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/063/SRR11592463/SRR11592463.fastq.gz</span>
+<span id="cb1-304"><a href="#cb1-304" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-44_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/035/SRR11573435/SRR11573435.fastq.gz</span>
+<span id="cb1-305"><a href="#cb1-305" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-44_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/062/SRR11592462/SRR11592462.fastq.gz</span>
+<span id="cb1-306"><a href="#cb1-306" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-45_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/034/SRR11573434/SRR11573434.fastq.gz</span>
+<span id="cb1-307"><a href="#cb1-307" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-45_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/061/SRR11592461/SRR11592461.fastq.gz</span>
+<span id="cb1-308"><a href="#cb1-308" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-46_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/033/SRR11573433/SRR11573433.fastq.gz</span>
+<span id="cb1-309"><a href="#cb1-309" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-46_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/060/SRR11592460/SRR11592460.fastq.gz</span>
+<span id="cb1-310"><a href="#cb1-310" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-47_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/032/SRR11573432/SRR11573432.fastq.gz</span>
+<span id="cb1-311"><a href="#cb1-311" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-47_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/055/SRR11592555/SRR11592555.fastq.gz</span>
+<span id="cb1-312"><a href="#cb1-312" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-48_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/031/SRR11573431/SRR11573431.fastq.gz</span>
+<span id="cb1-313"><a href="#cb1-313" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-48_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/054/SRR11592554/SRR11592554.fastq.gz</span>
+<span id="cb1-314"><a href="#cb1-314" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-49_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/030/SRR11573430/SRR11573430.fastq.gz</span>
+<span id="cb1-315"><a href="#cb1-315" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-49_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/053/SRR11592553/SRR11592553.fastq.gz</span>
+<span id="cb1-316"><a href="#cb1-316" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-5_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11573439/SRR11573439.fastq.gz</span>
+<span id="cb1-317"><a href="#cb1-317" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-5_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/066/SRR11592466/SRR11592466.fastq.gz</span>
+<span id="cb1-318"><a href="#cb1-318" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-50_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/029/SRR11573429/SRR11573429.fastq.gz</span>
+<span id="cb1-319"><a href="#cb1-319" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-50_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/052/SRR11592552/SRR11592552.fastq.gz</span>
+<span id="cb1-320"><a href="#cb1-320" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-51_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/027/SRR11573427/SRR11573427.fastq.gz</span>
+<span id="cb1-321"><a href="#cb1-321" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-51_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/050/SRR11592550/SRR11592550.fastq.gz</span>
+<span id="cb1-322"><a href="#cb1-322" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-52_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/026/SRR11573426/SRR11573426.fastq.gz</span>
+<span id="cb1-323"><a href="#cb1-323" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-52_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/049/SRR11592549/SRR11592549.fastq.gz</span>
+<span id="cb1-324"><a href="#cb1-324" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-53_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/025/SRR11573425/SRR11573425.fastq.gz</span>
+<span id="cb1-325"><a href="#cb1-325" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-53_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/048/SRR11592548/SRR11592548.fastq.gz</span>
+<span id="cb1-326"><a href="#cb1-326" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-54_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/024/SRR11573424/SRR11573424.fastq.gz</span>
+<span id="cb1-327"><a href="#cb1-327" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-54_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/047/SRR11592547/SRR11592547.fastq.gz</span>
+<span id="cb1-328"><a href="#cb1-328" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-55_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/023/SRR11573423/SRR11573423.fastq.gz</span>
+<span id="cb1-329"><a href="#cb1-329" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-55_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/046/SRR11592546/SRR11592546.fastq.gz</span>
+<span id="cb1-330"><a href="#cb1-330" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-56_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/022/SRR11573422/SRR11573422.fastq.gz</span>
+<span id="cb1-331"><a href="#cb1-331" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-56_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/045/SRR11592545/SRR11592545.fastq.gz</span>
+<span id="cb1-332"><a href="#cb1-332" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-57_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/021/SRR11573421/SRR11573421.fastq.gz</span>
+<span id="cb1-333"><a href="#cb1-333" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-57_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/044/SRR11592544/SRR11592544.fastq.gz</span>
+<span id="cb1-334"><a href="#cb1-334" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-58_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/020/SRR11573420/SRR11573420.fastq.gz</span>
+<span id="cb1-335"><a href="#cb1-335" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-58_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/043/SRR11592543/SRR11592543.fastq.gz</span>
+<span id="cb1-336"><a href="#cb1-336" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-59_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/019/SRR11573419/SRR11573419.fastq.gz</span>
+<span id="cb1-337"><a href="#cb1-337" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-59_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11592542/SRR11592542.fastq.gz</span>
+<span id="cb1-338"><a href="#cb1-338" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-6_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/028/SRR11573428/SRR11573428.fastq.gz</span>
+<span id="cb1-339"><a href="#cb1-339" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-6_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/051/SRR11592551/SRR11592551.fastq.gz</span>
+<span id="cb1-340"><a href="#cb1-340" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-1_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/000/SRR11573500/SRR11573500.fastq.gz</span>
+<span id="cb1-341"><a href="#cb1-341" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-1_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/091/SRR11592591/SRR11592591.fastq.gz</span>
+<span id="cb1-342"><a href="#cb1-342" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-101_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/097/SRR11573497/SRR11573497.fastq.gz</span>
+<span id="cb1-343"><a href="#cb1-343" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-101_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/088/SRR11592588/SRR11592588.fastq.gz</span>
+<span id="cb1-344"><a href="#cb1-344" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-11_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/098/SRR11573498/SRR11573498.fastq.gz</span>
+<span id="cb1-345"><a href="#cb1-345" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-11_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/089/SRR11592589/SRR11592589.fastq.gz</span>
+<span id="cb1-346"><a href="#cb1-346" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-161_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/095/SRR11573495/SRR11573495.fastq.gz</span>
+<span id="cb1-347"><a href="#cb1-347" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-161_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/086/SRR11592586/SRR11592586.fastq.gz</span>
+<span id="cb1-348"><a href="#cb1-348" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-162_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/094/SRR11573494/SRR11573494.fastq.gz</span>
+<span id="cb1-349"><a href="#cb1-349" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-162_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/085/SRR11592585/SRR11592585.fastq.gz</span>
+<span id="cb1-350"><a href="#cb1-350" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-163_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/093/SRR11573493/SRR11573493.fastq.gz</span>
+<span id="cb1-351"><a href="#cb1-351" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-163_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/084/SRR11592584/SRR11592584.fastq.gz</span>
+<span id="cb1-352"><a href="#cb1-352" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-164_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/092/SRR11573492/SRR11573492.fastq.gz</span>
+<span id="cb1-353"><a href="#cb1-353" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-164_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/083/SRR11592583/SRR11592583.fastq.gz</span>
+<span id="cb1-354"><a href="#cb1-354" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-165_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/091/SRR11573491/SRR11573491.fastq.gz</span>
+<span id="cb1-355"><a href="#cb1-355" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-165_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/082/SRR11592582/SRR11592582.fastq.gz</span>
+<span id="cb1-356"><a href="#cb1-356" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-166_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/090/SRR11573490/SRR11573490.fastq.gz</span>
+<span id="cb1-357"><a href="#cb1-357" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-166_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/081/SRR11592581/SRR11592581.fastq.gz</span>
+<span id="cb1-358"><a href="#cb1-358" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-167_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/089/SRR11573489/SRR11573489.fastq.gz</span>
+<span id="cb1-359"><a href="#cb1-359" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-167_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/080/SRR11592580/SRR11592580.fastq.gz</span>
+<span id="cb1-360"><a href="#cb1-360" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-168_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/088/SRR11573488/SRR11573488.fastq.gz</span>
+<span id="cb1-361"><a href="#cb1-361" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-168_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/079/SRR11592579/SRR11592579.fastq.gz</span>
+<span id="cb1-362"><a href="#cb1-362" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-169_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/087/SRR11573487/SRR11573487.fastq.gz</span>
+<span id="cb1-363"><a href="#cb1-363" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-169_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/078/SRR11592578/SRR11592578.fastq.gz</span>
+<span id="cb1-364"><a href="#cb1-364" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-17_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/096/SRR11573496/SRR11573496.fastq.gz</span>
+<span id="cb1-365"><a href="#cb1-365" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-17_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/087/SRR11592587/SRR11592587.fastq.gz</span>
+<span id="cb1-366"><a href="#cb1-366" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-170_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/086/SRR11573486/SRR11573486.fastq.gz</span>
+<span id="cb1-367"><a href="#cb1-367" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-170_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/077/SRR11592577/SRR11592577.fastq.gz</span>
+<span id="cb1-368"><a href="#cb1-368" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-171_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/084/SRR11573484/SRR11573484.fastq.gz</span>
+<span id="cb1-369"><a href="#cb1-369" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-171_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/075/SRR11592575/SRR11592575.fastq.gz</span>
+<span id="cb1-370"><a href="#cb1-370" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-172_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/083/SRR11573483/SRR11573483.fastq.gz</span>
+<span id="cb1-371"><a href="#cb1-371" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-172_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/074/SRR11592574/SRR11592574.fastq.gz</span>
+<span id="cb1-372"><a href="#cb1-372" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-173_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/082/SRR11573482/SRR11573482.fastq.gz</span>
+<span id="cb1-373"><a href="#cb1-373" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-173_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/073/SRR11592573/SRR11592573.fastq.gz</span>
+<span id="cb1-374"><a href="#cb1-374" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-174_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/081/SRR11573481/SRR11573481.fastq.gz</span>
+<span id="cb1-375"><a href="#cb1-375" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-174_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/072/SRR11592572/SRR11592572.fastq.gz</span>
+<span id="cb1-376"><a href="#cb1-376" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-175_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/080/SRR11573480/SRR11573480.fastq.gz</span>
+<span id="cb1-377"><a href="#cb1-377" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-175_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/071/SRR11592571/SRR11592571.fastq.gz</span>
+<span id="cb1-378"><a href="#cb1-378" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-176_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/079/SRR11573479/SRR11573479.fastq.gz</span>
+<span id="cb1-379"><a href="#cb1-379" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-176_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/070/SRR11592570/SRR11592570.fastq.gz</span>
+<span id="cb1-380"><a href="#cb1-380" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-18_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/085/SRR11573485/SRR11573485.fastq.gz</span>
+<span id="cb1-381"><a href="#cb1-381" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-18_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/076/SRR11592576/SRR11592576.fastq.gz</span>
+<span id="cb1-382"><a href="#cb1-382" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-2_R1.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/099/SRR11573499/SRR11573499.fastq.gz</span>
+<span id="cb1-383"><a href="#cb1-383" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> SMC-2_R2.fastq.gz ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/090/SRR11592590/SRR11592590.fastq.gz</span>
+<span id="cb1-384"><a href="#cb1-384" tabindex="-1"></a></span></code></pre></div>
+</div>
+<div id="reference-transcriptome-preparation" class="section level1">
+<h1>2. Reference Transcriptome Preparation</h1>
+<p>A reference transcriptome is essential for quantifying gene
+expression. We used the reference from GENCODE (Release M36
+(GRCm39)).</p>
+<p>The following commands were used to download the necessary reference
+files.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> index/mm_gencode_36</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> index/mm_gencode_36/genome.fa.gz ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M36/GRCm39.genome.fa.gz</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">-O</span> index/mm_gencode_36/transcripts.fa.gz ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M36/gencode.vM36.transcripts.fa.gz</span></code></pre></div>
+</div>
+<div id="building-the-salmon-index" class="section level1">
+<h1>3. Building the Salmon Index</h1>
+<p>Salmon requires a specialized index built from the reference
+transcriptome. To improve quantification accuracy by accounting for
+reads mapping ambiguously outside annotated transcripts (common with
+pre-mRNA content or genomic contamination), decoy sequences representing
+the rest of the genome were included in the index.</p>
+<p>The following Bash commands were used to build the Salmon index:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">zcat</span> index/mm_gencode_36/transcripts.fa.gz <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;^&gt;&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s|[&lt;&gt;,]||g&#39;</span> <span class="op">&gt;</span>index/mm_gencode_36/transcripts.txt</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">gunzip</span> <span class="at">-c</span> index/mm_gencode_36/genome.fa.gz <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;^&gt;&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">&quot; &quot;</span> <span class="at">-f1</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/&gt;//g&#39;</span> <span class="op">&gt;</span> <span class="st">&quot;index/mm_gencode_36/decoys.txt&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">cat</span> index/mm_gencode_36/transcripts.fa.gz index/mm_gencode_36/genome.fa.gz <span class="op">&gt;</span>index/mm_gencode_36/gentrome.fa.gz</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="ex">salmon</span> index <span class="at">-t</span> index/mm_gencode_36/gentrome.fa.gz <span class="at">-d</span> index/mm_gencode_36/decoys.txt <span class="at">-p</span> 8 <span class="at">-i</span> index/mm_gencode_36 <span class="at">--gencode</span></span></code></pre></div>
+</div>
+<div id="running-salmon-quantification" class="section level1">
+<h1>4. Running Salmon Quantification</h1>
+<p>Salmon was used to quantify transcript abundance for each single-cell
+sample/library.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-152 <span class="at">-1</span> SMC-152_R1.fastq.gz <span class="at">-2</span> SMC-152_R2.fastq.gz</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-153 <span class="at">-1</span> SMC-153_R1.fastq.gz <span class="at">-2</span> SMC-153_R2.fastq.gz</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-154 <span class="at">-1</span> SMC-154_R1.fastq.gz <span class="at">-2</span> SMC-154_R2.fastq.gz</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-155 <span class="at">-1</span> SMC-155_R1.fastq.gz <span class="at">-2</span> SMC-155_R2.fastq.gz</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-156 <span class="at">-1</span> SMC-156_R1.fastq.gz <span class="at">-2</span> SMC-156_R2.fastq.gz</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-157 <span class="at">-1</span> SMC-157_R1.fastq.gz <span class="at">-2</span> SMC-157_R2.fastq.gz</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-158 <span class="at">-1</span> SMC-158_R1.fastq.gz <span class="at">-2</span> SMC-158_R2.fastq.gz</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-159 <span class="at">-1</span> SMC-159_R1.fastq.gz <span class="at">-2</span> SMC-159_R2.fastq.gz</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-160 <span class="at">-1</span> SMC-160_R1.fastq.gz <span class="at">-2</span> SMC-160_R2.fastq.gz</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-100 <span class="at">-1</span> SMC-100_R1.fastq.gz <span class="at">-2</span> SMC-100_R2.fastq.gz</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-102 <span class="at">-1</span> SMC-102_R1.fastq.gz <span class="at">-2</span> SMC-102_R2.fastq.gz</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-103 <span class="at">-1</span> SMC-103_R1.fastq.gz <span class="at">-2</span> SMC-103_R2.fastq.gz</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-104 <span class="at">-1</span> SMC-104_R1.fastq.gz <span class="at">-2</span> SMC-104_R2.fastq.gz</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-105 <span class="at">-1</span> SMC-105_R1.fastq.gz <span class="at">-2</span> SMC-105_R2.fastq.gz</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-106 <span class="at">-1</span> SMC-106_R1.fastq.gz <span class="at">-2</span> SMC-106_R2.fastq.gz</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-107 <span class="at">-1</span> SMC-107_R1.fastq.gz <span class="at">-2</span> SMC-107_R2.fastq.gz</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-108 <span class="at">-1</span> SMC-108_R1.fastq.gz <span class="at">-2</span> SMC-108_R2.fastq.gz</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-109 <span class="at">-1</span> SMC-109_R1.fastq.gz <span class="at">-2</span> SMC-109_R2.fastq.gz</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-110 <span class="at">-1</span> SMC-110_R1.fastq.gz <span class="at">-2</span> SMC-110_R2.fastq.gz</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-111 <span class="at">-1</span> SMC-111_R1.fastq.gz <span class="at">-2</span> SMC-111_R2.fastq.gz</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-112 <span class="at">-1</span> SMC-112_R1.fastq.gz <span class="at">-2</span> SMC-112_R2.fastq.gz</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-113 <span class="at">-1</span> SMC-113_R1.fastq.gz <span class="at">-2</span> SMC-113_R2.fastq.gz</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-114 <span class="at">-1</span> SMC-114_R1.fastq.gz <span class="at">-2</span> SMC-114_R2.fastq.gz</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-115 <span class="at">-1</span> SMC-115_R1.fastq.gz <span class="at">-2</span> SMC-115_R2.fastq.gz</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-116 <span class="at">-1</span> SMC-116_R1.fastq.gz <span class="at">-2</span> SMC-116_R2.fastq.gz</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-117 <span class="at">-1</span> SMC-117_R1.fastq.gz <span class="at">-2</span> SMC-117_R2.fastq.gz</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-118 <span class="at">-1</span> SMC-118_R1.fastq.gz <span class="at">-2</span> SMC-118_R2.fastq.gz</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-119 <span class="at">-1</span> SMC-119_R1.fastq.gz <span class="at">-2</span> SMC-119_R2.fastq.gz</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-12 <span class="at">-1</span> SMC-12_R1.fastq.gz <span class="at">-2</span> SMC-12_R2.fastq.gz</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-120 <span class="at">-1</span> SMC-120_R1.fastq.gz <span class="at">-2</span> SMC-120_R2.fastq.gz</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-121 <span class="at">-1</span> SMC-121_R1.fastq.gz <span class="at">-2</span> SMC-121_R2.fastq.gz</span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-122 <span class="at">-1</span> SMC-122_R1.fastq.gz <span class="at">-2</span> SMC-122_R2.fastq.gz</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-123 <span class="at">-1</span> SMC-123_R1.fastq.gz <span class="at">-2</span> SMC-123_R2.fastq.gz</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-124 <span class="at">-1</span> SMC-124_R1.fastq.gz <span class="at">-2</span> SMC-124_R2.fastq.gz</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-125 <span class="at">-1</span> SMC-125_R1.fastq.gz <span class="at">-2</span> SMC-125_R2.fastq.gz</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-126 <span class="at">-1</span> SMC-126_R1.fastq.gz <span class="at">-2</span> SMC-126_R2.fastq.gz</span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-127 <span class="at">-1</span> SMC-127_R1.fastq.gz <span class="at">-2</span> SMC-127_R2.fastq.gz</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-128 <span class="at">-1</span> SMC-128_R1.fastq.gz <span class="at">-2</span> SMC-128_R2.fastq.gz</span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-129 <span class="at">-1</span> SMC-129_R1.fastq.gz <span class="at">-2</span> SMC-129_R2.fastq.gz</span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-13 <span class="at">-1</span> SMC-13_R1.fastq.gz <span class="at">-2</span> SMC-13_R2.fastq.gz</span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-130 <span class="at">-1</span> SMC-130_R1.fastq.gz <span class="at">-2</span> SMC-130_R2.fastq.gz</span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-131 <span class="at">-1</span> SMC-131_R1.fastq.gz <span class="at">-2</span> SMC-131_R2.fastq.gz</span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-132 <span class="at">-1</span> SMC-132_R1.fastq.gz <span class="at">-2</span> SMC-132_R2.fastq.gz</span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-133 <span class="at">-1</span> SMC-133_R1.fastq.gz <span class="at">-2</span> SMC-133_R2.fastq.gz</span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-134 <span class="at">-1</span> SMC-134_R1.fastq.gz <span class="at">-2</span> SMC-134_R2.fastq.gz</span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-135 <span class="at">-1</span> SMC-135_R1.fastq.gz <span class="at">-2</span> SMC-135_R2.fastq.gz</span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-136 <span class="at">-1</span> SMC-136_R1.fastq.gz <span class="at">-2</span> SMC-136_R2.fastq.gz</span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-137 <span class="at">-1</span> SMC-137_R1.fastq.gz <span class="at">-2</span> SMC-137_R2.fastq.gz</span>
+<span id="cb4-49"><a href="#cb4-49" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-138 <span class="at">-1</span> SMC-138_R1.fastq.gz <span class="at">-2</span> SMC-138_R2.fastq.gz</span>
+<span id="cb4-50"><a href="#cb4-50" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-139 <span class="at">-1</span> SMC-139_R1.fastq.gz <span class="at">-2</span> SMC-139_R2.fastq.gz</span>
+<span id="cb4-51"><a href="#cb4-51" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-14 <span class="at">-1</span> SMC-14_R1.fastq.gz <span class="at">-2</span> SMC-14_R2.fastq.gz</span>
+<span id="cb4-52"><a href="#cb4-52" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-140 <span class="at">-1</span> SMC-140_R1.fastq.gz <span class="at">-2</span> SMC-140_R2.fastq.gz</span>
+<span id="cb4-53"><a href="#cb4-53" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-141 <span class="at">-1</span> SMC-141_R1.fastq.gz <span class="at">-2</span> SMC-141_R2.fastq.gz</span>
+<span id="cb4-54"><a href="#cb4-54" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-142 <span class="at">-1</span> SMC-142_R1.fastq.gz <span class="at">-2</span> SMC-142_R2.fastq.gz</span>
+<span id="cb4-55"><a href="#cb4-55" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-143 <span class="at">-1</span> SMC-143_R1.fastq.gz <span class="at">-2</span> SMC-143_R2.fastq.gz</span>
+<span id="cb4-56"><a href="#cb4-56" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-144 <span class="at">-1</span> SMC-144_R1.fastq.gz <span class="at">-2</span> SMC-144_R2.fastq.gz</span>
+<span id="cb4-57"><a href="#cb4-57" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-145 <span class="at">-1</span> SMC-145_R1.fastq.gz <span class="at">-2</span> SMC-145_R2.fastq.gz</span>
+<span id="cb4-58"><a href="#cb4-58" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-146 <span class="at">-1</span> SMC-146_R1.fastq.gz <span class="at">-2</span> SMC-146_R2.fastq.gz</span>
+<span id="cb4-59"><a href="#cb4-59" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-147 <span class="at">-1</span> SMC-147_R1.fastq.gz <span class="at">-2</span> SMC-147_R2.fastq.gz</span>
+<span id="cb4-60"><a href="#cb4-60" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-148 <span class="at">-1</span> SMC-148_R1.fastq.gz <span class="at">-2</span> SMC-148_R2.fastq.gz</span>
+<span id="cb4-61"><a href="#cb4-61" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-149 <span class="at">-1</span> SMC-149_R1.fastq.gz <span class="at">-2</span> SMC-149_R2.fastq.gz</span>
+<span id="cb4-62"><a href="#cb4-62" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-15 <span class="at">-1</span> SMC-15_R1.fastq.gz <span class="at">-2</span> SMC-15_R2.fastq.gz</span>
+<span id="cb4-63"><a href="#cb4-63" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-150 <span class="at">-1</span> SMC-150_R1.fastq.gz <span class="at">-2</span> SMC-150_R2.fastq.gz</span>
+<span id="cb4-64"><a href="#cb4-64" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-151 <span class="at">-1</span> SMC-151_R1.fastq.gz <span class="at">-2</span> SMC-151_R2.fastq.gz</span>
+<span id="cb4-65"><a href="#cb4-65" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-16 <span class="at">-1</span> SMC-16_R1.fastq.gz <span class="at">-2</span> SMC-16_R2.fastq.gz</span>
+<span id="cb4-66"><a href="#cb4-66" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-96 <span class="at">-1</span> SMC-96_R1.fastq.gz <span class="at">-2</span> SMC-96_R2.fastq.gz</span>
+<span id="cb4-67"><a href="#cb4-67" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-97 <span class="at">-1</span> SMC-97_R1.fastq.gz <span class="at">-2</span> SMC-97_R2.fastq.gz</span>
+<span id="cb4-68"><a href="#cb4-68" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-98 <span class="at">-1</span> SMC-98_R1.fastq.gz <span class="at">-2</span> SMC-98_R2.fastq.gz</span>
+<span id="cb4-69"><a href="#cb4-69" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-99 <span class="at">-1</span> SMC-99_R1.fastq.gz <span class="at">-2</span> SMC-99_R2.fastq.gz</span>
+<span id="cb4-70"><a href="#cb4-70" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-10 <span class="at">-1</span> SMC-10_R1.fastq.gz <span class="at">-2</span> SMC-10_R2.fastq.gz</span>
+<span id="cb4-71"><a href="#cb4-71" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-60 <span class="at">-1</span> SMC-60_R1.fastq.gz <span class="at">-2</span> SMC-60_R2.fastq.gz</span>
+<span id="cb4-72"><a href="#cb4-72" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-61 <span class="at">-1</span> SMC-61_R1.fastq.gz <span class="at">-2</span> SMC-61_R2.fastq.gz</span>
+<span id="cb4-73"><a href="#cb4-73" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-62 <span class="at">-1</span> SMC-62_R1.fastq.gz <span class="at">-2</span> SMC-62_R2.fastq.gz</span>
+<span id="cb4-74"><a href="#cb4-74" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-63 <span class="at">-1</span> SMC-63_R1.fastq.gz <span class="at">-2</span> SMC-63_R2.fastq.gz</span>
+<span id="cb4-75"><a href="#cb4-75" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-64 <span class="at">-1</span> SMC-64_R1.fastq.gz <span class="at">-2</span> SMC-64_R2.fastq.gz</span>
+<span id="cb4-76"><a href="#cb4-76" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-65 <span class="at">-1</span> SMC-65_R1.fastq.gz <span class="at">-2</span> SMC-65_R2.fastq.gz</span>
+<span id="cb4-77"><a href="#cb4-77" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-66 <span class="at">-1</span> SMC-66_R1.fastq.gz <span class="at">-2</span> SMC-66_R2.fastq.gz</span>
+<span id="cb4-78"><a href="#cb4-78" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-67 <span class="at">-1</span> SMC-67_R1.fastq.gz <span class="at">-2</span> SMC-67_R2.fastq.gz</span>
+<span id="cb4-79"><a href="#cb4-79" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-68 <span class="at">-1</span> SMC-68_R1.fastq.gz <span class="at">-2</span> SMC-68_R2.fastq.gz</span>
+<span id="cb4-80"><a href="#cb4-80" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-69 <span class="at">-1</span> SMC-69_R1.fastq.gz <span class="at">-2</span> SMC-69_R2.fastq.gz</span>
+<span id="cb4-81"><a href="#cb4-81" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-7 <span class="at">-1</span> SMC-7_R1.fastq.gz <span class="at">-2</span> SMC-7_R2.fastq.gz</span>
+<span id="cb4-82"><a href="#cb4-82" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-70 <span class="at">-1</span> SMC-70_R1.fastq.gz <span class="at">-2</span> SMC-70_R2.fastq.gz</span>
+<span id="cb4-83"><a href="#cb4-83" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-71 <span class="at">-1</span> SMC-71_R1.fastq.gz <span class="at">-2</span> SMC-71_R2.fastq.gz</span>
+<span id="cb4-84"><a href="#cb4-84" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-72 <span class="at">-1</span> SMC-72_R1.fastq.gz <span class="at">-2</span> SMC-72_R2.fastq.gz</span>
+<span id="cb4-85"><a href="#cb4-85" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-73 <span class="at">-1</span> SMC-73_R1.fastq.gz <span class="at">-2</span> SMC-73_R2.fastq.gz</span>
+<span id="cb4-86"><a href="#cb4-86" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-74 <span class="at">-1</span> SMC-74_R1.fastq.gz <span class="at">-2</span> SMC-74_R2.fastq.gz</span>
+<span id="cb4-87"><a href="#cb4-87" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-75 <span class="at">-1</span> SMC-75_R1.fastq.gz <span class="at">-2</span> SMC-75_R2.fastq.gz</span>
+<span id="cb4-88"><a href="#cb4-88" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-76 <span class="at">-1</span> SMC-76_R1.fastq.gz <span class="at">-2</span> SMC-76_R2.fastq.gz</span>
+<span id="cb4-89"><a href="#cb4-89" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-77 <span class="at">-1</span> SMC-77_R1.fastq.gz <span class="at">-2</span> SMC-77_R2.fastq.gz</span>
+<span id="cb4-90"><a href="#cb4-90" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-78 <span class="at">-1</span> SMC-78_R1.fastq.gz <span class="at">-2</span> SMC-78_R2.fastq.gz</span>
+<span id="cb4-91"><a href="#cb4-91" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-79 <span class="at">-1</span> SMC-79_R1.fastq.gz <span class="at">-2</span> SMC-79_R2.fastq.gz</span>
+<span id="cb4-92"><a href="#cb4-92" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-8 <span class="at">-1</span> SMC-8_R1.fastq.gz <span class="at">-2</span> SMC-8_R2.fastq.gz</span>
+<span id="cb4-93"><a href="#cb4-93" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-80 <span class="at">-1</span> SMC-80_R1.fastq.gz <span class="at">-2</span> SMC-80_R2.fastq.gz</span>
+<span id="cb4-94"><a href="#cb4-94" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-81 <span class="at">-1</span> SMC-81_R1.fastq.gz <span class="at">-2</span> SMC-81_R2.fastq.gz</span>
+<span id="cb4-95"><a href="#cb4-95" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-82 <span class="at">-1</span> SMC-82_R1.fastq.gz <span class="at">-2</span> SMC-82_R2.fastq.gz</span>
+<span id="cb4-96"><a href="#cb4-96" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-83 <span class="at">-1</span> SMC-83_R1.fastq.gz <span class="at">-2</span> SMC-83_R2.fastq.gz</span>
+<span id="cb4-97"><a href="#cb4-97" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-84 <span class="at">-1</span> SMC-84_R1.fastq.gz <span class="at">-2</span> SMC-84_R2.fastq.gz</span>
+<span id="cb4-98"><a href="#cb4-98" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-85 <span class="at">-1</span> SMC-85_R1.fastq.gz <span class="at">-2</span> SMC-85_R2.fastq.gz</span>
+<span id="cb4-99"><a href="#cb4-99" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-86 <span class="at">-1</span> SMC-86_R1.fastq.gz <span class="at">-2</span> SMC-86_R2.fastq.gz</span>
+<span id="cb4-100"><a href="#cb4-100" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-87 <span class="at">-1</span> SMC-87_R1.fastq.gz <span class="at">-2</span> SMC-87_R2.fastq.gz</span>
+<span id="cb4-101"><a href="#cb4-101" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-88 <span class="at">-1</span> SMC-88_R1.fastq.gz <span class="at">-2</span> SMC-88_R2.fastq.gz</span>
+<span id="cb4-102"><a href="#cb4-102" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-89 <span class="at">-1</span> SMC-89_R1.fastq.gz <span class="at">-2</span> SMC-89_R2.fastq.gz</span>
+<span id="cb4-103"><a href="#cb4-103" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-9 <span class="at">-1</span> SMC-9_R1.fastq.gz <span class="at">-2</span> SMC-9_R2.fastq.gz</span>
+<span id="cb4-104"><a href="#cb4-104" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-90 <span class="at">-1</span> SMC-90_R1.fastq.gz <span class="at">-2</span> SMC-90_R2.fastq.gz</span>
+<span id="cb4-105"><a href="#cb4-105" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-91 <span class="at">-1</span> SMC-91_R1.fastq.gz <span class="at">-2</span> SMC-91_R2.fastq.gz</span>
+<span id="cb4-106"><a href="#cb4-106" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-92 <span class="at">-1</span> SMC-92_R1.fastq.gz <span class="at">-2</span> SMC-92_R2.fastq.gz</span>
+<span id="cb4-107"><a href="#cb4-107" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-93 <span class="at">-1</span> SMC-93_R1.fastq.gz <span class="at">-2</span> SMC-93_R2.fastq.gz</span>
+<span id="cb4-108"><a href="#cb4-108" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-94 <span class="at">-1</span> SMC-94_R1.fastq.gz <span class="at">-2</span> SMC-94_R2.fastq.gz</span>
+<span id="cb4-109"><a href="#cb4-109" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-95 <span class="at">-1</span> SMC-95_R1.fastq.gz <span class="at">-2</span> SMC-95_R2.fastq.gz</span>
+<span id="cb4-110"><a href="#cb4-110" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-177 <span class="at">-1</span> SMC-177_R1.fastq.gz <span class="at">-2</span> SMC-177_R2.fastq.gz</span>
+<span id="cb4-111"><a href="#cb4-111" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-178 <span class="at">-1</span> SMC-178_R1.fastq.gz <span class="at">-2</span> SMC-178_R2.fastq.gz</span>
+<span id="cb4-112"><a href="#cb4-112" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-179 <span class="at">-1</span> SMC-179_R1.fastq.gz <span class="at">-2</span> SMC-179_R2.fastq.gz</span>
+<span id="cb4-113"><a href="#cb4-113" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-180 <span class="at">-1</span> SMC-180_R1.fastq.gz <span class="at">-2</span> SMC-180_R2.fastq.gz</span>
+<span id="cb4-114"><a href="#cb4-114" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-181 <span class="at">-1</span> SMC-181_R1.fastq.gz <span class="at">-2</span> SMC-181_R2.fastq.gz</span>
+<span id="cb4-115"><a href="#cb4-115" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-182 <span class="at">-1</span> SMC-182_R1.fastq.gz <span class="at">-2</span> SMC-182_R2.fastq.gz</span>
+<span id="cb4-116"><a href="#cb4-116" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-183 <span class="at">-1</span> SMC-183_R1.fastq.gz <span class="at">-2</span> SMC-183_R2.fastq.gz</span>
+<span id="cb4-117"><a href="#cb4-117" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-184 <span class="at">-1</span> SMC-184_R1.fastq.gz <span class="at">-2</span> SMC-184_R2.fastq.gz</span>
+<span id="cb4-118"><a href="#cb4-118" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-185 <span class="at">-1</span> SMC-185_R1.fastq.gz <span class="at">-2</span> SMC-185_R2.fastq.gz</span>
+<span id="cb4-119"><a href="#cb4-119" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-186 <span class="at">-1</span> SMC-186_R1.fastq.gz <span class="at">-2</span> SMC-186_R2.fastq.gz</span>
+<span id="cb4-120"><a href="#cb4-120" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-187 <span class="at">-1</span> SMC-187_R1.fastq.gz <span class="at">-2</span> SMC-187_R2.fastq.gz</span>
+<span id="cb4-121"><a href="#cb4-121" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-188 <span class="at">-1</span> SMC-188_R1.fastq.gz <span class="at">-2</span> SMC-188_R2.fastq.gz</span>
+<span id="cb4-122"><a href="#cb4-122" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-189 <span class="at">-1</span> SMC-189_R1.fastq.gz <span class="at">-2</span> SMC-189_R2.fastq.gz</span>
+<span id="cb4-123"><a href="#cb4-123" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-19 <span class="at">-1</span> SMC-19_R1.fastq.gz <span class="at">-2</span> SMC-19_R2.fastq.gz</span>
+<span id="cb4-124"><a href="#cb4-124" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-190 <span class="at">-1</span> SMC-190_R1.fastq.gz <span class="at">-2</span> SMC-190_R2.fastq.gz</span>
+<span id="cb4-125"><a href="#cb4-125" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-191 <span class="at">-1</span> SMC-191_R1.fastq.gz <span class="at">-2</span> SMC-191_R2.fastq.gz</span>
+<span id="cb4-126"><a href="#cb4-126" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-20 <span class="at">-1</span> SMC-20_R1.fastq.gz <span class="at">-2</span> SMC-20_R2.fastq.gz</span>
+<span id="cb4-127"><a href="#cb4-127" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-21 <span class="at">-1</span> SMC-21_R1.fastq.gz <span class="at">-2</span> SMC-21_R2.fastq.gz</span>
+<span id="cb4-128"><a href="#cb4-128" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-22 <span class="at">-1</span> SMC-22_R1.fastq.gz <span class="at">-2</span> SMC-22_R2.fastq.gz</span>
+<span id="cb4-129"><a href="#cb4-129" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-23 <span class="at">-1</span> SMC-23_R1.fastq.gz <span class="at">-2</span> SMC-23_R2.fastq.gz</span>
+<span id="cb4-130"><a href="#cb4-130" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-24 <span class="at">-1</span> SMC-24_R1.fastq.gz <span class="at">-2</span> SMC-24_R2.fastq.gz</span>
+<span id="cb4-131"><a href="#cb4-131" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-25 <span class="at">-1</span> SMC-25_R1.fastq.gz <span class="at">-2</span> SMC-25_R2.fastq.gz</span>
+<span id="cb4-132"><a href="#cb4-132" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-26 <span class="at">-1</span> SMC-26_R1.fastq.gz <span class="at">-2</span> SMC-26_R2.fastq.gz</span>
+<span id="cb4-133"><a href="#cb4-133" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-27 <span class="at">-1</span> SMC-27_R1.fastq.gz <span class="at">-2</span> SMC-27_R2.fastq.gz</span>
+<span id="cb4-134"><a href="#cb4-134" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-28 <span class="at">-1</span> SMC-28_R1.fastq.gz <span class="at">-2</span> SMC-28_R2.fastq.gz</span>
+<span id="cb4-135"><a href="#cb4-135" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-29 <span class="at">-1</span> SMC-29_R1.fastq.gz <span class="at">-2</span> SMC-29_R2.fastq.gz</span>
+<span id="cb4-136"><a href="#cb4-136" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-3 <span class="at">-1</span> SMC-3_R1.fastq.gz <span class="at">-2</span> SMC-3_R2.fastq.gz</span>
+<span id="cb4-137"><a href="#cb4-137" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-30 <span class="at">-1</span> SMC-30_R1.fastq.gz <span class="at">-2</span> SMC-30_R2.fastq.gz</span>
+<span id="cb4-138"><a href="#cb4-138" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-31 <span class="at">-1</span> SMC-31_R1.fastq.gz <span class="at">-2</span> SMC-31_R2.fastq.gz</span>
+<span id="cb4-139"><a href="#cb4-139" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-32 <span class="at">-1</span> SMC-32_R1.fastq.gz <span class="at">-2</span> SMC-32_R2.fastq.gz</span>
+<span id="cb4-140"><a href="#cb4-140" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-33 <span class="at">-1</span> SMC-33_R1.fastq.gz <span class="at">-2</span> SMC-33_R2.fastq.gz</span>
+<span id="cb4-141"><a href="#cb4-141" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-34 <span class="at">-1</span> SMC-34_R1.fastq.gz <span class="at">-2</span> SMC-34_R2.fastq.gz</span>
+<span id="cb4-142"><a href="#cb4-142" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-35 <span class="at">-1</span> SMC-35_R1.fastq.gz <span class="at">-2</span> SMC-35_R2.fastq.gz</span>
+<span id="cb4-143"><a href="#cb4-143" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-36 <span class="at">-1</span> SMC-36_R1.fastq.gz <span class="at">-2</span> SMC-36_R2.fastq.gz</span>
+<span id="cb4-144"><a href="#cb4-144" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-37 <span class="at">-1</span> SMC-37_R1.fastq.gz <span class="at">-2</span> SMC-37_R2.fastq.gz</span>
+<span id="cb4-145"><a href="#cb4-145" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-38 <span class="at">-1</span> SMC-38_R1.fastq.gz <span class="at">-2</span> SMC-38_R2.fastq.gz</span>
+<span id="cb4-146"><a href="#cb4-146" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-39 <span class="at">-1</span> SMC-39_R1.fastq.gz <span class="at">-2</span> SMC-39_R2.fastq.gz</span>
+<span id="cb4-147"><a href="#cb4-147" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-4 <span class="at">-1</span> SMC-4_R1.fastq.gz <span class="at">-2</span> SMC-4_R2.fastq.gz</span>
+<span id="cb4-148"><a href="#cb4-148" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-40 <span class="at">-1</span> SMC-40_R1.fastq.gz <span class="at">-2</span> SMC-40_R2.fastq.gz</span>
+<span id="cb4-149"><a href="#cb4-149" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-41 <span class="at">-1</span> SMC-41_R1.fastq.gz <span class="at">-2</span> SMC-41_R2.fastq.gz</span>
+<span id="cb4-150"><a href="#cb4-150" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-42 <span class="at">-1</span> SMC-42_R1.fastq.gz <span class="at">-2</span> SMC-42_R2.fastq.gz</span>
+<span id="cb4-151"><a href="#cb4-151" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-43 <span class="at">-1</span> SMC-43_R1.fastq.gz <span class="at">-2</span> SMC-43_R2.fastq.gz</span>
+<span id="cb4-152"><a href="#cb4-152" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-44 <span class="at">-1</span> SMC-44_R1.fastq.gz <span class="at">-2</span> SMC-44_R2.fastq.gz</span>
+<span id="cb4-153"><a href="#cb4-153" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-45 <span class="at">-1</span> SMC-45_R1.fastq.gz <span class="at">-2</span> SMC-45_R2.fastq.gz</span>
+<span id="cb4-154"><a href="#cb4-154" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-46 <span class="at">-1</span> SMC-46_R1.fastq.gz <span class="at">-2</span> SMC-46_R2.fastq.gz</span>
+<span id="cb4-155"><a href="#cb4-155" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-47 <span class="at">-1</span> SMC-47_R1.fastq.gz <span class="at">-2</span> SMC-47_R2.fastq.gz</span>
+<span id="cb4-156"><a href="#cb4-156" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-48 <span class="at">-1</span> SMC-48_R1.fastq.gz <span class="at">-2</span> SMC-48_R2.fastq.gz</span>
+<span id="cb4-157"><a href="#cb4-157" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-49 <span class="at">-1</span> SMC-49_R1.fastq.gz <span class="at">-2</span> SMC-49_R2.fastq.gz</span>
+<span id="cb4-158"><a href="#cb4-158" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-5 <span class="at">-1</span> SMC-5_R1.fastq.gz <span class="at">-2</span> SMC-5_R2.fastq.gz</span>
+<span id="cb4-159"><a href="#cb4-159" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-50 <span class="at">-1</span> SMC-50_R1.fastq.gz <span class="at">-2</span> SMC-50_R2.fastq.gz</span>
+<span id="cb4-160"><a href="#cb4-160" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-51 <span class="at">-1</span> SMC-51_R1.fastq.gz <span class="at">-2</span> SMC-51_R2.fastq.gz</span>
+<span id="cb4-161"><a href="#cb4-161" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-52 <span class="at">-1</span> SMC-52_R1.fastq.gz <span class="at">-2</span> SMC-52_R2.fastq.gz</span>
+<span id="cb4-162"><a href="#cb4-162" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-53 <span class="at">-1</span> SMC-53_R1.fastq.gz <span class="at">-2</span> SMC-53_R2.fastq.gz</span>
+<span id="cb4-163"><a href="#cb4-163" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-54 <span class="at">-1</span> SMC-54_R1.fastq.gz <span class="at">-2</span> SMC-54_R2.fastq.gz</span>
+<span id="cb4-164"><a href="#cb4-164" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-55 <span class="at">-1</span> SMC-55_R1.fastq.gz <span class="at">-2</span> SMC-55_R2.fastq.gz</span>
+<span id="cb4-165"><a href="#cb4-165" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-56 <span class="at">-1</span> SMC-56_R1.fastq.gz <span class="at">-2</span> SMC-56_R2.fastq.gz</span>
+<span id="cb4-166"><a href="#cb4-166" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-57 <span class="at">-1</span> SMC-57_R1.fastq.gz <span class="at">-2</span> SMC-57_R2.fastq.gz</span>
+<span id="cb4-167"><a href="#cb4-167" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-58 <span class="at">-1</span> SMC-58_R1.fastq.gz <span class="at">-2</span> SMC-58_R2.fastq.gz</span>
+<span id="cb4-168"><a href="#cb4-168" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-59 <span class="at">-1</span> SMC-59_R1.fastq.gz <span class="at">-2</span> SMC-59_R2.fastq.gz</span>
+<span id="cb4-169"><a href="#cb4-169" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-6 <span class="at">-1</span> SMC-6_R1.fastq.gz <span class="at">-2</span> SMC-6_R2.fastq.gz</span>
+<span id="cb4-170"><a href="#cb4-170" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-1 <span class="at">-1</span> SMC-1_R1.fastq.gz <span class="at">-2</span> SMC-1_R2.fastq.gz</span>
+<span id="cb4-171"><a href="#cb4-171" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-101 <span class="at">-1</span> SMC-101_R1.fastq.gz <span class="at">-2</span> SMC-101_R2.fastq.gz</span>
+<span id="cb4-172"><a href="#cb4-172" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-11 <span class="at">-1</span> SMC-11_R1.fastq.gz <span class="at">-2</span> SMC-11_R2.fastq.gz</span>
+<span id="cb4-173"><a href="#cb4-173" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-161 <span class="at">-1</span> SMC-161_R1.fastq.gz <span class="at">-2</span> SMC-161_R2.fastq.gz</span>
+<span id="cb4-174"><a href="#cb4-174" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-162 <span class="at">-1</span> SMC-162_R1.fastq.gz <span class="at">-2</span> SMC-162_R2.fastq.gz</span>
+<span id="cb4-175"><a href="#cb4-175" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-163 <span class="at">-1</span> SMC-163_R1.fastq.gz <span class="at">-2</span> SMC-163_R2.fastq.gz</span>
+<span id="cb4-176"><a href="#cb4-176" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-164 <span class="at">-1</span> SMC-164_R1.fastq.gz <span class="at">-2</span> SMC-164_R2.fastq.gz</span>
+<span id="cb4-177"><a href="#cb4-177" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-165 <span class="at">-1</span> SMC-165_R1.fastq.gz <span class="at">-2</span> SMC-165_R2.fastq.gz</span>
+<span id="cb4-178"><a href="#cb4-178" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-166 <span class="at">-1</span> SMC-166_R1.fastq.gz <span class="at">-2</span> SMC-166_R2.fastq.gz</span>
+<span id="cb4-179"><a href="#cb4-179" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-167 <span class="at">-1</span> SMC-167_R1.fastq.gz <span class="at">-2</span> SMC-167_R2.fastq.gz</span>
+<span id="cb4-180"><a href="#cb4-180" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-168 <span class="at">-1</span> SMC-168_R1.fastq.gz <span class="at">-2</span> SMC-168_R2.fastq.gz</span>
+<span id="cb4-181"><a href="#cb4-181" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-169 <span class="at">-1</span> SMC-169_R1.fastq.gz <span class="at">-2</span> SMC-169_R2.fastq.gz</span>
+<span id="cb4-182"><a href="#cb4-182" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-17 <span class="at">-1</span> SMC-17_R1.fastq.gz <span class="at">-2</span> SMC-17_R2.fastq.gz</span>
+<span id="cb4-183"><a href="#cb4-183" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-170 <span class="at">-1</span> SMC-170_R1.fastq.gz <span class="at">-2</span> SMC-170_R2.fastq.gz</span>
+<span id="cb4-184"><a href="#cb4-184" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-171 <span class="at">-1</span> SMC-171_R1.fastq.gz <span class="at">-2</span> SMC-171_R2.fastq.gz</span>
+<span id="cb4-185"><a href="#cb4-185" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-172 <span class="at">-1</span> SMC-172_R1.fastq.gz <span class="at">-2</span> SMC-172_R2.fastq.gz</span>
+<span id="cb4-186"><a href="#cb4-186" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-173 <span class="at">-1</span> SMC-173_R1.fastq.gz <span class="at">-2</span> SMC-173_R2.fastq.gz</span>
+<span id="cb4-187"><a href="#cb4-187" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-174 <span class="at">-1</span> SMC-174_R1.fastq.gz <span class="at">-2</span> SMC-174_R2.fastq.gz</span>
+<span id="cb4-188"><a href="#cb4-188" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-175 <span class="at">-1</span> SMC-175_R1.fastq.gz <span class="at">-2</span> SMC-175_R2.fastq.gz</span>
+<span id="cb4-189"><a href="#cb4-189" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-176 <span class="at">-1</span> SMC-176_R1.fastq.gz <span class="at">-2</span> SMC-176_R2.fastq.gz</span>
+<span id="cb4-190"><a href="#cb4-190" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-18 <span class="at">-1</span> SMC-18_R1.fastq.gz <span class="at">-2</span> SMC-18_R2.fastq.gz</span>
+<span id="cb4-191"><a href="#cb4-191" tabindex="-1"></a><span class="ex">salmon</span> quant <span class="at">-i</span> mm_gencode_36 <span class="at">-p</span> 12 <span class="at">-l</span> A <span class="at">--validateMappings</span> <span class="at">--gcBias</span> <span class="at">-o</span> SMC-2 <span class="at">-1</span> SMC-2_R1.fastq.gz <span class="at">-2</span> SMC-2_R2.fastq.gz</span>
+<span id="cb4-192"><a href="#cb4-192" tabindex="-1"></a></span></code></pre></div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Salmon version <code>1.10.0</code> was used for quantification. The
+output for each sample, including the crucial <code>quant.sf</code>,
+which are the input for the next R-based processing step to generate a
+gene-level count matrix for downstream analysis.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

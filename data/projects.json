@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Epi-Flow",
+        "description": "A unified, end-centric pipeline for processing chromatin accessibility and occupancy assays—from ATAC-seq to CUT&RUN, ChIP-seq, and beyond.",
+        "tags": ["NGS", "Epigenetics", "Bash", "Workflow Automation"],
+        "link": "https://zqzneptune.github.io/Epi-Flow/"
+    },
+    {
+        "title": "ComplexMap",
+        "description": "A Toolset for the Functional Analysis and Visualization of Protein Complex Data",
+        "tags": ["Visualization", "R", "Protomics", "Network Biology"],
+        "link": "https://zqzneptune.github.io/ComplexMap/"
+    },
+    {
+        "title": "Single-Cell Feature Profiler",
+        "description": "A powerful, multi-interface Python package for deep characterization of gene expression patterns from single-cell data.",
+        "tags": ["ScRNA-seq", "Python", "Cell Type Annotation", "Gene Maker Identification"],
+        "link": "https://pypi.org/project/scfeatureprofiler/"
+    },
+    {
+        "title": "ShinyCITExpresso",
+        "description": "A ShinyApp for visualization and explorering Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq) data",
+        "tags": ["CITE-seq", "R", "Shiny", "Visualization"],
+        "link": "https://github.com/zqzneptune/ShinyCITExpresso"
+    },
+    {
+        "title": "SMAD",
+        "description": " R package implements statistical modelling of affinity purification–mass spectrometry (AP-MS) data to compute confidence scores to identify bona fide protein-protein interactions (PPI).",
+        "tags": ["R", "Network Biology", "AP-MS", "BioID", "Bioconductor"],
+        "link": "https://bioconductor.org/packages/release/bioc/html/SMAD.html"
+    },
+    {
+        "title": "GEX_Index_Builder",
+        "description": "Automated RNA-seq reference builder for STAR and Salmon. Features container-aware memory detection, automatic Ensembl/GENCODE downloads, and version-controlled index generation.",
+        "tags": ["Bash", "RNA-seq", "STAR", "Salmon", "Workflow Automation"],
+        "link": "https://github.com/zqzneptune/GEX_Index_Builder"
+    },
+    {
+        "title": "ExpressoGEO",
+        "description": "R package designed to simplify and automate the process GEO data",
+        "tags": ["R", "GEO", "DNA Microarray"],
+        "link": "https://github.com/zqzneptune/ExpressoGEO"
+    },
+    {
+        "title": "sgRNA-Exact-Match-Gene-Assoc",
+        "description": "Finds exact sgRNA matches in a genome and associates them with overlapping/nearest genes.",
+        "tags": ["Python"],
+        "link": "https://github.com/zqzneptune/sgRNA-Exact-Match-Gene-Assoc"
+    },
+    {
+        "title": "RefInt",
+        "description": "A curated reference interactome with true positives and negatives for benchmarking protein-protein interactions.",
+        "tags": ["Network Biology", "Protein-Protein Interactions", "Benchmarking"],
+        "link": "https://zqzneptune.github.io/RefInt/"
+    }
+]

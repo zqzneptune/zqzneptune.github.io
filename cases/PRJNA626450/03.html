@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Qingzhou Zhang (zqzneptune@gmail.com)" />
+
+<meta name="date" content="2025-04-10" />
+
+<title>Trajectory Analysis with slingshot</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PRJNA626450</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="00.html">
+    <span class="fa fa-download"></span>
+     
+    1. Data
+  </a>
+</li>
+<li>
+  <a href="01.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    2. QC and Preprocessing
+  </a>
+</li>
+<li>
+  <a href="02.html">
+    <span class="fa fa-layer-group"></span>
+     
+    3. Clustering
+  </a>
+</li>
+<li>
+  <a href="03.html">
+    <span class="fa fa-route"></span>
+     
+    4. Trajectory
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Trajectory Analysis with slingshot</h1>
+<h4 class="author">Qingzhou Zhang (<a href="mailto:zqzneptune@gmail.com"
+class="email">zqzneptune@gmail.com</a>)</h4>
+<h4 class="date">2025-04-10</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This report details the trajectory inference analysis performed on
+the clustered single-cell RNA-seq data
+(<code>sce_clustered_markers.rds</code>). Based on previous research or
+marker gene analysis, we assign biological identities to the
+clusters:</p>
+<ul>
+<li><strong>Cluster 1:</strong> Transitional</li>
+<li><strong>Cluster 2:</strong> Progenitor-like</li>
+<li><strong>Cluster 3:</strong> Fibroblast-like</li>
+</ul>
+<p>The hypothesized differentiation trajectory is from
+<strong>Progenitor-like (Cluster 2)</strong>, through
+<strong>Transitional (Cluster 1)</strong>, towards
+<strong>Fibroblast-like (Cluster 3)</strong>.</p>
+<p>We will use the <code>slingshot</code> package to infer trajectory
+lineages based on the UMAP embedding and cluster assignments. The
+trajectory will be rooted in the <strong>Progenitor-like (Cluster
+2)</strong> as specified during lineage inference. Pseudotime along the
+inferred trajectory will then be calculated relative to this starting
+cluster.</p>
+</div>
+<div id="load-clustered-data" class="section level1">
+<h1>1. Load Clustered Data</h1>
+<p>We load the <code>sce_clustered_markers.rds</code> object which
+contains the results from normalization, dimensionality reduction (PCA,
+UMAP), and clustering.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>sce_file <span class="ot">&lt;-</span> <span class="st">&quot;sce_clustered_markers.rds&quot;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(sce_file)) {</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  alt_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;..&quot;</span>, sce_file) </span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(alt_path)) {</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>     sce_file <span class="ot">&lt;-</span> alt_path</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>     <span class="fu">stop</span>(<span class="st">&quot;Input file not found: &quot;</span>, sce_file, <span class="st">&quot; or &quot;</span>, alt_path, <span class="st">&quot;. Please ensure it exists.&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  }</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>} </span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(sce_file) </span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">&quot;cluster&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Cluster information (&#39;cluster&#39; column) not found in colData.&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>}</span></code></pre></div>
+<p>The loaded <code>SingleCellExperiment</code> object contains
+dimensionality reduction results (e.g., PCA, UMAP) and cluster
+assignments.</p>
+</div>
+<div id="prepare-data-for-slingshot" class="section level1">
+<h1>2. Prepare Data for slingshot</h1>
+<p>We assign meaningful biological labels to the clusters based on the
+provided information and ensure the necessary components (dimensionality
+reduction, cluster labels) are ready for slingshot.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>cluster_mapping <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;Progenitor-like&quot;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Transitional&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;Fibroblast-like&quot;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>current_clusters <span class="ot">&lt;-</span> <span class="fu">levels</span>(<span class="fu">factor</span>(sce<span class="sc">$</span>cluster))</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(current_clusters <span class="sc">%in%</span> <span class="fu">names</span>(cluster_mapping))) {</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  missing_clusters <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(current_clusters, <span class="fu">names</span>(cluster_mapping))</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="fu">names</span>(missing_clusters) <span class="ot">&lt;-</span> missing_clusters</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  cluster_mapping <span class="ot">&lt;-</span> <span class="fu">c</span>(cluster_mapping, missing_clusters)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>}</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>sce<span class="sc">$</span>cluster_label <span class="ot">&lt;-</span> <span class="fu">factor</span>(sce<span class="sc">$</span>cluster, </span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">names</span>(cluster_mapping), </span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>                            <span class="at">labels =</span> <span class="fu">unname</span>(cluster_mapping))</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>num_labels <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(sce<span class="sc">$</span>cluster_label))</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="cf">if</span> (num_labels <span class="sc">&gt;</span> <span class="fu">length</span>(cluster_colors_base)) {</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  label_colors <span class="ot">&lt;-</span> <span class="fu">rep</span>(cluster_colors_base, <span class="at">length.out =</span> num_labels)</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>  label_colors <span class="ot">&lt;-</span> cluster_colors_base[<span class="dv">1</span><span class="sc">:</span>num_labels]</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>}</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="fu">names</span>(label_colors) <span class="ot">&lt;-</span> <span class="fu">levels</span>(sce<span class="sc">$</span>cluster_label)</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>dimred_to_use <span class="ot">&lt;-</span> <span class="st">&quot;UMAP&quot;</span> </span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>dimred_to_use <span class="sc">%in%</span> <span class="fu">reducedDimNames</span>(sce)) {</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Required dimensionality reduction &#39;&quot;</span>, dimred_to_use, <span class="st">&quot;&#39; not found in the SCE object.&quot;</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>}</span></code></pre></div>
+<p>Biological labels (Progenitor-like, Transitional, Fibroblast-like)
+have been assigned to the clusters, and the analysis will proceed using
+the ‘UMAP’ embedding.</p>
+</div>
+<div id="run-slingshot-trajectory-inference" class="section level1">
+<h1>3. Run slingshot Trajectory Inference</h1>
+<p>We run slingshot using the UMAP coordinates and the assigned
+biological cluster labels. We specify the start (“Progenitor-like”) and
+potential end (“Fibroblast-like”) clusters based on our hypothesis. This
+step defines the lineages and curves.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">slingshot</span>(sce, </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                 <span class="at">clusterLabels =</span> <span class="st">&quot;cluster_label&quot;</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                 <span class="at">reducedDim =</span> dimred_to_use,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                 <span class="at">start.clus =</span> <span class="st">&quot;Progenitor-like&quot;</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                 <span class="at">end.clus =</span> <span class="st">&quot;Fibroblast-like&quot;</span>,   </span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                 <span class="at">stretch =</span> <span class="dv">2</span>) </span></code></pre></div>
+<p>slingshot identified 1 lineage(s) and the results are stored in the
+SCE object. The inferred lineages are: Lineage1.</p>
+</div>
+<div id="visualize-trajectories" class="section level1">
+<h1>4. Visualize Trajectories</h1>
+<p>We overlay the inferred slingshot curves onto the UMAP plot colored
+by biological cluster labels.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>p_umap <span class="ot">&lt;-</span> <span class="fu">plotReducedDim</span>(sce, <span class="at">dimred =</span> dimred_to_use, <span class="at">colour_by =</span> <span class="st">&quot;cluster_label&quot;</span>, <span class="at">text_by =</span> <span class="st">&quot;cluster_label&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> label_colors) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;UMAP colored by Cluster Label&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>lineages <span class="ot">&lt;-</span> <span class="fu">slingLineages</span>(sce)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>curves <span class="ot">&lt;-</span> <span class="fu">slingCurves</span>(sce, <span class="at">as.df =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>umap_colnames <span class="ot">&lt;-</span> <span class="fu">colnames</span>(<span class="fu">reducedDim</span>(sce, dimred_to_use))</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>x_col <span class="ot">&lt;-</span> umap_colnames[<span class="dv">1</span>] </span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>y_col <span class="ot">&lt;-</span> umap_colnames[<span class="dv">2</span>] </span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">c</span>(x_col, y_col) <span class="sc">%in%</span> <span class="fu">colnames</span>(curves))) {</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;Dim.1&quot;</span>, <span class="st">&quot;Dim.2&quot;</span>) <span class="sc">%in%</span> <span class="fu">colnames</span>(curves))) {</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>        x_col <span class="ot">&lt;-</span> <span class="st">&quot;Dim.1&quot;</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>        y_col <span class="ot">&lt;-</span> <span class="st">&quot;Dim.2&quot;</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">&quot;Cannot determine coordinate column names in slingCurves output. Found columns:&quot;</span>, <span class="fu">paste</span>(<span class="fu">colnames</span>(curves), <span class="at">collapse=</span><span class="st">&quot;, &quot;</span>)))</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>    }</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>}</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>arrow_step <span class="ot">&lt;-</span> <span class="dv">15</span>          </span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>arrow_start_offset <span class="ot">&lt;-</span> <span class="dv">5</span>   </span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>arrow_length_index <span class="ot">&lt;-</span> <span class="dv">2</span>   </span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>arrow_data <span class="ot">&lt;-</span> curves <span class="sc">%&gt;%</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>  <span class="fu">group_by</span>(Lineage) <span class="sc">%&gt;%</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>  <span class="fu">arrange</span>(Order) <span class="sc">%&gt;%</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>  <span class="fu">filter</span>(Order <span class="sc">&gt;=</span> arrow_start_offset <span class="sc">&amp;</span> (Order <span class="sc">-</span> arrow_start_offset) <span class="sc">%%</span> arrow_step <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">end_Order =</span> Order <span class="sc">+</span> arrow_length_index) <span class="sc">%&gt;%</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a>  <span class="fu">select</span>(Lineage, <span class="at">start_Order =</span> Order, <span class="at">x =</span> <span class="sc">!!</span><span class="fu">sym</span>(x_col), <span class="at">y =</span> <span class="sc">!!</span><span class="fu">sym</span>(y_col), end_Order) <span class="sc">%&gt;%</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>    curves <span class="sc">%&gt;%</span> <span class="fu">select</span>(Lineage, Order, <span class="at">xend =</span> <span class="sc">!!</span><span class="fu">sym</span>(x_col), <span class="at">yend =</span> <span class="sc">!!</span><span class="fu">sym</span>(y_col)),</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Lineage&quot;</span>, <span class="st">&quot;end_Order&quot;</span> <span class="ot">=</span> <span class="st">&quot;Order&quot;</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(xend)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a>p_traj <span class="ot">&lt;-</span> p_umap <span class="sc">+</span> </span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> curves, <span class="fu">aes</span>(<span class="at">x =</span> .data[[x_col]], <span class="at">y =</span> .data[[y_col]], <span class="at">group =</span> Lineage), </span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> arrow_data, </span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> xend, <span class="at">yend =</span> yend),</span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>), <span class="at">type =</span> <span class="st">&quot;closed&quot;</span>), </span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.6</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Slingshot Trajectories on UMAP&quot;</span>))</span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a><span class="fu">print</span>(p_traj)</span></code></pre></div>
+<p><img src="03_files/figure-html/visualize-trajectories-1.png" width="672" /></p>
+<p>The plot shows the inferred trajectory lineage(s) connecting the
+cluster centers on the UMAP embedding. Arrows indicate the direction of
+inferred progression.</p>
+</div>
+<div id="calculate-pseudotime" class="section level1">
+<h1>5. Calculate Pseudotime</h1>
+<p>We calculate pseudotime along the inferred lineage(s) using
+slingPseudotime. This function uses the lineage structure and start.clus
+information already stored within the sce object by the slingshot
+function call in step 3.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>pseudotime_matrix <span class="ot">&lt;-</span> <span class="fu">slingPseudotime</span>(sce) </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(pseudotime_matrix) <span class="sc">!=</span> <span class="fu">ncol</span>(sce)) {</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Number of rows in pseudotime matrix does not match number of cells in SCE object.&quot;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">identical</span>(<span class="fu">rownames</span>(pseudotime_matrix), <span class="fu">colnames</span>(sce))) {</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(pseudotime_matrix)) {</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  lineage_name <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pseudotime_matrix)[i] </span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  col_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;slingPseudotime_&quot;</span>, i)      </span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  </span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>  <span class="fu">colData</span>(sce)[[col_name]] <span class="ot">&lt;-</span> pseudotime_matrix[, i] </span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>pt_cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))[<span class="fu">grepl</span>(<span class="st">&quot;slingPseudotime&quot;</span>, <span class="fu">colnames</span>(<span class="fu">colData</span>(sce)))]</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(pt_cols) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Pseudotime columns were not successfully added to colData(sce).&quot;</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>}</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>pseudotime_col_check <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;slingPseudotime_&quot;</span>, <span class="dv">1</span>) </span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="cf">if</span> (pseudotime_col_check <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>  root_cluster_label <span class="ot">&lt;-</span> <span class="st">&quot;Progenitor-like&quot;</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>  pt_root_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(sce[[pseudotime_col_check]][sce<span class="sc">$</span>cluster_label <span class="sc">==</span> root_cluster_label])</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>  <span class="cf">if</span>(pt_root_summary[<span class="st">&quot;Min.&quot;</span>] <span class="sc">&gt;</span> <span class="fl">1e-6</span>) { </span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>  }</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>}</span></code></pre></div>
+<p>Pseudotime values, representing the inferred progression along each
+lineage, have been calculated and added to the <code>colData</code>
+under names like <code>slingPseudotime_1</code>. The minimum pseudotime
+in the designated root cluster (‘Progenitor-like’) is confirmed to be
+near zero.</p>
+</div>
+<div id="visualize-pseudotime" class="section level1">
+<h1>6. Visualize Pseudotime</h1>
+<p>We visualize the calculated pseudotime on the UMAP and examine the
+expression of key genes along the trajectory.</p>
+<div id="umap-colored-by-pseudotime" class="section level2">
+<h2>6.1 UMAP Colored by Pseudotime</h2>
+<p>We color the cells on the UMAP plot by their calculated pseudotime
+values stored in <code>colData</code>. We’ll focus on the first lineage
+identified.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>pseudotime_col <span class="ot">&lt;-</span> <span class="st">&quot;slingPseudotime_1&quot;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="cf">if</span> (pseudotime_col <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">reducedDim</span>(sce, dimred_to_use)[, <span class="dv">1</span>], </span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">reducedDim</span>(sce, dimred_to_use)[, <span class="dv">2</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="at">Pseudotime =</span> <span class="fu">colData</span>(sce)[[pseudotime_col]], </span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="at">ClusterLabel =</span> sce<span class="sc">$</span>cluster_label</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  )</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  x_lab <span class="ot">&lt;-</span> umap_colnames[<span class="dv">1</span>] </span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  y_lab <span class="ot">&lt;-</span> umap_colnames[<span class="dv">2</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>  </span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>  p_pseudo_umap <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">color =</span> Pseudotime)) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>    <span class="fu">scale_color_viridis</span>(<span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Pseudotime&quot;</span>, <span class="at">na.value =</span> <span class="st">&quot;grey80&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(dimred_to_use, <span class="st">&quot;colored by Pseudotime (Lineage 1)&quot;</span>), <span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a>  <span class="fu">print</span>(p_pseudo_umap)</span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a> </span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="03_files/figure-html/visualize-pseudotime-umap-1.png" width="672" /></p>
+<p>The UMAP shows cells colored by their inferred pseudotime,
+illustrating the progression along the primary trajectory starting from
+the Progenitor-like cluster.</p>
+</div>
+</div>
+<div id="identify-and-visualize-potential-driver-genes"
+class="section level1">
+<h1>7. Identify and Visualize Potential Driver Genes</h1>
+<p>Rationale: Genes whose expression significantly correlates
+(positively or negatively) with pseudotime might be involved in driving
+the differentiation process.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>pseudotime_col <span class="ot">&lt;-</span> <span class="st">&quot;slingPseudotime_1&quot;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>n_top_genes <span class="ot">&lt;-</span> <span class="dv">25</span> </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>correlation_method <span class="ot">&lt;-</span> <span class="st">&quot;spearman&quot;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>pseudotime_col <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Pseudotime column &#39;&quot;</span>, pseudotime_col, <span class="st">&quot;&#39; not found in colData(sce).&quot;</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">&quot;logcounts&quot;</span> <span class="sc">%in%</span> <span class="fu">assayNames</span>(sce)) {</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Required assay &#39;logcounts&#39; not found in sce object.&quot;</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>valid_pt_cells <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">colData</span>(sce)[[pseudotime_col]])</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(valid_pt_cells) <span class="sc">&lt;</span> <span class="dv">3</span>) { </span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Fewer than 3 cells have valid pseudotime values for lineage &#39;&quot;</span>, pseudotime_col, <span class="st">&quot;&#39;. Cannot calculate correlations.&quot;</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>sce_lineage <span class="ot">&lt;-</span> sce[, valid_pt_cells]</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>pseudotime_values <span class="ot">&lt;-</span> <span class="fu">colData</span>(sce_lineage)[[pseudotime_col]]</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>logcounts_lineage <span class="ot">&lt;-</span> <span class="fu">assay</span>(sce_lineage, <span class="st">&quot;logcounts&quot;</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>cor_results <span class="ot">&lt;-</span> <span class="fu">apply</span>(logcounts_lineage, <span class="dv">1</span>, <span class="cf">function</span>(gene_expr) {</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sd</span>(gene_expr) <span class="sc">==</span> <span class="dv">0</span>) { <span class="fu">return</span>(<span class="cn">NA</span>) }</span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>  <span class="fu">cor</span>(gene_expr, pseudotime_values, <span class="at">method =</span> correlation_method)</span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>})</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>cor_results <span class="ot">&lt;-</span> cor_results[<span class="sc">!</span><span class="fu">is.na</span>(cor_results)]</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(cor_results) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;No valid correlations could be calculated (all genes might have zero variance).&quot;</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>}</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>cor_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>  <span class="at">gene_id =</span> <span class="fu">names</span>(cor_results),</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>  <span class="at">correlation =</span> cor_results</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>)</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce))) {</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>  cor_df<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rowData</span>(sce)[cor_df<span class="sc">$</span>gene_id, <span class="st">&quot;symbol&quot;</span>]</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>  cor_df<span class="sc">$</span>display_name <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(cor_df<span class="sc">$</span>symbol) <span class="sc">|</span> cor_df<span class="sc">$</span>symbol <span class="sc">==</span> <span class="st">&quot;&quot;</span>, cor_df<span class="sc">$</span>gene_id, cor_df<span class="sc">$</span>symbol)</span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>  cor_df<span class="sc">$</span>display_name <span class="ot">&lt;-</span> cor_df<span class="sc">$</span>gene_id</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>}</span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>top_pos_genes <span class="ot">&lt;-</span> cor_df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(correlation)) <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> n_top_genes)</span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a>top_neg_genes <span class="ot">&lt;-</span> cor_df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(correlation) <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> n_top_genes)</span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>selected_genes_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(top_pos_genes, top_neg_genes) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(gene_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>heatmap_matrix <span class="ot">&lt;-</span> logcounts_lineage[selected_genes_df<span class="sc">$</span>gene_id, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>cell_order <span class="ot">&lt;-</span> <span class="fu">order</span>(pseudotime_values)</span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>heatmap_matrix_ordered <span class="ot">&lt;-</span> heatmap_matrix[, cell_order]</span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>ordered_gene_ids <span class="ot">&lt;-</span> <span class="fu">c</span>(top_pos_genes<span class="sc">$</span>gene_id, top_neg_genes<span class="sc">$</span>gene_id)</span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>ordered_gene_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(ordered_gene_ids) </span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>heatmap_matrix_ordered <span class="ot">&lt;-</span> heatmap_matrix_ordered[ordered_gene_ids, ]</span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a>annotation_col <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>  <span class="at">Pseudotime =</span> pseudotime_values[cell_order],</span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a>  <span class="at">Cluster =</span> sce_lineage<span class="sc">$</span>cluster_label[cell_order]</span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a>)</span>
+<span id="cb7-55"><a href="#cb7-55" tabindex="-1"></a><span class="fu">rownames</span>(annotation_col) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(heatmap_matrix_ordered)</span>
+<span id="cb7-56"><a href="#cb7-56" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" tabindex="-1"></a>pt_colors <span class="ot">&lt;-</span> viridis<span class="sc">::</span><span class="fu">magma</span>(<span class="dv">100</span>) </span>
+<span id="cb7-58"><a href="#cb7-58" tabindex="-1"></a>annotation_colors <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb7-59"><a href="#cb7-59" tabindex="-1"></a>  <span class="at">Pseudotime =</span> pt_colors,</span>
+<span id="cb7-60"><a href="#cb7-60" tabindex="-1"></a>  <span class="at">Cluster =</span> label_colors </span>
+<span id="cb7-61"><a href="#cb7-61" tabindex="-1"></a>)</span>
+<span id="cb7-62"><a href="#cb7-62" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" tabindex="-1"></a>heatmap_rownames <span class="ot">&lt;-</span> selected_genes_df<span class="sc">$</span>display_name[<span class="fu">match</span>(<span class="fu">rownames</span>(heatmap_matrix_ordered), selected_genes_df<span class="sc">$</span>gene_id)]</span>
+<span id="cb7-64"><a href="#cb7-64" tabindex="-1"></a></span>
+<span id="cb7-65"><a href="#cb7-65" tabindex="-1"></a>color_range_limit <span class="ot">&lt;-</span> <span class="fl">1.5</span> </span>
+<span id="cb7-66"><a href="#cb7-66" tabindex="-1"></a></span>
+<span id="cb7-67"><a href="#cb7-67" tabindex="-1"></a>n_colors <span class="ot">&lt;-</span> <span class="dv">100</span> </span>
+<span id="cb7-68"><a href="#cb7-68" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span>color_range_limit, color_range_limit, <span class="at">length.out =</span> n_colors <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-69"><a href="#cb7-69" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" tabindex="-1"></a>heatmap_colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">11</span>, <span class="at">name =</span> <span class="st">&quot;RdYlBu&quot;</span>)))(n_colors)</span>
+<span id="cb7-71"><a href="#cb7-71" tabindex="-1"></a></span>
+<span id="cb7-72"><a href="#cb7-72" tabindex="-1"></a><span class="fu">pheatmap</span>(heatmap_matrix_ordered,</span>
+<span id="cb7-73"><a href="#cb7-73" tabindex="-1"></a>         <span class="at">scale =</span> <span class="st">&quot;row&quot;</span>,          </span>
+<span id="cb7-74"><a href="#cb7-74" tabindex="-1"></a>         <span class="at">cluster_rows =</span> <span class="cn">FALSE</span>,     </span>
+<span id="cb7-75"><a href="#cb7-75" tabindex="-1"></a>         <span class="at">cluster_cols =</span> <span class="cn">FALSE</span>,     </span>
+<span id="cb7-76"><a href="#cb7-76" tabindex="-1"></a>         <span class="at">show_colnames =</span> <span class="cn">FALSE</span>,    </span>
+<span id="cb7-77"><a href="#cb7-77" tabindex="-1"></a>         <span class="at">annotation_col =</span> annotation_col,</span>
+<span id="cb7-78"><a href="#cb7-78" tabindex="-1"></a>         <span class="at">annotation_colors =</span> annotation_colors,</span>
+<span id="cb7-79"><a href="#cb7-79" tabindex="-1"></a>         <span class="at">color =</span> heatmap_colors,   </span>
+<span id="cb7-80"><a href="#cb7-80" tabindex="-1"></a>         <span class="at">breaks =</span> breaks,          </span>
+<span id="cb7-81"><a href="#cb7-81" tabindex="-1"></a>         <span class="at">labels_row =</span> heatmap_rownames, </span>
+<span id="cb7-82"><a href="#cb7-82" tabindex="-1"></a>         <span class="at">fontsize_row =</span> <span class="dv">8</span>,         </span>
+<span id="cb7-83"><a href="#cb7-83" tabindex="-1"></a>         <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;Potential Driver Genes along Pseudotime&quot;</span>),</span>
+<span id="cb7-84"><a href="#cb7-84" tabindex="-1"></a>         <span class="at">gaps_row =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(top_pos_genes)), </span>
+<span id="cb7-85"><a href="#cb7-85" tabindex="-1"></a>         <span class="at">border_color =</span> <span class="cn">NA</span> </span>
+<span id="cb7-86"><a href="#cb7-86" tabindex="-1"></a>        )</span></code></pre></div>
+<p><img src="03_files/figure-html/driver-gene-analysis-1.png" width="672" /></p>
+<p>The heatmap displays the expression patterns of the top 25 genes
+positively and negatively correlated with pseudotime along Lineage 1.
+Cells (columns) are ordered by pseudotime, and genes (rows) are grouped
+by correlation sign. This visualization helps identify genes whose
+expression gradually increases or decreases along the inferred
+differentiation path.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Trajectory analysis using Slingshot successfully inferred lineage(s)
+consistent with the hypothesized differentiation path from
+Progenitor-like (Cluster 2) through Transitional (Cluster 1) to
+Fibroblast-like (Cluster 3) cells. Pseudotime was calculated relative to
+the specified starting cluster (“Progenitor-like”). Visualizations
+confirm the progression along the UMAP embedding and allow examination
+of gene expression dynamics over pseudotime. The <code>sce</code> object
+now contains the Slingshot results, including lineage curves and
+pseudotime values stored in <code>colData</code>, ready for further
+investigation.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">saveRDS</span>(sce, <span class="at">file =</span> <span class="st">&quot;sce_slingshot_trajectory.rds&quot;</span>)</span></code></pre></div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

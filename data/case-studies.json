@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Single cell RNA sequencing of vascular smooth muscle cells from atherosclerotic lesions of ApoE ko mice",
+        "description": "The primary objective of this study was to characterize cellular heterogeneity, identify distinct cell populations, and investigate cell state transitions, which define the biology of the clonally expanding smooth muscle cells (SMCs) that contribute to atherosclerotic plaques.",
+        "tags": [
+            "SMART-seq2",
+            "ApoE ko mice",
+            "Biomarkers"
+        ],
+        "link": "cases/PRJNA626450/index.html"
+        
+    },
+    {
+        "title": "Transcriptomic Profiling of ATF3 Knockdown in Mouse Vascular Smooth Muscle Cells Using RNA-Seq",
+        "description": "By examining transcriptomic and secretomic changes following ATF3 knockdown in a controlled in vitro setting, the study aimed to delineate the functional consequences of reduced ATF3 expression on SMC physiology.",
+        "tags": [
+            "Bulk RNA-seq",
+            "Diffential Expression",
+            "Functional Enrichment Analysis"
+        ],
+        "link": "cases/PRJNA716327/01.html"
+    },
+    {
+        "title": "Comprehensive Analysis of Single-Cell RNA Sequencing Data from Zebrafish Brain Endothelial Cells",
+        "description": "scRNA-seq data derived from photoconverted brain endothelial cells of Danio rerio (zebrafish) were analyzed to characterize cellular heterogeneity, delineate distinct cell populations, and evaluate the expression profile of the hhex gene. ",
+        "tags": [
+            "Single-cell RNA-seq",
+            "Zebrafish"
+        ],
+        "link": "cases/GSE233662/index.html"
+    }
+]

@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Qingzhou Zhang (zqzneptune@gmail.com)" />
+
+<meta name="date" content="2025-06-08" />
+
+<title>Clustering and Marker Identification</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Zebrafish Endothelial Heterogeneity</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Materials and Methods
+  </a>
+</li>
+<li>
+  <a href="02.html">
+    <span class="fa fa-layer-group"></span>
+     
+    Results
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Clustering and Marker Identification</h1>
+<h4 class="author">Qingzhou Zhang (<a href="mailto:zqzneptune@gmail.com"
+class="email">zqzneptune@gmail.com</a>)</h4>
+<h4 class="date">2025-06-08</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This report details the downstream analysis of the filtered
+single-cell RNA-seq data, starting from the quality-controlled
+<code>SingleCellExperiment</code> object (<code>sce_filtered</code>).
+The analysis includes:</p>
+<ol style="list-style-type: decimal">
+<li>Normalization of counts.</li>
+<li>Identification of highly variable genes (HVGs).</li>
+<li>Dimensionality reduction using Principal Component Analysis
+(PCA).</li>
+<li>Cell clustering using graph-based methods.</li>
+<li>Visualization using UMAP.</li>
+<li>Identification of marker genes for each cluster.</li>
+</ol>
+</div>
+<div id="load-filtered-data" class="section level1">
+<h1>1. Load Filtered Data</h1>
+<p>We load the <code>sce_filtered</code> object generated in the
+previous QC step.</p>
+<p>The filtered object contains 32057 genes and 542 cells.</p>
+</div>
+<div id="normalization" class="section level1">
+<h1>2. Normalization</h1>
+<p>We normalize the raw counts to account for differences in library
+size and capture efficiency between cells. We use the
+<code>computeLibraryFactors</code> function from <code>scran</code>
+followed by <code>logNormCounts</code> from <code>scater</code>.</p>
+<p>The <code>logcounts</code> assay now contains normalized expression
+values suitable for downstream analysis.</p>
+</div>
+<div id="feature-selection-highly-variable-genes"
+class="section level1">
+<h1>3. Feature Selection (Highly Variable Genes)</h1>
+<p>We focus downstream analysis on genes that exhibit high biological
+variability across cells.</p>
+<p><img src="02_files/figure-html/feature-selection-hvg-1.png" width="768" /></p>
+<p>We selected the top 2500 HVGs for dimensionality reduction.</p>
+</div>
+<div id="dimensionality-reduction-pca" class="section level1">
+<h1>4. Dimensionality Reduction (PCA)</h1>
+<p>We perform PCA on the log-normalized counts, using only the selected
+HVGs.</p>
+<p><img src="02_files/figure-html/dimensionality-reduction-pca-1.png" width="768" /></p>
+<p>PCA was performed using the HVGs. The variance explained plot helps
+decide how many PCs capture significant biological variation. We will
+proceed using the top 20 PCs.</p>
+</div>
+<div id="clustering" class="section level1">
+<h1>5. Clustering</h1>
+<p>We perform graph-based clustering on the PCA reduced dimensions.</p>
+</div>
+<div id="visualization-umap" class="section level1">
+<h1>6. Visualization (UMAP)</h1>
+<p>We use UMAP to visualize the high-dimensional data in two
+dimensions.</p>
+<p><img src="02_files/figure-html/visualization-umap-1.png" width="768" /></p>
+<p>The UMAP plot shows the separation of the identified cell clusters in
+two dimensions.</p>
+</div>
+<div id="identification-of-cell-types-based-on-marker-expression"
+class="section level1">
+<h1>7 Identification of Cell Types Based on Marker Expression</h1>
+<p>We identify marker genes for each cluster using
+<code>scran::findMarkers</code>.</p>
+<p>Marker genes were identified for each cluster.</p>
+<div id="cluster-1" class="section level3">
+<h3>Cluster 1</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 1</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">sox7</td>
+<td align="right">7.067</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">kdrl</td>
+<td align="right">6.945</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">pecam1</td>
+<td align="right">6.500</td>
+<td align="left">1.8e-10</td>
+</tr>
+<tr class="even">
+<td align="left">clec14a</td>
+<td align="right">6.281</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">cdh5</td>
+<td align="right">6.259</td>
+<td align="left">6.4e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cdc42</td>
+<td align="right">6.236</td>
+<td align="left">0.0041</td>
+</tr>
+<tr class="odd">
+<td align="left">pfn2</td>
+<td align="right">6.200</td>
+<td align="left">0.0027</td>
+</tr>
+<tr class="even">
+<td align="left">ifi30</td>
+<td align="right">6.176</td>
+<td align="left">0.0029</td>
+</tr>
+<tr class="odd">
+<td align="left">sox18</td>
+<td align="right">6.140</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">ramp2</td>
+<td align="right">6.128</td>
+<td align="left">4.0e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">rasip1</td>
+<td align="right">6.126</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cldn5b</td>
+<td align="right">6.105</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">tie1</td>
+<td align="right">6.078</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">fscn1a</td>
+<td align="right">6.073</td>
+<td align="left">1.2e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">palm1a</td>
+<td align="right">6.054</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">etv2</td>
+<td align="right">6.052</td>
+<td align="left">7.4e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">hlx1</td>
+<td align="right">6.029</td>
+<td align="left">0.0033</td>
+</tr>
+<tr class="even">
+<td align="left">dll4</td>
+<td align="right">5.883</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ptbp1a</td>
+<td align="right">5.774</td>
+<td align="left">0.0025</td>
+</tr>
+<tr class="even">
+<td align="left">elmo1</td>
+<td align="right">5.731</td>
+<td align="left">0.0039</td>
+</tr>
+<tr class="odd">
+<td align="left">snrpb</td>
+<td align="right">5.709</td>
+<td align="left">0.0047</td>
+</tr>
+<tr class="even">
+<td align="left">mmp14b</td>
+<td align="right">5.676</td>
+<td align="left">7.1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">kirrel3l</td>
+<td align="right">5.663</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">robo4</td>
+<td align="right">5.648</td>
+<td align="left">2.1e-08</td>
+</tr>
+<tr class="odd">
+<td align="left">crip2</td>
+<td align="right">5.642</td>
+<td align="left">5.3e-08</td>
+</tr>
+<tr class="even">
+<td align="left">capns1b</td>
+<td align="right">5.617</td>
+<td align="left">0.0054</td>
+</tr>
+<tr class="odd">
+<td align="left">wu:fc21g02</td>
+<td align="right">5.600</td>
+<td align="left">0.0051</td>
+</tr>
+<tr class="even">
+<td align="left">ugt1b1</td>
+<td align="right">5.590</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">flt4</td>
+<td align="right">5.573</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">fstl1b</td>
+<td align="right">5.565</td>
+<td align="left">0.0033</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-2" class="section level3">
+<h3>Cluster 2</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 2</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rad21a</td>
+<td align="right">7.098</td>
+<td align="left">0.00097</td>
+</tr>
+<tr class="even">
+<td align="left">anp32a</td>
+<td align="right">6.753</td>
+<td align="left">0.00156</td>
+</tr>
+<tr class="odd">
+<td align="left">setb</td>
+<td align="right">6.581</td>
+<td align="left">0.00160</td>
+</tr>
+<tr class="even">
+<td align="left">eif2s2</td>
+<td align="right">6.473</td>
+<td align="left">0.00095</td>
+</tr>
+<tr class="odd">
+<td align="left">tnrc6a</td>
+<td align="right">6.377</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">eif3ja</td>
+<td align="right">6.295</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">smarca4a</td>
+<td align="right">6.282</td>
+<td align="left">0.00216</td>
+</tr>
+<tr class="even">
+<td align="left">dnmt1</td>
+<td align="right">6.278</td>
+<td align="left">2.7e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">rpl5a</td>
+<td align="right">6.172</td>
+<td align="left">0.01074</td>
+</tr>
+<tr class="even">
+<td align="left">h3f3b.1</td>
+<td align="right">6.046</td>
+<td align="left">0.00252</td>
+</tr>
+<tr class="odd">
+<td align="left">cnbpa</td>
+<td align="right">6.045</td>
+<td align="left">0.00228</td>
+</tr>
+<tr class="even">
+<td align="left">znfl2a</td>
+<td align="right">5.983</td>
+<td align="left">5.4e-05</td>
+</tr>
+<tr class="odd">
+<td align="left">ewsr1b</td>
+<td align="right">5.926</td>
+<td align="left">0.00237</td>
+</tr>
+<tr class="even">
+<td align="left">slc11a2</td>
+<td align="right">5.903</td>
+<td align="left">5.0e-05</td>
+</tr>
+<tr class="odd">
+<td align="left">psma1</td>
+<td align="right">5.889</td>
+<td align="left">0.00319</td>
+</tr>
+<tr class="even">
+<td align="left">snrpb</td>
+<td align="right">5.886</td>
+<td align="left">0.00371</td>
+</tr>
+<tr class="odd">
+<td align="left">hnrnpl2</td>
+<td align="right">5.836</td>
+<td align="left">0.00330</td>
+</tr>
+<tr class="even">
+<td align="left">hnrnpl</td>
+<td align="right">5.778</td>
+<td align="left">0.00350</td>
+</tr>
+<tr class="odd">
+<td align="left">uqcrc1</td>
+<td align="right">5.770</td>
+<td align="left">0.00394</td>
+</tr>
+<tr class="even">
+<td align="left">atf4b</td>
+<td align="right">5.754</td>
+<td align="left">0.01713</td>
+</tr>
+<tr class="odd">
+<td align="left">epn1</td>
+<td align="right">5.748</td>
+<td align="left">2.2e-09</td>
+</tr>
+<tr class="even">
+<td align="left">psmc3</td>
+<td align="right">5.739</td>
+<td align="left">0.00246</td>
+</tr>
+<tr class="odd">
+<td align="left">tyms</td>
+<td align="right">5.724</td>
+<td align="left">1.4e-09</td>
+</tr>
+<tr class="even">
+<td align="left">primpol</td>
+<td align="right">5.701</td>
+<td align="left">3.1e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">krcp</td>
+<td align="right">5.687</td>
+<td align="left">6.2e-07</td>
+</tr>
+<tr class="even">
+<td align="left">slc4a1a</td>
+<td align="right">5.686</td>
+<td align="left">0.01267</td>
+</tr>
+<tr class="odd">
+<td align="left">ska3</td>
+<td align="right">5.684</td>
+<td align="left">0.00352</td>
+</tr>
+<tr class="even">
+<td align="left">si:dkeyp-113d7.1</td>
+<td align="right">5.665</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ccng1</td>
+<td align="right">5.664</td>
+<td align="left">0.01819</td>
+</tr>
+<tr class="even">
+<td align="left">psma2</td>
+<td align="right">5.650</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-3" class="section level3">
+<h3>Cluster 3</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 3</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">zgc:153499</td>
+<td align="right">7.965</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cnksr2b</td>
+<td align="right">7.619</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ctdnep1b</td>
+<td align="right">6.742</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cyp1a</td>
+<td align="right">5.700</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ddit4</td>
+<td align="right">5.546</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">ncalda</td>
+<td align="right">5.228</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">BX324216.3</td>
+<td align="right">5.072</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">tanc1b</td>
+<td align="right">5.034</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">eif1b</td>
+<td align="right">4.980</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">si:dkey-229d11.5</td>
+<td align="right">4.911</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">sox19b</td>
+<td align="right">4.793</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">h1m</td>
+<td align="right">4.782</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">qdpra</td>
+<td align="right">4.694</td>
+<td align="left">6.8e-09</td>
+</tr>
+<tr class="even">
+<td align="left">NC_002333.4</td>
+<td align="right">4.371</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-90l23.1</td>
+<td align="right">4.180</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">tmsb4x</td>
+<td align="right">4.064</td>
+<td align="left">3.5e-06</td>
+</tr>
+<tr class="odd">
+<td align="left">sall4</td>
+<td align="right">4.007</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">zp3e</td>
+<td align="right">3.898</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">rcbtb2</td>
+<td align="right">3.702</td>
+<td align="left">3.5e-07</td>
+</tr>
+<tr class="even">
+<td align="left">LO017877.2</td>
+<td align="right">3.480</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-229d11.3</td>
+<td align="right">3.357</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">fhod1</td>
+<td align="right">3.254</td>
+<td align="left">0.00068</td>
+</tr>
+<tr class="odd">
+<td align="left">nkx2.2a</td>
+<td align="right">3.177</td>
+<td align="left">1.1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">tpm1</td>
+<td align="right">3.143</td>
+<td align="left">2.8e-05</td>
+</tr>
+<tr class="odd">
+<td align="left">scarb1</td>
+<td align="right">3.091</td>
+<td align="left">1.3e-08</td>
+</tr>
+<tr class="even">
+<td align="left">zgc:173544</td>
+<td align="right">2.917</td>
+<td align="left">2.9e-08</td>
+</tr>
+<tr class="odd">
+<td align="left">ednraa</td>
+<td align="right">2.906</td>
+<td align="left">0.47197</td>
+</tr>
+<tr class="even">
+<td align="left">ptenb</td>
+<td align="right">2.898</td>
+<td align="left">1.4e-05</td>
+</tr>
+<tr class="odd">
+<td align="left">larp4ab</td>
+<td align="right">2.816</td>
+<td align="left">0.00018</td>
+</tr>
+<tr class="even">
+<td align="left">BX323564.1</td>
+<td align="right">2.762</td>
+<td align="left">1.5e-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-4" class="section level3">
+<h3>Cluster 4</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 4</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">flt4</td>
+<td align="right">7.072</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">CABZ01058261.1</td>
+<td align="right">6.951</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">rad21a</td>
+<td align="right">6.945</td>
+<td align="left">0.0012</td>
+</tr>
+<tr class="even">
+<td align="left">smc4</td>
+<td align="right">6.817</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">clec14a</td>
+<td align="right">6.701</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cdh5</td>
+<td align="right">6.701</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-30c15.10</td>
+<td align="right">6.635</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">elmo1</td>
+<td align="right">6.593</td>
+<td align="left">0.0015</td>
+</tr>
+<tr class="odd">
+<td align="left">tie1</td>
+<td align="right">6.590</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">si:ch211-14k19.8</td>
+<td align="right">6.538</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">pecam1</td>
+<td align="right">6.470</td>
+<td align="left">1.3e-10</td>
+</tr>
+<tr class="even">
+<td align="left">ptbp1a</td>
+<td align="right">6.389</td>
+<td align="left">0.0012</td>
+</tr>
+<tr class="odd">
+<td align="left">cldn5b</td>
+<td align="right">6.377</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">rasip1</td>
+<td align="right">6.377</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">aplnrb</td>
+<td align="right">6.372</td>
+<td align="left">3.3e-10</td>
+</tr>
+<tr class="even">
+<td align="left">sox18</td>
+<td align="right">6.356</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">cdc42</td>
+<td align="right">6.352</td>
+<td align="left">0.0035</td>
+</tr>
+<tr class="even">
+<td align="left">eif3ba</td>
+<td align="right">6.329</td>
+<td align="left">0.0023</td>
+</tr>
+<tr class="odd">
+<td align="left">myct1a</td>
+<td align="right">6.289</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">etv2</td>
+<td align="right">6.276</td>
+<td align="left">2.5e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">pfn2</td>
+<td align="right">6.274</td>
+<td align="left">0.0022</td>
+</tr>
+<tr class="even">
+<td align="left">kirrel3l</td>
+<td align="right">6.264</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">mrc1a</td>
+<td align="right">6.246</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">lsp1b</td>
+<td align="right">6.236</td>
+<td align="left">0.0021</td>
+</tr>
+<tr class="odd">
+<td align="left">tjp1a</td>
+<td align="right">6.189</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">ramp2</td>
+<td align="right">6.169</td>
+<td align="left">2.8e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-28n18.9</td>
+<td align="right">6.139</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">plvapb</td>
+<td align="right">6.118</td>
+<td align="left">5.8e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ifi30</td>
+<td align="right">6.109</td>
+<td align="left">0.0030</td>
+</tr>
+<tr class="even">
+<td align="left">arpc2</td>
+<td align="right">6.100</td>
+<td align="left">0.0029</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-5" class="section level3">
+<h3>Cluster 5</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 5</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lyz</td>
+<td align="right">7.201</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">abcc13</td>
+<td align="right">6.932</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">neu3.3</td>
+<td align="right">6.634</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">gusb</td>
+<td align="right">6.440</td>
+<td align="left">0.0015</td>
+</tr>
+<tr class="odd">
+<td align="left">npsn</td>
+<td align="right">6.065</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">fgfbp2b</td>
+<td align="right">5.708</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">hyal4</td>
+<td align="right">5.667</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">si:ch1073-429i10.1</td>
+<td align="right">5.413</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">clrn3</td>
+<td align="right">5.367</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">lsp1b</td>
+<td align="right">5.096</td>
+<td align="left">0.0074</td>
+</tr>
+<tr class="odd">
+<td align="left">tert</td>
+<td align="right">4.980</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">pald1a</td>
+<td align="right">4.915</td>
+<td align="left">0.0187</td>
+</tr>
+<tr class="odd">
+<td align="left">mtr</td>
+<td align="right">4.892</td>
+<td align="left">4.2e-09</td>
+</tr>
+<tr class="even">
+<td align="left">FO681286.1</td>
+<td align="right">4.802</td>
+<td align="left">2.7e-09</td>
+</tr>
+<tr class="odd">
+<td align="left">ednraa</td>
+<td align="right">4.793</td>
+<td align="left">0.0696</td>
+</tr>
+<tr class="even">
+<td align="left">mmp13a</td>
+<td align="right">4.734</td>
+<td align="left">3.4e-09</td>
+</tr>
+<tr class="odd">
+<td align="left">mpx</td>
+<td align="right">4.639</td>
+<td align="left">1.8e-08</td>
+</tr>
+<tr class="even">
+<td align="left">zgc:153499</td>
+<td align="right">4.577</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">FO704772.3</td>
+<td align="right">4.479</td>
+<td align="left">0.0687</td>
+</tr>
+<tr class="even">
+<td align="left">slc38a3a</td>
+<td align="right">4.402</td>
+<td align="left">1.5e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">pfkmb</td>
+<td align="right">4.390</td>
+<td align="left">1.6e-09</td>
+</tr>
+<tr class="even">
+<td align="left">RANBP2</td>
+<td align="right">4.372</td>
+<td align="left">0.0257</td>
+</tr>
+<tr class="odd">
+<td align="left">hbs1l</td>
+<td align="right">4.285</td>
+<td align="left">4.4e-08</td>
+</tr>
+<tr class="even">
+<td align="left">cotl1</td>
+<td align="right">4.267</td>
+<td align="left">0.1847</td>
+</tr>
+<tr class="odd">
+<td align="left">lcp1</td>
+<td align="right">4.227</td>
+<td align="left">8.4e-06</td>
+</tr>
+<tr class="even">
+<td align="left">dusp5</td>
+<td align="right">4.169</td>
+<td align="left">0.1340</td>
+</tr>
+<tr class="odd">
+<td align="left">c1qtnf6b</td>
+<td align="right">4.089</td>
+<td align="left">5.6e-07</td>
+</tr>
+<tr class="even">
+<td align="left">CR384075.1</td>
+<td align="right">4.052</td>
+<td align="left">4.4e-06</td>
+</tr>
+<tr class="odd">
+<td align="left">zgc:92140</td>
+<td align="right">3.951</td>
+<td align="left">0.0556</td>
+</tr>
+<tr class="even">
+<td align="left">coro1a</td>
+<td align="right">3.859</td>
+<td align="left">4.5e-07</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-6" class="section level3">
+<h3>Cluster 6</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 6</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">he1.2</td>
+<td align="right">10.811</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">he1.1</td>
+<td align="right">10.788</td>
+<td align="left">1.2e-09</td>
+</tr>
+<tr class="odd">
+<td align="left">actc1b</td>
+<td align="right">10.588</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">pvalb1</td>
+<td align="right">10.057</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">krt4</td>
+<td align="right">9.328</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">pvalb2</td>
+<td align="right">9.098</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">krt91</td>
+<td align="right">9.064</td>
+<td align="left">1.8e-10</td>
+</tr>
+<tr class="even">
+<td align="left">fabp11a</td>
+<td align="right">9.008</td>
+<td align="left">3.6e-09</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-239j18.2</td>
+<td align="right">8.918</td>
+<td align="left">2.2e-08</td>
+</tr>
+<tr class="even">
+<td align="left">krtt1c19e</td>
+<td align="right">8.914</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">mylz3</td>
+<td align="right">8.894</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">zgc:174855</td>
+<td align="right">8.688</td>
+<td align="left">2.0e-08</td>
+</tr>
+<tr class="odd">
+<td align="left">ckmb</td>
+<td align="right">8.592</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">zgc:174154</td>
+<td align="right">8.491</td>
+<td align="left">4.1e-09</td>
+</tr>
+<tr class="odd">
+<td align="left">mylpfa</td>
+<td align="right">8.451</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">rbp4</td>
+<td align="right">8.315</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">sall4</td>
+<td align="right">8.006</td>
+<td align="left">8.9e-10</td>
+</tr>
+<tr class="even">
+<td align="left">ctrb1</td>
+<td align="right">7.824</td>
+<td align="left">0.0017</td>
+</tr>
+<tr class="odd">
+<td align="left">atp2a1</td>
+<td align="right">7.729</td>
+<td align="left">0.0019</td>
+</tr>
+<tr class="even">
+<td align="left">si:dkey-269i1.4</td>
+<td align="right">7.715</td>
+<td align="left">0.0016</td>
+</tr>
+<tr class="odd">
+<td align="left">zgc:153499</td>
+<td align="right">7.665</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">si:dkey-269i1.4</td>
+<td align="right">7.599</td>
+<td align="left">0.0017</td>
+</tr>
+<tr class="odd">
+<td align="left">ctslb</td>
+<td align="right">7.572</td>
+<td align="left">0.0017</td>
+</tr>
+<tr class="even">
+<td align="left">prss59.2</td>
+<td align="right">7.169</td>
+<td align="left">0.0018</td>
+</tr>
+<tr class="odd">
+<td align="left">si:dkey-229d11.3</td>
+<td align="right">7.148</td>
+<td align="left">0.0017</td>
+</tr>
+<tr class="even">
+<td align="left">cyt1l</td>
+<td align="right">7.107</td>
+<td align="left">0.0018</td>
+</tr>
+<tr class="odd">
+<td align="left">ctdnep1b</td>
+<td align="right">6.975</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">prss1</td>
+<td align="right">6.857</td>
+<td align="left">0.0180</td>
+</tr>
+<tr class="odd">
+<td align="left">cnksr2b</td>
+<td align="right">6.793</td>
+<td align="left">0.0035</td>
+</tr>
+<tr class="even">
+<td align="left">h1m</td>
+<td align="right">6.637</td>
+<td align="left">0.0058</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-7" class="section level3">
+<h3>Cluster 7</h3>
+<table>
+<caption>Top 30 Upregulated Markers for Cluster 7</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lcp1</td>
+<td align="right">9.948</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">coro1a</td>
+<td align="right">9.671</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">mrps15</td>
+<td align="right">9.167</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">tktb</td>
+<td align="right">8.940</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">arhgdig</td>
+<td align="right">8.884</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">myh9a</td>
+<td align="right">8.814</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">pkma</td>
+<td align="right">8.781</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">scinlb</td>
+<td align="right">8.730</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">gpia</td>
+<td align="right">8.672</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">mmp9</td>
+<td align="right">8.658</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">rac2</td>
+<td align="right">8.220</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">dusp2</td>
+<td align="right">8.200</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">mpx</td>
+<td align="right">8.010</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">arpc4</td>
+<td align="right">7.992</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">gsr</td>
+<td align="right">7.915</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">taldo1</td>
+<td align="right">7.799</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">CU499336.2</td>
+<td align="right">7.776</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cebpb</td>
+<td align="right">7.645</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">ncf1</td>
+<td align="right">7.578</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">elovl1b</td>
+<td align="right">7.559</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">spi1b</td>
+<td align="right">7.534</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">cfbl</td>
+<td align="right">7.461</td>
+<td align="left">1.3e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">si:ch1073-429i10.1</td>
+<td align="right">7.441</td>
+<td align="left">2.3e-09</td>
+</tr>
+<tr class="even">
+<td align="left">laptm5</td>
+<td align="right">7.431</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">pgk1</td>
+<td align="right">7.423</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">itgb2</td>
+<td align="right">7.411</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">myh11a</td>
+<td align="right">7.396</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">aldh8a1</td>
+<td align="right">7.392</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">fcer1gl</td>
+<td align="right">7.304</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">mapre1a</td>
+<td align="right">7.231</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="heatmap-of-specific-markers" class="section level1">
+<h1>8 Heatmap of Specific Markers</h1>
+<p><img src="02_files/figure-html/marker-heatmap-1.png" width="768" /></p>
+</div>
+<div id="violin-plots-for-specific-markers" class="section level1">
+<h1>9 Violin Plots for Specific Markers</h1>
+<p><img src="02_files/figure-html/marker-violins-1.png" width="768" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

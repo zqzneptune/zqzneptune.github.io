@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Qingzhou Zhang (zqzneptune@gmail.com)" />
+
+<meta name="date" content="2025-04-10" />
+
+<title>Clustering and Marker Identification</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PRJNA626450</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="00.html">
+    <span class="fa fa-download"></span>
+     
+    1. Data
+  </a>
+</li>
+<li>
+  <a href="01.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    2. QC and Preprocessing
+  </a>
+</li>
+<li>
+  <a href="02.html">
+    <span class="fa fa-layer-group"></span>
+     
+    3. Clustering
+  </a>
+</li>
+<li>
+  <a href="03.html">
+    <span class="fa fa-route"></span>
+     
+    4. Trajectory
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Clustering and Marker Identification</h1>
+<h4 class="author">Qingzhou Zhang (<a href="mailto:zqzneptune@gmail.com"
+class="email">zqzneptune@gmail.com</a>)</h4>
+<h4 class="date">2025-04-10</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This report details the downstream analysis of the filtered
+single-cell RNA-seq data, starting from the quality-controlled
+<code>SingleCellExperiment</code> object (<code>sce_filtered</code>).
+The analysis includes:</p>
+<ol style="list-style-type: decimal">
+<li>Normalization of counts.</li>
+<li>Identification of highly variable genes (HVGs).</li>
+<li>Dimensionality reduction using Principal Component Analysis
+(PCA).</li>
+<li>Cell clustering using graph-based methods.</li>
+<li>Visualization using UMAP.</li>
+<li>Identification of marker genes for each cluster.</li>
+</ol>
+</div>
+<div id="load-filtered-data" class="section level1">
+<h1>1. Load Filtered Data</h1>
+<p>We load the <code>sce_filtered</code> object generated in the
+previous QC step.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;sce_filtered_presentation.rds&quot;</span>) </span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;sce_filtered&quot;</span>)) {</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;The &#39;sce_filtered&#39; object was not found. Please load it from &#39;sce_filtered.rds&#39; or ensure it&#39;s in the environment.&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>The filtered object contains 38886 genes and 170 cells.</p>
+</div>
+<div id="normalization" class="section level1">
+<h1>2. Normalization</h1>
+<p>We normalize the raw counts to account for differences in library
+size and capture efficiency between cells. We use the
+<code>computeLibraryFactors</code> function from <code>scran</code>
+followed by <code>logNormCounts</code> from <code>scater</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> <span class="fu">computeLibraryFactors</span>(sce_filtered)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(sce_filtered)</span></code></pre></div>
+<p>The <code>logcounts</code> assay now contains normalized expression
+values suitable for downstream analysis.</p>
+</div>
+<div id="feature-selection-highly-variable-genes"
+class="section level1">
+<h1>3. Feature Selection (Highly Variable Genes)</h1>
+<p>We focus downstream analysis on genes that exhibit high biological
+variability across cells.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>gene_var <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(sce_filtered)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>n_hvgs <span class="ot">&lt;-</span> <span class="dv">2500</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>top_hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(gene_var, <span class="at">n =</span> n_hvgs) </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">plot</span>(gene_var<span class="sc">$</span>mean, gene_var<span class="sc">$</span>total, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Mean log-expression&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Variance of log-expression&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">metadata</span>(gene_var)<span class="sc">$</span><span class="fu">trend</span>(x), <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">points</span>(gene_var<span class="sc">$</span>mean[top_hvgs], gene_var<span class="sc">$</span>total[top_hvgs], <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;All genes&quot;</span>, <span class="st">&quot;Fitted trend&quot;</span>, <span class="st">&quot;Top HVGs&quot;</span>), </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>       <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">bty=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Gene Variance vs Mean&quot;</span>)</span></code></pre></div>
+<p><img src="02_files/figure-html/feature-selection-hvg-1.png" width="768" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">metadata</span>(sce_filtered)<span class="sc">$</span>hvg <span class="ot">&lt;-</span> top_hvgs</span></code></pre></div>
+<p>We selected the top 2500 HVGs for dimensionality reduction.</p>
+</div>
+<div id="dimensionality-reduction-pca" class="section level1">
+<h1>4. Dimensionality Reduction (PCA)</h1>
+<p>We perform PCA on the log-normalized counts, using only the selected
+HVGs.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>) </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> <span class="fu">runPCA</span>(sce_filtered, </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                       <span class="at">subset_row =</span> top_hvgs, </span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                       <span class="at">ncomponents =</span> <span class="dv">50</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                       <span class="at">BSPARAM =</span> BiocSingular<span class="sc">::</span><span class="fu">RandomParam</span>()) </span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">plotReducedDim</span>(sce_filtered, <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>               <span class="at">colour_by =</span> <span class="cn">NULL</span>) <span class="sc">+</span> </span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;PCA Variance Explained&quot;</span>) </span></code></pre></div>
+<p><img src="02_files/figure-html/dimensionality-reduction-pca-1.png" width="768" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>npcs_to_use <span class="ot">&lt;-</span> <span class="dv">20</span> </span></code></pre></div>
+<p>PCA was performed using the HVGs. The variance explained plot helps
+decide how many PCs capture significant biological variation. We will
+proceed using the top 20 PCs.</p>
+</div>
+<div id="clustering" class="section level1">
+<h1>5. Clustering</h1>
+<p>We perform graph-based clustering on the PCA reduced dimensions.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">789</span>) </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>snn_graph <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(sce_filtered, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                           <span class="at">k =</span> <span class="dv">10</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                           <span class="at">use.dimred =</span> <span class="st">&quot;PCA&quot;</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                           <span class="at">BPPARAM =</span> bp_param, </span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                           <span class="at">type =</span> <span class="st">&quot;jaccard&quot;</span>) </span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>clusters <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">cluster_walktrap</span>(snn_graph)<span class="sc">$</span>membership</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>sce_filtered<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">factor</span>(clusters)</span></code></pre></div>
+<p>The analysis identified 3 clusters. The table generated in the hidden
+chunk shows the number of cells assigned to each cluster.</p>
+</div>
+<div id="visualization-umap" class="section level1">
+<h1>6. Visualization (UMAP)</h1>
+<p>We use UMAP to visualize the high-dimensional data in two
+dimensions.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1011</span>) </span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> <span class="fu">runUMAP</span>(sce_filtered, </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                        <span class="at">dimred =</span> <span class="st">&quot;PCA&quot;</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                        <span class="at">n_dimred =</span> npcs_to_use, </span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                        <span class="at">BPPARAM =</span> bp_param) </span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>num_clusters <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster))</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="cf">if</span> (num_clusters <span class="sc">&gt;</span> <span class="fu">length</span>(cluster_colors)) {</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  umap_colors <span class="ot">&lt;-</span> <span class="fu">rep</span>(cluster_colors, <span class="at">length.out =</span> num_clusters)</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  umap_colors <span class="ot">&lt;-</span> cluster_colors[<span class="dv">1</span><span class="sc">:</span>num_clusters]</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>}</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="fu">names</span>(umap_colors) <span class="ot">&lt;-</span> <span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">plotReducedDim</span>(sce_filtered, <span class="at">dimred =</span> <span class="st">&quot;UMAP&quot;</span>, <span class="at">colour_by =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">text_by =</span> <span class="st">&quot;cluster&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> umap_colors) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;UMAP colored by Cluster&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span></code></pre></div>
+<p><img src="02_files/figure-html/visualization-umap-1.png" width="768" /></p>
+<p>The UMAP plot shows the separation of the identified cell clusters in
+two dimensions.</p>
+</div>
+<div id="marker-gene-identification" class="section level1">
+<h1>7. Marker Gene Identification</h1>
+<p>We identify marker genes for each cluster using
+<code>scran::findMarkers</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1213</span>) </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>marker_results <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(sce_filtered, </span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                              <span class="at">groups =</span> sce_filtered<span class="sc">$</span>cluster, </span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                              <span class="at">test.type =</span> <span class="st">&quot;t&quot;</span>, </span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                              <span class="at">direction =</span> <span class="st">&quot;up&quot;</span>, </span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>                              <span class="at">lfc =</span> <span class="dv">1</span>, </span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>                              <span class="at">pval.type =</span> <span class="st">&quot;some&quot;</span>, </span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>                              <span class="at">BPPARAM =</span> bp_param) </span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>n_top_markers_show <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="fu">metadata</span>(sce_filtered)<span class="sc">$</span>markers <span class="ot">&lt;-</span> marker_results</span></code></pre></div>
+<p>Marker genes were identified for each cluster. The tables (generated
+invisibly above but summarized in section 8.3) show the top 5
+upregulated genes for each cluster based on LogFC.</p>
+</div>
+<div id="marker-visualization" class="section level1">
+<h1>8. Marker Visualization</h1>
+<p>We visualize the expression of the top marker genes.</p>
+<div id="heatmap-of-top-markers" class="section level2">
+<h2>8.1 Heatmap of Top Markers</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>n_heatmap_markers <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>top_markers_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="cf">for</span> (cluster_id <span class="cf">in</span> <span class="fu">names</span>(marker_results)) {</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    markers_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(marker_results[[cluster_id]])</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered))) {</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>      markers_df<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rowData</span>(sce_filtered)[<span class="fu">rownames</span>(markers_df), <span class="st">&quot;symbol&quot;</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>      markers_df<span class="sc">$</span>display_name <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(markers_df<span class="sc">$</span>symbol) <span class="sc">|</span> markers_df<span class="sc">$</span>symbol <span class="sc">==</span> <span class="st">&quot;&quot;</span>, <span class="fu">rownames</span>(markers_df), markers_df<span class="sc">$</span>symbol)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>      markers_df<span class="sc">$</span>display_name <span class="ot">&lt;-</span> <span class="fu">rownames</span>(markers_df)</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    }</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    top_markers_list[[cluster_id]] <span class="ot">&lt;-</span> markers_df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(summary.logFC)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(n_heatmap_markers) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(display_name)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>}</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>all_top_markers <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(top_markers_list))</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered))) {</span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>  rd <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">rowData</span>(sce_filtered)) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(symbol) <span class="sc">&amp;</span> symbol <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>  symbol_to_ensembl <span class="ot">&lt;-</span> <span class="fu">setNames</span>(rd<span class="sc">$</span>gene_id, rd<span class="sc">$</span>symbol) </span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>  symbol_to_ensembl <span class="ot">&lt;-</span> symbol_to_ensembl[<span class="sc">!</span><span class="fu">duplicated</span>(<span class="fu">names</span>(symbol_to_ensembl))] </span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>  </span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>  marker_ensembl_ids <span class="ot">&lt;-</span> <span class="fu">sapply</span>(all_top_markers, <span class="cf">function</span>(x) {</span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>    id <span class="ot">&lt;-</span> symbol_to_ensembl[x]</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(id)) { </span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>      <span class="cf">if</span> (x <span class="sc">%in%</span> <span class="fu">rownames</span>(sce_filtered)) <span class="fu">return</span>(x) <span class="cf">else</span> <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>    }</span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>    <span class="fu">return</span>(id)</span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>  }, <span class="at">USE.NAMES =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>  marker_ensembl_ids <span class="ot">&lt;-</span> marker_ensembl_ids[<span class="sc">!</span><span class="fu">is.na</span>(marker_ensembl_ids)]</span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a>  marker_ensembl_ids <span class="ot">&lt;-</span> all_top_markers </span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a>}</span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a>marker_ensembl_ids <span class="ot">&lt;-</span> <span class="fu">intersect</span>(marker_ensembl_ids, <span class="fu">rownames</span>(sce_filtered))</span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(marker_ensembl_ids) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a>  marker_logcounts <span class="ot">&lt;-</span> <span class="fu">assay</span>(sce_filtered, <span class="st">&quot;logcounts&quot;</span>)[marker_ensembl_ids, , drop<span class="ot">=</span><span class="cn">FALSE</span>]</span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a>  cell_order <span class="ot">&lt;-</span> <span class="fu">order</span>(sce_filtered<span class="sc">$</span>cluster)</span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a>  annotation_col <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a>    <span class="at">Cluster =</span> sce_filtered<span class="sc">$</span>cluster[cell_order]</span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a>  )</span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a>  <span class="fu">rownames</span>(annotation_col) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(sce_filtered)[cell_order]</span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a>  num_clusters <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster))</span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a>  <span class="cf">if</span> (num_clusters <span class="sc">&gt;</span> <span class="fu">length</span>(cluster_colors)) {</span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a>    anno_colors_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(cluster_colors, <span class="at">length.out =</span> num_clusters)</span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a>    anno_colors_vec <span class="ot">&lt;-</span> cluster_colors[<span class="dv">1</span><span class="sc">:</span>num_clusters]</span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a>  }</span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a>  <span class="fu">names</span>(anno_colors_vec) <span class="ot">&lt;-</span> <span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster)</span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a>  annotation_colors <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Cluster =</span> anno_colors_vec)</span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a>  <span class="fu">pheatmap</span>(marker_logcounts[, cell_order], </span>
+<span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a>           <span class="at">scale =</span> <span class="st">&quot;row&quot;</span>, </span>
+<span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a>           <span class="at">cluster_rows =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a>           <span class="at">cluster_cols =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a>           <span class="at">show_colnames =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a>           <span class="at">annotation_col =</span> annotation_col,</span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a>           <span class="at">annotation_colors =</span> annotation_colors,</span>
+<span id="cb10-59"><a href="#cb10-59" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;firebrick3&quot;</span>))(<span class="dv">50</span>), </span>
+<span id="cb10-60"><a href="#cb10-60" tabindex="-1"></a>           <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;Top&quot;</span>, n_heatmap_markers, <span class="st">&quot;Markers per Cluster&quot;</span>),</span>
+<span id="cb10-61"><a href="#cb10-61" tabindex="-1"></a>           <span class="at">fontsize_row =</span> <span class="dv">8</span>, </span>
+<span id="cb10-62"><a href="#cb10-62" tabindex="-1"></a>           <span class="at">labels_row =</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(marker_logcounts), <span class="cf">function</span>(x) {</span>
+<span id="cb10-63"><a href="#cb10-63" tabindex="-1"></a>               sym <span class="ot">&lt;-</span> <span class="fu">rowData</span>(sce_filtered)[x, <span class="st">&quot;symbol&quot;</span>]</span>
+<span id="cb10-64"><a href="#cb10-64" tabindex="-1"></a>               <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(sym) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sym) <span class="sc">&amp;&amp;</span> sym <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="fu">return</span>(sym) <span class="cf">else</span> <span class="fu">return</span>(x)</span>
+<span id="cb10-65"><a href="#cb10-65" tabindex="-1"></a>             })</span>
+<span id="cb10-66"><a href="#cb10-66" tabindex="-1"></a>           )</span>
+<span id="cb10-67"><a href="#cb10-67" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="02_files/figure-html/marker-heatmap-1.png" width="768" /></p>
+<p>The heatmap displays the scaled log-normalized expression of the top
+marker genes across cells, ordered by cluster assignment. Rows (genes)
+are clustered, while columns (cells) are grouped by cluster.</p>
+</div>
+<div id="violin-plots-for-specific-markers" class="section level2">
+<h2>8.2 Violin Plots for Specific Markers</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">&quot;marker_results&quot;</span>) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(marker_results) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(marker_results) <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">&quot;top_markers_list&quot;</span>)) {</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  markers_to_plot_names <span class="ot">&lt;-</span> <span class="fu">c</span>() </span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  n_violin_markers_per_cluster <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="cf">for</span> (cluster_id <span class="cf">in</span> <span class="fu">names</span>(top_markers_list)) {</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    markers_to_plot_names <span class="ot">&lt;-</span> <span class="fu">c</span>(markers_to_plot_names, <span class="fu">head</span>(top_markers_list[[cluster_id]], n_violin_markers_per_cluster))</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  }</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  markers_to_plot_names <span class="ot">&lt;-</span> <span class="fu">unique</span>(markers_to_plot_names) </span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(markers_to_plot_names) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>    </span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>    possible_features_ids <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce_filtered)</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>    possible_features_symbols <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>    <span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered))) {</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>       possible_features_symbols <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">rowData</span>(sce_filtered)<span class="sc">$</span>symbol)</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>       possible_features_symbols <span class="ot">&lt;-</span> possible_features_symbols[possible_features_symbols <span class="sc">!=</span> <span class="st">&quot;&quot;</span>] </span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>    }</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>    </span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>    features_for_plot_ids <span class="ot">&lt;-</span> <span class="fu">c</span>() </span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>    symbol_map_for_plotting <span class="ot">&lt;-</span> <span class="fu">list</span>() </span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>    <span class="cf">for</span> (marker_name <span class="cf">in</span> markers_to_plot_names) {</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>        ensembl_id <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>        display_name <span class="ot">&lt;-</span> marker_name </span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>        </span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a>        <span class="cf">if</span> (marker_name <span class="sc">%in%</span> possible_features_ids) { </span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a>            ensembl_id <span class="ot">&lt;-</span> marker_name</span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>            <span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered))) {</span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>                symbol_val <span class="ot">&lt;-</span> <span class="fu">rowData</span>(sce_filtered)[ensembl_id, <span class="st">&quot;symbol&quot;</span>]</span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>                <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(symbol_val) <span class="sc">&amp;&amp;</span> symbol_val <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>                    display_name <span class="ot">&lt;-</span> symbol_val</span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>                }</span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>            }</span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered)) <span class="sc">&amp;&amp;</span> marker_name <span class="sc">%in%</span> possible_features_symbols) {</span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a>            ensembl_id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce_filtered)[<span class="fu">match</span>(marker_name, <span class="fu">rowData</span>(sce_filtered)<span class="sc">$</span>symbol)]</span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>            display_name <span class="ot">&lt;-</span> marker_name </span>
+<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a>        }</span>
+<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a>        </span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(ensembl_id) <span class="sc">&amp;&amp;</span> ensembl_id <span class="sc">%in%</span> <span class="fu">rownames</span>(sce_filtered)) {</span>
+<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a>           features_for_plot_ids <span class="ot">&lt;-</span> <span class="fu">c</span>(features_for_plot_ids, ensembl_id)</span>
+<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a>           symbol_map_for_plotting[[ensembl_id]] <span class="ot">&lt;-</span> display_name</span>
+<span id="cb11-42"><a href="#cb11-42" tabindex="-1"></a>        }</span>
+<span id="cb11-43"><a href="#cb11-43" tabindex="-1"></a>    }</span>
+<span id="cb11-44"><a href="#cb11-44" tabindex="-1"></a>    </span>
+<span id="cb11-45"><a href="#cb11-45" tabindex="-1"></a>    features_for_plot_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(features_for_plot_ids) </span>
+<span id="cb11-46"><a href="#cb11-46" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(features_for_plot_ids) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb11-48"><a href="#cb11-48" tabindex="-1"></a>        </span>
+<span id="cb11-49"><a href="#cb11-49" tabindex="-1"></a>        plot_list <span class="ot">&lt;-</span> <span class="fu">list</span>() </span>
+<span id="cb11-50"><a href="#cb11-50" tabindex="-1"></a>        </span>
+<span id="cb11-51"><a href="#cb11-51" tabindex="-1"></a>        num_clusters <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster))</span>
+<span id="cb11-52"><a href="#cb11-52" tabindex="-1"></a>        <span class="cf">if</span> (num_clusters <span class="sc">&gt;</span> <span class="fu">length</span>(cluster_colors)) {</span>
+<span id="cb11-53"><a href="#cb11-53" tabindex="-1"></a>          violin_colors_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(cluster_colors, <span class="at">length.out =</span> num_clusters)</span>
+<span id="cb11-54"><a href="#cb11-54" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb11-55"><a href="#cb11-55" tabindex="-1"></a>          violin_colors_vec <span class="ot">&lt;-</span> cluster_colors[<span class="dv">1</span><span class="sc">:</span>num_clusters]</span>
+<span id="cb11-56"><a href="#cb11-56" tabindex="-1"></a>        }</span>
+<span id="cb11-57"><a href="#cb11-57" tabindex="-1"></a>        <span class="fu">names</span>(violin_colors_vec) <span class="ot">&lt;-</span> <span class="fu">levels</span>(sce_filtered<span class="sc">$</span>cluster)</span>
+<span id="cb11-58"><a href="#cb11-58" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" tabindex="-1"></a>        <span class="cf">for</span> (feature_id <span class="cf">in</span> features_for_plot_ids) {</span>
+<span id="cb11-60"><a href="#cb11-60" tabindex="-1"></a>            feature_display_name <span class="ot">&lt;-</span> symbol_map_for_plotting[[feature_id]] </span>
+<span id="cb11-61"><a href="#cb11-61" tabindex="-1"></a>            </span>
+<span id="cb11-62"><a href="#cb11-62" tabindex="-1"></a>            p <span class="ot">&lt;-</span> <span class="fu">plotExpression</span>(sce_filtered, </span>
+<span id="cb11-63"><a href="#cb11-63" tabindex="-1"></a>                               <span class="at">features =</span> feature_id, </span>
+<span id="cb11-64"><a href="#cb11-64" tabindex="-1"></a>                               <span class="at">x =</span> <span class="st">&quot;cluster&quot;</span>, </span>
+<span id="cb11-65"><a href="#cb11-65" tabindex="-1"></a>                               <span class="at">colour_by =</span> <span class="st">&quot;cluster&quot;</span>,</span>
+<span id="cb11-66"><a href="#cb11-66" tabindex="-1"></a>                               <span class="at">point_alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb11-67"><a href="#cb11-67" tabindex="-1"></a>                               <span class="at">point_size =</span> <span class="fl">0.8</span>,  </span>
+<span id="cb11-68"><a href="#cb11-68" tabindex="-1"></a>                               <span class="at">add_legend =</span> <span class="cn">FALSE</span> </span>
+<span id="cb11-69"><a href="#cb11-69" tabindex="-1"></a>                               ) <span class="sc">+</span></span>
+<span id="cb11-70"><a href="#cb11-70" tabindex="-1"></a>              <span class="fu">scale_color_manual</span>(<span class="at">values =</span> violin_colors_vec) <span class="sc">+</span> </span>
+<span id="cb11-71"><a href="#cb11-71" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-72"><a href="#cb11-72" tabindex="-1"></a>              <span class="fu">ggtitle</span>(feature_display_name) </span>
+<span id="cb11-73"><a href="#cb11-73" tabindex="-1"></a>              </span>
+<span id="cb11-74"><a href="#cb11-74" tabindex="-1"></a>            plot_list[[feature_display_name]] <span class="ot">&lt;-</span> p </span>
+<span id="cb11-75"><a href="#cb11-75" tabindex="-1"></a>        }</span>
+<span id="cb11-76"><a href="#cb11-76" tabindex="-1"></a>        </span>
+<span id="cb11-77"><a href="#cb11-77" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">length</span>(plot_list) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb11-78"><a href="#cb11-78" tabindex="-1"></a>          n_plots <span class="ot">&lt;-</span> <span class="fu">length</span>(plot_list)</span>
+<span id="cb11-79"><a href="#cb11-79" tabindex="-1"></a>          n_cols <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">3</span>, <span class="fu">ceiling</span>(<span class="fu">sqrt</span>(n_plots))) </span>
+<span id="cb11-80"><a href="#cb11-80" tabindex="-1"></a>          <span class="fu">print</span>(<span class="fu">wrap_plots</span>(plot_list, <span class="at">ncol =</span> n_cols)) </span>
+<span id="cb11-81"><a href="#cb11-81" tabindex="-1"></a>        }</span>
+<span id="cb11-82"><a href="#cb11-82" tabindex="-1"></a>    }</span>
+<span id="cb11-83"><a href="#cb11-83" tabindex="-1"></a>  }</span>
+<span id="cb11-84"><a href="#cb11-84" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="02_files/figure-html/marker-violins-1.png" width="768" /></p>
+<p>These violin plots illustrate the expression distribution of selected
+top marker genes across all identified clusters.</p>
+</div>
+<div id="top-marker-gene-tables-per-cluster" class="section level2">
+<h2>8.3 Top Marker Gene Tables per Cluster</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>n_markers_table <span class="ot">&lt;-</span> <span class="dv">15</span> </span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">&quot;marker_results&quot;</span>) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(marker_results) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(marker_results) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  </span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="cf">for</span> (cluster_id <span class="cf">in</span> <span class="fu">names</span>(marker_results)) {</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">### Cluster &quot;</span>, cluster_id, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    markers_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(marker_results[[cluster_id]])</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>    <span class="cf">if</span> (<span class="st">&quot;symbol&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">rowData</span>(sce_filtered))) {</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>      markers_df<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rowData</span>(sce_filtered)[<span class="fu">rownames</span>(markers_df), <span class="st">&quot;symbol&quot;</span>]</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>      markers_df<span class="sc">$</span>symbol <span class="ot">&lt;-</span> <span class="fu">rownames</span>(markers_df) </span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    }</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>    markers_df <span class="ot">&lt;-</span> markers_df <span class="sc">%&gt;%</span> </span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">display_symbol =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(symbol) <span class="sc">|</span> symbol <span class="sc">==</span> <span class="st">&quot;&quot;</span>, <span class="fu">rownames</span>(markers_df), symbol))</span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>      </span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a>    top_markers_table <span class="ot">&lt;-</span> markers_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(summary.logFC)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a>      <span class="fu">slice_head</span>(<span class="at">n =</span> n_markers_table) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a>      <span class="fu">select</span>(</span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>        <span class="at">Gene =</span> display_symbol, </span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>        <span class="at">LogFC =</span> summary.logFC, </span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a>        <span class="at">PValue =</span> p.value</span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a>        <span class="at">LogFC =</span> <span class="fu">round</span>(LogFC, <span class="dv">3</span>),</span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>        <span class="at">PValue =</span> <span class="fu">format.pval</span>(PValue, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">eps =</span> <span class="fl">1e-10</span>) </span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a>      )</span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a>      </span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">nrow</span>(top_markers_table) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a>      table_caption <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Top&quot;</span>, <span class="fu">nrow</span>(top_markers_table), <span class="st">&quot;Upregulated Markers for Cluster&quot;</span>, cluster_id)</span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a>      </span>
+<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a>      <span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(top_markers_table, <span class="at">caption =</span> table_caption, <span class="at">row.names =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb12-34"><a href="#cb12-34" tabindex="-1"></a>      </span>
+<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>) </span>
+<span id="cb12-36"><a href="#cb12-36" tabindex="-1"></a>      </span>
+<span id="cb12-37"><a href="#cb12-37" tabindex="-1"></a>    }</span>
+<span id="cb12-38"><a href="#cb12-38" tabindex="-1"></a>  } </span>
+<span id="cb12-39"><a href="#cb12-39" tabindex="-1"></a>  </span>
+<span id="cb12-40"><a href="#cb12-40" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb12-41"><a href="#cb12-41" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Marker identification results (`marker_results`) not found or empty. Cannot display tables.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" tabindex="-1"></a>}</span></code></pre></div>
+<div id="cluster-1" class="section level3">
+<h3>Cluster 1</h3>
+<table>
+<caption>Top 15 Upregulated Markers for Cluster 1</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Glmp</td>
+<td align="right">3.310</td>
+<td align="left">0.00025</td>
+</tr>
+<tr class="even">
+<td align="left">Fxyd5</td>
+<td align="right">3.184</td>
+<td align="left">0.00113</td>
+</tr>
+<tr class="odd">
+<td align="left">Tmed7</td>
+<td align="right">3.138</td>
+<td align="left">0.00011</td>
+</tr>
+<tr class="even">
+<td align="left">Mxd4</td>
+<td align="right">3.070</td>
+<td align="left">0.00062</td>
+</tr>
+<tr class="odd">
+<td align="left">Yif1b</td>
+<td align="right">2.946</td>
+<td align="left">0.00183</td>
+</tr>
+<tr class="even">
+<td align="left">H2-K1</td>
+<td align="right">2.908</td>
+<td align="left">0.00470</td>
+</tr>
+<tr class="odd">
+<td align="left">Sra1</td>
+<td align="right">2.896</td>
+<td align="left">0.00162</td>
+</tr>
+<tr class="even">
+<td align="left">C1ra</td>
+<td align="right">2.865</td>
+<td align="left">0.00308</td>
+</tr>
+<tr class="odd">
+<td align="left">Il6st</td>
+<td align="right">2.850</td>
+<td align="left">0.00167</td>
+</tr>
+<tr class="even">
+<td align="left">P3h3</td>
+<td align="right">2.839</td>
+<td align="left">0.00118</td>
+</tr>
+<tr class="odd">
+<td align="left">G3bp1</td>
+<td align="right">2.786</td>
+<td align="left">0.00195</td>
+</tr>
+<tr class="even">
+<td align="left">Nipbl</td>
+<td align="right">2.761</td>
+<td align="left">0.00157</td>
+</tr>
+<tr class="odd">
+<td align="left">H13</td>
+<td align="right">2.755</td>
+<td align="left">0.00298</td>
+</tr>
+<tr class="even">
+<td align="left">Stk16</td>
+<td align="right">2.746</td>
+<td align="left">0.00916</td>
+</tr>
+<tr class="odd">
+<td align="left">Kif1b</td>
+<td align="right">2.745</td>
+<td align="left">0.00346</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-2" class="section level3">
+<h3>Cluster 2</h3>
+<table>
+<caption>Top 15 Upregulated Markers for Cluster 2</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Gm12671</td>
+<td align="right">2.569</td>
+<td align="left">0.0099</td>
+</tr>
+<tr class="even">
+<td align="left">Tppp3</td>
+<td align="right">2.519</td>
+<td align="left">0.0226</td>
+</tr>
+<tr class="odd">
+<td align="left">Npy1r</td>
+<td align="right">2.143</td>
+<td align="left">0.0791</td>
+</tr>
+<tr class="even">
+<td align="left">Sgcg</td>
+<td align="right">1.905</td>
+<td align="left">0.1008</td>
+</tr>
+<tr class="odd">
+<td align="left">Id2</td>
+<td align="right">1.706</td>
+<td align="left">0.1517</td>
+</tr>
+<tr class="even">
+<td align="left">E030013I19Rik</td>
+<td align="right">1.691</td>
+<td align="left">0.1435</td>
+</tr>
+<tr class="odd">
+<td align="left">Pcp4l1</td>
+<td align="right">1.666</td>
+<td align="left">0.2761</td>
+</tr>
+<tr class="even">
+<td align="left">Gstm1</td>
+<td align="right">1.637</td>
+<td align="left">0.0816</td>
+</tr>
+<tr class="odd">
+<td align="left">Tpm2</td>
+<td align="right">1.632</td>
+<td align="left">0.0267</td>
+</tr>
+<tr class="even">
+<td align="left">Myh11</td>
+<td align="right">1.630</td>
+<td align="left">0.1126</td>
+</tr>
+<tr class="odd">
+<td align="left">Ogn</td>
+<td align="right">1.614</td>
+<td align="left">0.1916</td>
+</tr>
+<tr class="even">
+<td align="left">Ppp1r14a</td>
+<td align="right">1.599</td>
+<td align="left">0.1037</td>
+</tr>
+<tr class="odd">
+<td align="left">Gucy1b1</td>
+<td align="right">1.595</td>
+<td align="left">0.2160</td>
+</tr>
+<tr class="even">
+<td align="left">Sost</td>
+<td align="right">1.589</td>
+<td align="left">0.0967</td>
+</tr>
+<tr class="odd">
+<td align="left">Atp6-ps</td>
+<td align="right">1.578</td>
+<td align="left">0.4043</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cluster-3" class="section level3">
+<h3>Cluster 3</h3>
+<table>
+<caption>Top 15 Upregulated Markers for Cluster 3</caption>
+<thead>
+<tr class="header">
+<th align="left">Gene</th>
+<th align="right">LogFC</th>
+<th align="left">PValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lum</td>
+<td align="right">8.591</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Dcn</td>
+<td align="right">7.945</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">C3</td>
+<td align="right">7.328</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Tmem176a</td>
+<td align="right">6.988</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">Tmem176b</td>
+<td align="right">6.861</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Serpina3n</td>
+<td align="right">6.771</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">Vcam1</td>
+<td align="right">6.626</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Lcn2</td>
+<td align="right">6.243</td>
+<td align="left">1.3e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">C1s1</td>
+<td align="right">5.915</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Frzb</td>
+<td align="right">5.842</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">C1ra</td>
+<td align="right">5.577</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Timp1</td>
+<td align="right">5.521</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">Ly6e</td>
+<td align="right">5.506</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="even">
+<td align="left">Cxcl12</td>
+<td align="right">5.431</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+<tr class="odd">
+<td align="left">Osmr</td>
+<td align="right">5.242</td>
+<td align="left">&lt; 1e-10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="identification-of-cell-types-based-on-marker-expression"
+class="section level1">
+<h1>9 Identification of Cell Types Based on Marker Expression</h1>
+<div id="cluster-1-transitional-smcs" class="section level2">
+<h2>Cluster 1: Transitional SMCs</h2>
+<p>Cluster 1 is characterized by expression of Glmp, Fxyd5, Tmed7, Mxd4,
+and Yif1b. These markers suggest a transitional state of SMCs with
+inflammatory and secretory properties. Fxyd5 (dysadherin) plays roles in
+cell migration, adhesion, and inflammatory responses. Tmed7 and Yif1b
+are involved in protein trafficking and secretory pathways. This cluster
+likely represents SMCs that have downregulated their contractile
+phenotype and adopted an inflammatory or secretory state. Such
+phenotypic switching is consistent with the modulated SMC populations
+that accumulate in atherosclerotic lesions and participate in the
+inflammatory process (<a
+href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.120.045981">1</a>).</p>
+</div>
+<div id="cluster-2-progenitor-like-smcs" class="section level2">
+<h2>Cluster 2: Progenitor-like SMCs</h2>
+<p>Cluster 2 expresses Gm12671, Tppp3, Npy1r, Sgcg, and Id2. This gene
+signature suggests cells retaining some contractile or progenitor-like
+properties. Tppp3 is associated with microtubule organization in
+contractile cells, while Sgcg (sarcoglycan gamma) is a component of the
+dystrophin-glycoprotein complex found in muscle cells. Id2 (Inhibitor of
+DNA binding 2) is known to maintain cells in a less differentiated state
+by inhibiting basic helix-loop-helix transcription factors that drive
+differentiation.</p>
+<p>This cluster likely represents SMCs that retain some contractile
+properties or exist in a progenitor-like state, possibly similar to the
+mature SMC populations described in previous single-cell studies of
+atherosclerotic lesions that express markers such as Cnn1 (<a
+href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.120.045981">1</a>).
+These cells may represent a more conserved SMC phenotype that has not
+yet undergone extensive modulation.</p>
+</div>
+<div id="cluster-3-fibroblast-like-smcs-fmc" class="section level2">
+<h2>Cluster 3: Fibroblast-like SMCs (FMC)</h2>
+<p>Cluster 3 expresses Lum, Dcn, C3, Tmem176a, and Tmem176b. This
+cluster clearly represents fibroblast-like modulated SMCs (FMCs), a
+well-characterized phenotype of modulated SMCs in atherosclerosis. Lum
+(lumican) is an established marker of fibroblast-like modulated SMCs
+that have lost ACTA2 expression, as identified in previous scRNA-seq
+studies of both mouse and human atherosclerotic plaques (<a
+href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.120.045981">1</a>,
+<a
+href="https://www.medrxiv.org/content/10.1101/2025.02.18.25322466v1.full-text">2</a>).
+Dcn (decorin) is another extracellular matrix protein often co-expressed
+with lumican. The expression of C3 (complement component 3) and the
+immune-modulatory transmembrane proteins Tmem176a and Tmem176b suggests
+these cells also participate in inflammatory processes.</p>
+<p>Recent studies have confirmed that Lum-expressing cells represent
+fully modulated SMCs that have undergone significant phenotypic
+switching and contribute to extracellular matrix production in the
+plaque (<a
+href="https://www.medrxiv.org/content/10.1101/2025.02.18.25322466v1.full-text">2</a>).
+These cells are distinct from contractile SMCs and accumulate during
+advanced stages of atherosclerosis, particularly in fibroatheromas (<a
+href="https://www.medrxiv.org/content/10.1101/2025.02.18.25322466v1.full-text">2</a>).</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This analysis successfully normalized the filtered scRNA-seq data,
+identified biologically variable genes, performed dimensionality
+reduction and clustering, and identified distinct marker genes for each
+cluster. The <code>sce_filtered</code> object now contains normalized
+data (<code>logcounts</code>), dimensionality reduction results (PCA,
+UMAP), cluster assignments (<code>colData$cluster</code>), and marker
+gene lists (<code>metadata$markers</code>), providing a foundation for
+further biological interpretation and investigation.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">saveRDS</span>(sce_filtered, <span class="at">file =</span> <span class="st">&quot;sce_clustered_markers.rds&quot;</span>)</span></code></pre></div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

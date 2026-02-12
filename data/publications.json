@@ -1,0 +1,105 @@
+[
+{
+        "title": "The winding road toward transcriptional repression",
+        "authors": "Zhang, Q., & Brand, M.",
+        "journal": "Molecular cell",
+        "year": 2023,
+        "tags": [
+           "Preview"
+        ],
+        "link": "https://doi.org/10.1016/j.molcel.2023.02.005"
+    },
+    {
+        "title": "Complementary gene regulation by NRF1 and NRF2 protects against hepatic cholesterol overload",
+        "authors": "Akl, M. G., Li, L., Baccetto, R., Phanse, S., Zhang, Q., Trites, M. J., ... & Widenmaier, S. B.",
+        "journal": "Cell reports",
+        "year": 2023,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1016/j.celrep.2023.112399"
+    },
+    { 
+        "title": "Auxotrophic and prototrophic conditional genetic networks reveal the rewiring of transcription factors in Escherichia coli",
+        "authors": "Gagarinova, A., Hosseinnia, A., Rahmatbakhsh, M., Istace, Z., Phanse, S., Moutaoufik, M. T., ... & Babu, M.",
+        "journal": "Nature Communications",
+        "year": 2022,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://www.nature.com/articles/s41467-022-31819-x"
+    },
+    {
+        "title": "Recombinant human collagen hydrogel rapidly reduces methylglyoxal adducts within cardiomyocytes and improves borderzone contractility after myocardial infarction in mice",
+        "authors": "McLaughlin, S., Sedlakova, V., Zhang, Q., McNeill, B., Smyth, D., Seymour, R., ... & Suuronen, E. J.",
+        "journal": "Advanced Functional Materials",
+        "year": 2022,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1002/adfm.202204076"
+    },
+
+    {
+        "title": "From fuzziness to precision medicine: on the rapidly evolving proteomics with implications in mitochondrial connectivity to rare human disease",
+        "authors": "Aly, K. A., Moutaoufik, M. T., Phanse, S., Zhang, Q., & Babu, M.",
+        "journal": "iScience",
+        "year": 2021,
+        "tags": [
+            "Perspective"
+        ],
+        "link": "https://doi.org/10.1016/j.isci.2020.102030"
+    },
+    {
+        "title": "Rewiring of the human mitochondrial interactome during neuronal reprogramming reveals regulators of the respirasome and neurogenesis",
+        "authors": "Moutaoufik, M. T., Malty, R., Amin, S., Zhang, Q., Phanse, S., Gagarinova, A., ... & Babu, M.",
+        "journal": "iScience",
+        "year": 2019,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1016/j.isci.2019.08.057"
+    },
+
+    {
+        "title": "Global landscape of cell envelope protein complexes in Escherichia coli",
+        "authors": "Babu, M., Bundalovic-Torma, C., Calmettes, C., Phanse, S., Zhang, Q., Jiang, Y., ... & Emili, A.",
+        "journal": "Nature biotechnology",
+        "year": 2018,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1038/nbt.4024"
+    },
+    {
+        "title": "Renal oncocytoma characterized by the defective complex I of the respiratory chain boosts the synthesis of the ROS scavenger glutathione",
+        "authors": "Kürschner, G., Zhang, Q., Clima, R., Xiao, Y., Busch, J. F., Kilic, E., ... & Meierhofer, D.",
+        "journal": "Oncotarget",
+        "year": 2017,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.18632/oncotarget.22413"
+    },
+    {
+        "title": "A map of human mitochondrial protein interactions linked to neurodegeneration reveals new mechanisms of redox homeostasis and NF-κB signaling",
+        "authors": "Malty, R. H., Aoki, H., Kumar, A., Phanse, S., Amin, S., Zhang, Q., ... & Babu, M.",
+        "journal": "Cell systems",
+        "year": 2017,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1016/j.cels.2017.10.010"
+    },
+    {
+        "title": "Renal Gene Expression Database (RGED): a relational database of gene expression profiles in kidney disease",
+        "authors": "Zhang, Q., Yang, B., Chen, X., Xu, J., Mei, C., & Mao, Z.",
+        "journal": "Database",
+        "year": 2014,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://doi.org/10.1093/database/bau092"
+    }
+
+]

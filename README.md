@@ -1,3 +1,3 @@
-# Qingzhou Zhang personal website
+# Qingzhou Zhang Portfolio Site
 
-URL https://zqzneptune.github.io/
+Check out here [https://zqzneptune.github.io/](https://zqzneptune.github.io/)

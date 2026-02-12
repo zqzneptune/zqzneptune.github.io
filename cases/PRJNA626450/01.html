@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Qingzhou Zhang (zqzneptune@gmail.com)" />
+
+<meta name="date" content="2025-04-10" />
+
+<title>QC and Preprossing</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PRJNA626450</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="00.html">
+    <span class="fa fa-download"></span>
+     
+    1. Data
+  </a>
+</li>
+<li>
+  <a href="01.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    2. QC and Preprocessing
+  </a>
+</li>
+<li>
+  <a href="02.html">
+    <span class="fa fa-layer-group"></span>
+     
+    3. Clustering
+  </a>
+</li>
+<li>
+  <a href="03.html">
+    <span class="fa fa-route"></span>
+     
+    4. Trajectory
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">QC and Preprossing</h1>
+<h4 class="author">Qingzhou Zhang (<a href="mailto:zqzneptune@gmail.com"
+class="email">zqzneptune@gmail.com</a>)</h4>
+<h4 class="date">2025-04-10</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This report details the quality control (QC) process applied to a
+<code>SingleCellExperiment</code> object derived from single-cell
+RNA-seq data (mouse sample, Ensembl gene IDs). The goal is to identify
+and remove potentially low-quality cells based on library size, number
+of detected genes, and mitochondrial gene content percentage. We use
+adaptive thresholds based on median absolute deviations (MADs) from the
+median. This version uses a revised color scheme suitable for
+presentations.</p>
+</div>
+<div id="load-data" class="section level1">
+<h1>1. Load Data</h1>
+<p>First, we load the pre-existing <code>SingleCellExperiment</code>
+object. Ensure the object named <code>sce</code> is available in your R
+environment or load it from a saved file.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;../01_Salmon/101_Salmon_SCE_sce.RDS&quot;</span>) </span></code></pre></div>
+<p>The object has 38886 genes and 191 cells, with assays for
+<code>counts</code> and <code>tpm</code>. Row data includes
+<code>gene_id</code> and <code>symbol</code>, while column data
+currently only contains <code>cell_id</code>.</p>
+</div>
+<div id="identify-mitochondrial-genes" class="section level1">
+<h1>2. Identify Mitochondrial Genes</h1>
+<p>To calculate the percentage of counts coming from mitochondrial
+genes, we first identify which genes are mitochondrial using the
+<code>org.Mm.eg.db</code> annotation package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>ensembl_ids <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce) </span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>is_mito <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="fu">nrow</span>(sce)) </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    gene_info <span class="ot">&lt;-</span> AnnotationDbi<span class="sc">::</span><span class="fu">select</span>(org.Mm.eg.db,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>                                       <span class="at">keys =</span> ensembl_ids,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                                       <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;ENSEMBL&quot;</span>, <span class="st">&quot;CHR&quot;</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                                       <span class="at">keytype =</span> <span class="st">&quot;ENSEMBL&quot;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    gene_info <span class="ot">&lt;-</span> gene_info[<span class="sc">!</span><span class="fu">duplicated</span>(gene_info<span class="sc">$</span>ENSEMBL) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(gene_info<span class="sc">$</span>CHR), ]</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    id_to_chr <span class="ot">&lt;-</span> <span class="fu">setNames</span>(gene_info<span class="sc">$</span>CHR, gene_info<span class="sc">$</span>ENSEMBL)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    is_mito_mapped <span class="ot">&lt;-</span> id_to_chr[<span class="fu">rownames</span>(sce)] <span class="sc">==</span> <span class="st">&quot;MT&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    is_mito_mapped[<span class="fu">is.na</span>(is_mito_mapped)] <span class="ot">&lt;-</span> <span class="cn">FALSE</span> </span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    is_mito <span class="ot">&lt;-</span> is_mito_mapped </span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">sum</span>(is_mito) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">&quot;No mitochondrial genes were identified using org.Mm.eg.db. Check ENSEMBL IDs and annotation package. Mitochondrial QC filtering will be skipped.&quot;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>    }</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;Error mapping ENSEMBL IDs to Chromosomes using org.Mm.eg.db: &quot;</span>, e<span class="sc">$</span>message)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;Proceeding without mitochondrial gene filtering.&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>})</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="fu">rowData</span>(sce)<span class="sc">$</span>is_mito <span class="ot">&lt;-</span> is_mito</span></code></pre></div>
+<p>Using the annotations, 13 mitochondrial genes were identified.</p>
+</div>
+<div id="calculate-per-cell-qc-metrics" class="section level1">
+<h1>3. Calculate Per-Cell QC Metrics</h1>
+<p>We use <code>scater::addPerCellQC</code> to calculate standard QC
+metrics (<code>sum</code>, <code>detected</code>,
+<code>subsets_mt_percent</code>).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">addPerCellQC</span>(sce, <span class="at">subsets =</span> <span class="fu">list</span>(<span class="at">mt =</span> <span class="fu">which</span>(<span class="fu">rowData</span>(sce)<span class="sc">$</span>is_mito)))</span></code></pre></div>
+<p>This step adds columns like <code>sum</code> (total counts),
+<code>detected</code> (number of expressed genes), and
+<code>subsets_mt_percent</code> (percentage of counts from mitochondrial
+genes) to the <code>colData</code> of the <code>sce</code> object.</p>
+</div>
+<div id="determine-outliers-using-adaptive-thresholds"
+class="section level1">
+<h1>4. Determine Outliers Using Adaptive Thresholds</h1>
+<p>We identify outliers based on 3 MADs from the median for library size
+(<code>sum</code>), detected features (<code>detected</code>), and
+mitochondrial percentage (<code>subsets_mt_percent</code>).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>filter_by_counts <span class="ot">&lt;-</span> <span class="fu">isOutlier</span>(sce<span class="sc">$</span>sum, <span class="at">nmads =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>filter_by_features <span class="ot">&lt;-</span> <span class="fu">isOutlier</span>(sce<span class="sc">$</span>detected, <span class="at">nmads =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>filter_by_mito <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="fu">ncol</span>(sce)) </span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;subsets_mt_percent&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    filter_by_mito <span class="ot">&lt;-</span> <span class="fu">isOutlier</span>(sce<span class="sc">$</span>subsets_mt_percent, <span class="at">nmads =</span> <span class="dv">3</span>, <span class="at">type =</span> <span class="st">&quot;higher&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>discard <span class="ot">&lt;-</span> filter_by_counts <span class="sc">|</span> filter_by_features <span class="sc">|</span> filter_by_mito</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="fu">colData</span>(sce)<span class="sc">$</span>discard <span class="ot">&lt;-</span> <span class="fu">factor</span>(discard) </span></code></pre></div>
+<p>Based on the MAD thresholds:</p>
+<ul>
+<li><p>4 cells were flagged for low library size.</p></li>
+<li><p>2 cells were flagged for low detected features.</p></li>
+<li><p>18 cells were flagged for high mitochondrial content
+percentage.</p></li>
+</ul>
+<p>In total, 21 unique cells are marked for removal.</p>
+</div>
+<div id="visualize-qc-metrics-and-outliers" class="section level1">
+<h1>5. Visualize QC Metrics and Outliers</h1>
+<p>Visualizing the distributions helps to confirm if the adaptive
+thresholds are reasonable. We use the revised color scheme.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotColData</span>(sce, <span class="at">x =</span> <span class="st">&quot;cell_id&quot;</span>, <span class="at">y =</span> <span class="st">&quot;sum&quot;</span>, <span class="at">colour_by =</span> <span class="st">&quot;discard&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>(<span class="at">name =</span> <span class="st">&quot;Library Size (Counts)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Library Size&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                       <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>)) </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plotColData</span>(sce, <span class="at">x =</span> <span class="st">&quot;cell_id&quot;</span>, <span class="at">y =</span> <span class="st">&quot;detected&quot;</span>, <span class="at">colour_by =</span> <span class="st">&quot;discard&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>(<span class="at">name =</span> <span class="st">&quot;Detected Features&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Detected Features&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>                       <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>))</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>plot_list <span class="ot">&lt;-</span> <span class="fu">list</span>(p1, p2)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;subsets_mt_percent&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>    p3 <span class="ot">&lt;-</span> <span class="fu">plotColData</span>(sce, <span class="at">x =</span> <span class="st">&quot;cell_id&quot;</span>, <span class="at">y =</span> <span class="st">&quot;subsets_mt_percent&quot;</span>, <span class="at">colour_by =</span> <span class="st">&quot;discard&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>        <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Mitochondrial %&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>        <span class="fu">ggtitle</span>(<span class="st">&quot;Mitochondrial Content&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>                           <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>))</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>    plot_list <span class="ot">&lt;-</span> <span class="fu">list</span>(p1, p2, p3)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>    mito_threshold_val <span class="ot">&lt;-</span> <span class="fu">median</span>(sce<span class="sc">$</span>subsets_mt_percent) <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">mad</span>(sce<span class="sc">$</span>subsets_mt_percent)</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>    p4 <span class="ot">&lt;-</span> <span class="fu">plotColData</span>(sce, <span class="at">x =</span> <span class="st">&quot;sum&quot;</span>, <span class="at">y =</span> <span class="st">&quot;subsets_mt_percent&quot;</span>, <span class="at">colour_by =</span> <span class="st">&quot;discard&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>        <span class="fu">scale_x_log10</span>(<span class="at">name =</span> <span class="st">&quot;Library Size (Counts)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>        <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Mitochondrial %&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>        <span class="fu">ggtitle</span>(<span class="st">&quot;Mito % vs Library Size&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a>                           <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a>        <span class="fu">geom_hline</span>(<span class="at">yintercept=</span>mito_threshold_val, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span>threshold_color, <span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>        <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">min</span>(sce<span class="sc">$</span>sum), <span class="at">y =</span> mito_threshold_val, </span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;3 MADs (&quot;</span>, <span class="fu">round</span>(mito_threshold_val,<span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>), </span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a>                 <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color =</span> threshold_color, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>}</span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="fu">wrap_plots</span>(plot_list, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">&quot;p4&quot;</span>)) {</span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a>  <span class="fu">print</span>(p4)</span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a>}</span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a>qc_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colData</span>(sce))</span>
+<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a>counts_threshold_val <span class="ot">&lt;-</span> <span class="fu">median</span>(sce<span class="sc">$</span>sum <span class="sc">/</span> <span class="fu">exp</span>(<span class="dv">3</span><span class="sc">*</span><span class="fu">mad</span>(<span class="fu">log</span>(sce<span class="sc">$</span>sum)))) </span>
+<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a>features_threshold_val <span class="ot">&lt;-</span> <span class="fu">median</span>(sce<span class="sc">$</span>detected <span class="sc">/</span> <span class="fu">exp</span>(<span class="dv">3</span><span class="sc">*</span><span class="fu">mad</span>(<span class="fu">log</span>(sce<span class="sc">$</span>detected)))) </span>
+<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(qc_df, <span class="fu">aes</span>(<span class="at">x=</span>sum, <span class="at">fill=</span>discard)) <span class="sc">+</span></span>
+<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a>      <span class="fu">scale_x_log10</span>(<span class="at">name =</span> <span class="st">&quot;Library Size (Counts)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Number of Cells&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Counts Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a>                        <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>counts_threshold_val, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span>threshold_color, <span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a>      <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> counts_threshold_val, <span class="at">y =</span> <span class="cn">Inf</span>, </span>
+<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;~3 MADs&quot;</span>), <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a>               <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color =</span> threshold_color, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a></span>
+<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(qc_df, <span class="fu">aes</span>(<span class="at">x=</span>detected, <span class="at">fill=</span>discard)) <span class="sc">+</span></span>
+<span id="cb5-64"><a href="#cb5-64" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-65"><a href="#cb5-65" tabindex="-1"></a>      <span class="fu">scale_x_log10</span>(<span class="at">name =</span> <span class="st">&quot;Detected Features&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-66"><a href="#cb5-66" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Number of Cells&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-67"><a href="#cb5-67" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="st">&quot;Features Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-68"><a href="#cb5-68" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-69"><a href="#cb5-69" tabindex="-1"></a>                        <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb5-70"><a href="#cb5-70" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>features_threshold_val, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span>threshold_color, <span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-71"><a href="#cb5-71" tabindex="-1"></a>      <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> features_threshold_val, <span class="at">y =</span> <span class="cn">Inf</span>, </span>
+<span id="cb5-72"><a href="#cb5-72" tabindex="-1"></a>               <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;~3 MADs&quot;</span>), <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb5-73"><a href="#cb5-73" tabindex="-1"></a>               <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color =</span> threshold_color, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb5-74"><a href="#cb5-74" tabindex="-1"></a></span>
+<span id="cb5-75"><a href="#cb5-75" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" tabindex="-1"></a>hist_list <span class="ot">&lt;-</span> <span class="fu">list</span>(h1, h2)</span>
+<span id="cb5-77"><a href="#cb5-77" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;subsets_mt_percent&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(<span class="fu">colData</span>(sce))) {</span>
+<span id="cb5-78"><a href="#cb5-78" tabindex="-1"></a>    mito_threshold_val <span class="ot">&lt;-</span> <span class="fu">median</span>(sce<span class="sc">$</span>subsets_mt_percent) <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">mad</span>(sce<span class="sc">$</span>subsets_mt_percent)</span>
+<span id="cb5-79"><a href="#cb5-79" tabindex="-1"></a>    h3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(qc_df, <span class="fu">aes</span>(<span class="at">x=</span>subsets_mt_percent, <span class="at">fill=</span>discard)) <span class="sc">+</span></span>
+<span id="cb5-80"><a href="#cb5-80" tabindex="-1"></a>          <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">position=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-81"><a href="#cb5-81" tabindex="-1"></a>          <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Mitochondrial %&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-82"><a href="#cb5-82" tabindex="-1"></a>          <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Number of Cells&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-83"><a href="#cb5-83" tabindex="-1"></a>          <span class="fu">ggtitle</span>(<span class="st">&quot;Mito % Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-84"><a href="#cb5-84" tabindex="-1"></a>          <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> keep_color, <span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> discard_color), </span>
+<span id="cb5-85"><a href="#cb5-85" tabindex="-1"></a>                            <span class="at">name =</span> <span class="st">&quot;Discard Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Keep&quot;</span>, <span class="st">&quot;Discard&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb5-86"><a href="#cb5-86" tabindex="-1"></a>          <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>mito_threshold_val, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span>threshold_color, <span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-87"><a href="#cb5-87" tabindex="-1"></a>          <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> mito_threshold_val, <span class="at">y =</span> <span class="cn">Inf</span>, </span>
+<span id="cb5-88"><a href="#cb5-88" tabindex="-1"></a>                   <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;3 MADs (&quot;</span>, <span class="fu">round</span>(mito_threshold_val,<span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>), <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb5-89"><a href="#cb5-89" tabindex="-1"></a>                   <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">color =</span> threshold_color, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" tabindex="-1"></a>          </span>
+<span id="cb5-91"><a href="#cb5-91" tabindex="-1"></a>    hist_list <span class="ot">&lt;-</span> <span class="fu">list</span>(h1, h2, h3)</span>
+<span id="cb5-92"><a href="#cb5-92" tabindex="-1"></a>}</span>
+<span id="cb5-93"><a href="#cb5-93" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" tabindex="-1"></a><span class="fu">wrap_plots</span>(hist_list, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">guides =</span> <span class="st">&quot;collect&quot;</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="01_files/figure-html/visualize-qc-1.png" width="768" /><img src="01_files/figure-html/visualize-qc-2.png" width="768" /><img src="01_files/figure-html/visualize-qc-3.png" width="768" /></p>
+<p>The plots show the distribution of each metric across all cells using
+the updated color scheme (grey75 for kept, #0072B2 for discarded). Cells
+marked for removal are highlighted. Dashed red lines indicate the
+approximate MAD-based thresholds used for filtering. Violin/dot plots
+show individual cell values, while histograms show the overall
+distributions. The scatter plot illustrates the relationship between
+library size and mitochondrial content, often revealing damaged cells
+with high mitochondrial percentage despite low library size.</p>
+</div>
+<div id="filter-the-singlecellexperiment-object" class="section level1">
+<h1>6. Filter the SingleCellExperiment Object</h1>
+<p>Finally, we subset the <code>sce</code> object to remove the cells
+flagged by the <code>discard</code> column.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dim_before <span class="ot">&lt;-</span> <span class="fu">dim</span>(sce)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>sce<span class="sc">$</span>discard <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(sce<span class="sc">$</span>discard) </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>sce_filtered <span class="ot">&lt;-</span> sce[, <span class="sc">!</span>sce<span class="sc">$</span>discard]</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>dim_after <span class="ot">&lt;-</span> <span class="fu">dim</span>(sce_filtered)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">saveRDS</span>(sce_filtered, <span class="at">file =</span> <span class="st">&quot;sce_filtered_presentation.rds&quot;</span>)</span></code></pre></div>
+<p>The <code>SingleCellExperiment</code> object was filtered based on
+the QC metrics.</p>
+<ul>
+<li><p>Dimensions before filtering: 38886 genes, 191 cells.</p></li>
+<li><p>Dimensions after filtering: 38886 genes, 170 cells.</p></li>
+<li><p>Number of cells removed: 21.</p></li>
+</ul>
+<p>The filtered object (<code>sce_filtered</code>) has been saved to
+<code>sce_filtered_presentation.rds</code>.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>The QC process identified and removed 21 cells based on adaptive
+thresholds for library size, detected features, and mitochondrial
+content percentage. The resulting filtered object,
+<code>sce_filtered</code>, contains 170 cells and is ready for
+downstream analysis. The visualizations confirm the rationale behind the
+filtering decisions using a presentation-friendly color scheme.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
