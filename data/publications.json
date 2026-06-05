@@ -1,11 +1,21 @@
 [
-{
+    {
+        "title": "Global mitochondrial connectivity map reveals the landscape of yeast functional assemblies and conserved protein communities",
+        "authors": "Jessulat, M., Phanse, S., Aoki, H., Broderick, K., Zhang, Q., Castro, I. G., ... & Babu, M. ",
+        "journal": "Nature Communications",
+        "year": 2026,
+        "tags": [
+            "Article"
+        ],
+        "link": "https://www.nature.com/articles/s41467-026-72525-2"
+    },
+    {
         "title": "The winding road toward transcriptional repression",
         "authors": "Zhang, Q., & Brand, M.",
         "journal": "Molecular cell",
         "year": 2023,
         "tags": [
-           "Preview"
+            "Preview"
         ],
         "link": "https://doi.org/10.1016/j.molcel.2023.02.005"
     },
@@ -19,7 +29,7 @@
         ],
         "link": "https://doi.org/10.1016/j.celrep.2023.112399"
     },
-    { 
+    {
         "title": "Auxotrophic and prototrophic conditional genetic networks reveal the rewiring of transcription factors in Escherichia coli",
         "authors": "Gagarinova, A., Hosseinnia, A., Rahmatbakhsh, M., Istace, Z., Phanse, S., Moutaoufik, M. T., ... & Babu, M.",
         "journal": "Nature Communications",
@@ -39,7 +49,6 @@
         ],
         "link": "https://doi.org/10.1002/adfm.202204076"
     },
-
     {
         "title": "From fuzziness to precision medicine: on the rapidly evolving proteomics with implications in mitochondrial connectivity to rare human disease",
         "authors": "Aly, K. A., Moutaoufik, M. T., Phanse, S., Zhang, Q., & Babu, M.",
@@ -60,7 +69,6 @@
         ],
         "link": "https://doi.org/10.1016/j.isci.2019.08.057"
     },
-
     {
         "title": "Global landscape of cell envelope protein complexes in Escherichia coli",
         "authors": "Babu, M., Bundalovic-Torma, C., Calmettes, C., Phanse, S., Zhang, Q., Jiang, Y., ... & Emili, A.",
@@ -101,5 +109,4 @@
         ],
         "link": "https://doi.org/10.1093/database/bau092"
     }
-
 ]

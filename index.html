@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qingzhou Zhang - Portfolio</title>
-    <meta name="description" content="Personal portfolio of Qingzhou Zhang, specializing in AI-powered predictive systems biology.">
+    <meta name="description"
+        content="Personal portfolio of Qingzhou Zhang, specializing in AI-powered predictive systems biology.">
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -13,22 +14,25 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header class="header">
         <div class="container header-container">
             <a href="#" class="logo">Dr. Qingzhou Zhang</a>
-            
+
             <div class="header-actions">
                 <nav class="navbar" id="navbar">
                     <a href="#about" class="nav-link">About</a>
+                    <a href="#book" class="nav-link">Book</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#publications" class="nav-link">Publications</a>
                     <a href="#case-studies" class="nav-link">Case Studies</a>
                 </nav>
-                
+
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
                     <ion-icon name="moon-outline"></ion-icon>
                 </button>
@@ -47,10 +51,19 @@
             <div class="container hero-content">
                 <div class="hero-text fade-in-up">
                     <span class="greeting">Hello, I'm</span>
-                    <h1 class="name">Johnson</h1>
+                    <h1 class="name">Dr. Qingzhou Zhang</h1>
                     <h2 class="title">Computational Systems Biologist</h2>
                     <p class="bio">
-                        I am dedicated to decoding the complexity of life through <strong>multi-omic integration</strong>. With <strong>15+ years</strong> of experience and a publication record in journals like <strong>Nature Biotechnology</strong>, I bridge the gap between high-throughput data and biological discovery.
+                        Harnessing the power of <strong>multi-omics</strong>, <strong>AI</strong>, and
+                        <strong>computational biology</strong> to decode the complexity of life.
+                        With <strong>15+ years</strong> of research experience and publications in
+                        <strong>Nature Biotechnology</strong>, <strong>Cell Systems</strong>, and
+                        <strong>iScience</strong>, I am driven by a passion for uncovering biological insights from
+                        high-dimensional data. By integrating multi-omic technologies, machine learning, and systems
+                        biology,
+                        I seek to reveal the fundamental mechanisms of living systems and accelerate the next generation
+                        of
+                        biomedical discovery.
                     </p>
                     <div class="social-links">
                         <a href="https://github.com/zqzneptune" target="_blank" aria-label="GitHub">
@@ -64,7 +77,48 @@
                 <div class="hero-image fade-in-up delay-1">
                     <div class="avatar-bg-glow"></div>
                     <div class="avatar-placeholder">
-                        <img src="images/avatar_hub8d53297f87883d816c4cfd9dec236f6_774202_250x250_fill_q90_lanczos_center.jpg" alt="Qingzhou Zhang">
+                        <img src="images/avatar_hub8d53297f87883d816c4cfd9dec236f6_774202_250x250_fill_q90_lanczos_center.jpg"
+                            alt="Qingzhou Zhang">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Section -->
+        <section id="book" class="section bg-alt">
+            <div class="container">
+                <div class="book-card-cta fade-in-up">
+                    <div class="book-cover-container">
+                        <div class="book-cover">
+                            <div class="book-spine"></div>
+                            <div class="book-glare"></div>
+                            <div class="book-content">
+                                <span class="book-badge">Curriculum</span>
+                                <h3 class="book-title-text">Omics</h3>
+                                <p class="book-subtitle-text">with Johnson 101</p>
+                                <span class="book-author-text">Dr. Qingzhou Zhang</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-details">
+                        <span class="book-tag">Curriculum & Guide</span>
+                        <h2 class="book-heading">Omics with Johnson 101</h2>
+                        <p class="book-description">
+                            A deep dive into the physical, mathematical, and statistical principles of bioinformatics.
+                            Learn to stop just running pipelines and start questioning assumptions, understanding
+                            exactly what the software does—and why.
+                        </p>
+                        <ul class="book-features">
+                            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Master physical/mathematical
+                                principles of sequencers & algorithms</li>
+                            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Learn to choose correct
+                                statistical models for biological overdispersion</li>
+                            <li><ion-icon name="checkmark-circle-outline"></ion-icon> Design containerized,
+                                version-controlled computational workflows</li>
+                        </ul>
+                        <a href="https://github.com/zqzneptune/owj/index.html" class="book-cta-btn" target="_blank">
+                            Start Reading <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -122,7 +176,7 @@
                     <h2 class="section-title">Publications</h2>
                     <p class="section-subtitle">Research articles and collaborations</p>
                 </div>
-                
+
                 <div class="filter-container fade-in-up">
                     <ul class="filter-list" id="publication-filters">
                         <li class="filter-item active" data-filter="all">All</li>
@@ -152,7 +206,7 @@
 
         mobileBtn.addEventListener('click', () => {
             navbar.classList.toggle('active');
-            if(navbar.classList.contains('active')) {
+            if (navbar.classList.contains('active')) {
                 icon.setAttribute('name', 'close-outline');
             } else {
                 icon.setAttribute('name', 'menu-outline');
@@ -168,4 +222,5 @@
         });
     </script>
 </body>
+
 </html>
