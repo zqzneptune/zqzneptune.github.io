@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 9: De Novo Assembly and Graph Algorithms – Omics with Johnson 101</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tier-2-core-omics/chapter-10.html" rel="next">
+<link href="../tier-2-core-omics/chapter-08.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/johnson-research.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Omics with Johnson 101</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-01.html">
+ <span class="dropdown-text">Chapter 1: The Bioinformatic Computing Environment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-02.html">
+ <span class="dropdown-text">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-03.html">
+ <span class="dropdown-text">Chapter 3: Programming Paradigms and Project Organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-04.html">
+ <span class="dropdown-text">Chapter 4: Probability Distributions in Sequencing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-05.html">
+ <span class="dropdown-text">Chapter 5: Linear Algebra and Dimensionality Reduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-06.html">
+ <span class="dropdown-text">Chapter 6: Statistical Inference and Confounder Management</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Omics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
+ <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
+ <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
+ <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
+ <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
+ <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
+ <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Single-Cell</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+ <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Systems</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+ <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI/ML</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
+ <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clinical</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
+ <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
+ <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
+ <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
+ <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://zqzneptune.github.io/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#johnsons-first-principle-the-shortest-superstring-problem" id="toc-johnsons-first-principle-the-shortest-superstring-problem" class="nav-link active" data-scroll-target="#johnsons-first-principle-the-shortest-superstring-problem">Johnson’s First Principle: The Shortest Superstring Problem</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#the-repeat-trap" id="toc-the-repeat-trap" class="nav-link" data-scroll-target="#the-repeat-trap">The Repeat Trap</a></li>
+  <li><a href="#from-hamiltonian-to-eulerian-why-k-mers-change-the-problem" id="toc-from-hamiltonian-to-eulerian-why-k-mers-change-the-problem" class="nav-link" data-scroll-target="#from-hamiltonian-to-eulerian-why-k-mers-change-the-problem">From Hamiltonian to Eulerian: Why k-mers Change the Problem</a></li>
+  <li><a href="#graph-cleaning-and-resolution" id="toc-graph-cleaning-and-resolution" class="nav-link" data-scroll-target="#graph-cleaning-and-resolution">Graph Cleaning and Resolution</a></li>
+  <li><a href="#long-read-assembly" id="toc-long-read-assembly" class="nav-link" data-scroll-target="#long-read-assembly">Long-Read Assembly</a></li>
+  <li><a href="#validation-metrics" id="toc-validation-metrics" class="nav-link" data-scroll-target="#validation-metrics">Validation Metrics</a></li>
+  <li><a href="#metagenomic-binning" id="toc-metagenomic-binning" class="nav-link" data-scroll-target="#metagenomic-binning">Metagenomic Binning</a></li>
+  </ul></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
+  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
+  <ul class="collapse">
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html">TIER 2: The Core Omics — Sequencing Physics and Algorithms</a></li><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-09.html"><span class="chapter-title">Chapter 9: De Novo Assembly and Graph Algorithms</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Chapter 9: De Novo Assembly and Graph Algorithms</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="johnsons-first-principle-the-shortest-superstring-problem" class="level2">
+<h2 class="anchored" data-anchor-id="johnsons-first-principle-the-shortest-superstring-problem">Johnson’s First Principle: The Shortest Superstring Problem</h2>
+<p>Reconstructing a genome from fragments is the Shortest Common Superstring Problem — finding the shortest string that contains every read as a substring. This problem is NP-hard. When reads are shorter than repetitive elements, there is no unique mathematical solution regardless of algorithmic sophistication. Assembly is always an approximate reconstruction, and its quality is bounded by the relationship between read length and repeat length.</p>
+<hr>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<section id="the-repeat-trap" class="level3">
+<h3 class="anchored" data-anchor-id="the-repeat-trap">The Repeat Trap</h3>
+<p>The human genome is over 50% repetitive: Alu elements (~300 bp, ~1M copies), LINE1 (~6 kb, ~500K copies), and segmental duplications (10-500 kb). If a read is shorter than a repeat, the assembler cannot determine whether it came from copy A or copy B. Consider the genome A—REPEAT—B and C—REPEAT—D. Reads from the repeat are identical regardless of origin; the assembly graph branches into two diverging paths with no information to resolve which is correct:</p>
+<p><span class="math display">\[\text{Repeat length} &gt; \text{read length} \implies \text{assembly graph breaks at repeat boundaries}\]</span></p>
+<p>This is an information-theoretic limit, not an algorithmic weakness. No algorithmic cleverness can recover the correct path across a repeat when the reads are shorter than the repeat unit. The only solution is longer reads or mate-pair information that bridges the repeat.</p>
+</section>
+<section id="from-hamiltonian-to-eulerian-why-k-mers-change-the-problem" class="level3">
+<h3 class="anchored" data-anchor-id="from-hamiltonian-to-eulerian-why-k-mers-change-the-problem">From Hamiltonian to Eulerian: Why k-mers Change the Problem</h3>
+<p>Two graph formulations dominate assembly, and the difference between them explains the revolution in algorithmic efficiency.</p>
+<p><strong>Overlap-Layout-Consensus (OLC)</strong> models each read as a node, with edges connecting reads that overlap by a minimum number of bases. The genome is the <strong>Hamiltonian path</strong> — visiting each node exactly once — which is NP-complete (<span class="math inline">\(O(N!)\)</span> in the number of reads). For 10 billion short reads, this is computationally impossible. OLC was viable only for Sanger-era projects with thousands of reads.</p>
+<p><strong>De Bruijn graphs</strong> transform the problem by fragmenting all reads into k-mers (substrings of length <span class="math inline">\(k\)</span>) and using k-mers as nodes. This changes the complexity fundamentally: the node vocabulary has a fixed upper bound (<span class="math inline">\(4^k\)</span> possible k-mers), regardless of how many reads are sequenced. The genome is now an <strong>Eulerian path</strong> — traversing each edge exactly once — solvable in <span class="math inline">\(O(E)\)</span> time.</p>
+<p><strong>Concrete example.</strong> Genome = GATTACA with k=3. The k-mers are GAT, ATT, TTA, TAC, ACA. The De Bruijn graph represents each (k-1)-mer as a node and each k-mer as a directed edge:</p>
+<pre class="code"><code>Nodes (2-mers): GA  AT  TT  TA  AC  CA
+Edges (3-mers): GA→AT  AT→TT  TT→TA  TA→AC  AC→CA</code></pre>
+<p>The Eulerian path is GA→AT→TT→TA→AC→CA. Reconstructing the sequence: start node GA (the first k-1 bases), then append the last character of each edge in path order: G + A + T + T + A + C + A = GATTACA. The genome is recovered.</p>
+<p><strong>Eulerian path conditions.</strong> For a graph to contain an Eulerian path, node degrees must satisfy: one node has out-degree = in-degree + 1 (start), one node has in-degree = out-degree + 1 (end), and all other nodes are balanced. In the GATTACA graph, GA has out=1, in=0 (start) and CA has in=1, out=0 (end). These conditions are checked in <span class="math inline">\(O(E)\)</span> time.</p>
+<p>The NP-hard Hamiltonian problem becomes tractable here because k-mers decouple the problem from read count. OLC has as many nodes as reads (10 billion), and checking all orderings is <span class="math inline">\(O(N!)\)</span>. De Bruijn has at most <span class="math inline">\(4^k\)</span> possible nodes (theoretically <span class="math inline">\(4^{31} \approx 4.6 \times 10^{18}\)</span>, but typically millions in practice), and Eulerian path is <span class="math inline">\(O(E)\)</span>. The tradeoff is memory: a human genome de Bruijn graph with k=31 stores billions of k-mer occurrences and requires 100-300 GB of RAM.</p>
+<pre class="code"><code># De Bruijn graph from k-mers
+def build_debruijn(reads, k=31):
+    graph = {}
+    for read in reads:
+        for i in range(len(read) - k + 1):
+            kmer = read[i:i+k]
+            left = kmer[:-1]
+            right = kmer[1:]
+            graph.setdefault(left, set()).add(right)
+    return graph</code></pre>
+<p><strong>The k-mer tradeoff.</strong> The choice of <span class="math inline">\(k\)</span> determines how the graph balances connectivity against repeat resolution. Small <span class="math inline">\(k\)</span> (21) means each k-mer is shorter and more likely to be shared between reads, creating a more connected graph. But shorter k-mers are also more likely to fall within repeats, collapsing repeat copies into the same node. Large <span class="math inline">\(k\)</span> (63) distinguishes repeat copies more effectively because the k-mer extends beyond the repeat unit, but the stricter match requirement produces a more fragmented graph in low-coverage regions. Many assemblers address this by using multiple <span class="math inline">\(k\)</span> values (SPAdes uses a k-mer sweep from 21 to 127) or by building a multi-sized de Bruijn graph.</p>
+</section>
+<section id="graph-cleaning-and-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="graph-cleaning-and-resolution">Graph Cleaning and Resolution</h3>
+<p>A raw de Bruijn graph contains artifacts from sequencing errors and biological variation:</p>
+<ul>
+<li><strong>Tips:</strong> Dead-end paths created by sequencing errors at read ends. A single erroneous base at the end of a read creates a k-mer that does not connect to the rest of the graph. Tips are removed if they are shorter than <span class="math inline">\(2k\)</span> and have no supporting coverage.</li>
+<li><strong>Bubbles:</strong> Alternative paths caused by heterozygous variants, alternative splicing, or sequencing errors. Two paths diverge and reconverge within a short distance. Bubbles are resolved by keeping the higher-coverage path and removing the lower.</li>
+<li><strong>Bulges:</strong> Compressed bubbles — short alternative paths caused by a single nucleotide variant. Like bubbles but shorter; removed by the same heuristic.</li>
+</ul>
+<p>After cleaning, the graph is resolved into <strong>contigs</strong> by finding unambiguous paths — nodes with exactly one incoming and one outgoing edge. Branch points (nodes with multiple in/out edges) indicate repeats or unresolved variation and terminate contigs.</p>
+<p>The density of artifacts in the raw graph is a direct diagnostic of sequencing error rate. A high-quality dataset (HiFi, PCR-free Illumina) produces a clean graph with few tips; a noisy dataset produces a dense artifact graph that requires aggressive cleaning, which in turn reduces contiguity by removing true low-coverage regions along with errors. The ratio of tips removed to contigs produced is a useful quality metric for the input data.</p>
+</section>
+<section id="long-read-assembly" class="level3">
+<h3 class="anchored" data-anchor-id="long-read-assembly">Long-Read Assembly</h3>
+<p>Long reads (PacBio HiFi 10-25 kb, ONT 10-100 kb) solve the repeat problem that short reads cannot. A read spanning an entire Alu element (~300 bp) or LINE1 element (~6 kb) determines unambiguously which flanking sequence it connects to. Modern long-read assemblers have largely replaced short-read assembly for eukaryotic genomes.</p>
+<ul>
+<li><strong>Hifiasm</strong> (HiFi-only): Produces haplotype-resolved assemblies by using Hi-C or trio information to phase variants. The standard for human genome assembly; produces fully phased assemblies in hours.</li>
+<li><strong>Flye</strong> (ONT + HiFi): Uses a repeat graph construction that handles the high error rates of raw ONT reads. Preferred for metagenomic assembly and bacterial genomes where coverage depth varies.</li>
+<li><strong>Canu</strong> (legacy PacBio CLR): OLC-based with error correction before assembly. Largely superseded by Hifiasm and Flye for most applications.</li>
+</ul>
+</section>
+<section id="validation-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="validation-metrics">Validation Metrics</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 51%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>What It Measures</th>
+<th>Caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>N50</td>
+<td>Contiguity: 50% of assembly in contigs of this size or larger</td>
+<td>Does not measure accuracy</td>
+</tr>
+<tr class="even">
+<td>L50</td>
+<td>Number of contigs to reach N50</td>
+<td>High L50 = fragmented</td>
+</tr>
+<tr class="odd">
+<td>BUSCO</td>
+<td>Presence of conserved single-copy orthologs</td>
+<td>Measures gene content, not genome-wide correctness</td>
+</tr>
+<tr class="even">
+<td>QV / Assembly quality</td>
+<td>Phred-scaled consensus error rate (via merqury)</td>
+<td>Q40 = 99.99% accurate at consensus level</td>
+</tr>
+</tbody>
+</table>
+<p>N50 is the most widely reported — and most widely misused — assembly metric. High N50 does not mean high quality. A contiguous but systematically wrong assembly (mis-joined repeats, collapsed segmental duplications) can achieve high N50 while having low biological accuracy. BUSCO scores measure conserved gene content, not structural correctness. QV estimation via k-mer comparison (merqury) provides the most honest accuracy assessment by comparing k-mer frequencies between the assembly and raw reads.</p>
+<p><strong>Genome size estimation.</strong> Before assembly, the k-mer frequency spectrum (histogram of k-mer occurrence counts) provides a rapid genome size estimate: <span class="math inline">\(G = \frac{\text{total distinct k-mers}}{\text{peak k-mer coverage}}\)</span>, where the peak in the distribution corresponds to the haploid sequencing depth. If the estimated size deviates substantially from the expected genome size, the data may be contaminated, have unexpected ploidy, or suffer from systematic sequencing bias — catching this before assembly saves hours of failed computation.</p>
+</section>
+<section id="metagenomic-binning" class="level3">
+<h3 class="anchored" data-anchor-id="metagenomic-binning">Metagenomic Binning</h3>
+<p>For metagenomic data, the assembly produces a mixture of contigs from multiple organisms. <strong>Binning</strong> groups contigs into metagenome-assembled genomes (MAGs) using two orthogonal signals:</p>
+<ul>
+<li><strong>Composition:</strong> Tetranucleotide frequency (TNF) profiles — each genome has a characteristic oligonucleotide signature that distinguishes it from other genomes in the sample.</li>
+<li><strong>Coverage:</strong> Differential abundance across samples — contigs from the same genome have correlated coverage profiles across multiple samples or conditions.</li>
+</ul>
+<p>Tools: CONCOCT, MetaBAT2, MaxBin2. Validation: CheckM assesses MAG quality via lineage-specific single-copy marker genes. An “essentially complete” MAG requires &gt;90% completeness and &lt;5% contamination. A MAG is a population consensus, not a single genome — it represents the average genome of all cells assigned to that taxonomic bin, and within-bin strain diversity is masked.</p>
+<hr>
+</section>
+</section>
+<section id="biological-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
+<p>A genome assembly is a statistical inference, not a ground truth. The N50 metric is widely misused — a high N50 can mask systematic misassembly (collapsed duplications, mis-joined repeats). BUSCO scores measure conserved gene content, not genome-wide structural correctness. A 95% BUSCO score means 5% of conserved genes are missing or fragmented, but it says nothing about whether the remaining 95% are correctly assembled.</p>
+<p>Short-read-only assemblies of eukaryotic genomes are fundamentally incomplete. The telomere-to-telomere (T2T) human genome required PacBio HiFi (10-25 kb CCS reads) + ultra-long ONT (&gt;100 kb reads) + manual curation with optical maps. Any eukaryotic assembly derived from short reads alone should be treated as a draft.</p>
+<p>For metagenomic binning, completeness and contamination are competing objectives: aggressive binning produces fewer, cleaner MAGs but misses low-abundance organisms; lenient binning captures more diversity at the cost of contaminated bins. A MAG is always a consensus sequence across a population of cells that share the same taxonomic bin, and strain-level variation within the bin is invisible to the consensus.</p>
+<hr>
+</section>
+<section id="current-landscape-q2-2026" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
+<ul>
+<li><strong>T2T consortium</strong> completed the first truly complete human genome, revealing ~200 Mb of previously missing sequence including centromeres, telomeres, and segmental duplications that short-read-only assemblies could not resolve.</li>
+<li><strong>Human Pangenome Reference Consortium</strong> released the first draft pangenome, replacing the single linear reference with a graph genome representing population diversity across 47 phased assemblies.</li>
+<li><strong>Verkko</strong> (hybrid long-read + trio binning) produces haplotype-resolved assemblies for eukaryotic genomes, resolving both haplotypes without parental data when Hi-C data is available.</li>
+<li><strong>Telomere-to-telomere assembly</strong> is becoming routine for bacteria and model organisms as HiFi and ultra-long ONT costs decrease.</li>
+</ul>
+<hr>
+</section>
+<section id="summary-and-required-reading" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
+<ol type="1">
+<li><strong>Assembly is NP-hard with short reads</strong> — repeats longer than the read length create information-theoretic ambiguities that no algorithm can resolve.</li>
+<li><strong>De Bruijn graphs (k-mers)</strong> transform the Hamiltonian (NP-complete) path problem into an Eulerian (<span class="math inline">\(O(E)\)</span>) path problem, enabling genome-scale assembly.</li>
+<li><strong>k-mer choice is the critical parameter</strong> — small <span class="math inline">\(k\)</span> maximizes connectivity, large <span class="math inline">\(k\)</span> resolves repeats. Multiple k-mer assemblies address both needs.</li>
+<li><strong>Long reads bridge repeats</strong> — Hifiasm (HiFi) and Flye (ONT) produce near-complete eukaryotic assemblies. Short-read-only assemblies are drafts.</li>
+<li><strong>N50 is a contiguity metric, not an accuracy metric</strong> — BUSCO for gene content, merqury QV for consensus accuracy.</li>
+<li><strong>Metagenomic binning</strong> groups contigs by composition and coverage into MAGs, which are population consensuses, not individual genomes.</li>
+</ol>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<ul>
+<li>Compeau, Pevzner &amp; Tesler: “How to apply de Bruijn graphs to genome assembly” (<em>Nature Biotechnology</em>, 2011).</li>
+<li>Bankevich et al.: “SPAdes: a new genome assembly algorithm” (<em>Journal of Computational Biology</em>, 2012).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Johnson’s Rule:</strong> Assembly is not a solved problem. It is always an approximate reconstruction.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tier-2-core-omics/chapter-08.html" class="pagination-link" aria-label="Chapter 8: Algorithmic Foundations of Sequence Alignment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tier-2-core-omics/chapter-10.html" class="pagination-link" aria-label="Chapter 10: Variant Calling and Hidden Markov Models">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 10: Variant Calling and Hidden Markov Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

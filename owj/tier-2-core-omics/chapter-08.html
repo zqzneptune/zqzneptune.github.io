@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 8: Algorithmic Foundations of Sequence Alignment – Omics with Johnson 101</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tier-2-core-omics/chapter-09.html" rel="next">
+<link href="../tier-2-core-omics/chapter-07.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/johnson-research.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Omics with Johnson 101</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-01.html">
+ <span class="dropdown-text">Chapter 1: The Bioinformatic Computing Environment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-02.html">
+ <span class="dropdown-text">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-03.html">
+ <span class="dropdown-text">Chapter 3: Programming Paradigms and Project Organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-04.html">
+ <span class="dropdown-text">Chapter 4: Probability Distributions in Sequencing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-05.html">
+ <span class="dropdown-text">Chapter 5: Linear Algebra and Dimensionality Reduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-06.html">
+ <span class="dropdown-text">Chapter 6: Statistical Inference and Confounder Management</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Omics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
+ <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
+ <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
+ <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
+ <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
+ <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
+ <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Single-Cell</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+ <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Systems</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+ <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI/ML</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
+ <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clinical</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
+ <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
+ <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
+ <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
+ <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://zqzneptune.github.io/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#johnsons-first-principle-the-illusion-of-perfection" id="toc-johnsons-first-principle-the-illusion-of-perfection" class="nav-link active" data-scroll-target="#johnsons-first-principle-the-illusion-of-perfection">Johnson’s First Principle: The Illusion of Perfection</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#dynamic-programming-the-gold-standard-and-why-it-fails" id="toc-dynamic-programming-the-gold-standard-and-why-it-fails" class="nav-link" data-scroll-target="#dynamic-programming-the-gold-standard-and-why-it-fails">Dynamic Programming: The Gold Standard (and Why It Fails)</a></li>
+  <li><a href="#blast-and-seed-and-extend" id="toc-blast-and-seed-and-extend" class="nav-link" data-scroll-target="#blast-and-seed-and-extend">BLAST and Seed-and-Extend</a></li>
+  <li><a href="#burrows-wheeler-transform-and-the-fm-index" id="toc-burrows-wheeler-transform-and-the-fm-index" class="nav-link" data-scroll-target="#burrows-wheeler-transform-and-the-fm-index">Burrows-Wheeler Transform and the FM-Index</a></li>
+  <li><a href="#minimap2-and-long-read-alignment" id="toc-minimap2-and-long-read-alignment" class="nav-link" data-scroll-target="#minimap2-and-long-read-alignment">Minimap2 and Long-Read Alignment</a></li>
+  <li><a href="#star-splice-aware-alignment" id="toc-star-splice-aware-alignment" class="nav-link" data-scroll-target="#star-splice-aware-alignment">STAR: Splice-Aware Alignment</a></li>
+  <li><a href="#wavefront-alignment-near-linear-local-alignment" id="toc-wavefront-alignment-near-linear-local-alignment" class="nav-link" data-scroll-target="#wavefront-alignment-near-linear-local-alignment">Wavefront Alignment: Near-Linear Local Alignment</a></li>
+  </ul></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
+  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
+  <ul class="collapse">
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html">TIER 2: The Core Omics — Sequencing Physics and Algorithms</a></li><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-08.html"><span class="chapter-title">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="johnsons-first-principle-the-illusion-of-perfection" class="level2">
+<h2 class="anchored" data-anchor-id="johnsons-first-principle-the-illusion-of-perfection">Johnson’s First Principle: The Illusion of Perfection</h2>
+<p>Mapping a 150 bp read to the 3.2 billion bp human genome with dynamic programming requires <span class="math inline">\(4.8 \times 10^{11}\)</span> operations per read. At <span class="math inline">\(10^9\)</span> operations per second, that is 480 seconds per read. For 10 billion reads from a NovaSeq run, that is 150,000 years. Perfect alignment is computationally impossible. Bioinformatics is the science of engineered heuristics — sacrificing mathematical perfection for speed.</p>
+<p>Every alignment algorithm makes a tradeoff between <strong>sensitivity</strong> (the ability to detect true alignments) and <strong>speed</strong> (the number of reads processed per unit time). Understanding where a tool sits on this tradeoff curve — and where your data falls on the spectrum from exact matches to highly divergent sequences — is how you choose the right aligner.</p>
+<hr>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<section id="dynamic-programming-the-gold-standard-and-why-it-fails" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-programming-the-gold-standard-and-why-it-fails">Dynamic Programming: The Gold Standard (and Why It Fails)</h3>
+<p><strong>Needleman-Wunsch</strong> (global alignment) and <strong>Smith-Waterman</strong> (local alignment) guarantee mathematically optimal alignment under a given scoring scheme:</p>
+<p><span class="math display">\[F(i,j) = \max \begin{cases}
+F(i-1,j-1) + S(a_i, b_j) &amp; \text{match/mismatch} \\
+F(i-1,j) + d &amp; \text{gap in sequence B} \\
+F(i,j-1) + d &amp; \text{gap in sequence A}
+\end{cases}\]</span></p>
+<p>Complexity: <span class="math inline">\(O(nm)\)</span> time and memory. For <span class="math inline">\(n = 150\)</span>, <span class="math inline">\(m = 3.2 \times 10^9\)</span>, this fills <span class="math inline">\(4.8 \times 10^{11}\)</span> cells — computationally prohibitive at genome scale. Substitution matrices (PAM, BLOSUM) encode the log-odds ratio of observed vs.&nbsp;expected substitutions and are essential for protein alignment where different amino acid substitutions have vastly different biochemical consequences, but less informative for nucleotide alignment where substitution rates are more uniform.</p>
+<p>The insight that drives all practical alignment is that DP is exact but too slow for genome-scale queries against a large reference. Every subsequent method sacrifices the “guaranteed optimal” property for computational tractability.</p>
+</section>
+<section id="blast-and-seed-and-extend" class="level3">
+<h3 class="anchored" data-anchor-id="blast-and-seed-and-extend">BLAST and Seed-and-Extend</h3>
+<p>BLAST (Basic Local Alignment Search Tool, 1990) introduced <strong>seed-and-extend</strong>: find short exact matches (seeds) between the query and reference, then extend promising seeds with DP. This reduces the search space from <span class="math inline">\(O(nm)\)</span> to <span class="math inline">\(O(\text{seeds} \times \text{extension length})\)</span>, enabling the first practical genome-scale searches.</p>
+<p>The sensitivity-speed tradeoff is explicit in the seed length <span class="math inline">\(k\)</span>: shorter seeds find more matches (higher sensitivity) but produce more false seeds that waste extension time (lower speed). Longer seeds are faster but miss true alignments that lack an exact <span class="math inline">\(k\)</span>-mer match. BLAST’s contribution was demonstrating that this tradeoff could be tuned to achieve useful throughput while maintaining acceptable sensitivity.</p>
+</section>
+<section id="burrows-wheeler-transform-and-the-fm-index" class="level3">
+<h3 class="anchored" data-anchor-id="burrows-wheeler-transform-and-the-fm-index">Burrows-Wheeler Transform and the FM-Index</h3>
+<p>The BWT is a reversible permutation of a string with a remarkable property: it enables exact pattern matching in time proportional to the query length (<span class="math inline">\(O(M)\)</span>) using a compressed index that fits in RAM. The construction:</p>
+<ol type="1">
+<li>Append a unique terminator <code>$</code> (lexicographically smaller than all characters) to the reference.</li>
+<li>Generate all cyclic rotations of the reference and sort them lexicographically.</li>
+<li>Extract the last column of the sorted rotation matrix — this is the BWT.</li>
+</ol>
+<p>Consider <code>banana$</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sorted rotation</th>
+<th style="text-align: left;">Last char</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>$banana</code></td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a$banan</code></td>
+<td style="text-align: left;">n</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ana$ban</code></td>
+<td style="text-align: left;">n</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>anana$b</code></td>
+<td style="text-align: left;">b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>banana$</code></td>
+<td style="text-align: left;">$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>na$bana</code></td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>nana$ba</code></td>
+<td style="text-align: left;">a</td>
+</tr>
+</tbody>
+</table>
+<p>**BWT = annb<span class="math inline">\(aa** (the last column). The first column is the sorted characters: `\)</span>aaaabnn`. Because sorting groups identical suffixes together, characters preceding those suffixes also cluster — this run-length structure is why the BWT is more compressible than the original text (and why bzip2 uses it).</p>
+<p><strong>LF mapping</strong> (last-to-first) is the key insight: the <span class="math inline">\(i\)</span>-th occurrence of a character in the last column corresponds to the <span class="math inline">\(i\)</span>-th occurrence of that same character in the first column. In the example, the first <code>n</code> in <code>annb$aa</code> (position 1) maps to the first <code>n</code> in <code>$aaaabnn</code> (position 6). This holds because both come from the same rotation — one as its last character (BWT column), one as its first (first column). LF mapping effectively reverses one rotation step, so applying it repeatedly walks backward through the original text.</p>
+<p><strong>Backward search</strong> uses LF mapping to find exact matches. Starting from the last character of the query, each step narrows a range of BWT rows to those whose prefix matches the query suffix processed so far. To find <code>ban</code> in <code>banana$</code>: locate <code>n</code> rows, LF-map to find <code>an</code> rows, LF-map to find <code>ban</code> rows — the surviving row identifies rotation <code>banana$</code>. Each step requires only the BWT and two small auxiliary structures: a <span class="math inline">\(C\)</span> array (count of characters lexicographically smaller than each character) and a rank data structure over the BWT. Total time is <span class="math inline">\(O(|P|)\)</span> regardless of reference size.</p>
+<p>The <strong>FM-index</strong> packages the BWT with <span class="math inline">\(C\)</span> and rank to support three operations: <code>count</code> (how many times the pattern appears), <code>locate</code> (where in the genome), and <code>extract</code> (retrieve context around a position). The human genome fits in ~2 GB of RAM — small enough to run entirely in memory on a standard server.</p>
+<p><strong>BWA-MEM</strong> (Burrows-Wheeler Aligner — Maximal Exact Match) seeds from maximal exact matches (MEMs) found via the FM-index, then extends with affine-gap DP and paired-end rescue. <strong>Bowtie2</strong> uses the FM-index similarly but employs a different backtracking strategy for gapped alignment and performs better for very short reads (&lt;50 bp). Both handle Illumina short reads at 1-5% divergence from the reference. BWA-MEM is the default in standard pipelines (GATK best practices); Bowtie2 is preferred for small RNA, ChIP-seq, and metagenomic profiling where many very short reads must be aligned.</p>
+</section>
+<section id="minimap2-and-long-read-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="minimap2-and-long-read-alignment">Minimap2 and Long-Read Alignment</h3>
+<p>Minimap2 (Li, 2018) solves a different point on the tradeoff curve: aligning reads with high error rates (PacBio/Nanopore, 5-15% divergence) against large references. The innovation is <strong>minimizers</strong>: a subset of k-mers selected so that any two overlapping sequences are guaranteed to share at least one minimizer.</p>
+<p>A minimizer is the smallest k-mer (by lexicographic order) in a sliding window of <span class="math inline">\(w\)</span> consecutive k-mers. <strong>Guarantee:</strong> if two sequences overlap by at least <span class="math inline">\(w + k - 1\)</span> bases, they share a window of <span class="math inline">\(w\)</span> k-mers, and the minimum k-mer in that window is identical in both — so they share at least one minimizer. Smaller <span class="math inline">\(w\)</span> increases the chance of shared minimizers (higher sensitivity) but inflates the index (lower speed).</p>
+<p>By indexing only minimizers rather than all k-mers, the index remains compact while preserving this overlap property. The key advance over BWT-based methods is that minimizers tolerate high error rates: a read with 15% errors still shares minimizers with the reference because the minimizer selection depends only on local sequence, not global alignment. In contrast, BWT-based exact matching fails when even a single mismatch severs the exact seed.</p>
+<p>Minimap2 achieves <span class="math inline">\(O(N \log N)\)</span> scaling where <span class="math inline">\(N\)</span> is total sequence length, and handles PacBio/Nanopore long reads, assembly-to-assembly comparison, and spliced alignment (RNA-seq isoforms up to 100 kb). The cost is higher memory usage than BWT-based methods, but the tradeoff is acceptable for long-read data where the number of reads is orders of magnitude smaller.</p>
+</section>
+<section id="star-splice-aware-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="star-splice-aware-alignment">STAR: Splice-Aware Alignment</h3>
+<p>STAR (Dobin et al., 2013) addresses a fundamentally different alignment problem: RNA-seq reads that span exon-exon junctions. A DNA aligner assumes contiguous alignment; a read crossing an intron would require a deletion of thousands of bases, producing MAPQ 0.</p>
+<p>STAR builds a suffix array of the genome (a lexicographically sorted list of all suffixes — related to the BWT, since the BWT is the last column of the suffix array, but STAR uses the array directly for seed finding rather than for compression) and searches for <strong>maximal mappable seeds (MMPs)</strong> — the longest substring of the read that matches the genome exactly. When seed extension fails because the read crosses an intron, STAR starts a new seed from the unmapped portion. Seeds separated by a genomic gap but not a read gap represent candidate splice junctions, validated against canonical splice site motifs (GT-AG = &gt;99% true junctions).</p>
+<p>Two-pass mode: STAR discovers splice junctions from all samples in pass 1, builds an augmented index with the combined junction set, and re-aligns in pass 2. This increases sensitivity for novel junctions and lowly expressed isoforms by incorporating junction evidence across samples.</p>
+</section>
+<section id="wavefront-alignment-near-linear-local-alignment" class="level3">
+<h3 class="anchored" data-anchor-id="wavefront-alignment-near-linear-local-alignment">Wavefront Alignment: Near-Linear Local Alignment</h3>
+<p>BWT-based methods solve genome-scale search, but the local alignment itself — comparing a read against a candidate reference region — still costs <span class="math inline">\(O(nm)\)</span>. The <strong>wavefront alignment algorithm (WFA)</strong> (Marco-Sola et al., 2021) exploits a key observation: true alignments have small edit distances relative to read length (<span class="math inline">\(s \ll n\)</span>). WFA computes the alignment in <span class="math inline">\(O(ns)\)</span> time by propagating a front of matching diagonals through the DP matrix, skipping the vast majority of cells that can never participate in an optimal alignment with <span class="math inline">\(s\)</span> edits. For long reads with 5-15% error (<span class="math inline">\(s \approx 0.1n\)</span>), WFA is near-linear in practice, surpassing standard DP by 10-100x. It has been integrated into tools like minimap2 for its alignment step.</p>
+<hr>
+</section>
+</section>
+<section id="biological-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
+<p>The choice of aligner encodes a prior about the expected type and rate of variation. BWA-MEM assumes substitutions with small indels (&lt;5% divergence); STAR assumes splicing with introns of up to 500 kb; minimap2 assumes structural variation and high error rates (5-15% divergence). Using the wrong aligner destroys signal: aligning RNA-seq with BWA-MEM loses all splice junctions; aligning long reads with Bowtie2 loses structural variants.</p>
+<p>The MAPQ score (mapping quality) is <span class="math inline">\(-10 \log_{10} P(\text{read is misplaced})\)</span>, not a general “confidence in alignment.” MAPQ 30 means a 1-in-1000 chance of misplacement; MAPQ 20 (the standard hard-filter threshold in most pipelines) means 1-in-100. A read that maps uniquely to a repetitive region may have high MAPQ but be placed on the wrong repeat copy — the aligner is confident about its coordinates, but both repeat copies are equally likely. A read with MAPQ 0 may still be correctly assigned: MAPQ 0 encodes genuine ambiguity, but the read originated from one of the equally likely positions.</p>
+<p>Alignment bias is fundamental: aligners preferentially map reads to the reference genome, penalizing reads that carry true variation. A read with a 10 bp deletion relative to the reference may map with clipped ends or high mismatch count, reducing its MAPQ. This asymmetry means that reference-based alignment systematically underestimates variation in repetitive or structurally complex regions — the regions where the reference differs most from the sample.</p>
+<hr>
+</section>
+<section id="current-landscape-q2-2026" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
+<ul>
+<li><strong>Pan-genome graph aligners</strong> (minimap2 on pan-genome graphs, vg, Giraffe) enable alignment against a population reference rather than a single linear genome, improving variant discovery in complex regions (MHC, KIR) not represented in any single reference.</li>
+<li><strong>GPU-accelerated alignment</strong> (GACT, NVIDIA Clara) achieves &gt;10x speedup for Smith-Waterman, enabling real-time adaptive sequencing on Nanopore devices where alignment decisions guide which reads are continued.</li>
+<li><strong>Wavefront alignment algorithm (WFA)</strong> provides <span class="math inline">\(O(ns)\)</span> gap-affine alignment (where <span class="math inline">\(s\)</span> is the edit distance), surpassing DP for long-read alignment with near-linear time in practice by exploiting the observation that true alignments have small edit distances relative to read length.</li>
+</ul>
+<hr>
+</section>
+<section id="summary-and-required-reading" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
+<ol type="1">
+<li><strong>Perfect alignment is impossible</strong> — DP at genome scale requires 150,000 years. Every method makes a sensitivity-speed tradeoff.</li>
+<li><strong>BWT/FM-index</strong> enables <span class="math inline">\(O(M)\)</span> exact matching in ~2 GB RAM — the foundation of Bowtie2 and BWA-MEM for low-divergence short reads.</li>
+<li><strong>Minimizers</strong> (Minimap2) enable <span class="math inline">\(O(N \log N)\)</span> long-read alignment by guaranteeing overlapping sequences share seeds, tolerating 5-15% error rates.</li>
+<li><strong>STAR’s suffix array</strong> enables splice-aware alignment essential for RNA-seq, solving a problem that DNA aligners cannot address.</li>
+<li><strong>The choice of aligner encodes an assumption about variation type</strong> — using the wrong one discards signal.</li>
+</ol>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<ul>
+<li>Li &amp; Durbin: “Fast and accurate short read alignment with Burrows-Wheeler transform” (<em>Bioinformatics</em>, 2009).</li>
+<li>Li: “Minimap2: pairwise alignment for nucleotide sequences” (<em>Bioinformatics</em>, 2018).</li>
+<li>Dobin et al.: “STAR: ultrafast universal RNA-seq aligner” (<em>Bioinformatics</em>, 2013).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Johnson’s Rule:</strong> Every aligner is wrong. Some are useful.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tier-2-core-omics/chapter-07.html" class="pagination-link" aria-label="Chapter 7: Sequencing Physics and Data Formats">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 7: Sequencing Physics and Data Formats</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tier-2-core-omics/chapter-09.html" class="pagination-link" aria-label="Chapter 9: De Novo Assembly and Graph Algorithms">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 9: De Novo Assembly and Graph Algorithms</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

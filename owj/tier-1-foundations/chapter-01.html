@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 1: The Bioinformatic Computing Environment – Omics with Johnson 101</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tier-1-foundations/chapter-02.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/johnson-research.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Omics with Johnson 101</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-01.html">
+ <span class="dropdown-text">Chapter 1: The Bioinformatic Computing Environment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-02.html">
+ <span class="dropdown-text">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-03.html">
+ <span class="dropdown-text">Chapter 3: Programming Paradigms and Project Organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-04.html">
+ <span class="dropdown-text">Chapter 4: Probability Distributions in Sequencing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-05.html">
+ <span class="dropdown-text">Chapter 5: Linear Algebra and Dimensionality Reduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-06.html">
+ <span class="dropdown-text">Chapter 6: Statistical Inference and Confounder Management</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Omics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
+ <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
+ <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
+ <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
+ <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
+ <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
+ <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Single-Cell</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+ <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Systems</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+ <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI/ML</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
+ <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clinical</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
+ <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
+ <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
+ <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
+ <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://zqzneptune.github.io/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#johnsons-first-principle-compute-is-physical-not-magical" id="toc-johnsons-first-principle-compute-is-physical-not-magical" class="nav-link active" data-scroll-target="#johnsons-first-principle-compute-is-physical-not-magical">Johnson’s First Principle: Compute is Physical, Not Magical</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#the-bottleneck-framework" id="toc-the-bottleneck-framework" class="nav-link" data-scroll-target="#the-bottleneck-framework">The Bottleneck Framework</a></li>
+  <li><a href="#the-operating-system-hardware-traffic-cop" id="toc-the-operating-system-hardware-traffic-cop" class="nav-link" data-scroll-target="#the-operating-system-hardware-traffic-cop">The Operating System: Hardware Traffic Cop</a></li>
+  <li><a href="#why-unix-dominates-bioinformatics" id="toc-why-unix-dominates-bioinformatics" class="nav-link" data-scroll-target="#why-unix-dominates-bioinformatics">Why UNIX Dominates Bioinformatics</a></li>
+  <li><a href="#cpu-the-compute-resource" id="toc-cpu-the-compute-resource" class="nav-link" data-scroll-target="#cpu-the-compute-resource">CPU: The Compute Resource</a></li>
+  <li><a href="#ram-the-working-memory" id="toc-ram-the-working-memory" class="nav-link" data-scroll-target="#ram-the-working-memory">RAM: The Working Memory</a></li>
+  <li><a href="#storage-and-io-the-data-movement-bottleneck" id="toc-storage-and-io-the-data-movement-bottleneck" class="nav-link" data-scroll-target="#storage-and-io-the-data-movement-bottleneck">Storage and I/O: The Data Movement Bottleneck</a></li>
+  <li><a href="#stream-processing-the-pipe-as-io-bypass" id="toc-stream-processing-the-pipe-as-io-bypass" class="nav-link" data-scroll-target="#stream-processing-the-pipe-as-io-bypass">Stream Processing: The Pipe as I/O Bypass</a></li>
+  <li><a href="#hpc-job-scheduling-with-slurm" id="toc-hpc-job-scheduling-with-slurm" class="nav-link" data-scroll-target="#hpc-job-scheduling-with-slurm">HPC Job Scheduling with SLURM</a></li>
+  <li><a href="#persistent-sessions-with-tmux" id="toc-persistent-sessions-with-tmux" class="nav-link" data-scroll-target="#persistent-sessions-with-tmux">Persistent Sessions with tmux</a></li>
+  </ul></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
+  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
+  <ul class="collapse">
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-01.html">TIER 1: Foundations — Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-01.html"><span class="chapter-title">Chapter 1: The Bioinformatic Computing Environment</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Chapter 1: The Bioinformatic Computing Environment</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="johnsons-first-principle-compute-is-physical-not-magical" class="level2">
+<h2 class="anchored" data-anchor-id="johnsons-first-principle-compute-is-physical-not-magical">Johnson’s First Principle: Compute is Physical, Not Magical</h2>
+<p>A modern CPU contains billions of transistors etched onto a silicon die. Every operation — reading a file, aligning a read, training a model — directs the flow of electrons through a physical lattice. Computation costs time and energy. A student who types <code>wc -l</code> and sees a number appear has understood nothing. A professional who types <code>wc -l</code> and estimates completion time from I/O throughput, RAM bandwidth, and CPU cache has understood everything.</p>
+<p>The corollary is that every pipeline failure traces to one of three physical bottlenecks: the CPU is maxed out and needs parallelization; the disk cannot feed data fast enough and the CPU stalls waiting; or the data does not fit in RAM and the operating system kills the process. Identifying which of these three is happening — and knowing what to do about it — is the first skill a bioinformatician must develop.</p>
+<hr>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<section id="the-bottleneck-framework" class="level3">
+<h3 class="anchored" data-anchor-id="the-bottleneck-framework">The Bottleneck Framework</h3>
+<p>A running process consumes three physical resources: <strong>CPU cycles</strong> (computation), <strong>RAM</strong> (working memory), and <strong>I/O bandwidth</strong> (data movement from storage). At any moment, one of these is the limiting factor — the bottleneck — and the other two are underutilized.</p>
+<p>The diagnostic question is simple: - <strong>CPU at 100%, pipeline slow:</strong> the task is CPU-bound. More cores or a faster algorithm will help. - <strong>CPU below 50%, pipeline slow:</strong> the task is I/O-bound. The CPU spends most of its time waiting for data from storage. Faster storage or streaming will help. - <strong>Memory climbing steadily toward available RAM:</strong> the task is memory-bound. The process will be killed when it exceeds physical RAM. Streaming, memory-mapped files, or a lower-memory algorithm will help.</p>
+<p>Every tool and concept in this chapter exists to answer one of these three diagnostic questions. Understanding <em>which</em> bottleneck you face determines <em>which</em> tool you reach for.</p>
+</section>
+<section id="the-operating-system-hardware-traffic-cop" class="level3">
+<h3 class="anchored" data-anchor-id="the-operating-system-hardware-traffic-cop">The Operating System: Hardware Traffic Cop</h3>
+<p>An Operating System (OS) sits between physical hardware and software applications, managing resource allocation. Modern OSes enforce a strict separation between the <strong>kernel</strong> (privileged hardware access) and <strong>user-space</strong> (where applications run). This architecture is a safety mechanism — if your Python script has a memory leak, the kernel kills it without crashing the machine.</p>
+<p>When a program needs hardware access, it issues a <strong>system call</strong>:</p>
+<ul>
+<li><code>read(fd, buf, count)</code> — Read bytes from a file descriptor</li>
+<li><code>write(fd, buf, count)</code> — Write bytes to a file descriptor</li>
+<li><code>mmap(addr, length, prot, flags, fd, offset)</code> — Map a file into memory</li>
+<li><code>fork()</code> — Create a new process</li>
+<li><code>execve(path, argv, envp)</code> — Load a new program</li>
+</ul>
+<p>Every bioinformatics operation — reading a FASTQ, writing a BAM, launching a subprocess — is a system call. The OS scheduler decides how to allocate CPU time, RAM pages, and I/O bandwidth among all running processes. If a program spends most of its time in <code>read()</code>, it is I/O-bound. If it spends time in <code>sched_yield()</code>, it is waiting for the CPU scheduler.</p>
+<p><strong>Why this matters for bottleneck diagnosis:</strong> Tools like <code>strace</code> or <code>perf</code> can reveal which system call dominates execution time. A process spending 80% of its time in <code>read()</code> is clearly I/O-bound — there is no point adding more CPU cores.</p>
+</section>
+<section id="why-unix-dominates-bioinformatics" class="level3">
+<h3 class="anchored" data-anchor-id="why-unix-dominates-bioinformatics">Why UNIX Dominates Bioinformatics</h3>
+<p>UNIX (specifically Linux) is the lingua franca of computational biology. POSIX (Portable Operating System Interface) guarantees compatibility across systems: a shell script written on macOS will run on a Linux HPC cluster, a cloud instance, and a supercomputer.</p>
+<p>The core abstraction — <strong>everything is a file</strong> — is what makes stream processing possible. Data files, hard drives (<code>/dev/sda</code>), keyboard input (<code>/dev/stdin</code>), terminal output (<code>/dev/stdout</code>), and network sockets are all accessed via the same <code>read()</code>/<code>write()</code> system calls. This is why <code>grep</code> and <code>awk</code> can process piped data and files with identical syntax — the pipe operator simply connects one process’s stdout (a file descriptor) to another’s stdin.</p>
+<p>100% of the TOP500 supercomputers run Linux. The bioinformatics ecosystem (BWA, GATK, SAMtools, DESeq2, Salmon, STAR) is developed and tested on Linux. Resistance to learning the UNIX command line is resistance to doing bioinformatics.</p>
+</section>
+<section id="cpu-the-compute-resource" class="level3">
+<h3 class="anchored" data-anchor-id="cpu-the-compute-resource">CPU: The Compute Resource</h3>
+<p><strong>Cores and threads.</strong> A modern CPU contains multiple physical <strong>cores</strong>, each capable of running an independent instruction stream. <strong>Hyperthreading</strong> presents two logical threads per physical core, but a tool requesting 64 CPUs typically gets at most 32x throughput — the extra threads share the same execution units. Diagnosing whether hyperthreading is active is straightforward:</p>
+<pre class="code"><code>grep "cpu cores" /proc/cpuinfo | uniq      # Physical cores
+grep "siblings" /proc/cpuinfo | uniq        # Logical threads</code></pre>
+<p>If siblings exceed cpu cores, hyperthreading is on. A pipeline that requests “all CPUs” on a hyperthreaded system may waste resources by oversubscribing physical execution units.</p>
+<p><strong>SIMD (Single Instruction, Multiple Data).</strong> Modern CPUs contain vector units that perform the same operation on multiple data points simultaneously. Tools like BWA-MEM2 and minimap2 leverage SIMD for significant speedups that naive Python implementations cannot match. This is why replacing <code>bwa</code> with <code>bwa-mem2</code> can produce a 2x speedup without any change in output — the algorithm is identical, but the new version uses SIMD instructions.</p>
+<p><strong>The parallelization ceiling: Amdahl’s Law.</strong> Parallel speedup is bounded by the serial fraction of the workload. Amdahl’s Law formalizes this:</p>
+<p><span class="math display">\[S = \frac{1}{(1-p) + p/n}\]</span></p>
+<p>where <span class="math inline">\(S\)</span> is speedup, <span class="math inline">\(p\)</span> is the fraction that can be parallelized, and <span class="math inline">\(n\)</span> is the number of cores. If 10% of the alignment step is serial (loading the reference index, writing the output header), <span class="math inline">\(p = 0.90\)</span> and the maximum speedup is <span class="math inline">\(1/(0.10 + 0.90/n)\)</span> — approaching <span class="math inline">\(10\times\)</span> even with infinite cores. The first question when parallelizing is not “how many cores do I have” but “what fraction of this task is serial.”</p>
+<p><strong>When CPU is the bottleneck:</strong> <code>htop</code> shows all cores near 100%, but the pipeline is slower than desired. The solution is to parallelize across cores (use multi-threaded tools, split input files) or to use a more efficient algorithm (SIMD-optimized tools, C/Fortran libraries instead of Python loops).</p>
+</section>
+<section id="ram-the-working-memory" class="level3">
+<h3 class="anchored" data-anchor-id="ram-the-working-memory">RAM: The Working Memory</h3>
+<p><strong>The memory hierarchy.</strong> Data moves through a series of progressively slower storage layers, with the CPU at the center:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Latency</th>
+<th>Relative to L1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1 cache</td>
+<td>0.5 ns</td>
+<td>1x</td>
+</tr>
+<tr class="even">
+<td>L2 cache</td>
+<td>7 ns</td>
+<td>14x</td>
+</tr>
+<tr class="odd">
+<td>L3 cache</td>
+<td>~40 ns</td>
+<td>80x</td>
+</tr>
+<tr class="even">
+<td>RAM</td>
+<td>100 ns</td>
+<td>200x</td>
+</tr>
+<tr class="odd">
+<td>NVMe SSD</td>
+<td>20,000 ns</td>
+<td>40,000x</td>
+</tr>
+<tr class="even">
+<td>HDD seek</td>
+<td>10,000,000 ns</td>
+<td>20,000,000x</td>
+</tr>
+</tbody>
+</table>
+<p>The critical gap is between RAM and storage, but only for random access patterns — reading scattered locations across a file. Sequential access (reading a file from start to end) is fast because the hardware prefetcher anticipates the next cache line and the OS read-ahead buffer loads the next block before it is requested. A <code>grep</code> that scans a 50 GB FASTQ sequentially can saturate NVMe bandwidth (~5 GB/s). A <code>samtools view</code> without a BAI index that seeks to a specific genomic region makes thousands of random reads — each requiring a disk seek — and runs 100x slower. The access pattern, not just the data volume, determines whether the bottleneck is the storage device.</p>
+<p>Loading a 100 GB FASTQ file with <code>read.csv()</code> reads the entire file into RAM. If the machine has 64 GB of RAM, the OS will swap to disk (using SSD as extremely slow RAM) and eventually invoke the <strong>OOM (Out-of-Memory) killer</strong> — the kernel process that terminates the offending program.</p>
+<p><strong>When memory is the bottleneck:</strong> <code>htop</code> shows RAM usage climbing steadily toward 100%, and the pipeline eventually crashes with a killed process. The forensic record of this event:</p>
+<pre class="code"><code>dmesg | grep -i oom   # Kernel log showing which process was killed</code></pre>
+<p><strong>Preventive memory management:</strong></p>
+<pre class="code"><code>ulimit -v 8000000     # Set 8 GB virtual memory limit — fail fast, not at hour 47</code></pre>
+<p>The <code>ulimit</code> command prevents the OOM scenario by failing immediately when the limit is exceeded, rather than letting the process thrash for hours before the kernel intervenes. Setting a memory limit based on a test dataset run is a hallmark of production-grade pipeline engineering.</p>
+<p><strong>The two professional solutions to memory-bound problems</strong> are streaming and memory-mapped files — both of which avoid loading the entire dataset into RAM at once. These are covered next.</p>
+</section>
+<section id="storage-and-io-the-data-movement-bottleneck" class="level3">
+<h3 class="anchored" data-anchor-id="storage-and-io-the-data-movement-bottleneck">Storage and I/O: The Data Movement Bottleneck</h3>
+<p>Storage speed varies by over three orders of magnitude depending on technology:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Device</th>
+<th>Sequential Read</th>
+<th>Random Access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HDD</td>
+<td>~150 MB/s</td>
+<td>~1 MB/s</td>
+</tr>
+<tr class="even">
+<td>SATA SSD</td>
+<td>~500 MB/s</td>
+<td>~50 MB/s</td>
+</tr>
+<tr class="odd">
+<td>NVMe SSD</td>
+<td>~3-7 GB/s</td>
+<td>~500 MB/s</td>
+</tr>
+</tbody>
+</table>
+<p>The gap between HDD and NVMe is 100x for sequential reads and 500x for random access. This difference explains why BAM files require <code>.bai</code> indexes. Without an index, <code>samtools view</code> must scan the entire BAM file to find reads in a region. With an index, it reads only the relevant compressed block — reducing a minutes-long random seek to milliseconds.</p>
+<p><strong>The page cache: why the second read is free.</strong> When the OS reads a file from disk, it keeps the data in a region of RAM called the <strong>page cache</strong>. A subsequent read of the same file returns instantly from memory — <code>iostat</code> shows 0% utilization because no disk access occurred. This creates a trap for pipeline development: the first run of <code>samtools view</code> is slow (reading from disk), but the second run appears fast (reading from cache), leading the developer to think the pipeline is faster than it will be on a cold cache. Always measure I/O performance on a cold cache (after <code>echo 3 &gt; /proc/sys/vm/drop_caches</code>, or on the first run after a reboot) to get realistic benchmarks.</p>
+<p><strong>When I/O is the bottleneck:</strong> <code>htop</code> shows CPU below 50% and the pipeline is slow. The diagnostic tools:</p>
+<pre class="code"><code>iostat -x 2          # I/O statistics every 2 seconds — check %util
+iotop -oP            # Per-process I/O activity — which process is reading?</code></pre>
+<p>If <code>iostat</code> shows a device at 100% utilization, the storage system is saturated. The solution is faster storage (NVMe over HDD), streaming (fewer intermediate files), or data reduction (filtering reads before expensive operations).</p>
+</section>
+<section id="stream-processing-the-pipe-as-io-bypass" class="level3">
+<h3 class="anchored" data-anchor-id="stream-processing-the-pipe-as-io-bypass">Stream Processing: The Pipe as I/O Bypass</h3>
+<p>The pipe operator (<code>|</code>) is the most important tool in the bioinformatician’s I/O optimization toolkit. It connects the stdout of one process directly to the stdin of another without writing to disk. Data flows through a kernel buffer — entirely in memory — and is consumed incrementally:</p>
+<pre class="code"><code># Novice: writes ~20 GB of intermediate files to disk
+grep "BRCA1" huge_file.fastq &gt; temp.txt
+sort temp.txt &gt; sorted.txt
+uniq -c sorted.txt &gt; counts.txt
+
+# Professional: streaming pipeline, one disk read, everything in memory
+grep "BRCA1" huge_file.fastq | sort | uniq -c</code></pre>
+<p>The streaming version reads the file once, processes it through three tools in memory, and writes the final result. The novice version reads and writes the same data three times, tripling I/O time and wearing the disk.</p>
+<p>Streaming also solves memory-bound problems. The essential streaming tools:</p>
+<ul>
+<li><code>grep</code> — pattern matching</li>
+<li><code>awk</code> — column math and text processing</li>
+<li><code>sed</code> — text replacement</li>
+<li><code>sort | uniq -c</code> — frequency counting</li>
+<li><code>fold</code> — line wrapping (useful for k-mer generation)</li>
+</ul>
+<p><strong>The generalization:</strong> Any pipeline step that writes a transient intermediate file should be examined for whether the I/O is necessary. If the next step can consume a stream, eliminate the file.</p>
+</section>
+<section id="hpc-job-scheduling-with-slurm" class="level3">
+<h3 class="anchored" data-anchor-id="hpc-job-scheduling-with-slurm">HPC Job Scheduling with SLURM</h3>
+<p>When analysis exceeds a single workstation, jobs are submitted to a cluster. SLURM (Simple Linux Utility for Resource Management) is the dominant scheduler in academic bioinformatics. Users write submission scripts that specify hardware requirements and submit them to queues (partitions):</p>
+<pre class="code"><code>#!/bin/bash
+#SBATCH --job-name=alignment
+#SBATCH --time=48:00:00
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=128G
+
+module load bwa/0.7.17
+bwa mem -t 16 reference.fa sample_R1.fastq.gz sample_R2.fastq.gz \
+  | samtools sort -@ 4 -o sample_sorted.bam -</code></pre>
+<p><strong>The bottleneck framework applied to SLURM:</strong> The most common SLURM mistakes are failures to estimate resource requirements — which is the same diagnostic problem this chapter is built around. Over-requesting CPUs (requesting 64 on a hyperthreaded system with 32 physical cores leaves 32 cores idle that other users cannot use). Over-requesting time (delays scheduling because the job must wait for a longer time window). Under-requesting memory (OOM at hour 47 of a 48-hour job — the job fails, and the queue position is lost).</p>
+<p>The solution is to profile the pipeline on a test dataset first, measure actual CPU, memory, and time usage, then request resources with a 2x safety margin:</p>
+<pre class="code"><code>sbatch my_script.sh              # Submit job
+squeue -u $USER                  # Check job status
+scancel JOBID                    # Cancel job
+sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS  # Actual resource usage</code></pre>
+</section>
+<section id="persistent-sessions-with-tmux" class="level3">
+<h3 class="anchored" data-anchor-id="persistent-sessions-with-tmux">Persistent Sessions with tmux</h3>
+<p>A dropped SSH connection sends SIGHUP, terminating all child processes — including a pipeline that has been running for 46 hours. <code>tmux</code> decouples running processes from the terminal session, so the pipeline survives disconnection:</p>
+<pre class="code"><code>tmux new -s pipeline1            # Start session
+# Ctrl-b, d                      # Detach (session continues after disconnect)
+tmux attach -t pipeline1         # Reattach from anywhere</code></pre>
+<p>This is a small tool with an outsized impact: it prevents the “SSH disconnected, job lost” failure mode that every bioinformatician encounters. Use <code>tmux</code> (or <code>screen</code>) for any pipeline running longer than a few minutes on a remote machine.</p>
+<hr>
+</section>
+</section>
+<section id="biological-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
+<p>The bottleneck framework transforms how a bioinformatician approaches a new analysis. Before looking at algorithms or parameters, the professional asks: “What is the rate-limiting resource, and how do I measure it?”</p>
+<p><strong>CPU-bound diagnosis:</strong> <code>htop</code> shows all cores above 90%. The pipeline is compute-limited. Parallelize across samples, use multi-threaded tools, or switch to SIMD-optimized implementations. The gain from parallelization is bounded by Amdahl’s Law — if 10% of the pipeline is serial, maximum speedup is 10x regardless of cores.</p>
+<p><strong>I/O-bound diagnosis:</strong> <code>htop</code> shows CPU below 50%, <code>iostat</code> shows the disk at 100% utilization. The pipeline is data-movement-limited. <strong>Caveat:</strong> this heuristic assumes the tool is multi-threaded. A single-threaded aligner on a 32-core machine shows only ~3% CPU usage regardless of whether it is CPU-bound or I/O-bound — the low CPU percentage reflects idle cores, not a stalled pipeline. To distinguish, check whether a single core is saturated (<code>htop</code> per-core view, or <code>mpstat -P ALL 1</code>). If one core is at 100% and the rest are idle, the tool is single-threaded and CPU-bound. If all cores are below 50% and the tool is multi-threaded, then it is I/O-bound. Switch to streaming (pipes), use faster storage (NVMe over HDD), add BAM/CRAM indexes to reduce random access, or reduce data volume (filter reads before alignment).</p>
+<p><strong>Memory-bound diagnosis:</strong> <code>htop</code> shows RAM climbing to capacity, <code>dmesg</code> shows OOM kills. The pipeline is capacity-limited. Switch to streaming (generators in Python), use memory-mapped files (<code>mmap</code> via <code>numpy.memmap</code> or <code>pandas.read_csv(chunksize=...)</code>), estimate memory from a test dataset and provision appropriately.</p>
+<p>A genome assembler requiring 400 GB of RAM on a 128 GB workstation is not “running slowly” — it is failing. The correct response is not to wait longer; it is to estimate memory requirements from a test dataset, provision appropriate resources, or use an algorithm with lower memory footprint.</p>
+<p>Every intermediate file written to disk represents an I/O bottleneck that could have been avoided with a pipe. The question “did I write a file I could have streamed?” should be asked of every step in every pipeline.</p>
+<hr>
+</section>
+<section id="current-landscape-q2-2026" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
+<ul>
+<li><strong>Cloud HPC:</strong> AWS Batch and Google Batch are increasingly replacing on-premise SLURM for burst workloads, but SLURM remains dominant in academic sequencing centers where capital equipment is already purchased.</li>
+<li><strong>ARM processors:</strong> AWS Graviton and NVIDIA Grace are entering HPC bioinformatics with competitive performance and lower power consumption, but software compatibility (particularly for SIMD-optimized tools) remains uneven.</li>
+<li><strong>GPU-accelerated bioinformatics:</strong> GATK, minimap2, and STAR-Fusion now offer GPU acceleration, changing the CPU vs.&nbsp;GPU resource planning equation — but GPU memory is still a bottleneck (40-80 GB vs.&nbsp;256 GB+ RAM for CPU nodes).</li>
+<li><strong>NVMe-over-fabric:</strong> Enables remote direct memory access for multi-node genome assembly, reducing data movement bottlenecks in distributed computations by allowing nodes to access remote storage at near-local speeds.</li>
+</ul>
+<hr>
+</section>
+<section id="summary-and-required-reading" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
+<ol type="1">
+<li><strong>Compute is physical</strong> — every operation costs time and energy. Every pipeline failure traces to one of three bottlenecks: CPU, I/O, or memory.</li>
+<li><strong>Diagnose before you optimize</strong> — <code>htop</code> tells you CPU vs.&nbsp;I/O. <code>iostat</code> tells you I/O saturation. <code>dmesg</code> tells you OOM kills. Measure the bottleneck before choosing the solution.</li>
+<li><strong>Streaming eliminates disk I/O</strong> — pipes keep data flowing through memory. Never write transient intermediate files.</li>
+<li><strong>Memory has a hierarchy</strong> — L1 cache → RAM → SSD → HDD. The gap between layers is the source of most performance problems.</li>
+<li><strong>SLURM resource requests must be measured, not guessed</strong> — profile on a test dataset, request 2x safety margin via <code>sacct</code>.</li>
+<li><strong><code>tmux</code> prevents the disconnected-SSH failure</strong> — use it for any remote pipeline longer than a few minutes.</li>
+</ol>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<ul>
+<li>Tenenbaum &amp; Bos: <em>Modern Operating Systems</em> (Chapters 1-3) — OS architecture, process management, memory hierarchy.</li>
+<li>UNIX command-line fundamentals: pipes, redirection, stream processing with <code>grep</code>, <code>awk</code>, <code>sed</code>.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Johnson’s Rule:</strong> If you cannot navigate a UNIX terminal blindfolded, you cannot do bioinformatics at scale. A 100 GB file does not fit in <code>read.csv()</code> — but it fits in a pipe.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Johnson's First Principle of Bioinformatics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Johnson’s First Principle of Bioinformatics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tier-1-foundations/chapter-02.html" class="pagination-link" aria-label="Chapter 2: Engineering Reproducibility and Workflow Orchestration">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 4: Probability Distributions in Sequencing – Omics with Johnson 101</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tier-1-foundations/chapter-05.html" rel="next">
+<link href="../tier-1-foundations/chapter-03.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/johnson-research.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Omics with Johnson 101</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Foundations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-01.html">
+ <span class="dropdown-text">Chapter 1: The Bioinformatic Computing Environment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-02.html">
+ <span class="dropdown-text">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-03.html">
+ <span class="dropdown-text">Chapter 3: Programming Paradigms and Project Organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-04.html">
+ <span class="dropdown-text">Chapter 4: Probability Distributions in Sequencing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-05.html">
+ <span class="dropdown-text">Chapter 5: Linear Algebra and Dimensionality Reduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-1-foundations/chapter-06.html">
+ <span class="dropdown-text">Chapter 6: Statistical Inference and Confounder Management</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Core Omics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
+ <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
+ <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
+ <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
+ <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
+ <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
+ <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Single-Cell</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+ <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Systems</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+ <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI/ML</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
+ <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clinical</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
+ <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
+ <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
+ <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
+ <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://zqzneptune.github.io/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#johnsons-first-principle-read-counts-are-random-variables" id="toc-johnsons-first-principle-read-counts-are-random-variables" class="nav-link active" data-scroll-target="#johnsons-first-principle-read-counts-are-random-variables">Johnson’s First Principle: Read Counts are Random Variables</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <ul class="collapse">
+  <li><a href="#discrete-data-requires-discrete-distributions" id="toc-discrete-data-requires-discrete-distributions" class="nav-link" data-scroll-target="#discrete-data-requires-discrete-distributions">Discrete Data Requires Discrete Distributions</a></li>
+  <li><a href="#the-poisson-process-modeling-sampling-noise" id="toc-the-poisson-process-modeling-sampling-noise" class="nav-link" data-scroll-target="#the-poisson-process-modeling-sampling-noise">The Poisson Process: Modeling Sampling Noise</a></li>
+  <li><a href="#overdispersion-when-variance-exceeds-the-mean" id="toc-overdispersion-when-variance-exceeds-the-mean" class="nav-link" data-scroll-target="#overdispersion-when-variance-exceeds-the-mean">Overdispersion: When Variance Exceeds the Mean</a></li>
+  <li><a href="#the-negative-binomial-poisson-with-a-random-rate" id="toc-the-negative-binomial-poisson-with-a-random-rate" class="nav-link" data-scroll-target="#the-negative-binomial-poisson-with-a-random-rate">The Negative Binomial: Poisson with a Random Rate</a></li>
+  <li><a href="#from-distribution-to-inference-the-estimation-problem" id="toc-from-distribution-to-inference-the-estimation-problem" class="nav-link" data-scroll-target="#from-distribution-to-inference-the-estimation-problem">From Distribution to Inference: The Estimation Problem</a></li>
+  <li><a href="#deseq2-empirical-bayes-dispersion-estimation" id="toc-deseq2-empirical-bayes-dispersion-estimation" class="nav-link" data-scroll-target="#deseq2-empirical-bayes-dispersion-estimation">DESeq2: Empirical Bayes Dispersion Estimation</a></li>
+  </ul></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#the-poisson-in-other-omics-contexts" id="toc-the-poisson-in-other-omics-contexts" class="nav-link" data-scroll-target="#the-poisson-in-other-omics-contexts">The Poisson in Other Omics Contexts</a></li>
+  </ul></li>
+  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
+  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
+  <ul class="collapse">
+  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-01.html">TIER 1: Foundations — Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-04.html"><span class="chapter-title">Chapter 4: Probability Distributions in Sequencing</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Chapter 4: Probability Distributions in Sequencing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="johnsons-first-principle-read-counts-are-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="johnsons-first-principle-read-counts-are-random-variables">Johnson’s First Principle: Read Counts are Random Variables</h2>
+<p>If you take a tube of RNA, prepare two libraries, and sequence them identically, you will not get the same number of reads for any gene. A gene that yields 450 reads in one library might yield 420 in another. This is not measurement error in the usual sense — the sequencer did not malfunction. The difference arises from random sampling: from a pool of billions of RNA fragments, the sequencer captures a tiny, random subset.</p>
+<p>A novice treats 450 as a fixed measurement. A professional recognizes it as a single observation of a random variable drawn from an underlying probability distribution. Before you can declare a gene “upregulated,” you must prove that the observed difference exceeds the expected noise of that distribution. And before you can do that, you must know which distribution governs read counts.</p>
+<hr>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
+<section id="discrete-data-requires-discrete-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-data-requires-discrete-distributions">Discrete Data Requires Discrete Distributions</h3>
+<p>Sequencing produces <strong>counts</strong>. A gene is either observed 0, 1, 2, … times. It cannot be observed 450.7 times. This discreteness rules out the most familiar distribution in statistics — the Gaussian — for two reasons:</p>
+<ol type="1">
+<li>The Gaussian assigns probability density to impossible values: negative counts and fractional counts.</li>
+<li>The Gaussian assumes variance is independent of the mean, but count data exhibits a systematic mean-variance relationship: genes with higher expression have larger absolute variance.</li>
+</ol>
+<p>Every distribution used in RNA-seq analysis must respect the discrete, non-negative, integer-valued nature of the data. This constraint narrows the candidate distributions dramatically.</p>
+</section>
+<section id="the-poisson-process-modeling-sampling-noise" class="level3">
+<h3 class="anchored" data-anchor-id="the-poisson-process-modeling-sampling-noise">The Poisson Process: Modeling Sampling Noise</h3>
+<p>A sequencing experiment is a physical sampling process. From a homogenized pool containing billions of RNA fragments, the sequencer withdraws a subsample and reads each captured fragment. This is, by construction, a <strong>Poisson process</strong>: independent events occurring at a constant average rate.</p>
+<p>If a gene constitutes a fraction <span class="math inline">\(p\)</span> of the total RNA pool and the sequencer draws <span class="math inline">\(N\)</span> total reads, the expected count is <span class="math inline">\(\lambda = pN\)</span>. The probability of observing exactly <span class="math inline">\(k\)</span> reads from that gene follows the Poisson distribution:</p>
+<p><span class="math display">\[P(k) = \frac{\lambda^k e^{-\lambda}}{k!}\]</span></p>
+<p>The defining property of the Poisson is that <strong>variance equals the mean</strong>:</p>
+<p><span class="math display">\[\text{Var}(X) = E[X] = \lambda\]</span></p>
+<p>This means: if you resequence the <em>same library</em> (a technical replicate), the counts for a given gene should scatter around the mean with variance approximately equal to the mean. For technical replicates, the Poisson fits remarkably well — the only source of variation is the random sampling inherent in the sequencing process.</p>
+<p><strong>Johnson’s Rule:</strong> The Poisson is the correct model for technical replicates. It is almost always the wrong model for biological replicates.</p>
+</section>
+<section id="overdispersion-when-variance-exceeds-the-mean" class="level3">
+<h3 class="anchored" data-anchor-id="overdispersion-when-variance-exceeds-the-mean">Overdispersion: When Variance Exceeds the Mean</h3>
+<p>Now consider three <em>biological</em> replicates — three different mice from the same treatment group — with expression counts for a single gene:</p>
+<p><span class="math display">\[\text{Replicate counts: } 100, 300, 500\]</span> <span class="math display">\[\text{Mean } \mu = 300, \quad \text{Variance } \sigma^2 = 40{,}000\]</span></p>
+<p>The Poisson predicts variance <span class="math inline">\(= 300\)</span>. The actual variance is 133 times larger. This is <strong>overdispersion</strong>: <span class="math inline">\(\sigma^2 \gg \mu\)</span>.</p>
+<p>Where does this extra variance come from? The three mice do not have identical biological states. Their gene expression levels differ due to genetic background, environmental history, stochastic cellular noise — all the sources of biological variation that make organisms distinct. The sequencing step adds Poisson sampling noise on top of this biological variation.</p>
+<p>Total variance decomposes into two components:</p>
+<p><span class="math display">\[\text{Var}(\text{observed count}) = \text{Var}(\text{biological signal}) + \text{Var}(\text{sampling noise})\]</span></p>
+<p>The biological signal itself varies across replicates. The sampling noise — which is Poisson — operates on each replicate’s individual biological state. A distribution that accounts for both components must allow the variance to exceed the mean by an adjustable amount.</p>
+</section>
+<section id="the-negative-binomial-poisson-with-a-random-rate" class="level3">
+<h3 class="anchored" data-anchor-id="the-negative-binomial-poisson-with-a-random-rate">The Negative Binomial: Poisson with a Random Rate</h3>
+<p>The Negative Binomial (NB) distribution adds exactly one parameter — the <strong>dispersion</strong> <span class="math inline">\(\alpha\)</span> — to capture overdispersion. Its critical variance formula is:</p>
+<p><span class="math display">\[\text{Var}(Y) = \mu + \alpha\mu^2\]</span></p>
+<p>When <span class="math inline">\(\alpha = 0\)</span>, the NB collapses to the Poisson. As <span class="math inline">\(\alpha\)</span> increases, the quadratic term <span class="math inline">\(\alpha\mu^2\)</span> rapidly dominates, allowing the variance to far exceed the mean.</p>
+<p>The NB emerges naturally from a <strong>Poisson-Gamma mixture</strong>. Imagine the biological process as follows:</p>
+<ol type="1">
+<li>Each biological replicate <span class="math inline">\(i\)</span> has its own underlying expression rate <span class="math inline">\(\lambda_i\)</span> for a given gene. These rates vary across replicates because the organisms are not identical.</li>
+<li>The <span class="math inline">\(\lambda_i\)</span> values follow a <strong>Gamma distribution</strong> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\alpha\mu^2\)</span>. The Gamma is the natural choice because it is continuous, always positive, and can take a wide range of shapes depending on <span class="math inline">\(\alpha\)</span>.</li>
+<li>Each replicate’s observed count <span class="math inline">\(Y_i\)</span> is drawn from <span class="math inline">\(\text{Poisson}(\lambda_i)\)</span> — that is, the sequencer samples from that replicate’s RNA pool, and the count is Poisson-distributed around that replicate’s true rate.</li>
+</ol>
+<p>Aggregating across replicates, the observed counts follow the NB. The variance decomposition uses the <strong>Law of Total Variance</strong> — the identity that splits the total variance of a hierarchical process into expected within-group variance plus between-group variance:</p>
+<p><span class="math display">\[\text{Var}(Y) = \underbrace{E[\text{Var}(Y|\lambda)]}_{\text{within-replicate (Poisson noise)}} + \underbrace{\text{Var}(E[Y|\lambda])}_{\text{between-replicate (biological variation)}}\]</span></p>
+<p>Applying this to the Poisson-Gamma hierarchy makes the <span class="math inline">\(\alpha\mu^2\)</span> term transparent:</p>
+<p><span class="math display">\[\text{Var}(Y) = E[\lambda] + \text{Var}(\lambda)\]</span> <span class="math display">\[\text{Var}(Y) = \mu + \alpha\mu^2\]</span></p>
+<p>The quadratic term <span class="math inline">\(\alpha\mu^2\)</span> arises because biological variation scales with expression level: a highly expressed gene has more “room” for its rate to vary across replicates than a lowly expressed one.</p>
+<p>The full NB probability mass function is:</p>
+<p><span class="math display">\[P(Y = y) = \frac{\Gamma(y + 1/\alpha)}{y! \, \Gamma(1/\alpha)} \left(\frac{1/\alpha}{1/\alpha + \mu}\right)^{1/\alpha} \left(\frac{\mu}{1/\alpha + \mu}\right)^y\]</span></p>
+<p>While the equation appears formidable, the practical contribution of <span class="math inline">\(\alpha\)</span> reduces to a single intuition: <strong>it controls how much biological noise inflates the variance beyond what sampling alone would produce.</strong></p>
+<p>The table below quantifies this for a gene with mean expression <span class="math inline">\(\mu = 100\)</span>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\alpha\)</span></th>
+<th>Meaning</th>
+<th>Variance (<span class="math inline">\(\mu=100\)</span>)</th>
+<th><span class="math inline">\(\sigma\)</span></th>
+<th>Typical CV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Technical replicates only (Poisson)</td>
+<td>100</td>
+<td>10</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>0.01</td>
+<td>Very well-controlled experiment</td>
+<td>200</td>
+<td>14</td>
+<td>14%</td>
+</tr>
+<tr class="odd">
+<td>0.05</td>
+<td>Typical cell-line experiment</td>
+<td>600</td>
+<td>24</td>
+<td>24%</td>
+</tr>
+<tr class="even">
+<td>0.1</td>
+<td>Moderate biological noise</td>
+<td>1,100</td>
+<td>33</td>
+<td>33%</td>
+</tr>
+<tr class="odd">
+<td>0.5</td>
+<td>Highly variable system (immune genes)</td>
+<td>5,100</td>
+<td>71</td>
+<td>71%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to read this table in practice:</strong> In a well-controlled mouse knockout study with 3 biological replicates per group, most protein-coding genes have <span class="math inline">\(\alpha\)</span> between 0.01 and 0.1. Cytokine genes, immune receptors, and cell-cycle regulators often exceed 0.5 — their expression is genuinely more variable across individuals. The NB is not flagging them as “noisy”; it is correctly modeling their true biological variability. The <span class="math inline">\(\alpha\)</span> parameter separates the question “is this gene variable?” from “is this gene differentially expressed?” — two questions that a Poisson-based analysis would conflate.</p>
+</section>
+<section id="from-distribution-to-inference-the-estimation-problem" class="level3">
+<h3 class="anchored" data-anchor-id="from-distribution-to-inference-the-estimation-problem">From Distribution to Inference: The Estimation Problem</h3>
+<p>The NB gives us the correct distributional form. But differential expression requires estimating <span class="math inline">\(\mu\)</span> (expression level) and <span class="math inline">\(\alpha\)</span> (dispersion) for each gene from the data. Here a practical problem emerges.</p>
+<p>With <span class="math inline">\(n = 3\)</span> biological replicates per condition, we have 3 data points from which to estimate both <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\alpha\)</span> for each gene. Estimating two parameters from three observations is statistically perilous: per-gene dispersion estimates are wildly unreliable at low replication. A gene whose three counts happen to be 101, 102, 103 would produce <span class="math inline">\(\alpha \approx 0\)</span> under per-gene estimation, while a gene with counts 50, 100, 150 produces a large <span class="math inline">\(\alpha\)</span>. Neither estimate reflects the true dispersion reliably.</p>
+<p><strong>The key insight that makes RNA-seq analysis work:</strong> dispersion varies smoothly with mean expression. Highly expressed genes tend to have lower dispersion; lowly expressed genes tend to have higher dispersion, partly because the counts are noisier and partly because lowly expressed genes include more biological noise. This mean-dispersion relationship means we can borrow information across genes.</p>
+</section>
+<section id="deseq2-empirical-bayes-dispersion-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="deseq2-empirical-bayes-dispersion-estimation">DESeq2: Empirical Bayes Dispersion Estimation</h3>
+<p>DESeq2 operationalizes this insight through <strong>empirical Bayes shrinkage</strong>. The workflow proceeds in three steps:</p>
+<ol type="1">
+<li><strong>Per-gene dispersion estimation:</strong> For each gene <span class="math inline">\(i\)</span>, estimate <span class="math inline">\(\alpha_i\)</span> from its count data alone. These raw estimates are noisy but unbiased.</li>
+<li><strong>Trend fitting:</strong> Fit a smooth curve through the cloud of per-gene dispersion estimates plotted against mean expression. The curve captures the systematic relationship: <span class="math inline">\(\alpha\)</span> decreases with <span class="math inline">\(\mu\)</span>.</li>
+<li><strong>Shrinkage:</strong> Shrink each per-gene estimate <span class="math inline">\(\hat{\alpha}_i\)</span> toward the trend line. Genes whose per-gene estimate is unreliable (typically lowly expressed genes with high sampling noise) are pulled more aggressively. Highly expressed genes, whose estimates are more reliable, are pulled less.</li>
+</ol>
+<p><strong>Concrete example.</strong> A gene with mean <span class="math inline">\(\mu = 10\)</span> and 3 replicates has raw dispersion <span class="math inline">\(\hat{\alpha} = 0.8\)</span>, but the trend curve at <span class="math inline">\(\mu = 10\)</span> predicts <span class="math inline">\(\alpha_{\text{trend}} = 0.2\)</span>. The empirical Bayes procedure estimates the reliability of <span class="math inline">\(\hat{\alpha}\)</span> and shrinks it to perhaps <span class="math inline">\(\alpha_{\text{shrunk}} = 0.25\)</span> — close to the trend because 3 data points provide little information for a reliable per-gene estimate. A highly expressed gene with <span class="math inline">\(\mu = 10{,}000\)</span> and raw <span class="math inline">\(\hat{\alpha} = 0.05\)</span> when the trend predicts <span class="math inline">\(0.03\)</span> shrinks only to <span class="math inline">\(\alpha_{\text{shrunk}} = 0.035\)</span> — the per-gene estimate is trusted more because the high count data carry more information. The shrinkage is not arbitrary: it is a weighted average of the per-gene estimate and the trend, weighted by the precision (inverse variance) of each.</p>
+<p>This is the core workflow:</p>
+<pre class="code"><code>library(DESeq2)
+
+# Step 1: Build the data object
+dds &lt;- DESeqDataSetFromMatrix(
+  countData = counts,       # raw integer counts — never normalized values
+  colData = metadata,       # sample information (condition, batch, etc.)
+  design = ~ condition      # the model: what you are testing
+)
+
+# Step 2: Estimate dispersions (NB + empirical Bayes shrinkage)
+dds &lt;- estimateSizeFactors(dds)      # normalize for sequencing depth
+dds &lt;- estimateDispersions(dds)      # shrunken NB dispersion estimates
+
+# Step 3: Fit NB GLMs and test for differential expression
+dds &lt;- nbinomWaldTest(dds)
+results &lt;- results(dds, contrast = c("condition", "treated", "control"))</code></pre>
+<p>The <code>estimateDispersions</code> call is where the NB variance formula meets the data. DESeq2 fits per-gene NB models, extracts raw <span class="math inline">\(\alpha\)</span> estimates, computes the trend, and applies shrinkage — all in a single function.</p>
+<p>The Wald test (<code>nbinomWaldTest</code>) then fits a <strong>Negative Binomial Generalized Linear Model</strong> for each gene with a <strong>log link function</strong>:</p>
+<p><span class="math display">\[\log(\mu_{ij}) = \beta_0 + \beta_1 \cdot \text{condition}_j\]</span></p>
+<p>where <span class="math inline">\(\mu_{ij}\)</span> is the expected count for gene <span class="math inline">\(i\)</span> in sample <span class="math inline">\(j\)</span>, and the log link ensures the predicted count is always positive. The coefficient <span class="math inline">\(\beta_1\)</span> represents the log2 fold change between conditions. The shrunken dispersion estimates from <code>estimateDispersions</code> are used as the variance parameter in the NB likelihood, and the Wald test computes a p-value for whether <span class="math inline">\(\beta_1 \neq 0\)</span> — i.e., whether the condition effect is detectable above the biological noise captured by <span class="math inline">\(\alpha\)</span>. The GLM framework generalizes naturally to more complex designs with multiple factors, batch effects, and continuous covariates: any design matrix can replace the simple condition vector.</p>
+<p><strong>A critical constraint:</strong> DESeq2 requires raw integer counts. Normalized values (TPM, FPKM) break the NB variance model because the discrete mean-variance relationship — <span class="math inline">\(\mu + \alpha\mu^2\)</span> — is defined for raw counts, not for normalized ratios. If you feed normalized counts into DESeq2, the dispersion estimates are meaningless.</p>
+<hr>
+</section>
+</section>
+<section id="biological-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
+<p>The NB dispersion parameter <span class="math inline">\(\alpha\)</span> is not merely a mathematical convenience — it is a biologically interpretable quantity.</p>
+<p><strong>What high <span class="math inline">\(\alpha\)</span> means.</strong> A gene with <span class="math inline">\(\alpha = 0.5\)</span> is not “noisy” or “poorly measured.” Its expression genuinely varies 2-3 fold across individuals in the same condition. This could reflect true biological heterogeneity: immune genes, stress response genes, and cell cycle regulators are often highly dispersed because they respond to environmental and physiological states that differ between individuals. The interpretative question — as with any statistical signal — is whether the dispersion reflects true biology or technical artifacts. Batch effects, library quality differences, and sample degradation all inflate dispersion estimates artificially.</p>
+<p><strong>The dispersion-mean trend as a diagnostic tool.</strong> After running DESeq2, the dispersion-mean plot is the first thing to examine. In a clean experiment, most genes cluster around a smoothly decreasing trend line — <span class="math inline">\(\alpha\)</span> falling as <span class="math inline">\(\mu\)</span> rises, consistent with the NB variance model. Genes falling far above the trend warrant investigation: they may represent technical artifacts (a batch of samples with systematically different library quality), or they may be genuinely hypervariable genes under strong but heterogeneous regulation. Either way, they are candidates for closer inspection, not automatic exclusion.</p>
+<p><strong>Power and the quadratic term.</strong> The <span class="math inline">\(\alpha\mu^2\)</span> term has a direct practical consequence: for highly expressed genes, biological noise dominates statistical power. A gene with <span class="math inline">\(\mu = 10{,}000\)</span> and <span class="math inline">\(\alpha = 0.01\)</span> has biological variance <span class="math inline">\(\alpha\mu^2 = 1{,}000{,}000\)</span> — vastly exceeding the Poisson variance of <span class="math inline">\(10{,}000\)</span>. Adding more sequencing depth does not help; the bottleneck is biological replication. The NB variance formula makes explicit what experienced experimentalists know intuitively: for well-expressed genes, statistical power comes from more replicates, not deeper sequencing. Doubling the sequencing depth reduces sampling noise but does nothing to reduce biological variation.</p>
+<p><strong>The reviewer mindset.</strong> The Poisson model applied to biological replicates is the single most common statistical error in published omics studies. A Poisson-based differential expression test on biological replicates produces a severe excess of false positives — genes reported as “significant” when the signal is simply normal biological variation. When evaluating a paper, check whether the differential expression method accounts for overdispersion. If the authors used a Poisson model, or — worse — a t-test on raw counts, the results are unreliable.</p>
+<p><strong>Johnson’s Rule:</strong> If you see a paper using a t-test on raw RNA-seq counts, the reviewer failed. Count data requires count distributions.</p>
+<section id="the-poisson-in-other-omics-contexts" class="level3">
+<h3 class="anchored" data-anchor-id="the-poisson-in-other-omics-contexts">The Poisson in Other Omics Contexts</h3>
+<p>The Poisson distribution appears in several other bioinformatics applications, though with the same caveat: it models technical noise, not biological variation.</p>
+<p><strong>ChIP-seq peak calling</strong> (MACS2) models the expected number of reads in a genomic window under the null hypothesis of no binding as a Poisson distribution. An observed count exceeding the Poisson expectation past a significance threshold is called a peak:</p>
+<pre class="code"><code># Simplified MACS2 logic: Poisson p-value for observed enrichment
+p_peak &lt;- ppois(observed_reads - 1, lambda = lambda_background, lower.tail = FALSE)</code></pre>
+<p><strong>Phred quality scores</strong> are Binomial/Poisson-derived error probabilities: <span class="math inline">\(Q = -10 \log_{10}(P_{\text{error}})\)</span>. Q30 means <span class="math inline">\(P_{\text{error}} = 0.001\)</span>, or 1 expected error per 1,000 bases.</p>
+<p>In both cases, the Poisson serves as a null model for technical noise — and in both cases, biological replicates require the same extension to NB or related overdispersed distributions. The principle generalizes: whenever the null assumes only sampling noise, the alternative must account for biological variation.</p>
+<hr>
+</section>
+</section>
+<section id="current-landscape-q2-2026" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
+<ul>
+<li><strong>Zero-inflated Negative Binomial (ZINB)</strong> models remain standard for scRNA-seq but are being challenged by NB + empirical Bayes approaches (sctransform) that argue zero-inflation is primarily technical dropout rather than biological excess zeros — a debate that mirrors the original Poisson-vs-NB argument at higher resolution.</li>
+<li><strong>Compositional models</strong> for relative abundance data (ANCOM-BC, ALDEx2) are increasingly adopted for microbiome data where sequencing depth normalization is insufficient and the NB assumption of absolute counts does not hold, because the data are inherently compositional rather than count-based.</li>
+<li><strong>Bayesian hierarchical models</strong> for ultra-sparse spatial transcriptomics data are an active development area, extending NB models with spatial priors to borrow information across neighboring tissue positions.</li>
+<li><strong>Count-based deep learning</strong> (scVI, scTransform via neural networks) uses NB and ZINB as output distributions in variational autoencoders, preserving the correct noise model while learning non-linear latent representations.</li>
+</ul>
+<hr>
+</section>
+<section id="summary-and-required-reading" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
+<ol type="1">
+<li><strong>Count data requires count distributions</strong> — the Gaussian is invalid for individual raw counts.</li>
+<li><strong>Poisson (<span class="math inline">\(\sigma^2 = \mu\)</span>) models technical noise only</strong> — it fails on biological replicates because it cannot account for biological variation.</li>
+<li><strong>Overdispersion (<span class="math inline">\(\sigma^2 \gg \mu\)</span>) is universal in biological data</strong> — the NB captures it with a single parameter <span class="math inline">\(\alpha\)</span>, yielding the variance formula <span class="math inline">\(\sigma^2 = \mu + \alpha\mu^2\)</span>.</li>
+<li><strong>The NB is a Poisson-Gamma mixture</strong> — each replicate has its own expression rate <span class="math inline">\(\lambda\)</span> drawn from a Gamma distribution, and the observed count is Poisson(<span class="math inline">\(\lambda\)</span>).</li>
+<li><strong>DESeq2 uses empirical Bayes to solve the estimation problem</strong> — with few replicates per gene, dispersion estimates are unreliable and must be shrunk toward a mean-dispersion trend.</li>
+<li><strong>The <span class="math inline">\(\alpha\mu^2\)</span> term explains why replication matters more than depth</strong> — for well-expressed genes, biological variation dominates, and deeper sequencing cannot reduce it.</li>
+</ol>
+<section id="required-reading" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
+<ul>
+<li>Love, Huber &amp; Anders: “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2” (<em>Genome Biology</em>, 2014).</li>
+<li>Casella &amp; Berger: <em>Statistical Inference</em> (Ch 3-4) — Poisson and Negative Binomial derivations, Poisson-Gamma mixture.</li>
+<li>Robinson &amp; Smyth: “Small-sample estimation of negative binomial dispersion” (<em>Biostatistics</em>, 2008).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Johnson’s Rule:</strong> The Poisson is the correct model for technical replicates. It is almost always the wrong model for biological replicates.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tier-1-foundations/chapter-03.html" class="pagination-link" aria-label="Chapter 3: Programming Paradigms and Project Organization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 3: Programming Paradigms and Project Organization</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tier-1-foundations/chapter-05.html" class="pagination-link" aria-label="Chapter 5: Linear Algebra and Dimensionality Reduction">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 5: Linear Algebra and Dimensionality Reduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
