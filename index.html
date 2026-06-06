@@ -28,9 +28,10 @@
                 <nav class="navbar" id="navbar">
                     <a href="#about" class="nav-link">About</a>
                     <a href="#book" class="nav-link">Book</a>
+                    <a href="#case-studies" class="nav-link">Case Studies</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#publications" class="nav-link">Publications</a>
-                    <a href="#case-studies" class="nav-link">Case Studies</a>
+
                 </nav>
 
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
@@ -81,7 +82,15 @@
                             alt="Qingzhou Zhang">
                     </div>
                 </div>
-            </div>
+                <!-- Scroll Indicator -->
+                <div class="scroll-down-container fade-in-up delay-2">
+                    <a href="#book" class="scroll-down-link" aria-label="Scroll Down">
+                        <div class="double-arrow">
+                            <ion-icon name="chevron-down-outline" class="arrow-1"></ion-icon>
+                            <ion-icon name="chevron-down-outline" class="arrow-2"></ion-icon>
+                        </div>
+                    </a>
+                </div>
         </section>
 
         <!-- Book Section -->
@@ -124,6 +133,26 @@
             </div>
         </section>
 
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="section bg-alt">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Case Studies</h2>
+                    <p class="section-subtitle">In-depth analyses of omics data</p>
+                </div>
+
+                <div class="filter-container fade-in-up">
+                    <ul class="filter-list" id="case-study-filters">
+                        <li class="filter-item active" data-filter="all">All</li>
+                    </ul>
+                </div>
+
+                <div class="case-studies-grid" id="case-studies-grid">
+                    <!-- JS injected studies -->
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section id="projects" class="section">
             <div class="container">
@@ -145,29 +174,7 @@
             </div>
         </section>
 
-        <!-- Case Studies Section -->
-        <section id="case-studies" class="section bg-alt">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title">Case Studies</h2>
-                    <p class="section-subtitle">In-depth analyses of omics data</p>
-                </div>
 
-                <div class="filter-container fade-in-up">
-                    <ul class="filter-list" id="case-study-filters">
-                        <li class="filter-item active" data-filter="all">All</li>
-                    </ul>
-                </div>
-
-                <div class="case-studies-grid" id="case-studies-grid">
-                    <!-- JS injected studies -->
-                </div>
-
-                <div class="view-all-container fade-in-up">
-                    <a href="case-studies.html" class="view-all-btn">View All Case Studies →</a>
-                </div>
-            </div>
-        </section>
 
         <!-- Publications Section -->
         <section id="publications" class="section">

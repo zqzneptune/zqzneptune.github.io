@@ -122,8 +122,8 @@ function renderPublications(filter = 'all') {
     });
 }
 
-// Render Case Studies (Preview - limit to 3 on main page)
-function renderCaseStudies(filter = 'all', limit = 3) {
+// Render Case Studies
+function renderCaseStudies(filter = 'all') {
     if (!caseStudiesGrid) return; // Guard for secondary page
 
     caseStudiesGrid.innerHTML = '';
@@ -132,19 +132,21 @@ function renderCaseStudies(filter = 'all', limit = 3) {
         ? caseStudies
         : caseStudies.filter(cs => cs.tags.includes(filter));
 
-    const displayed = filtered.slice(0, limit);
-
-    displayed.forEach(study => {
+    filtered.forEach(study => {
         const card = document.createElement('div');
         card.className = 'case-study-card';
         card.innerHTML = `
-            <div class="card-content">
-                <h3 class="case-study-title">${study.title}</h3>
+            <div class="case-study-content">
                 <div class="card-tags">
                     ${study.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
+                <h3 class="case-study-title">${study.title}</h3>
                 <p class="case-study-desc">${study.description}</p>
-                <a href="${study.link}" class="card-link" target="_blank">Read Case Study <ion-icon name="arrow-forward-outline"></ion-icon></a>
+            </div>
+            <div class="case-study-action">
+                <a href="${study.link}" class="case-study-btn" target="_blank" aria-label="Read Case Study">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
             </div>
         `;
         caseStudiesGrid.appendChild(card);
@@ -197,6 +199,18 @@ async function init() {
         updateThemeIcon(true);
     } else {
         updateThemeIcon(false);
+    }
+
+    // Scroll Down Indicator Visibility Toggle
+    const scrollIndicator = document.querySelector('.scroll-down-container');
+    if (scrollIndicator) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+        });
     }
 }
 

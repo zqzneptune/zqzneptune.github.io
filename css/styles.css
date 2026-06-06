@@ -58,6 +58,7 @@ body {
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
+    padding-top: var(--header-height);
 }
 
 a {
@@ -88,17 +89,19 @@ p {
 /* --- Header --- */
 .header {
     height: var(--header-height);
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.75);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 body.dark-mode .header {
-    background-color: rgba(15, 23, 42, 0.85);
+    background-color: rgba(9, 9, 11, 0.75);
 }
 
 .header-container {
@@ -390,16 +393,21 @@ body.dark-mode .header {
     box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-/* --- Cards Grid System --- */
-.projects-grid,
-.case-studies-grid {
+/* --- Projects Grid System --- */
+.projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
 }
 
-.project-card,
-.case-study-card {
+/* --- Case Studies List Layout (One per line) --- */
+.case-studies-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.project-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -409,16 +417,44 @@ body.dark-mode .header {
     flex-direction: column;
     position: relative;
     overflow: hidden;
-}
-
-/* Glass effect for cards */
-.project-card {
     backdrop-filter: blur(5px);
 }
 
-.project-card:hover,
-.case-study-card:hover {
+.case-study-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.case-study-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.case-study-action {
+    flex-shrink: 0;
+}
+
+/* Hover effects */
+.project-card:hover {
     transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.case-study-card:hover {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
     border-color: var(--accent-color);
 }
@@ -439,11 +475,45 @@ body.dark-mode .header {
     line-height: 1.6;
 }
 
+.case-study-desc {
+    margin-bottom: 0;
+    /* Align description nicely in the horizontal flow */
+}
+
+.case-study-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--accent-color);
+    color: white !important;
+    border-radius: 50%;
+    font-size: 1.35rem;
+    transition: var(--transition);
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--accent-glow);
+}
+
+.case-study-btn ion-icon {
+    transition: transform 0.3s ease;
+}
+
+.case-study-btn:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px var(--accent-glow);
+}
+
+.case-study-btn:hover ion-icon {
+    transform: translateX(4px);
+}
+
 .card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .tag {
@@ -588,6 +658,80 @@ body.dark-mode .header {
     animation-delay: 0.2s;
 }
 
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+/* --- Scroll Down Indicator --- */
+.scroll-down-container {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-down-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.scroll-down-link {
+    cursor: pointer;
+    display: block;
+}
+
+.double-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+}
+
+.double-arrow ion-icon {
+    font-size: 2.25rem;
+    margin: -14px 0;
+    opacity: 0;
+    animation: arrowScroll 2s infinite;
+    filter: drop-shadow(0 2px 8px var(--accent-glow));
+}
+
+.double-arrow .arrow-1 {
+    animation-delay: 0s;
+}
+
+.double-arrow .arrow-2 {
+    animation-delay: 0.3s;
+}
+
+@keyframes arrowScroll {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 /* --- Mobile / Responsive Design --- */
 @media (max-width: 968px) {
     :root {
@@ -674,6 +818,17 @@ body.dark-mode .header {
     .avatar-placeholder {
         width: 250px;
         height: 250px;
+    }
+
+    .case-study-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .case-study-action {
+        align-self: flex-start;
     }
 }
 
