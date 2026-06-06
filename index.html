@@ -17,7 +17,58 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap"
         rel="stylesheet">
+    <style>
+        /* Style tag clouds as wrapped elements inside cards */
+        .filter-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: visible; /* Override overflow-x: auto to prevent single-line scrolling */
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+        
+        .filter-container:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+        }
+
+        .filter-list {
+            display: flex;
+            flex-wrap: wrap; /* Wrap filter tags so they do not line up in a single line */
+            gap: 12px;
+        }
+
+        .filter-item {
+            background-color: var(--bg-color); /* Give filters a solid background against the card container */
+        }
+
+        /* Ensure publication tags wrap nicely */
+        .pub-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        /* Responsive padding for mobile devices */
+        @media (max-width: 768px) {
+            .filter-container {
+                padding: 16px 20px;
+                margin-bottom: 30px;
+            }
+            .filter-list {
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
+
+
 
 <body>
     <header class="header">
