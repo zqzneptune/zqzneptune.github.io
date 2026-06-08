@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-a-cell-without-spatial-coordinates-is-headless" id="toc-johnsons-first-principle-a-cell-without-spatial-coordinates-is-headless" class="nav-link active" data-scroll-target="#johnsons-first-principle-a-cell-without-spatial-coordinates-is-headless">Johnson’s First Principle: A Cell Without Spatial Coordinates is Headless</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#the-spatial-resolution-tradeoff" id="toc-the-spatial-resolution-tradeoff" class="nav-link" data-scroll-target="#the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</a></li>
   <li><a href="#deconvolution-unmixing-mixed-spots" id="toc-deconvolution-unmixing-mixed-spots" class="nav-link" data-scroll-target="#deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</a></li>
@@ -352,12 +351,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-a-cell-without-spatial-coordinates-is-headless" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-a-cell-without-spatial-coordinates-is-headless">Johnson’s First Principle: A Cell Without Spatial Coordinates is Headless</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> A Cell Without Spatial Coordinates is Headless</p>
+</blockquote>
 <p>Dissolving a tissue to isolate single cells destroys the biological map. A macrophage surrounded by healthy epithelium behaves entirely differently than one surrounded by necrotic tumor. Chapter 13 taught you to identify cell types; Chapter 14 taught you to order them in time. But development and function unfold not only in time — they are embedded in three-dimensional tissue architecture. Without spatial context, single-cell data reveals the molecules but obscures the anatomy.</p>
 <p>Spatial transcriptomics solves this by measuring gene expression while preserving tissue coordinates. The core operation is coordinate math — mapping every measurement to a position <span class="math inline">\((x, y)\)</span> in tissue space, then asking which genes vary across those coordinates, which cell types occupy which coordinates, and which neighboring coordinates communicate with each other.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="the-spatial-resolution-tradeoff" class="level3">

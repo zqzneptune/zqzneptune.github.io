@@ -284,8 +284,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-a-non-reproducible-pipeline-is-scientific-fiction" id="toc-johnsons-first-principle-a-non-reproducible-pipeline-is-scientific-fiction" class="nav-link active" data-scroll-target="#johnsons-first-principle-a-non-reproducible-pipeline-is-scientific-fiction">Johnson’s First Principle: A Non-Reproducible Pipeline is Scientific Fiction</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#layer-1-version-control-tracking-what-changed" id="toc-layer-1-version-control-tracking-what-changed" class="nav-link" data-scroll-target="#layer-1-version-control-tracking-what-changed">Layer 1: Version Control — Tracking What Changed</a></li>
   <li><a href="#layer-2-environment-isolation-ensuring-it-still-runs" id="toc-layer-2-environment-isolation-ensuring-it-still-runs" class="nav-link" data-scroll-target="#layer-2-environment-isolation-ensuring-it-still-runs">Layer 2: Environment Isolation — Ensuring It Still Runs</a></li>
@@ -322,12 +321,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="johnsons-first-principle-a-non-reproducible-pipeline-is-scientific-fiction" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-a-non-reproducible-pipeline-is-scientific-fiction">Johnson’s First Principle: A Non-Reproducible Pipeline is Scientific Fiction</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> A Non-Reproducible Pipeline is Scientific Fiction</p>
+</blockquote>
 <p>In a 2016 <em>Nature</em> survey, more than 70% of researchers reported failing to reproduce another scientist’s computational experiments, and over 50% failed to reproduce their own experiments from just a year prior. This is not a failure of diligence — it is a failure of infrastructure. A pipeline that works today on your laptop but cannot execute on a collaborator’s machine six months later is not a pipeline; it is a draft. Code must be isolated from the host environment to guarantee identical mathematical outputs across time and space.</p>
 <p>Reproducibility requires three distinct layers of infrastructure, each solving a failure mode the previous one cannot: <strong>version control</strong> tracks what changed, <strong>environment isolation</strong> ensures it can still run, and <strong>workflow orchestration</strong> makes it survive resumption, parallelization, and scaling. A professional bioinformatician uses all three — and knows which layer prevents which failure.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="layer-1-version-control-tracking-what-changed" class="level3">

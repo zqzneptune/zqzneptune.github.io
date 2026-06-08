@@ -284,8 +284,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-code-architecture-reflects-mental-architecture" id="toc-johnsons-first-principle-code-architecture-reflects-mental-architecture" class="nav-link active" data-scroll-target="#johnsons-first-principle-code-architecture-reflects-mental-architecture">Johnson’s First Principle: Code Architecture Reflects Mental Architecture</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#python-systems-engineering-and-scale" id="toc-python-systems-engineering-and-scale" class="nav-link" data-scroll-target="#python-systems-engineering-and-scale">Python: Systems Engineering and Scale</a></li>
   <li><a href="#r-statistical-inference-and-reproducible-analysis" id="toc-r-statistical-inference-and-reproducible-analysis" class="nav-link" data-scroll-target="#r-statistical-inference-and-reproducible-analysis">R: Statistical Inference and Reproducible Analysis</a></li>
@@ -323,12 +322,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="johnsons-first-principle-code-architecture-reflects-mental-architecture" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-code-architecture-reflects-mental-architecture">Johnson’s First Principle: Code Architecture Reflects Mental Architecture</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Code Architecture Reflects Mental Architecture</p>
+</blockquote>
 <p>Language tribalism — “I am an R programmer” versus “I am a Python programmer” — is fundamentally amateurish. Languages are not identities; they are tools engineered for specific tasks. Biological data analysis requires Python for scalable systems engineering and R for rigorous statistical inference. A bioinformatician who cannot use both is voluntarily disabling half their toolkit.</p>
 <p>But language choice is only the first decision. Beneath it lies a more fundamental question: <strong>which errors does your chosen approach prioritize catching?</strong> Python’s type system catches data flow errors; R’s S4 system catches biological coordinate errors (1-based vs.&nbsp;0-based, strand mismatches); a standardized project structure catches the error of unreproducible results. Every programming decision is a choice about which failure modes to defend against. If your code is a sprawling mess of hardcoded paths and copy-pasted blocks, the answer to which errors you are prioritizing is “none.”</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="python-systems-engineering-and-scale" class="level3">

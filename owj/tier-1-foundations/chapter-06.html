@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-every-p-value-is-conditional-on-what-you-model" id="toc-johnsons-first-principle-every-p-value-is-conditional-on-what-you-model" class="nav-link active" data-scroll-target="#johnsons-first-principle-every-p-value-is-conditional-on-what-you-model">Johnson’s First Principle: Every P-value is Conditional on What You Model</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#how-confounders-become-false-positives" id="toc-how-confounders-become-false-positives" class="nav-link" data-scroll-target="#how-confounders-become-false-positives">How Confounders Become False Positives</a></li>
   <li><a href="#hypothesis-testing-the-foundation" id="toc-hypothesis-testing-the-foundation" class="nav-link" data-scroll-target="#hypothesis-testing-the-foundation">Hypothesis Testing: The Foundation</a></li>
@@ -354,12 +353,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-every-p-value-is-conditional-on-what-you-model" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-every-p-value-is-conditional-on-what-you-model">Johnson’s First Principle: Every P-value is Conditional on What You Model</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Every P-value is Conditional on What You Model</p>
+</blockquote>
 <p>If you run a differential expression test comparing 10 cancer patients against 10 healthy controls and produce a list of 5,000 “significant” genes, you have not discovered the genomic signature of cancer. If the cancer patients were sequenced in January and the controls in March, you have discovered the signature of a sequencing batch. A p-value is always conditional on what you chose to include in your model — and every confounder you omit inflates the variance, producing false positives that look like biological signal.</p>
 <p>The problem is structural: confounders (batch effects, library quality differences, population structure) increase the variance of the measurement. If you do not model them, the extra variance is absorbed into the error term, and the statistical test becomes systematically anticonservative — it calls genes significant when the observed difference is due to technical variation rather than biology.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="how-confounders-become-false-positives" class="level3">

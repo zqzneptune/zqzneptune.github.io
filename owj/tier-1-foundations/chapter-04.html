@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-read-counts-are-random-variables" id="toc-johnsons-first-principle-read-counts-are-random-variables" class="nav-link active" data-scroll-target="#johnsons-first-principle-read-counts-are-random-variables">Johnson’s First Principle: Read Counts are Random Variables</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#discrete-data-requires-discrete-distributions" id="toc-discrete-data-requires-discrete-distributions" class="nav-link" data-scroll-target="#discrete-data-requires-discrete-distributions">Discrete Data Requires Discrete Distributions</a></li>
   <li><a href="#the-poisson-process-modeling-sampling-noise" id="toc-the-poisson-process-modeling-sampling-noise" class="nav-link" data-scroll-target="#the-poisson-process-modeling-sampling-noise">The Poisson Process: Modeling Sampling Noise</a></li>
@@ -357,12 +356,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-read-counts-are-random-variables" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-read-counts-are-random-variables">Johnson’s First Principle: Read Counts are Random Variables</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Read Counts are Random Variables</p>
+</blockquote>
 <p>If you take a tube of RNA, prepare two libraries, and sequence them identically, you will not get the same number of reads for any gene. A gene that yields 450 reads in one library might yield 420 in another. This is not measurement error in the usual sense — the sequencer did not malfunction. The difference arises from random sampling: from a pool of billions of RNA fragments, the sequencer captures a tiny, random subset.</p>
 <p>A novice treats 450 as a fixed measurement. A professional recognizes it as a single observation of a random variable drawn from an underlying probability distribution. Before you can declare a gene “upregulated,” you must prove that the observed difference exceeds the expected noise of that distribution. And before you can do that, you must know which distribution governs read counts.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="discrete-data-requires-discrete-distributions" class="level3">

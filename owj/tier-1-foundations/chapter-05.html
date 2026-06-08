@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-omics-data-is-a-mathematical-matrix" id="toc-johnsons-first-principle-omics-data-is-a-mathematical-matrix" class="nav-link active" data-scroll-target="#johnsons-first-principle-omics-data-is-a-mathematical-matrix">Johnson’s First Principle: Omics Data is a Mathematical Matrix</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#from-covariance-to-eigenvectors" id="toc-from-covariance-to-eigenvectors" class="nav-link" data-scroll-target="#from-covariance-to-eigenvectors">From Covariance to Eigenvectors</a></li>
   <li><a href="#singular-value-decomposition-svd" id="toc-singular-value-decomposition-svd" class="nav-link" data-scroll-target="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a></li>
@@ -352,14 +351,14 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-omics-data-is-a-mathematical-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-omics-data-is-a-mathematical-matrix">Johnson’s First Principle: Omics Data is a Mathematical Matrix</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Omics Data is a Mathematical Matrix</p>
+</blockquote>
 <p>An RNA-seq experiment with 20,000 genes across 500 samples is not a spreadsheet — it is a mathematical matrix <span class="math inline">\(X \in \mathbb{R}^{20{,}000 \times 500}\)</span>. Every sample is a vector in 20,000-dimensional space. The human brain cannot visualize anything beyond three dimensions, so we must rely on linear algebra to rotate and compress this matrix into a lower-dimensional space where biological signal separates from technical noise.</p>
 <p>The fundamental assumption that makes this possible is that biological variation is <strong>low-rank</strong>: most of the 20,000 genes are not independently varying. A handful of biological processes — cell type, treatment response, cell cycle, stress — drive the majority of transcriptional variation, and each process affects hundreds of genes in coordinated patterns. The observed data <span class="math inline">\(X\)</span> is approximately the sum of a low-rank biological matrix <span class="math inline">\(L\)</span> (rank <span class="math inline">\(k \ll 20{,}000\)</span>) and noise <span class="math inline">\(N\)</span>:</p>
 <p><span class="math display">\[X \approx L + N\]</span></p>
 <p>Dimensionality reduction is the search for <span class="math inline">\(L\)</span> — the low-dimensional structure hidden inside the high-dimensional noise.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="from-covariance-to-eigenvectors" class="level3">

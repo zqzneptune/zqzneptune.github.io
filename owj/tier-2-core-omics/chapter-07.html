@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-file-formats-encode-mechanical-laws" id="toc-johnsons-first-principle-file-formats-encode-mechanical-laws" class="nav-link active" data-scroll-target="#johnsons-first-principle-file-formats-encode-mechanical-laws">Johnson’s First Principle: File Formats Encode Mechanical Laws</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#error-profiles-determine-analytic-validity" id="toc-error-profiles-determine-analytic-validity" class="nav-link" data-scroll-target="#error-profiles-determine-analytic-validity">Error Profiles Determine Analytic Validity</a></li>
   <li><a href="#fastq-and-the-meaning-of-quality-scores" id="toc-fastq-and-the-meaning-of-quality-scores" class="nav-link" data-scroll-target="#fastq-and-the-meaning-of-quality-scores">FASTQ and the Meaning of Quality Scores</a></li>
@@ -352,12 +351,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-file-formats-encode-mechanical-laws" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-file-formats-encode-mechanical-laws">Johnson’s First Principle: File Formats Encode Mechanical Laws</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> File Formats Encode Mechanical Laws</p>
+</blockquote>
 <p>A FASTQ file from an Illumina sequencer encodes substitution error probabilities derived from reversible terminator fluorescence decay. A FASTQ file from an Oxford Nanopore sequencer encodes indel probabilities derived from neural network basecalling of ionic current. Both use the same ASCII character encoding, but the biological meaning of a Q30 score is fundamentally different — one predicts a substitution, the other predicts an indel. If you treat both as “just text files” and apply the same quality filter, you are applying the wrong error model to your data.</p>
 <p>File formats are not arbitrary containers. They are the digital translation of the physical measurement made by the sequencer — and you cannot process a file correctly if you do not understand the physics of the machine that generated it.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="error-profiles-determine-analytic-validity" class="level3">

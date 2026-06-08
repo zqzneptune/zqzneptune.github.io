@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-the-illusion-of-magic" id="toc-johnsons-first-principle-the-illusion-of-magic" class="nav-link active" data-scroll-target="#johnsons-first-principle-the-illusion-of-magic">Johnson’s First Principle: The Illusion of Magic</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#architecture-perceptrons-weights-and-biases" id="toc-architecture-perceptrons-weights-and-biases" class="nav-link" data-scroll-target="#architecture-perceptrons-weights-and-biases">Architecture: Perceptrons, Weights, and Biases</a></li>
   <li><a href="#backpropagation-the-engine-of-learning" id="toc-backpropagation-the-engine-of-learning" class="nav-link" data-scroll-target="#backpropagation-the-engine-of-learning">Backpropagation: The Engine of Learning</a></li>
@@ -354,12 +353,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-the-illusion-of-magic" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-the-illusion-of-magic">Johnson’s First Principle: The Illusion of Magic</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> A Neural Network Does Not Think — It Slides Down a Gradient</p>
+</blockquote>
 <p>A neural network does not “think” — it slides down a gradient of a loss function. The “hidden layers” are not hidden knowledge — they are hierarchical feature transformations. A neural network is a universal function approximator. It will learn the function you train it on — even if that function is noise.</p>
 <p>The appeal of deep learning in biology is the promise of automatic feature discovery — letting the model learn relevant patterns from raw data rather than hand-engineering features. Chapter 21 established the risks of <span class="math inline">\(p &gt; n\)</span> and data leakage. Chapter 22 showed that gradient boosting handles tabular omics data better than neural networks for most biological prediction tasks. So where do neural networks add value? For sequence data (DNA, RNA, protein, images), where patterns are hierarchical and spatially structured, convolutional networks and transformers uncover features that tree-based models cannot see. The key is knowing when deep learning is the right tool and when it is overkill.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="architecture-perceptrons-weights-and-biases" class="level3">

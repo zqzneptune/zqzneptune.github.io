@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-the-multiplication-of-noise" id="toc-johnsons-first-principle-the-multiplication-of-noise" class="nav-link active" data-scroll-target="#johnsons-first-principle-the-multiplication-of-noise">Johnson’s First Principle: The Multiplication of Noise</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#the-three-axes-of-integration" id="toc-the-three-axes-of-integration" class="nav-link" data-scroll-target="#the-three-axes-of-integration">The Three Axes of Integration</a></li>
   <li><a href="#selecting-the-integration-method" id="toc-selecting-the-integration-method" class="nav-link" data-scroll-target="#selecting-the-integration-method">Selecting the Integration Method</a></li>
@@ -353,12 +352,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-the-multiplication-of-noise" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-the-multiplication-of-noise">Johnson’s First Principle: The Multiplication of Noise</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> The Multiplication of Noise</p>
+</blockquote>
 <p>Intersecting lists of statistically significant genes from RNA-seq and proteomics does not integrate data — it compounds error rates. The overlap is dominated by the most highly expressed, easiest-to-measure genes, not by the biologically most relevant ones. True integration requires dimensionality reduction algorithms that mathematically identify shared variance between molecular layers, independent of arbitrary significance thresholds.</p>
 <p>A gene with p-value <span class="math inline">\(10^{-10}\)</span> in RNA-seq and p-value <span class="math inline">\(10^{-10}\)</span> in proteomics may appear to be a biologically validated hit. But if the top 100 genes from each dataset overlap by only 20 genes, and those 20 are the most abundant housekeeping genes, the “validated” list is dominated by measurement convenience rather than biological importance. This chapter covers the methods that avoid this trap.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="the-three-axes-of-integration" class="level3">

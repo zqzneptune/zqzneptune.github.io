@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-biology-is-a-language" id="toc-johnsons-first-principle-biology-is-a-language" class="nav-link active" data-scroll-target="#johnsons-first-principle-biology-is-a-language">Johnson’s First Principle: Biology is a Language</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#the-transformer-architecture" id="toc-the-transformer-architecture" class="nav-link" data-scroll-target="#the-transformer-architecture">The Transformer Architecture</a></li>
   <li><a href="#self-supervised-learning" id="toc-self-supervised-learning" class="nav-link" data-scroll-target="#self-supervised-learning">Self-Supervised Learning</a></li>
@@ -352,11 +351,11 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-biology-is-a-language" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-biology-is-a-language">Johnson’s First Principle: Biology is a Language</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Biology is a Language</p>
+</blockquote>
 <p>DNA: a 4-letter alphabet, sequence → function. Proteins: a 20-letter alphabet, sequence → 3D structure → function. The same architectures that model human language (transformers) model biological sequences. The reason transformers work on biology is that biology is combinatorial, hierarchical, and contextual — just like language.</p>
 <p>Chapter 23 showed how neural networks learn hierarchical features — first-layer CNN kernels detect short sequence motifs, deeper layers detect regulatory combinations. Transformers generalize this hierarchical learning to arbitrary-length dependencies: a single attention head can connect a promoter to an enhancer 100 kb away, which no CNN of reasonable depth can do. This chapter extends deep learning from supervised neural networks to self-supervised foundation models that learn biological grammar from unlabeled data.</p>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="the-transformer-architecture" class="level3">

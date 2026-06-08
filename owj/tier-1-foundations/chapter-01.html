@@ -313,8 +313,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#johnsons-first-principle-compute-is-physical-not-magical" id="toc-johnsons-first-principle-compute-is-physical-not-magical" class="nav-link active" data-scroll-target="#johnsons-first-principle-compute-is-physical-not-magical">Johnson’s First Principle: Compute is Physical, Not Magical</a></li>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#the-bottleneck-framework" id="toc-the-bottleneck-framework" class="nav-link" data-scroll-target="#the-bottleneck-framework">The Bottleneck Framework</a></li>
   <li><a href="#the-operating-system-hardware-traffic-cop" id="toc-the-operating-system-hardware-traffic-cop" class="nav-link" data-scroll-target="#the-operating-system-hardware-traffic-cop">The Operating System: Hardware Traffic Cop</a></li>
@@ -357,12 +356,12 @@ window.Quarto = {
 </header>
 
 
-<section id="johnsons-first-principle-compute-is-physical-not-magical" class="level2">
-<h2 class="anchored" data-anchor-id="johnsons-first-principle-compute-is-physical-not-magical">Johnson’s First Principle: Compute is Physical, Not Magical</h2>
+<blockquote class="blockquote">
+<p><strong>Johnson’s First Principle:</strong> Compute is Physical, Not Magical</p>
+</blockquote>
 <p>A modern CPU contains billions of transistors etched onto a silicon die. Every operation — reading a file, aligning a read, training a model — directs the flow of electrons through a physical lattice. Computation costs time and energy. A student who types <code>wc -l</code> and sees a number appear has understood nothing. A professional who types <code>wc -l</code> and estimates completion time from I/O throughput, RAM bandwidth, and CPU cache has understood everything.</p>
 <p>The corollary is that every pipeline failure traces to one of three physical bottlenecks: the CPU is maxed out and needs parallelization; the disk cannot feed data fast enough and the CPU stalls waiting; or the data does not fit in RAM and the operating system kills the process. Identifying which of these three is happening — and knowing what to do about it — is the first skill a bioinformatician must develop.</p>
 <hr>
-</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="the-bottleneck-framework" class="level3">
