@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Basic layout and fonts */
+body {
+  font-family: 'Crimson Pro', Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: #2b2b2b;
+  background-color: #ffffff;
+  padding: 40px 20px;
+  padding-top: 96px !important; /* Spacing for the fixed navbar */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Fixed Top Navigation Bar styling */
+#TOC {
+  box-sizing: border-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 56px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  z-index: 10000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 40px !important;
+  margin: 0 !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+#TOC::before {
+  content: "GCAR1 Re-Analysis" !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  color: #0f172a !important;
+  margin-right: auto !important;
+  white-space: nowrap !important;
+}
+
+/* Hide numbers in the navbar for a cleaner look */
+#TOC .toc-section-number {
+  display: none !important;
+}
+
+/* Top-level UL list */
+#TOC > ul {
+  display: flex !important;
+  flex-direction: row !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  align-items: center !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+#TOC > ul::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Top-level list item */
+#TOC > ul > li {
+  position: relative !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: border-bottom-color 0.15s ease !important;
+}
+
+#TOC > ul > li:hover {
+  border-bottom-color: #1e3a8a !important;
+}
+
+/* Top-level link item */
+#TOC > ul > li > a {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  transition: color 0.15s ease !important;
+}
+
+#TOC > ul > li > a:hover {
+  color: #0f172a !important;
+}
+
+/* Dropdown Menu (Sub-sections, only 1 level) */
+#TOC > ul > li > ul {
+  position: absolute !important;
+  top: 56px !important;
+  left: 0 !important;
+  width: 320px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.08) !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  display: none !important;
+  z-index: 10001 !important;
+}
+
+#TOC > ul > li:hover > ul {
+  display: block !important;
+}
+
+#TOC > ul > li > ul > li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+#TOC > ul > li > ul > li > a {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 12.5px !important;
+  color: #475569 !important;
+  padding: 8px 16px !important;
+  display: block !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  text-align: left !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+#TOC > ul > li > ul > li > a:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Hide deeper sub-sub-sections (Only 1 level in dropdown) */
+#TOC > ul > li > ul > li > ul {
+  display: none !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.2em;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.4em;
+  margin-top: 2em;
+}
+
+h2 {
+  font-size: 1.6em;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.2em;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: #475569;
+}
+
+h4 {
+  font-size: 1.1em;
+  color: #64748b;
+}
+
+/* Links */
+a {
+  color: #1e3a8a;
+  text-decoration: none;
+  border-bottom: 1px dotted #1e3a8a;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #2563eb;
+  border-bottom: 1px solid #2563eb;
+}
+
+/* Figures, captions, and links formatting */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2.5em auto 0.8em auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  border: 1px solid #f1f5f9;
+}
+
+p + img {
+  margin-top: 1.5em;
+}
+
+img + em,
+p > em > a[href*="figures"] {
+  display: block;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13.5px;
+  color: #64748b;
+  text-align: center;
+  margin-top: 0.8em;
+  margin-bottom: 2.5em;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+/* General caption style */
+.caption, figcaption {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13.5px;
+  color: #64748b;
+  text-align: center;
+  margin-top: 0.8em;
+  margin-bottom: 2.5em;
+  line-height: 1.5;
+}
+
+/* Code blocks and inline code */
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85em;
+  background-color: #f8fafc;
+  color: #0f172a;
+  padding: 2px 5px;
+  border-radius: 3px;
+  border: 1px solid #f1f5f9;
+}
+
+pre {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 15px;
+  margin: 1.5em 0;
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.9em;
+  color: #334155;
+}
+
+/* Tables (Academic Booktabs style) */
+table {
+  width: 100%;
+  margin: 2.5em 0;
+  border-collapse: collapse;
+  border-top: 2px solid #111111;
+  border-bottom: 2px solid #111111;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+th {
+  border-bottom: 1.5px solid #111111;
+  padding: 10px 12px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: left;
+}
+
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Blockquotes */
+blockquote {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05em;
+  border-left: 3px solid #94a3b8;
+  padding-left: 20px;
+  color: #475569;
+  margin: 1.8em 0;
+}
+
+/* Title block styling */
+h1.title {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 2.8em;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  border: none;
+  padding-bottom: 0;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+h4.author, h4.date {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+h4.author {
+  margin-top: 1.5em;
+  font-size: 16px;
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Page separators */
+hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 3em 0;
+}
+
+/* Academic lists */
+ul, ol {
+  margin-bottom: 1.5em;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* Custom Disclaimer Box Styling (Academic and polished) */
+.disclaimer-box {
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  border-left: 4px solid #b91c1c;
+  background-color: #fffbfb;
+  border-radius: 6px;
+  margin: 2.5em 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.disclaimer-title {
+  margin: 0 0 14px 0 !important;
+  color: #b91c1c !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.disclaimer-text {
+  margin: 0 0 12px 0 !important;
+  color: #334155 !important;
+  font-size: 15.5px !important;
+  line-height: 1.6 !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+}
+
+.disclaimer-text strong {
+  color: #0f172a;
+}
+
+.disclaimer-text:last-child {
+  margin-bottom: 0 !important;
+}

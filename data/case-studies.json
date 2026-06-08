@@ -1,5 +1,18 @@
 [
     {
+        "title": "Re-Analysis of CAR T Resistance Mechanisms in the GCAR1 First-in-Human Study for Alveolar Soft Part Sarcoma",
+        "description": "A spatiotemporal computational re-analysis of the GCAR1 study datasets utilizing longitudinal single-cell RNA-seq, VDJ sequencing, and 10x Visium HD spatial transcriptomics to characterize CAR T cell dynamics, multi-checkpoint exhaustion kinetics, perivascular resistance barriers, and epitope spreading in Alveolar Soft Part Sarcoma (ASPS).",
+        "tags": [
+            "CAR-T",
+            "Visium HD",
+            "scRNA-seq",
+            "Spatial transcriptomics",
+            "ASPS",
+            "TCR repertoire"
+        ],
+        "link": "cases/gcar1rev/index.html"
+    },
+    {
         "title": "Single cell RNA sequencing of vascular smooth muscle cells from atherosclerotic lesions of ApoE ko mice",
         "description": "The primary objective of this study was to characterize cellular heterogeneity, identify distinct cell populations, and investigate cell state transitions, which define the biology of the clonally expanding smooth muscle cells (SMCs) that contribute to atherosclerotic plaques.",
         "tags": [
@@ -8,7 +21,6 @@
             "Biomarkers"
         ],
         "link": "cases/PRJNA626450/index.html"
-        
     },
     {
         "title": "Transcriptomic Profiling of ATF3 Knockdown in Mouse Vascular Smooth Muscle Cells Using RNA-Seq",
