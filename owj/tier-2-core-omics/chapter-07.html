@@ -596,16 +596,16 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Platforms differ in error type, not just error rate</strong>: Illumina makes substitutions, PacBio makes random indels, Nanopore makes homopolymer errors. The same Q score from different platforms means different things.</li>
-<li><strong>Phred scores are logarithmic error probabilities</strong>: Q30 = 1/1000 error rate, but the error type (substitution vs.&nbsp;indel) depends on the platform.</li>
-<li><strong>File formats encode coordinate systems</strong>: BED (0-indexed), GFF/VCF (1-indexed). Off-by-one errors are the most common format-related bug in bioinformatics.</li>
-<li><strong>BAM/CRAM are production formats</strong>: CRAM stores differences from reference for 30-60% compression over BAM, but requires the reference for decompression.</li>
+<li><p><strong>Platforms differ in error type, not just error rate</strong>: Illumina makes substitutions, PacBio makes random indels, Nanopore makes homopolymer errors. The same Q score from different platforms means different things.</p></li>
+<li><p><strong>Phred scores are logarithmic error probabilities</strong>: Q30 = 1/1000 error rate, but the error type (substitution vs.&nbsp;indel) depends on the platform.</p></li>
+<li><p><strong>File formats encode coordinate systems</strong>: BED (0-indexed), GFF/VCF (1-indexed). Off-by-one errors are the most common format-related bug in bioinformatics.</p></li>
+<li><p><strong>BAM/CRAM are production formats</strong>: CRAM stores differences from reference for 30-60% compression over BAM, but requires the reference for decompression.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Cock et al.: “The Sanger FASTQ file format for sequences with quality scores” (<em>Nucleic Acids Research</em>, 2010).</li>
-<li>Li et al.: “The Sequence Alignment/Map format and SAMtools” (<em>Bioinformatics</em>, 2009).</li>
+<li><p>Cock et al.: “The Sanger FASTQ file format for sequences with quality scores” (<em>Nucleic Acids Research</em>, 2010).</p></li>
+<li><p>Li et al.: “The Sequence Alignment/Map format and SAMtools” (<em>Bioinformatics</em>, 2009).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> If you do not know the error profile of your sequencer, you do not know your data.</p>

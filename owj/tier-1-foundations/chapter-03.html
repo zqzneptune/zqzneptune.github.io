@@ -465,18 +465,18 @@ overlaps &lt;- findOverlaps(peaks, exons)    # Microseconds, not hours</code></p
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Use both Python and R</strong>: Python for pipelines and systems, R for statistics and visualization. The tribalism is anti-scientific.</li>
-<li><strong>Generators stream data</strong>: <code>yield</code> processes any file size in constant memory. Never load a file entirely into RAM.</li>
-<li><strong>Interval algebra replaces loops</strong>: <code>GRanges</code> and <code>pyRanges</code> solve genomic overlaps in microseconds. Data structures determine performance.</li>
-<li><strong>Standardized project structure</strong>: <code>data/</code>, <code>scripts/</code>, <code>results/</code>, <code>envs/</code>, <code>docs/</code>. The regeneration guarantee: delete <code>results/</code> and rebuild.</li>
-<li><strong>Code is communication</strong>: a well-organized project is the first thing a collaborator or reviewer sees.</li>
+<li><p><strong>Use both Python and R</strong>: Python for pipelines and systems, R for statistics and visualization. The tribalism is anti-scientific.</p></li>
+<li><p><strong>Generators stream data</strong>: <code>yield</code> processes any file size in constant memory. Never load a file entirely into RAM.</p></li>
+<li><p><strong>Interval algebra replaces loops</strong>: <code>GRanges</code> and <code>pyRanges</code> solve genomic overlaps in microseconds. Data structures determine performance.</p></li>
+<li><p><strong>Standardized project structure</strong>: <code>data/</code>, <code>scripts/</code>, <code>results/</code>, <code>envs/</code>, <code>docs/</code>. The regeneration guarantee: delete <code>results/</code> and rebuild.</p></li>
+<li><p><strong>Code is communication</strong>: a well-organized project is the first thing a collaborator or reviewer sees.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Wickham &amp; Grolemund: <em>R for Data Science</em> (Ch 1-5, 25-27). Free at https://r4ds.had.co.nz/</li>
-<li>Lawrence et al.: “Software for Computing and Annotating Genomic Ranges” (<em>PLOS Computational Biology</em>, 2013).</li>
-<li>Noble: “A Quick Guide to Organizing Computational Biology Projects” (<em>PLOS Computational Biology</em>, 2009).</li>
+<li><p>Wickham &amp; Grolemund: <em>R for Data Science</em> (Ch 1-5, 25-27). Free at https://r4ds.had.co.nz/</p></li>
+<li><p>Lawrence et al.: “Software for Computing and Annotating Genomic Ranges” (<em>PLOS Computational Biology</em>, 2013).</p></li>
+<li><p>Noble: “A Quick Guide to Organizing Computational Biology Projects” (<em>PLOS Computational Biology</em>, 2009).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> If you are fitting a statistical model, use R. If you are building a pipeline, use Python. If you are working with genomic coordinates, use <code>GRanges</code>.</p>

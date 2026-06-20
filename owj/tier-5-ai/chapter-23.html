@@ -510,17 +510,17 @@ X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Curse of dimensionality (<span class="math inline">\(p \gg n\)</span>)</strong> guarantees a linear separator for any labeling; aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> or regularization (L1/L2) is essential.</li>
-<li><strong>The bias-variance tradeoff</strong> means total error = bias² + variance + irreducible error. In omics, variance dominates; regularization controls it by trading a small bias increase for a large variance reduction.</li>
-<li><strong>Data leakage is the most common fatal error</strong>: all preprocessing (scaling, PCA, normalization, feature selection, batch correction) must be fit on training data only and transformed onto test data.</li>
-<li><strong>Accuracy is meaningless with class imbalance</strong>: Precision, Recall, F1, PR-AUC are correct metrics. PR-AUC detects poor positive-class performance that ROC-AUC misses because FPR is dominated by the majority class.</li>
-<li><strong>Permutation tests validate that performance exceeds chance</strong>: 100+ random label shuffles establish the null distribution. Passing the permutation test does not guarantee external validity.</li>
+<li><p><strong>Curse of dimensionality (<span class="math inline">\(p \gg n\)</span>)</strong> guarantees a linear separator for any labeling; aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> or regularization (L1/L2) is essential.</p></li>
+<li><p><strong>The bias-variance tradeoff</strong> means total error = bias² + variance + irreducible error. In omics, variance dominates; regularization controls it by trading a small bias increase for a large variance reduction.</p></li>
+<li><p><strong>Data leakage is the most common fatal error</strong>: all preprocessing (scaling, PCA, normalization, feature selection, batch correction) must be fit on training data only and transformed onto test data.</p></li>
+<li><p><strong>Accuracy is meaningless with class imbalance</strong>: Precision, Recall, F1, PR-AUC are correct metrics. PR-AUC detects poor positive-class performance that ROC-AUC misses because FPR is dominated by the majority class.</p></li>
+<li><p><strong>Permutation tests validate that performance exceeds chance</strong>: 100+ random label shuffles establish the null distribution. Passing the permutation test does not guarantee external validity.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Hastie, Tibshirani &amp; Friedman: <em>Elements of Statistical Learning</em> (Ch 7; Model Assessment and Selection).</li>
-<li>Lever, Krzywinski &amp; Altman: “Points of Significance: Model selection and overfitting” (<em>Nature Methods</em>, 2016).</li>
+<li><p>Hastie, Tibshirani &amp; Friedman: <em>Elements of Statistical Learning</em> (Ch 7; Model Assessment and Selection).</p></li>
+<li><p>Lever, Krzywinski &amp; Altman: “Points of Significance: Model selection and overfitting” (<em>Nature Methods</em>, 2016).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> A model trained on 10 samples from one hospital is not a biomarker. It is a hypothesis.</p>

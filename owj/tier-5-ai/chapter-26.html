@@ -439,20 +439,20 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Self-attention</strong> computes <span class="math inline">\(softmax(QK^T/\sqrt{d_k})V\)</span> where Q, K, V are learned projections of the input; the <span class="math inline">\(\sqrt{d_k}\)</span> scaling prevents softmax saturation at high dimensions, and positional encoding breaks the permutation invariance of raw self-attention. Encoder-only, decoder-only, and encoder-decoder architectures serve different biological tasks (embedding, generation, mapping respectively).</li>
-<li><strong>Self-supervised learning (masked language modeling, autoregressive prediction)</strong> enables models to learn evolutionary constraints, structure, and function from unlabeled sequence data alone.</li>
-<li><strong>Protein language models (ESM) capture folding grammar</strong> without MSAs; ESM embeddings provide dense representations for structure and function prediction.</li>
-<li><strong>AlphaFold achieves near-experimental accuracy</strong> for single-domain protein structures, but pLDDT and PAE must be inspected per-residue; disordered regions are correctly identified as low-confidence, not failures.</li>
-<li><strong>Generative models (RFdiffusion, ProteinMPNN) can design novel proteins</strong>: but the validation bottleneck limits success: ~80-90% of AI-designed proteins fail in wet-lab validation.</li>
+<li><p><strong>Self-attention</strong> computes <span class="math inline">\(softmax(QK^T/\sqrt{d_k})V\)</span> where Q, K, V are learned projections of the input; the <span class="math inline">\(\sqrt{d_k}\)</span> scaling prevents softmax saturation at high dimensions, and positional encoding breaks the permutation invariance of raw self-attention. Encoder-only, decoder-only, and encoder-decoder architectures serve different biological tasks (embedding, generation, mapping respectively).</p></li>
+<li><p><strong>Self-supervised learning (masked language modeling, autoregressive prediction)</strong> enables models to learn evolutionary constraints, structure, and function from unlabeled sequence data alone.</p></li>
+<li><p><strong>Protein language models (ESM) capture folding grammar</strong> without MSAs; ESM embeddings provide dense representations for structure and function prediction.</p></li>
+<li><p><strong>AlphaFold achieves near-experimental accuracy</strong> for single-domain protein structures, but pLDDT and PAE must be inspected per-residue; disordered regions are correctly identified as low-confidence, not failures.</p></li>
+<li><p><strong>Generative models (RFdiffusion, ProteinMPNN) can design novel proteins</strong>: but the validation bottleneck limits success: ~80-90% of AI-designed proteins fail in wet-lab validation.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Vaswani et al.: “Attention is All You Need” (NeurIPS, 2017): the original transformer.</li>
-<li>Devlin et al.: “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding” (NAACL, 2019): masked language modeling.</li>
-<li>Jumper et al.: “Highly accurate protein structure prediction with AlphaFold” (Nature, 2021).</li>
-<li>Lin et al.: “Evolutionary-scale prediction of atomic-level protein structure with a language model” (Science, 2023): ESM-2.</li>
-<li>Watson et al.: “De novo design of protein structure and function with RFdiffusion” (Nature, 2023).</li>
+<li><p>Vaswani et al.: “Attention is All You Need” (NeurIPS, 2017): the original transformer.</p></li>
+<li><p>Devlin et al.: “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding” (NAACL, 2019): masked language modeling.</p></li>
+<li><p>Jumper et al.: “Highly accurate protein structure prediction with AlphaFold” (Nature, 2021).</p></li>
+<li><p>Lin et al.: “Evolutionary-scale prediction of atomic-level protein structure with a language model” (Science, 2023): ESM-2.</p></li>
+<li><p>Watson et al.: “De novo design of protein structure and function with RFdiffusion” (Nature, 2023).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> A foundation model prediction is a hypothesis. Validate it experimentally before publishing.</p>

@@ -433,19 +433,19 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>DNA foundation models differ from protein models</strong>: the genome is 3 Gbp with 98% non-coding DNA; models must handle long-range regulatory interactions (enhancers 1 Mb from promoters) and predict regulatory function, not 3D structure.</li>
-<li><strong>Architectural innovations (Hyena, Mamba, Enformer)</strong> overcome the O(L²) scaling of pure transformers, enabling context windows from 200 kb (Enformer) to 1 Mb (Evo2).</li>
-<li><strong>Masked language modeling on genomic sequences</strong> learns evolutionary conservation, mutation tolerance, regulatory grammar, and codon structure from unlabeled data across thousands of species.</li>
-<li><strong>Zero-shot variant effect prediction</strong> distinguishes pathogenic from benign variants without task-specific training; a statement about evolutionary constraint, not molecular mechanism.</li>
-<li><strong>Validation is essential</strong>: zero-shot predictions degrade in poorly-represented genomic regions (centromeres, telomeres, recent duplications), and generative DNA models produce functional sequences at low rates (~16% for synthetic bacteriophage genomes).</li>
+<li><p><strong>DNA foundation models differ from protein models</strong>: the genome is 3 Gbp with 98% non-coding DNA; models must handle long-range regulatory interactions (enhancers 1 Mb from promoters) and predict regulatory function, not 3D structure.</p></li>
+<li><p><strong>Architectural innovations (Hyena, Mamba, Enformer)</strong> overcome the O(L²) scaling of pure transformers, enabling context windows from 200 kb (Enformer) to 1 Mb (Evo2).</p></li>
+<li><p><strong>Masked language modeling on genomic sequences</strong> learns evolutionary conservation, mutation tolerance, regulatory grammar, and codon structure from unlabeled data across thousands of species.</p></li>
+<li><p><strong>Zero-shot variant effect prediction</strong> distinguishes pathogenic from benign variants without task-specific training; a statement about evolutionary constraint, not molecular mechanism.</p></li>
+<li><p><strong>Validation is essential</strong>: zero-shot predictions degrade in poorly-represented genomic regions (centromeres, telomeres, recent duplications), and generative DNA models produce functional sequences at low rates (~16% for synthetic bacteriophage genomes).</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Brixi et al.: “Genome modeling and design across all domains of life with Evo 2” (Nature, 2026)</li>
-<li>Avsec et al.: “Effective gene expression prediction from sequence by integrating long-range interactions” (Nature Methods, 2021): Enformer</li>
-<li>Nguyen et al.: “HyenaDNA: long-range genomic sequence modeling at single nucleotide resolution” (NeurIPS, 2023)</li>
-<li>Dalla-Torre et al.: “The Nucleotide Transformer: building and evaluating robust foundation models for human genomics” (Bioinformatics, 2024)</li>
+<li><p>Brixi et al.: “Genome modeling and design across all domains of life with Evo 2” (Nature, 2026)</p></li>
+<li><p>Avsec et al.: “Effective gene expression prediction from sequence by integrating long-range interactions” (Nature Methods, 2021): Enformer</p></li>
+<li><p>Nguyen et al.: “HyenaDNA: long-range genomic sequence modeling at single nucleotide resolution” (NeurIPS, 2023)</p></li>
+<li><p>Dalla-Torre et al.: “The Nucleotide Transformer: building and evaluating robust foundation models for human genomics” (Bioinformatics, 2024)</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> A foundation model’s prediction is a hypothesis about evolutionary constraint, not a molecular assay. Validate before acting.</p>

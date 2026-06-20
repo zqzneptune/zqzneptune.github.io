@@ -494,17 +494,17 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Neural networks are universal function approximators</strong>: but approximating a function and learning the correct one from limited data are different things.</li>
-<li><strong>Backpropagation applies the chain rule</strong>: each step multiplies the upstream gradient by a local gradient; numerical examples make the pattern concrete.</li>
-<li><strong>Optimizers adapt the learning process</strong>: Adam (momentum + per-parameter scaling) and AdamW (decoupled weight decay) are the default choices because different parameters need different update scales.</li>
-<li><strong>CNNs detect motifs via sliding dot product convolution</strong>: weight sharing, locality, and translation equivariance make them ideal for biological sequences; first-layer kernels should be interpretable as PWMs (Chapter 12).</li>
-<li><strong>VAEs (scVI) structure the latent space for single-cell data</strong>: the variational formulation with NB output enables principled batch correction and interpolation, but compression does not guarantee biological relevance.</li>
+<li><p><strong>Neural networks are universal function approximators</strong>: but approximating a function and learning the correct one from limited data are different things.</p></li>
+<li><p><strong>Backpropagation applies the chain rule</strong>: each step multiplies the upstream gradient by a local gradient; numerical examples make the pattern concrete.</p></li>
+<li><p><strong>Optimizers adapt the learning process</strong>: Adam (momentum + per-parameter scaling) and AdamW (decoupled weight decay) are the default choices because different parameters need different update scales.</p></li>
+<li><p><strong>CNNs detect motifs via sliding dot product convolution</strong>: weight sharing, locality, and translation equivariance make them ideal for biological sequences; first-layer kernels should be interpretable as PWMs (Chapter 12).</p></li>
+<li><p><strong>VAEs (scVI) structure the latent space for single-cell data</strong>: the variational formulation with NB output enables principled batch correction and interpolation, but compression does not guarantee biological relevance.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Goodfellow, Bengio &amp; Courville: <em>Deep Learning</em> (Ch 6-8; the fundamentals).</li>
-<li>Lopez et al.: “Deep generative modeling for single-cell transcriptomics” (<em>Nature Methods</em>, 2018): scVI.</li>
+<li><p>Goodfellow, Bengio &amp; Courville: <em>Deep Learning</em> (Ch 6-8; the fundamentals).</p></li>
+<li><p>Lopez et al.: “Deep generative modeling for single-cell transcriptomics” (<em>Nature Methods</em>, 2018): scVI.</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> If your data has fewer than 1000 samples, use a tree model. Neural networks need scale to beat trees on tabular data.</p>

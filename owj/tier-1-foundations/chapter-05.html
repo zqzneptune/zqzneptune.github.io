@@ -457,18 +457,18 @@ X_2 &lt;- svd_result$u[, 1:d] %*% diag(svd_result$d[1:d]) %*% t(svd_result$v[, 1
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Omics data is a matrix</strong>: biological variation is low-rank. SVD decomposes <span class="math inline">\(X = U D V^T\)</span>, providing the optimal rank-<span class="math inline">\(k\)</span> approximation (Eckart-Young theorem).</li>
-<li><strong>PCA = SVD on centered data</strong>: PC scores = <span class="math inline">\(U D\)</span> (sample positions), loadings = <span class="math inline">\(V\)</span> (gene weights).</li>
-<li><strong>Singular values connect to covariance</strong>: <span class="math inline">\(\lambda_i = d_i^2\)</span> are the eigenvalues of <span class="math inline">\(X^T X\)</span>, and the eigenvectors identify axes of maximum variance.</li>
-<li><strong>The scree plot estimates intrinsic dimensionality</strong>: look for the elbow. No elbow means the signal is distributed or non-linear.</li>
-<li><strong>Color by batch before coloring by biology</strong>: if PC1 separates batches, the data has a confound. Examine loading vectors to interpret what each PC represents.</li>
-<li><strong>PCA is linear</strong>: use it for compression to 50 dimensions before non-linear methods (t-SNE, UMAP).</li>
+<li><p><strong>Omics data is a matrix</strong>: biological variation is low-rank. SVD decomposes <span class="math inline">\(X = U D V^T\)</span>, providing the optimal rank-<span class="math inline">\(k\)</span> approximation (Eckart-Young theorem).</p></li>
+<li><p><strong>PCA = SVD on centered data</strong>: PC scores = <span class="math inline">\(U D\)</span> (sample positions), loadings = <span class="math inline">\(V\)</span> (gene weights).</p></li>
+<li><p><strong>Singular values connect to covariance</strong>: <span class="math inline">\(\lambda_i = d_i^2\)</span> are the eigenvalues of <span class="math inline">\(X^T X\)</span>, and the eigenvectors identify axes of maximum variance.</p></li>
+<li><p><strong>The scree plot estimates intrinsic dimensionality</strong>: look for the elbow. No elbow means the signal is distributed or non-linear.</p></li>
+<li><p><strong>Color by batch before coloring by biology</strong>: if PC1 separates batches, the data has a confound. Examine loading vectors to interpret what each PC represents.</p></li>
+<li><p><strong>PCA is linear</strong>: use it for compression to 50 dimensions before non-linear methods (t-SNE, UMAP).</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Strang: <em>Linear Algebra and Learning from Data</em> (Ch 1-3): SVD and PCA.</li>
-<li>Alter, Brown &amp; Botstein: “Singular value decomposition for genome-wide expression data processing and modeling” (<em>PNAS</em>, 2000).</li>
+<li><p>Strang: <em>Linear Algebra and Learning from Data</em> (Ch 1-3): SVD and PCA.</p></li>
+<li><p>Alter, Brown &amp; Botstein: “Singular value decomposition for genome-wide expression data processing and modeling” (<em>PNAS</em>, 2000).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> Always color your PCA by batch before you color it by biology. If you skip this step, you have no idea whether PC1 is biology or a confound.</p>

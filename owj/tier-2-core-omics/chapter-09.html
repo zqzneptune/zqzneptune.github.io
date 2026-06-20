@@ -509,18 +509,18 @@ def build_debruijn(reads, k=31):
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Assembly is NP-hard with short reads</strong>: repeats longer than the read length create information-theoretic ambiguities that no algorithm can resolve.</li>
-<li><strong>De Bruijn graphs (k-mers)</strong> transform the Hamiltonian (NP-complete) path problem into an Eulerian (<span class="math inline">\(O(E)\)</span>) path problem, enabling genome-scale assembly.</li>
-<li><strong>k-mer choice is the critical parameter</strong>: small <span class="math inline">\(k\)</span> maximizes connectivity, large <span class="math inline">\(k\)</span> resolves repeats. Multiple k-mer assemblies address both needs.</li>
-<li><strong>Long reads bridge repeats</strong>: Hifiasm (HiFi) and Flye (ONT) produce near-complete eukaryotic assemblies. Short-read-only assemblies are drafts.</li>
-<li><strong>N50 is a contiguity metric, not an accuracy metric</strong>: BUSCO for gene content, merqury QV for consensus accuracy.</li>
-<li><strong>Metagenomic binning</strong> groups contigs by composition and coverage into MAGs, which are population consensuses, not individual genomes.</li>
+<li><p><strong>Assembly is NP-hard with short reads</strong>: repeats longer than the read length create information-theoretic ambiguities that no algorithm can resolve.</p></li>
+<li><p><strong>De Bruijn graphs (k-mers)</strong> transform the Hamiltonian (NP-complete) path problem into an Eulerian (<span class="math inline">\(O(E)\)</span>) path problem, enabling genome-scale assembly.</p></li>
+<li><p><strong>k-mer choice is the critical parameter</strong>: small <span class="math inline">\(k\)</span> maximizes connectivity, large <span class="math inline">\(k\)</span> resolves repeats. Multiple k-mer assemblies address both needs.</p></li>
+<li><p><strong>Long reads bridge repeats</strong>: Hifiasm (HiFi) and Flye (ONT) produce near-complete eukaryotic assemblies. Short-read-only assemblies are drafts.</p></li>
+<li><p><strong>N50 is a contiguity metric, not an accuracy metric</strong>: BUSCO for gene content, merqury QV for consensus accuracy.</p></li>
+<li><p><strong>Metagenomic binning</strong> groups contigs by composition and coverage into MAGs, which are population consensuses, not individual genomes.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Compeau, Pevzner &amp; Tesler: “How to apply de Bruijn graphs to genome assembly” (<em>Nature Biotechnology</em>, 2011).</li>
-<li>Bankevich et al.: “SPAdes: a new genome assembly algorithm” (<em>Journal of Computational Biology</em>, 2012).</li>
+<li><p>Compeau, Pevzner &amp; Tesler: “How to apply de Bruijn graphs to genome assembly” (<em>Nature Biotechnology</em>, 2011).</p></li>
+<li><p>Bankevich et al.: “SPAdes: a new genome assembly algorithm” (<em>Journal of Computational Biology</em>, 2012).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> Assembly is not a solved problem. It is always an approximate reconstruction.</p>

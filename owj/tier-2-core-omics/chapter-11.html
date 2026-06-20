@@ -449,16 +449,16 @@ results &lt;- results(dds, contrast = c("condition", "treated", "control"))</cod
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Exon-exon junctions require splice-aware alignment</strong>: DNA aligners (BWA) lose up to 50% of RNA-seq reads.</li>
-<li><strong>EM resolves multi-mapping ambiguity</strong>: Salmon/Kallisto use k-mer equivalence classes for 100x speedup.</li>
-<li><strong>TPM is the correct normalization metric</strong>: RPKM/FPKM are not comparable across samples.</li>
-<li><strong>DESeq2 uses Negative Binomial GLMs with empirical Bayes dispersion shrinkage</strong>: input must be raw counts.</li>
+<li><p><strong>Exon-exon junctions require splice-aware alignment</strong>: DNA aligners (BWA) lose up to 50% of RNA-seq reads.</p></li>
+<li><p><strong>EM resolves multi-mapping ambiguity</strong>: Salmon/Kallisto use k-mer equivalence classes for 100x speedup.</p></li>
+<li><p><strong>TPM is the correct normalization metric</strong>: RPKM/FPKM are not comparable across samples.</p></li>
+<li><p><strong>DESeq2 uses Negative Binomial GLMs with empirical Bayes dispersion shrinkage</strong>: input must be raw counts.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Dobin et al.: “STAR: ultrafast universal RNA-seq aligner” (Bioinformatics, 2013).</li>
-<li>Patro et al.: “Salmon provides fast and bias-aware quantification of transcript expression” (Nature Methods, 2017).</li>
+<li><p>Dobin et al.: “STAR: ultrafast universal RNA-seq aligner” (Bioinformatics, 2013).</p></li>
+<li><p>Patro et al.: “Salmon provides fast and bias-aware quantification of transcript expression” (Nature Methods, 2017).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> A read that maps to three transcripts is not a problem; it is data. Ignoring it is the problem.</p>

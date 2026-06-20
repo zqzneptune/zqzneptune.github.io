@@ -399,7 +399,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="crispr-cas9-biology" class="level3">
 <h3 class="anchored" data-anchor-id="crispr-cas9-biology">CRISPR-Cas9 Biology</h3>
-<p>The CRISPR-Cas9 system: a guide RNA (gRNA) directs the Cas9 nuclease to a specific genomic locus via sequence complementarity. Cas9 creates a double-strand break ~3 bp upstream of the protospacer adjacent motif (PAM, NGG for SpCas9). The break is repaired by either: - <strong>Non-homologous end joining (NHEJ):</strong> Error-prone repair that introduces small insertions or deletions (indels). When the indel shifts the reading frame (frameshift), the result is a gene knockout via premature stop codon and nonsense-mediated decay. ~65-80% of indels are frameshifts. - <strong>Homology-directed repair (HDR):</strong> High-fidelity repair using a template. Requires co-delivery of a repair template (ssODN or plasmid). HDR efficiency is low (1-10% in most cell types) and cell-cycle dependent (G2/S phase only).</p>
+<p>The CRISPR-Cas9 system: a guide RNA (gRNA) directs the Cas9 nuclease to a specific genomic locus via sequence complementarity. Cas9 creates a double-strand break ~3 bp upstream of the protospacer adjacent motif (PAM, NGG for SpCas9). The break is repaired by either:</p>
+<ul>
+<li><p><strong>Non-homologous end joining (NHEJ):</strong> Error-prone repair that introduces small insertions or deletions (indels). When the indel shifts the reading frame (frameshift), the result is a gene knockout via premature stop codon and nonsense-mediated decay. ~65-80% of indels are frameshifts.</p></li>
+<li><p><strong>Homology-directed repair (HDR):</strong> High-fidelity repair using a template. Requires co-delivery of a repair template (ssODN or plasmid). HDR efficiency is low (1-10% in most cell types) and cell-cycle dependent (G2/S phase only).</p></li>
+</ul>
 <p><strong>gRNA design principles.</strong> The gRNA must be uniquely complementary to the target gene and not match anywhere else in the genome. Design rules: target early constitutive exons (frameshifts in early exons are more likely to produce complete loss of function), avoid exons with alternative splicing or partial functional redundancy, and design multiple gRNAs per gene (3-5) to distinguish on-target effects from off-target edits. Tools: CRISPick (Broad Institute), CasOFFinder for off-target prediction.</p>
 </section>
 <section id="pooled-crispr-screens" class="level3">
@@ -438,18 +442,18 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>CRISPR-Cas9 creates double-strand breaks</strong> repaired by NHEJ (frameshift knockout) or HDR (precise editing). gRNA design requires early constitutive exons and multiple guides per gene.</li>
-<li><strong>Pooled screens</strong> measure enrichment or depletion of gRNAs under selection; the Negative Binomial model (Chapter 4) provides the statistical framework for identifying significant hits.</li>
-<li><strong>Perturb-seq</strong> combines CRISPR with scRNA-seq readout, measuring the complete transcriptional consequence of each knockout; the signal is in coordinated gene responses, not individual fold changes.</li>
-<li><strong>Synthetic lethality</strong> identifies drugs targeting cancer-specific vulnerabilities, distinguishing synergy from additive effects requires modeling expected combined effects under independence.</li>
-<li><strong>Cutting efficiency ≠ knockout efficiency</strong>: in-frame indels preserve function; measure protein to confirm knockout.</li>
+<li><p><strong>CRISPR-Cas9 creates double-strand breaks</strong> repaired by NHEJ (frameshift knockout) or HDR (precise editing). gRNA design requires early constitutive exons and multiple guides per gene.</p></li>
+<li><p><strong>Pooled screens</strong> measure enrichment or depletion of gRNAs under selection; the Negative Binomial model (Chapter 4) provides the statistical framework for identifying significant hits.</p></li>
+<li><p><strong>Perturb-seq</strong> combines CRISPR with scRNA-seq readout, measuring the complete transcriptional consequence of each knockout; the signal is in coordinated gene responses, not individual fold changes.</p></li>
+<li><p><strong>Synthetic lethality</strong> identifies drugs targeting cancer-specific vulnerabilities, distinguishing synergy from additive effects requires modeling expected combined effects under independence.</p></li>
+<li><p><strong>Cutting efficiency ≠ knockout efficiency</strong>: in-frame indels preserve function; measure protein to confirm knockout.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Shalem et al.: “Genome-scale CRISPR-Cas9 knockout screening in human cells” (<em>Science</em>, 2014).</li>
-<li>Dixit et al.: “Perturb-Seq: dissecting molecular circuits with scalable single-cell RNA profiling of pooled genetic screens” (<em>Cell</em>, 2016).</li>
-<li>Meyers et al.: “Computational correction of copy number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells” (<em>Nature Genetics</em>, 2017).</li>
+<li><p>Shalem et al.: “Genome-scale CRISPR-Cas9 knockout screening in human cells” (<em>Science</em>, 2014).</p></li>
+<li><p>Dixit et al.: “Perturb-Seq: dissecting molecular circuits with scalable single-cell RNA profiling of pooled genetic screens” (<em>Cell</em>, 2016).</p></li>
+<li><p>Meyers et al.: “Computational correction of copy number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells” (<em>Nature Genetics</em>, 2017).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> If you want to know whether a gene matters, don’t look at its expression; knock it out.</p>

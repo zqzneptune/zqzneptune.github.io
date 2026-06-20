@@ -453,17 +453,17 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Three integration axes</strong>: horizontal (same modality, different batches) uses batch correction (ComBat, Harmony); vertical (different modalities, same samples) uses MOFA/CCA; diagonal (different modalities, different samples) uses optimal transport or anchor-based methods.</li>
-<li><strong>CCA</strong> finds maximally correlated linear combinations; the foundation of Seurat integration; caution: first components often capture technical artifacts, not biology.</li>
-<li><strong>MOFA</strong> factorizes variance into shared and modality-specific components with interpretable variance decomposition per factor per modality.</li>
-<li><strong>eQTL/pQTL</strong> use genetic variants as causal anchors linking genotype to molecular phenotype; the ~20-40% overlap between eQTL and pQTL signals reflects post-transcriptional regulation.</li>
-<li><strong>The dominant factor is almost always technical</strong>: verify factor-biological associations are not driven by batch, depth, or sample quality before biological interpretation.</li>
+<li><p><strong>Three integration axes</strong>: horizontal (same modality, different batches) uses batch correction (ComBat, Harmony); vertical (different modalities, same samples) uses MOFA/CCA; diagonal (different modalities, different samples) uses optimal transport or anchor-based methods.</p></li>
+<li><p><strong>CCA</strong> finds maximally correlated linear combinations; the foundation of Seurat integration; caution: first components often capture technical artifacts, not biology.</p></li>
+<li><p><strong>MOFA</strong> factorizes variance into shared and modality-specific components with interpretable variance decomposition per factor per modality.</p></li>
+<li><p><strong>eQTL/pQTL</strong> use genetic variants as causal anchors linking genotype to molecular phenotype; the ~20-40% overlap between eQTL and pQTL signals reflects post-transcriptional regulation.</p></li>
+<li><p><strong>The dominant factor is almost always technical</strong>: verify factor-biological associations are not driven by batch, depth, or sample quality before biological interpretation.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Argelaguet et al.: “MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data” (<em>Genome Biology</em>, 2020).</li>
-<li>GTEx Consortium: “The GTEx Consortium atlas of genetic regulatory effects across human tissues” (<em>Science</em>, 2020).</li>
+<li><p>Argelaguet et al.: “MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data” (<em>Genome Biology</em>, 2020).</p></li>
+<li><p>GTEx Consortium: “The GTEx Consortium atlas of genetic regulatory effects across human tissues” (<em>Science</em>, 2020).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> If this integration does not solve a question that single-omics cannot, you are adding complexity, not insight.</p>

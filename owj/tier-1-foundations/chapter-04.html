@@ -563,19 +563,19 @@ p_peak &lt;- ppois(observed_reads - 1, lambda = lambda_background, lower.tail = 
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Count data requires count distributions</strong>: the Gaussian is invalid for individual raw counts.</li>
-<li><strong>Poisson (<span class="math inline">\(\sigma^2 = \mu\)</span>) models technical noise only</strong>: it fails on biological replicates because it cannot account for biological variation.</li>
-<li><strong>Overdispersion (<span class="math inline">\(\sigma^2 \gg \mu\)</span>) is universal in biological data</strong>: the NB captures it with a single parameter <span class="math inline">\(\alpha\)</span>, yielding the variance formula <span class="math inline">\(\sigma^2 = \mu + \alpha\mu^2\)</span>.</li>
-<li><strong>The NB is a Poisson-Gamma mixture</strong>: each replicate has its own expression rate <span class="math inline">\(\lambda\)</span> drawn from a Gamma distribution, and the observed count is Poisson(<span class="math inline">\(\lambda\)</span>).</li>
-<li><strong>DESeq2 uses empirical Bayes to solve the estimation problem</strong>: with few replicates per gene, dispersion estimates are unreliable and must be shrunk toward a mean-dispersion trend.</li>
-<li><strong>The <span class="math inline">\(\alpha\mu^2\)</span> term explains why replication matters more than depth</strong>: for well-expressed genes, biological variation dominates, and deeper sequencing cannot reduce it.</li>
+<li><p><strong>Count data requires count distributions</strong>: the Gaussian is invalid for individual raw counts.</p></li>
+<li><p><strong>Poisson (<span class="math inline">\(\sigma^2 = \mu\)</span>) models technical noise only</strong>: it fails on biological replicates because it cannot account for biological variation.</p></li>
+<li><p><strong>Overdispersion (<span class="math inline">\(\sigma^2 \gg \mu\)</span>) is universal in biological data</strong>: the NB captures it with a single parameter <span class="math inline">\(\alpha\)</span>, yielding the variance formula <span class="math inline">\(\sigma^2 = \mu + \alpha\mu^2\)</span>.</p></li>
+<li><p><strong>The NB is a Poisson-Gamma mixture</strong>: each replicate has its own expression rate <span class="math inline">\(\lambda\)</span> drawn from a Gamma distribution, and the observed count is Poisson(<span class="math inline">\(\lambda\)</span>).</p></li>
+<li><p><strong>DESeq2 uses empirical Bayes to solve the estimation problem</strong>: with few replicates per gene, dispersion estimates are unreliable and must be shrunk toward a mean-dispersion trend.</p></li>
+<li><p><strong>The <span class="math inline">\(\alpha\mu^2\)</span> term explains why replication matters more than depth</strong>: for well-expressed genes, biological variation dominates, and deeper sequencing cannot reduce it.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Love, Huber &amp; Anders: “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2” (<em>Genome Biology</em>, 2014).</li>
-<li>Casella &amp; Berger: <em>Statistical Inference</em> (Ch 3-4): Poisson and Negative Binomial derivations, Poisson-Gamma mixture.</li>
-<li>Robinson &amp; Smyth: “Small-sample estimation of negative binomial dispersion” (<em>Biostatistics</em>, 2008).</li>
+<li><p>Love, Huber &amp; Anders: “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2” (<em>Genome Biology</em>, 2014).</p></li>
+<li><p>Casella &amp; Berger: <em>Statistical Inference</em> (Ch 3-4): Poisson and Negative Binomial derivations, Poisson-Gamma mixture.</p></li>
+<li><p>Robinson &amp; Smyth: “Small-sample estimation of negative binomial dispersion” (<em>Biostatistics</em>, 2008).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> The Poisson is the correct model for technical replicates. It is almost always the wrong model for biological replicates.</p>

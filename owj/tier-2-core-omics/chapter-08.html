@@ -497,18 +497,18 @@ F(i,j-1) + d &amp; \text{gap in sequence A}
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Perfect alignment is impossible</strong>: DP at genome scale requires 150,000 years. Every method makes a sensitivity-speed tradeoff.</li>
-<li><strong>BWT/FM-index</strong> enables <span class="math inline">\(O(M)\)</span> exact matching in ~2 GB RAM; the foundation of Bowtie2 and BWA-MEM for low-divergence short reads.</li>
-<li><strong>Minimizers</strong> (Minimap2) enable <span class="math inline">\(O(N \log N)\)</span> long-read alignment by guaranteeing overlapping sequences share seeds, tolerating 5-15% error rates.</li>
-<li><strong>STAR’s suffix array</strong> enables splice-aware alignment essential for RNA-seq, solving a problem that DNA aligners cannot address.</li>
-<li><strong>The choice of aligner encodes an assumption about variation type</strong>: using the wrong one discards signal.</li>
+<li><p><strong>Perfect alignment is impossible</strong>: DP at genome scale requires 150,000 years. Every method makes a sensitivity-speed tradeoff.</p></li>
+<li><p><strong>BWT/FM-index</strong> enables <span class="math inline">\(O(M)\)</span> exact matching in ~2 GB RAM; the foundation of Bowtie2 and BWA-MEM for low-divergence short reads.</p></li>
+<li><p><strong>Minimizers</strong> (Minimap2) enable <span class="math inline">\(O(N \log N)\)</span> long-read alignment by guaranteeing overlapping sequences share seeds, tolerating 5-15% error rates.</p></li>
+<li><p><strong>STAR’s suffix array</strong> enables splice-aware alignment essential for RNA-seq, solving a problem that DNA aligners cannot address.</p></li>
+<li><p><strong>The choice of aligner encodes an assumption about variation type</strong>: using the wrong one discards signal.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Li &amp; Durbin: “Fast and accurate short read alignment with Burrows-Wheeler transform” (<em>Bioinformatics</em>, 2009).</li>
-<li>Li: “Minimap2: pairwise alignment for nucleotide sequences” (<em>Bioinformatics</em>, 2018).</li>
-<li>Dobin et al.: “STAR: ultrafast universal RNA-seq aligner” (<em>Bioinformatics</em>, 2013).</li>
+<li><p>Li &amp; Durbin: “Fast and accurate short read alignment with Burrows-Wheeler transform” (<em>Bioinformatics</em>, 2009).</p></li>
+<li><p>Li: “Minimap2: pairwise alignment for nucleotide sequences” (<em>Bioinformatics</em>, 2018).</p></li>
+<li><p>Dobin et al.: “STAR: ultrafast universal RNA-seq aligner” (<em>Bioinformatics</em>, 2013).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> Every aligner is wrong. Some are useful.</p>

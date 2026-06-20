@@ -455,19 +455,19 @@ window.Quarto = {
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Microfluidic barcoding + UMIs</strong> enable molecular counting of 10,000+ cells per experiment, eliminating PCR bias. The capture process is approximately Poisson; remaining biological overdispersion motivates NB models.</li>
-<li><strong>The dimensionality escape</strong> proceeds in four steps: feature selection (HVGs) → normalization (scran/SCTransform) → PCA (50 dimensions) → KNN graph + Leiden clustering. Each step compresses the representation toward biological structure.</li>
-<li><strong>Sparsity (90% zeros)</strong> combines technical dropout (low capture efficiency) and biological zeros (cell-type specificity). ZINB models attempt to separate them, but debate continues on whether explicit zero-inflation is necessary with UMIs.</li>
-<li><strong>PCA on sparse data works</strong> because genes are correlated; the covariance structure exists, and the top PCs extract the dominant biological signals.</li>
-<li><strong>Pseudo-bulk analysis</strong> is required for valid differential expression; cells within a sample are not independent replicates.</li>
-<li><strong>Cluster annotation requires multi-marker validation</strong>: a single marker gene is not sufficient for cell-type identification.</li>
+<li><p><strong>Microfluidic barcoding + UMIs</strong> enable molecular counting of 10,000+ cells per experiment, eliminating PCR bias. The capture process is approximately Poisson; remaining biological overdispersion motivates NB models.</p></li>
+<li><p><strong>The dimensionality escape</strong> proceeds in four steps: feature selection (HVGs) → normalization (scran/SCTransform) → PCA (50 dimensions) → KNN graph + Leiden clustering. Each step compresses the representation toward biological structure.</p></li>
+<li><p><strong>Sparsity (90% zeros)</strong> combines technical dropout (low capture efficiency) and biological zeros (cell-type specificity). ZINB models attempt to separate them, but debate continues on whether explicit zero-inflation is necessary with UMIs.</p></li>
+<li><p><strong>PCA on sparse data works</strong> because genes are correlated; the covariance structure exists, and the top PCs extract the dominant biological signals.</p></li>
+<li><p><strong>Pseudo-bulk analysis</strong> is required for valid differential expression; cells within a sample are not independent replicates.</p></li>
+<li><p><strong>Cluster annotation requires multi-marker validation</strong>: a single marker gene is not sufficient for cell-type identification.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Zheng et al.: “Massively parallel digital transcriptional profiling of single cells” (<em>Nature Communications</em>, 2017).</li>
-<li>McInnes et al.: “UMAP: Uniform Manifold Approximation and Projection” (<em>Journal of Open Source Software</em>, 2018).</li>
-<li>Luecken &amp; Theis: “Current best practices in single-cell RNA-seq analysis” (<em>Molecular Systems Biology</em>, 2019).</li>
+<li><p>Zheng et al.: “Massively parallel digital transcriptional profiling of single cells” (<em>Nature Communications</em>, 2017).</p></li>
+<li><p>McInnes et al.: “UMAP: Uniform Manifold Approximation and Projection” (<em>Journal of Open Source Software</em>, 2018).</p></li>
+<li><p>Luecken &amp; Theis: “Current best practices in single-cell RNA-seq analysis” (<em>Molecular Systems Biology</em>, 2019).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> Never trust a cluster you cannot name.</p>

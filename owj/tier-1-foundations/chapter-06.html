@@ -531,20 +531,20 @@ design_sva &lt;- cbind(design, sv)</code></pre>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>A p-value is conditional on the model</strong>: every omitted confounder inflates the error term and produces false positives. The entire chapter is a defense against this single failure mode.</li>
-<li><strong>Use the correct distributional test</strong>: raw counts → Negative Binomial (DESeq2/edgeR). Log-normalized → limma. scRNA-seq → Wilcoxon.</li>
-<li><strong>Correct for multiple testing</strong>: FDR (Benjamini-Hochberg) is the minimum standard. Raw p-values guarantee 1,000 false positives at 20,000 tests.</li>
-<li><strong>Model confounders in the design matrix</strong>: every omitted confounder inflates residual variance. Mixed models for hierarchical structure.</li>
-<li><strong>Empirical Bayes moderation (limma) parallels DESeq2</strong>: both solve the few-replicates problem by borrowing strength across genes.</li>
-<li><strong>Batch effects dominate omics variance</strong> (30-50% of total): detect with PCA colored by batch, correct with ComBat. Never correct a confounded design.</li>
-<li><strong>Batch randomization is the only real solution</strong>: if cases and controls are in separate batches, the design is unidentifiable.</li>
+<li><p><strong>A p-value is conditional on the model</strong>: every omitted confounder inflates the error term and produces false positives. The entire chapter is a defense against this single failure mode.</p></li>
+<li><p><strong>Use the correct distributional test</strong>: raw counts → Negative Binomial (DESeq2/edgeR). Log-normalized → limma. scRNA-seq → Wilcoxon.</p></li>
+<li><p><strong>Correct for multiple testing</strong>: FDR (Benjamini-Hochberg) is the minimum standard. Raw p-values guarantee 1,000 false positives at 20,000 tests.</p></li>
+<li><p><strong>Model confounders in the design matrix</strong>: every omitted confounder inflates residual variance. Mixed models for hierarchical structure.</p></li>
+<li><p><strong>Empirical Bayes moderation (limma) parallels DESeq2</strong>: both solve the few-replicates problem by borrowing strength across genes.</p></li>
+<li><p><strong>Batch effects dominate omics variance</strong> (30-50% of total): detect with PCA colored by batch, correct with ComBat. Never correct a confounded design.</p></li>
+<li><p><strong>Batch randomization is the only real solution</strong>: if cases and controls are in separate batches, the design is unidentifiable.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Benjamini &amp; Hochberg: “Controlling the False Discovery Rate” (<em>JRSS B</em>, 1995).</li>
-<li>Johnson, Li &amp; Rabinovic: “Adjusting batch effects in microarray expression data using empirical Bayes methods” (<em>Biostatistics</em>, 2007).</li>
-<li>Smyth: “Linear models and empirical Bayes methods for assessing differential expression” (<em>SAGMB</em>, 2004).</li>
+<li><p>Benjamini &amp; Hochberg: “Controlling the False Discovery Rate” (<em>JRSS B</em>, 1995).</p></li>
+<li><p>Johnson, Li &amp; Rabinovic: “Adjusting batch effects in microarray expression data using empirical Bayes methods” (<em>Biostatistics</em>, 2007).</p></li>
+<li><p>Smyth: “Linear models and empirical Bayes methods for assessing differential expression” (<em>SAGMB</em>, 2004).</p></li>
 </ul>
 <blockquote class="blockquote">
 <p><strong>Johnson’s Rule:</strong> Batch effects are the single greatest threat to omics data. Plan for them before you sequence. If you cannot detect a batch effect, you did not look hard enough.</p>
