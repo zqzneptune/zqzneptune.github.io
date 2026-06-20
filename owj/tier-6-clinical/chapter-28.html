@@ -411,8 +411,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="evidence-codes-and-scoring" class="level3">
 <h3 class="anchored" data-anchor-id="evidence-codes-and-scoring">Evidence Codes and Scoring</h3>
 <p>Pathogenic and benign classifications are built from evidence codes:</p>
-<p><strong>Pathogenic evidence codes:</strong> - <strong>PVS1</strong> (very strong): Null variant (nonsense, frameshift, canonical splice site) in a gene where loss-of-function is a known disease mechanism. <strong>Critical exception:</strong> a null variant in the last exon or within 50 bp of the final exon junction typically escapes nonsense-mediated decay (NMD), producing a truncated protein that may retain partial function. Such variants require PVS1 downgrading to PS1 or PM4 depending on transcript structure; the strongest evidence code cannot be applied without confirming that NMD will be triggered. - <strong>PS1</strong> (strong): Same amino acid change as a previously established pathogenic variant. - <strong>PM2</strong> (moderate): Absent from population databases (gnomAD). <em>Note: PM2 alone is not sufficient for pathogenicity; it only supports it when combined with other codes.</em> - <strong>PP3</strong> (supporting): Multiple in silico prediction tools (SIFT, PolyPhen, CADD, REVEL) predict damaging effect. PP3 is supporting evidence only, never strong.</p>
-<p><strong>Benign evidence codes:</strong> - <strong>BA1</strong> (stand-alone): Allele frequency &gt;5% in any population database. A single BA1 code can classify a variant as Benign. - <strong>BS1</strong> (strong): Allele frequency &gt;1% for recessive, &gt;0.5% for dominant. - <strong>BP4</strong> (supporting): In silico predictions suggest benign effect.</p>
+<p><strong>Pathogenic evidence codes:</strong></p>
+<ul>
+<li><p><strong>PVS1</strong> (very strong): Null variant (nonsense, frameshift, canonical splice site) in a gene where loss-of-function is a known disease mechanism. <strong>Critical exception:</strong> a null variant in the last exon or within 50 bp of the final exon junction typically escapes nonsense-mediated decay (NMD), producing a truncated protein that may retain partial function. Such variants require PVS1 downgrading to PS1 or PM4 depending on transcript structure; the strongest evidence code cannot be applied without confirming that NMD will be triggered.</p></li>
+<li><p><strong>PS1</strong> (strong): Same amino acid change as a previously established pathogenic variant.</p></li>
+<li><p><strong>PM2</strong> (moderate): Absent from population databases (gnomAD). <em>Note: PM2 alone is not sufficient for pathogenicity; it only supports it when combined with other codes.</em></p></li>
+<li><p><strong>PP3</strong> (supporting): Multiple in silico prediction tools (SIFT, PolyPhen, CADD, REVEL) predict damaging effect. PP3 is supporting evidence only, never strong.</p></li>
+</ul>
+<p><strong>Benign evidence codes:</strong></p>
+<ul>
+<li><p><strong>BA1</strong> (stand-alone): Allele frequency &gt;5% in any population database. A single BA1 code can classify a variant as Benign.</p></li>
+<li><p><strong>BS1</strong> (strong): Allele frequency &gt;1% for recessive, &gt;0.5% for dominant.</p></li>
+<li><p><strong>BP4</strong> (supporting): In silico predictions suggest benign effect.</p></li>
+</ul>
 <p>The scoring matrix combines codes to determine the final classification:</p>
 <table class="table">
 <colgroup>
@@ -457,7 +468,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="in-silico-prediction-tools" class="level3">
 <h3 class="anchored" data-anchor-id="in-silico-prediction-tools">In Silico Prediction Tools</h3>
-<p>Multiple computational tools predict variant deleteriousness: - <strong>SIFT:</strong> Conservation-based; predicts whether amino acid substitution affects protein function. - <strong>PolyPhen-2:</strong> Structure and sequence-based. - <strong>CADD:</strong> Integrates annotations into a single C-score by contrasting variants that survived natural selection against simulated variants. The score is Phred-scaled: CADD 10 means the variant is in the top 10% of deleteriousness genome-wide, 20 means top 1%, 30 means top 0.1%. The commonly used threshold of CADD &gt; 20 as “likely deleterious” is a heuristic, not a clinically validated cutoff; it trades sensitivity for specificity and should never be used as the sole evidence for pathogenicity. - <strong>REVEL:</strong> Ensemble predictor combining 13 individual tools; recommended as the default for missense variant interpretation by current guidelines.</p>
+<p>Multiple computational tools predict variant deleteriousness:</p>
+<ul>
+<li><p><strong>SIFT:</strong> Conservation-based; predicts whether amino acid substitution affects protein function.</p></li>
+<li><p><strong>PolyPhen-2:</strong> Structure and sequence-based.</p></li>
+<li><p><strong>CADD:</strong> Integrates annotations into a single C-score by contrasting variants that survived natural selection against simulated variants. The score is Phred-scaled: CADD 10 means the variant is in the top 10% of deleteriousness genome-wide, 20 means top 1%, 30 means top 0.1%. The commonly used threshold of CADD &gt; 20 as “likely deleterious” is a heuristic, not a clinically validated cutoff; it trades sensitivity for specificity and should never be used as the sole evidence for pathogenicity.</p></li>
+<li><p><strong>REVEL:</strong> Ensemble predictor combining 13 individual tools; recommended as the default for missense variant interpretation by current guidelines.</p></li>
+</ul>
 <p>All in silico predictions are <strong>supporting evidence only</strong> (PP3/BP4), never strong. They cannot be used alone to classify a variant.</p>
 </section>
 <section id="clinvar-and-the-vus-crisis" class="level3">
