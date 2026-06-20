@@ -15,8 +15,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 23: Neural Networks and Deep Learning in Biology – Omics with Johnson 101</title>
+<title>Chapter 23: Machine Learning Fundamentals for Biology – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../tier-5-ai/chapter-24.html" rel="next">
-<link href="../tier-5-ai/chapter-22.html" rel="prev">
+<link href="../tier-4-systems/chapter-22.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -133,6 +134,10 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book"> 
+<span class="menu-text">About</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Foundations</span>
@@ -193,6 +198,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
  <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -201,16 +214,16 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+ <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
     </ul>
   </li>
@@ -220,24 +233,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+ <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+ <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+ <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
@@ -247,24 +260,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+ <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+ <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+ <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
   </li>  
     </ul>
   </li>
@@ -274,28 +287,28 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
         <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
- <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+ <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+ <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+ <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+ <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
+ <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
+ <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
   </li>  
     </ul>
   </li>
@@ -309,6 +322,11 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -324,15 +342,13 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#architecture-perceptrons-weights-and-biases" id="toc-architecture-perceptrons-weights-and-biases" class="nav-link" data-scroll-target="#architecture-perceptrons-weights-and-biases">Architecture: Perceptrons, Weights, and Biases</a></li>
-  <li><a href="#backpropagation-the-engine-of-learning" id="toc-backpropagation-the-engine-of-learning" class="nav-link" data-scroll-target="#backpropagation-the-engine-of-learning">Backpropagation: The Engine of Learning</a></li>
-  <li><a href="#optimizers-how-gradients-drive-updates" id="toc-optimizers-how-gradients-drive-updates" class="nav-link" data-scroll-target="#optimizers-how-gradients-drive-updates">Optimizers: How Gradients Drive Updates</a></li>
-  <li><a href="#regularization-for-deep-networks" id="toc-regularization-for-deep-networks" class="nav-link" data-scroll-target="#regularization-for-deep-networks">Regularization for Deep Networks</a></li>
-  <li><a href="#convolutional-neural-networks-for-biological-sequences" id="toc-convolutional-neural-networks-for-biological-sequences" class="nav-link" data-scroll-target="#convolutional-neural-networks-for-biological-sequences">Convolutional Neural Networks for Biological Sequences</a></li>
-  <li><a href="#autoencoders-for-scrna-seq" id="toc-autoencoders-for-scrna-seq" class="nav-link" data-scroll-target="#autoencoders-for-scrna-seq">Autoencoders for scRNA-seq</a></li>
+  <li><a href="#the-curse-of-dimensionality-p-gg-n" id="toc-the-curse-of-dimensionality-p-gg-n" class="nav-link" data-scroll-target="#the-curse-of-dimensionality-p-gg-n">The Curse of Dimensionality (<span class="math inline">\(p \gg n\)</span>)</a></li>
+  <li><a href="#the-bias-variance-tradeoff" id="toc-the-bias-variance-tradeoff" class="nav-link" data-scroll-target="#the-bias-variance-tradeoff">The Bias-Variance Tradeoff</a></li>
+  <li><a href="#data-leakage-the-most-common-fatal-error" id="toc-data-leakage-the-most-common-fatal-error" class="nav-link" data-scroll-target="#data-leakage-the-most-common-fatal-error">Data Leakage: The Most Common Fatal Error</a></li>
+  <li><a href="#model-validation" id="toc-model-validation" class="nav-link" data-scroll-target="#model-validation">Model Validation</a></li>
+  <li><a href="#metrics-why-accuracy-lies" id="toc-metrics-why-accuracy-lies" class="nav-link" data-scroll-target="#metrics-why-accuracy-lies">Metrics: Why Accuracy Lies</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
-  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -343,9 +359,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-21.html">TIER 5: Advanced AI and Machine Learning in Biology</a></li><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html"><span class="chapter-title">Chapter 23: Neural Networks and Deep Learning in Biology</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html">TIER 5: Advanced AI and Machine Learning in Biology</a></li><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html"><span class="chapter-title">Chapter 23: Machine Learning Fundamentals for Biology</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 23: Neural Networks and Deep Learning in Biology</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 23: Machine Learning Fundamentals for Biology</span></h1>
 </div>
 
 
@@ -353,7 +369,19 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 5, 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 19, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -363,132 +391,139 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> A Neural Network Does Not Think — It Slides Down a Gradient</p>
+<p><strong>Johnson’s First Principle:</strong> The Only Metric That Matters is Generalization to Unseen Data</p>
 </blockquote>
-<p>A neural network does not “think” — it slides down a gradient of a loss function. The “hidden layers” are not hidden knowledge — they are hierarchical feature transformations. A neural network is a universal function approximator. It will learn the function you train it on — even if that function is noise.</p>
-<p>The appeal of deep learning in biology is the promise of automatic feature discovery — letting the model learn relevant patterns from raw data rather than hand-engineering features. Chapter 21 established the risks of <span class="math inline">\(p &gt; n\)</span> and data leakage. Chapter 22 showed that gradient boosting handles tabular omics data better than neural networks for most biological prediction tasks. So where do neural networks add value? For sequence data (DNA, RNA, protein, images), where patterns are hierarchical and spatially structured, convolutional networks and transformers uncover features that tree-based models cannot see. The key is knowing when deep learning is the right tool and when it is overkill.</p>
+<p>A model trained on 50 patients with 20,000 genes can achieve 99.9% accuracy; even with randomly shuffled labels. When <span class="math inline">\(p &gt; n\)</span>, a linear separator exists for any labeling. This is not learning; it is exploiting excess degrees of freedom. The only metric that matters is generalization to unseen data.</p>
+<p>Chapter 6 established the statistical framework for inference: hypothesis testing, multiple testing correction, and confounder management. That framework answers “is there a difference?” Machine learning answers a different question: “can I predict this outcome from these measurements?” The two are complementary; statistical inference identifies associations, machine learning tests whether those associations are predictive in independent data. A gene with p-value <span class="math inline">\(10^{-10}\)</span> that does not generalize to a held-out cohort has statistical significance without practical utility.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="architecture-perceptrons-weights-and-biases" class="level3">
-<h3 class="anchored" data-anchor-id="architecture-perceptrons-weights-and-biases">Architecture: Perceptrons, Weights, and Biases</h3>
-<p>The single neuron (perceptron) computes a weighted sum of its inputs followed by a non-linear activation: <span class="math inline">\(z = w^T x + b\)</span>, <span class="math inline">\(a = \sigma(z)\)</span>. The input vector <span class="math inline">\(x\)</span> has <span class="math inline">\(p\)</span> elements (one per feature), <span class="math inline">\(w\)</span> is the weight vector, <span class="math inline">\(b\)</span> is the bias, and <span class="math inline">\(\sigma\)</span> is the activation function.</p>
-<p>A <strong>layer</strong> is <span class="math inline">\(h\)</span> such neurons, each with its own weight vector and bias. Stacking them creates the matrix form: <span class="math inline">\(Z = XW + b\)</span>. Here <span class="math inline">\(X\)</span> is the <span class="math inline">\(n \times p\)</span> input matrix, <span class="math inline">\(W\)</span> is the <span class="math inline">\(p \times h\)</span> weight matrix (column <span class="math inline">\(j\)</span> contains the weights for neuron <span class="math inline">\(j\)</span>), and <span class="math inline">\(b\)</span> is the bias vector of length <span class="math inline">\(h\)</span>. Each column of <span class="math inline">\(Z\)</span> is one neuron’s output across all <span class="math inline">\(n\)</span> samples; each row is all <span class="math inline">\(h\)</span> neurons’ outputs for one sample. A <strong>fully connected (dense) layer</strong> applies the activation element-wise to <span class="math inline">\(Z\)</span>: <span class="math inline">\(A = \sigma(Z)\)</span>.</p>
-<p>A <strong>deep network</strong> stacks these layers. The output of layer <span class="math inline">\(\ell\)</span> becomes the input to layer <span class="math inline">\(\ell+1\)</span>:</p>
-<p><span class="math display">\[H_1 = \sigma_1(XW_1 + b_1) \quad \rightarrow \quad H_2 = \sigma_2(H_1W_2 + b_2) \quad \rightarrow \quad \cdots \quad \rightarrow \quad \hat{y} = \sigma_L(H_{L-1}W_L + b_L)\]</span></p>
-<p>Each layer learns increasingly abstract features. The first hidden layer might detect individual transcription factor binding motifs from raw sequence; the second layer detects combinations of motifs that form cis-regulatory modules; deeper layers detect higher-order regulatory logic. The depth of the network determines the hierarchy of features it can represent.</p>
-<p><strong>Activation functions</strong> provide the non-linearity without which stacked linear layers collapse to a single linear transformation:</p>
+<section id="the-curse-of-dimensionality-p-gg-n" class="level3">
+<h3 class="anchored" data-anchor-id="the-curse-of-dimensionality-p-gg-n">The Curse of Dimensionality (<span class="math inline">\(p \gg n\)</span>)</h3>
+<p>In bioinformatics, you typically have <span class="math inline">\(n = 50\)</span> patients and <span class="math inline">\(p = 20,000\)</span> genes. When <span class="math inline">\(p &gt; n\)</span>, a fundamental theorem guarantees: <span class="math inline">\(n\)</span> points in <span class="math inline">\(\mathbb{R}^p\)</span> span at most <span class="math inline">\(n-1\)</span> dimensions, providing unlimited degrees of freedom to orient a separating hyperplane. For any binary labeling (even random coin flips) a linear separator exists. This is not learning; it is dimensionality exploitation.</p>
+<p><strong>The concentration of distances:</strong> In high dimensions, all pairwise distances converge to the same value. The ratio of nearest to farthest neighbor distance approaches 1 as <span class="math inline">\(p \to \infty\)</span>. K-nearest neighbors fails because there are no “nearest” neighbors.</p>
+<p><strong>Minimum sample size heuristic:</strong> A stable linear classifier requires <span class="math inline">\(n \geq 10 \cdot p\)</span>. With <span class="math inline">\(p = 20,000\)</span>, you need <span class="math inline">\(n \geq 200,000\)</span> samples. Since this is rarely achievable in omics, aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> is essential before any supervised learning.</p>
+<p><strong>Regularization is the primary solution to <span class="math inline">\(p &gt; n\)</span>.</strong> L1 regularization (Lasso) drives irrelevant feature weights to exactly zero, performing embedded feature selection. L2 regularization (Ridge) shrinks all weights toward zero without eliminating features. Elastic Net combines both. In the <span class="math inline">\(p &gt; n\)</span> regime, unregularized models are mathematically guaranteed to overfit; regularization encodes the prior belief that most features are irrelevant.</p>
+</section>
+<section id="the-bias-variance-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="the-bias-variance-tradeoff">The Bias-Variance Tradeoff</h3>
+<p>Total prediction error decomposes into three components:</p>
+<p><span class="math display">\[\text{Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}\]</span></p>
 <ul>
-<li><strong>Sigmoid:</strong> <span class="math inline">\(\sigma(z) = 1/(1+e^{-z})\)</span> outputs probabilities in (0,1), used for binary classification output layers. Suffers from vanishing gradient in hidden layers.</li>
-<li><strong>Tanh:</strong> outputs in (-1,1), zero-centered — improves optimization compared to sigmoid but still saturates.</li>
-<li><strong>ReLU:</strong> <span class="math inline">\(\max(0, z)\)</span> — the default hidden-layer activation. Solves vanishing gradient for positive values. The “dying ReLU” problem (neurons that never activate) can occur with poor initialization.</li>
-<li><strong>GELU:</strong> a smooth ReLU variant used in transformers — approximates a Gaussian cumulative distribution, providing a non-linear but differentiable activation with better gradient flow.</li>
+<li><strong>Bias:</strong> Error from incorrect assumptions. A linear model fitted to non-linear data has high bias; it systematically misses the true relationship.</li>
+<li><strong>Variance:</strong> Error from sensitivity to training data. A deep decision tree has high variance; change 5% of the training samples and the tree structure changes completely.</li>
+<li><strong>Irreducible error:</strong> Measurement noise that cannot be modeled away.</li>
 </ul>
-<p><strong>The Universal Approximation Theorem:</strong> a network with one hidden layer and enough neurons can approximate any continuous function on a compact domain to arbitrary precision. This is a statement about existence, not learnability — gradient descent may not find the right weights, and the required number of neurons may be exponentially large.</p>
+<p>The tradeoff: as model complexity increases (more parameters, less regularization), bias decreases but variance increases. The optimal model minimizes total error at the point where the marginal decrease in bias equals the marginal increase in variance. In omics, where <span class="math inline">\(n\)</span> is small, variance dominates unless controlled through regularization, dimensionality reduction, or simple models.</p>
+<p><strong>Regularization exploits this tradeoff directly.</strong> L1 regularization (Lasso) drives weights to exactly zero; this increases bias (the model cannot use those features at all) but collapses variance by eliminating the dimensions where noise dominates. L2 regularization (Ridge) shrinks all weights toward zero, increasing bias slightly (the constrained fit is less accurate) while reducing variance proportionally to the number of correlated features. Elastic Net combines both. In the <span class="math inline">\(p &gt; n\)</span> regime where variance is extreme, even a small bias investment yields a large variance reduction; the net effect is lower total error. Cross-validation finds the optimal regularization strength <span class="math inline">\(\lambda\)</span> by balancing this tradeoff.</p>
 </section>
-<section id="backpropagation-the-engine-of-learning" class="level3">
-<h3 class="anchored" data-anchor-id="backpropagation-the-engine-of-learning">Backpropagation: The Engine of Learning</h3>
-<p>A network learns by minimizing a loss function <span class="math inline">\(L\)</span> (mean squared error for regression, cross-entropy for classification) with respect to its weights. Backpropagation applies the chain rule of calculus to compute the gradient of <span class="math inline">\(L\)</span> with respect to every weight in the network.</p>
-<p><strong>Forward pass</strong> — compute predictions by propagating input through the network:</p>
-<p>Consider a minimal 2-2-1 network with a single training example: input <span class="math inline">\(x = [1, 2]\)</span>, target <span class="math inline">\(y = 1\)</span>. Let layer 1 weight matrix <span class="math inline">\(W_1 = [[0.1, 0.3], [0.2, 0.4]]\)</span>, biases <span class="math inline">\(b_1 = [0.1, 0.2]\)</span>. Output layer weights <span class="math inline">\(W_2 = [0.5, 0.6]\)</span>, bias <span class="math inline">\(b_2 = 0.1\)</span>. Use sigmoid activation <span class="math inline">\(\sigma(z) = 1/(1+e^{-z})\)</span> for both layers.</p>
-<p><span class="math display">\[z_1 = W_1^T x + b_1 = \begin{bmatrix}0.1(1) + 0.2(2) + 0.1 \\ 0.3(1) + 0.4(2) + 0.2\end{bmatrix} = \begin{bmatrix}0.6 \\ 1.3\end{bmatrix}\]</span></p>
-<p><span class="math display">\[a_1 = \sigma(z_1) = \begin{bmatrix}0.646 \\ 0.786\end{bmatrix}\]</span></p>
-<p><span class="math display">\[z_2 = W_2^T a_1 + b_2 = 0.5(0.646) + 0.6(0.786) + 0.1 = 0.895\]</span></p>
-<p><span class="math display">\[a_2 = \sigma(z_2) = 0.710\]</span></p>
-<p>The network predicts 0.710; the true value is 1. The loss (squared error) is <span class="math inline">\(L = \frac{1}{2}(1 - 0.710)^2 = 0.042\)</span>.</p>
-<p><strong>Backward pass</strong> — compute how much each weight contributed to the error, using the chain rule from output back to input:</p>
-<p><span class="math display">\[\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial a_2} \cdot \frac{\partial a_2}{\partial z_2} \cdot \frac{\partial z_2}{\partial a_1} \cdot \frac{\partial a_1}{\partial z_1} \cdot \frac{\partial z_1}{\partial w_1}\]</span></p>
-<p>Working backward from the output:</p>
+<section id="data-leakage-the-most-common-fatal-error" class="level3">
+<h3 class="anchored" data-anchor-id="data-leakage-the-most-common-fatal-error">Data Leakage: The Most Common Fatal Error</h3>
+<p>Data leakage occurs when information from the test set influences the training process. Common patterns:</p>
 <ol type="1">
-<li><p><strong>Output layer gradient:</strong> <span class="math inline">\(\frac{\partial L}{\partial a_2} = -(y - a_2) = -0.290\)</span>. The derivative of sigmoid is <span class="math inline">\(\frac{\partial a_2}{\partial z_2} = a_2(1-a_2) = 0.710 \times 0.290 = 0.206\)</span>. So <span class="math inline">\(\frac{\partial L}{\partial z_2} = -0.290 \times 0.206 = -0.060\)</span>.</p></li>
-<li><p><strong>Gradient for output weights:</strong> <span class="math inline">\(\frac{\partial z_2}{\partial W_{2,1}} = a_{1,1} = 0.646\)</span>. So <span class="math inline">\(\frac{\partial L}{\partial W_{2,1}} = \frac{\partial L}{\partial z_2} \times a_{1,1} = -0.060 \times 0.646 = -0.039\)</span>. Similarly <span class="math inline">\(\frac{\partial L}{\partial W_{2,2}} = -0.060 \times 0.786 = -0.047\)</span>.</p></li>
-<li><p><strong>First layer gradient:</strong> <span class="math inline">\(\frac{\partial z_2}{\partial a_{1,1}} = W_{2,1} = 0.5\)</span>. So the error backpropagated to the first hidden neuron is <span class="math inline">\(\frac{\partial L}{\partial a_{1,1}} = \frac{\partial L}{\partial z_2} \times 0.5 = -0.030\)</span>. This error then passes through the sigmoid derivative of that neuron (<span class="math inline">\(a_{1,1}(1-a_{1,1}) = 0.229\)</span>) to give <span class="math inline">\(\frac{\partial L}{\partial z_{1,1}} = -0.030 \times 0.229 = -0.007\)</span>. Finally, <span class="math inline">\(\frac{\partial L}{\partial W_{1,11}} = \frac{\partial L}{\partial z_{1,1}} \times x_1 = -0.007 \times 1 = -0.007\)</span>.</p></li>
+<li><strong>PCA before split:</strong> Computing PCA on all 50 patients, then splitting. PCA rotation was influenced by test data.</li>
+<li><strong>Feature selection before split:</strong> Selecting differentially expressed genes using all samples, then splitting.</li>
+<li><strong>Batch correction before split:</strong> Applying ComBat to full dataset. Test data influenced batch parameter estimates.</li>
+<li><strong>Normalization before split:</strong> Computing mean/variance from all data including test.</li>
+<li><strong>Feature scaling before split:</strong> Standardizing (z-scores) or min-max scaling on all data before splitting leaks test information into the scaling parameters.</li>
 </ol>
-<p>The pattern: each step multiplies the upstream gradient by a <strong>local gradient</strong> — the derivative of the local operation with respect to its input. This is the chain rule in action: errors propagate backward, scaling at each layer by the activation function’s derivative.</p>
-<p><strong>Gradient descent update:</strong> <span class="math inline">\(w = w - \eta \frac{\partial L}{\partial w}\)</span>, where <span class="math inline">\(\eta\)</span> is the learning rate. After this update, the forward pass is recomputed with the new weights, and the process repeats.</p>
-<p><strong>The vanishing gradient problem:</strong> with sigmoid or tanh activations, the derivative is at most 0.25. Multiplied across 10+ layers, the gradient approaches zero exponentially — early layers receive near-zero updates and stop learning. Solutions: ReLU (derivative is 1 for positive inputs, preserving gradient magnitude), Batch Normalization (keeps activations in a well-behaved range), and residual connections (allow gradients to bypass layers entirely via skip connections).</p>
+<p><strong>Correct workflow:</strong> All preprocessing (PCA, feature selection, normalization, batch correction, feature scaling) must be fit on training data only and transformed onto test data. Regularization and PCA are both sensitive to feature scale; a gene measured in TPM (~0-10,000) will dominate over a clinical variable like age (~0-100) if not standardized. Standard practice: transform each feature to z-scores using training-set mean and standard deviation, then apply the same transformation to the test set. sklearn <code>Pipeline</code> enforces this:</p>
+<pre class="code"><code># WRONG (data leakage)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)  # fit on ALL data
+X_train, X_test = train_test_split(X_scaled, y)
+
+# RIGHT (no leakage)
+X_train, X_test = train_test_split(X, y)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)   # fit on TRAIN only
+X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
 </section>
-<section id="optimizers-how-gradients-drive-updates" class="level3">
-<h3 class="anchored" data-anchor-id="optimizers-how-gradients-drive-updates">Optimizers: How Gradients Drive Updates</h3>
-<p>The gradient <span class="math inline">\(\partial L/\partial w\)</span> tells you the direction of steepest ascent — but not how far to step. The learning rate <span class="math inline">\(\eta\)</span> controls step size. Using a single <span class="math inline">\(\eta\)</span> for all weights assumes all parameters need updates of the same scale, which is false: a poorly initialized weight in one layer may need large corrections while a well-initialized weight in another layer needs fine-tuning.</p>
-<p><strong>SGD with momentum</strong> accumulates a running average of past gradients (<span class="math inline">\(v_t = \gamma v_{t-1} + \eta \nabla L\)</span>), smoothing oscillations and accelerating progress through ravines — common in loss landscapes with long, narrow valleys.</p>
-<p><strong>RMSProp and AdaGrad</strong> normalize each parameter’s learning rate by the root-mean-square of its recent gradients. Parameters with consistently large gradients (steep directions) get smaller steps; parameters with small gradients get larger steps. This prevents oscillations in steep directions while allowing progress in flat directions.</p>
-<p><strong>Adam</strong> combines both ideas by tracking two running averages:</p>
-<p><span class="math display">\[m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t \quad \text{(first moment — momentum)}\]</span> <span class="math display">\[v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2 \quad \text{(second moment — per-parameter scaling)}\]</span> <span class="math display">\[\theta_{t+1} = \theta_t - \eta \frac{m_t}{\sqrt{v_t} + \epsilon}\]</span></p>
-<p>where <span class="math inline">\(g_t\)</span> is the gradient at step <span class="math inline">\(t\)</span>. Each parameter effectively has its own adaptive learning rate while maintaining momentum.</p>
-<p><strong>AdamW</strong> (the recommended default) decouples weight decay from the adaptive learning rate. In standard Adam, applying L2 weight decay through the gradient (<span class="math inline">\(g_t = g_t + \lambda \theta\)</span>) interacts with the adaptive scaling in complex, unintended ways. AdamW applies weight decay directly to the weights after the update: <span class="math inline">\(\theta_{t+1} = \theta_{t+1} - \eta \lambda \theta_t\)</span>, fixing the interaction and improving generalization.</p>
+<section id="model-validation" class="level3">
+<h3 class="anchored" data-anchor-id="model-validation">Model Validation</h3>
+<p><strong>Train/test split:</strong> The test set is used exactly once, at the end of all development. If you tune hyperparameters based on test performance, your reported performance is biased upward.</p>
+<p><strong>K-fold cross-validation:</strong> Partition data into <span class="math inline">\(K\)</span> folds (typically 5 or 10), train on <span class="math inline">\(K-1\)</span>, evaluate on the held-out fold, repeat. Report mean <span class="math inline">\(\pm\)</span> standard deviation.</p>
+<p><strong>Nested cross-validation:</strong> Required when tuning hyperparameters. The outer loop (e.g., 5-fold) holds out 20% of data as a test fold. The inner loop runs cross-validation on the remaining 80% to select optimal hyperparameters. A model is trained with those optimal parameters on the 80% and evaluated on the held-out 20%. This repeats for each outer fold; the average outer-loop performance is the unbiased estimate. Without nesting, hyperparameter optimization leaks information, tuning on the full dataset and reporting CV performance on the same data is effectively reporting training performance.</p>
+<p><strong>Permutation test:</strong> Train the model on label-shuffled data. If the model achieves AUC &gt; 0.5 on shuffled labels, the pipeline is detecting spurious structure, not biology. Run 100+ permutations to establish the null distribution. <em>Caveat:</em> a model that passes the permutation test (performance exceeds chance on this dataset) may still fail external validation; it may have learned dataset-specific artifacts (batch, hospital, sequencing protocol) rather than generalizable biology. The permutation test confirms the model learned structured patterns, not that those patterns are biological.</p>
 </section>
-<section id="regularization-for-deep-networks" class="level3">
-<h3 class="anchored" data-anchor-id="regularization-for-deep-networks">Regularization for Deep Networks</h3>
-<ul>
-<li><strong>L2 weight decay:</strong> adds <span class="math inline">\(\lambda \|w\|^2\)</span> to the loss, shrinking weights toward zero — the primary regularizer for network scale.</li>
-<li><strong>Dropout:</strong> randomly sets a fraction of neuron activations to zero during training (typically 0.2-0.5). Prevents co-adaptation of neurons — each neuron must learn independently useful features. At test time, all neurons are used but their outputs are scaled by the dropout rate (inverted dropout).</li>
-<li><strong>Early stopping:</strong> monitor validation loss during training; stop when it stops decreasing for a patience window (typically 5-10 epochs). Effectively limits the number of useful training iterations before overfitting.</li>
-<li><strong>Data augmentation:</strong> for biological sequences, introducing random mutations (within evolutionary constraints), reverse complement flips, or dinucleotide shuffling during training improves robustness by preventing the network from memorizing exact sequence identities.</li>
-</ul>
-</section>
-<section id="convolutional-neural-networks-for-biological-sequences" class="level3">
-<h3 class="anchored" data-anchor-id="convolutional-neural-networks-for-biological-sequences">Convolutional Neural Networks for Biological Sequences</h3>
-<p>A dense layer connects every input to every output — no structure is built in. A convolutional layer exploits the fact that nearby elements (adjacent nucleotides, adjacent pixels) are more related than distant ones. The operation is simple: a small weight matrix (the <strong>kernel</strong> or <strong>filter</strong>) slides across the input, computing a dot product at each position.</p>
-<p><strong>The convolution operation.</strong> For a 1D input (sequence) of length <span class="math inline">\(L\)</span> and a kernel of width <span class="math inline">\(k\)</span> (typically 12-24 bp for DNA), the output at position <span class="math inline">\(i\)</span> is:</p>
-<p><span class="math display">\[y_i = \sum_{j=0}^{k-1} w_j \cdot x_{i+j}\]</span></p>
-<p>This is a sliding dot product: the kernel aligns with positions <span class="math inline">\(i\)</span> through <span class="math inline">\(i+k-1\)</span> of the input, multiplies element-wise, and sums to a single value. The kernel then slides to position <span class="math inline">\(i+1\)</span> and repeats.</p>
-<p>Three properties emerge from this operation:</p>
-<ol type="1">
-<li><strong>Weight sharing:</strong> the same kernel is applied at every position. A network with a kernel of width 12 has only 12 weight parameters per kernel, regardless of whether the DNA sequence is 100 bp or 100 Mb. This is the source of CNN’s parameter efficiency.</li>
-<li><strong>Locality:</strong> output <span class="math inline">\(y_i\)</span> depends only on input positions <span class="math inline">\(i\)</span> through <span class="math inline">\(i+k-1\)</span>. This builds in the prior that relevant patterns are local — a transcription factor binding site is ~6-20 bp, not spanning megabases.</li>
-<li><strong>Translation equivariance:</strong> shifting the input by one position shifts the output by one position. The same motif is detected regardless of where it appears in the sequence.</li>
-</ol>
-<p>In genomics, a 1D CNN with kernels of width 12-24 bp acts as a <strong>motif detector</strong>. Each kernel learns a weight matrix that matches a specific sequence pattern (a transcription factor binding motif). After training on ChIP-seq data, the kernels can be visualized as PWMs — the same position weight matrices described in Chapter 12. The key difference is that the CNN learns the motifs from data rather than requiring them to be specified as input. A well-trained first-layer kernel should be interpretable: it should have clear sequence preference at each position, and its consensus sequence should match a known transcription factor motif.</p>
-<p>The hierarchy of CNNs is biologically intuitive: first-layer kernels detect short sequence motifs (6-12 bp), second-layer kernels detect combinations of motifs (e.g., “motif A near motif B” — a cis-regulatory module), and deeper layers detect higher-order regulatory logic. This hierarchical feature learning is why CNNs outperformed previous methods for predicting regulatory effects from sequence.</p>
-</section>
-<section id="autoencoders-for-scrna-seq" class="level3">
-<h3 class="anchored" data-anchor-id="autoencoders-for-scrna-seq">Autoencoders for scRNA-seq</h3>
-<p>Autoencoders compress high-dimensional data through a bottleneck: encoder (compression) → bottleneck (latent representation) → decoder (reconstruction). The bottleneck forces the model to learn the most informative low-dimensional features. A plain autoencoder learns a deterministic mapping: given input <span class="math inline">\(x\)</span>, the encoder produces a single latent vector <span class="math inline">\(z\)</span>, and the decoder reconstructs <span class="math inline">\(\hat{x}\)</span>. The loss is reconstruction error <span class="math inline">\(\|x - \hat{x}\|^2\)</span>.</p>
-<p>The problem with a plain autoencoder: the latent space is not smooth. Points that are close in latent space may not decode to similar outputs because there is no constraint on how the space is organized. Interpolation between two encoded cells may produce biologically meaningless intermediate states.</p>
-<p><strong>scVI</strong> (single-cell Variational Inference) solves this by using a variational autoencoder (VAE). Instead of encoding each cell to a single latent point, the encoder outputs a probability distribution — a mean <span class="math inline">\(\mu(x)\)</span> and variance <span class="math inline">\(\sigma^2(x)\)</span> for each latent dimension. The latent vector <span class="math inline">\(z\)</span> is sampled from this distribution (not computed deterministically), and the decoder must learn to reconstruct from any sample near <span class="math inline">\(\mu(x)\)</span>, not just from the exact point. This stochasticity forces the latent space to be continuous and structured: nearby latent points must decode to similar expression profiles, enabling meaningful interpolation and batch correction.</p>
-<p>The VAE loss function has two terms:</p>
-<p><span class="math display">\[\mathcal{L} = \underbrace{\mathbb{E}_{z \sim q}[\log p(x|z)]}_{\text{reconstruction loss}} - \beta \cdot \underbrace{D_{KL}(q(z|x) \| p(z))}_{\text{KL divergence}}\]</span></p>
-<p>The reconstruction loss measures how well the decoder reproduces the input from the sampled latent vector. scVI’s innovation is modeling expression as a negative binomial distribution (Chapter 4) rather than assuming Gaussian-distributed data — counts are overdispersed, and the NB captures the <span class="math inline">\(\text{Var}(Y) = \mu + \alpha\mu^2\)</span> relationship that Gaussian cannot. The KL divergence measures how closely the encoder’s distribution <span class="math inline">\(q(z|x)\)</span> matches a standard normal prior <span class="math inline">\(p(z) = \mathcal{N}(0, I)\)</span>. This term penalizes the encoder for deviating from the prior, which keeps the latent space compact and continuous.</p>
-<p>The critical caveat: autoencoder compression does not guarantee biological relevance. The bottleneck dimension is a hyperparameter that encodes a strong prior about the data’s intrinsic dimensionality. Too small a bottleneck (e.g., 2 dimensions) discards rare but important cell populations; too large a bottleneck (e.g., 100 dimensions) retains noise. The variational formulation helps (the KL penalty discourages using extra dimensions for noise) but does not eliminate the problem.</p>
-<p>scVI corrects for batch effects, library size, and dropout by including these as conditional variables in both the encoder and decoder. The batch effect becomes an input to the model rather than a preprocessing step, enabling principled integration of datasets without the data leakage risks described in Chapter 21.</p>
+<section id="metrics-why-accuracy-lies" class="level3">
+<h3 class="anchored" data-anchor-id="metrics-why-accuracy-lies">Metrics: Why Accuracy Lies</h3>
+<p>In a dataset of 99 healthy and 1 diseased patient, a model predicting “healthy” for everyone achieves 99% accuracy. It is completely useless.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 40%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Definition</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Precision (PPV)</td>
+<td>TP / (TP + FP)</td>
+<td>Minimize false alarms</td>
+</tr>
+<tr class="even">
+<td>Recall (Sensitivity)</td>
+<td>TP / (TP + FN)</td>
+<td>Minimize missed diagnoses</td>
+</tr>
+<tr class="odd">
+<td>Specificity</td>
+<td>TN / (TN + FP)</td>
+<td>True negative rate</td>
+</tr>
+<tr class="even">
+<td>F1 Score</td>
+<td><span class="math inline">\(2 \cdot \frac{P \cdot R}{P + R}\)</span></td>
+<td>Imbalanced classification</td>
+</tr>
+<tr class="odd">
+<td>ROC-AUC</td>
+<td>TPR vs.&nbsp;FPR across thresholds</td>
+<td>Balanced classes</td>
+</tr>
+<tr class="even">
+<td>PR-AUC</td>
+<td>Precision vs.&nbsp;Recall across thresholds</td>
+<td>Rare positive class</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ROC-AUC caveat:</strong> AUC can be high even with poorly calibrated probabilities. <strong>Brier score</strong> measures calibration: <span class="math inline">\(\text{Brier} = \frac{1}{N} \sum (y_i - \hat{p}_i)^2\)</span>. A well-calibrated model has Brier close to 0. A model that outputs 0.99 for everything has high AUC but poor calibration.</p>
+<p><strong>Johnson’s Rule:</strong> If your classes are imbalanced (which they almost always are), read Precision-Recall, not ROC-AUC. The reason: ROC-AUC plots TPR against FPR, and FPR is dominated by the majority class; a model that misses all positives can still achieve high ROC-AUC if it correctly labels most negatives. Precision focuses on the positive class directly: a false positive among the rare positives is a large penalty. PR-AUC detects poor positive-class performance that ROC-AUC misses.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>The critical distinction in biological deep learning: a network with 99.9% training accuracy may have learned nothing about biology — it may have memorized batch effects, patient-specific noise, or technical artifacts. Always validate latent representations by checking if they preserve known biological structure (cell types, known pathways) before trusting them for discovery.</p>
-<p>The <span class="math inline">\(p \gg n\)</span> problem is extreme in drug response prediction: 20,000 genes <span class="math inline">\(\times\)</span> 100 drugs, but only hundreds of cell lines with measured responses. A model that performs well on cross-validation within a single dataset almost never generalizes to an independent cohort. The 2025 reproducibility crisis in DL pharmacogenomics found that most published deep learning biomarkers for drug response do not replicate in independent cohorts. External validation is not optional — it is the only honest assessment.</p>
-<p>When CNNs are applied to biological sequences, the learned kernels should be interpretable as sequence motifs. If the first-layer kernels do not resemble known transcription factor binding motifs (or show no clear sequence preference), the network may have learned artifactual patterns. Visualizing and validating learned features is the biological analogue of feature importance analysis in tree-based models (Chapter 22).</p>
-<hr>
-</section>
-<section id="current-landscape-q2-2026" class="level2">
-<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
-<ul>
-<li><strong>scVI-tools ecosystem</strong> continues to expand (scArches for model transfer across datasets, totalVI for CITE-seq protein + RNA). The variational inference paradigm dominates single-cell deep learning for batch correction and integration.</li>
-<li><strong>New architectures for single-cell:</strong> scTab (2025) uses tabular transformers for cell type annotation, challenging the VAE dominance by treating cells as rows in a table rather than compressing through a bottleneck.</li>
-<li><strong>Drug response prediction:</strong> CELLxGENE Discover Census now provides millions of single-cell profiles for pretraining, enabling transfer learning approaches for pharmacogenomics that outperform per-dataset training by learning generalizable drug-response features.</li>
-<li><strong>Critical 2025 result:</strong> a systematic benchmark of deep learning methods for drug response prediction found that most published methods fail to generalize to held-out cell lines or drugs, with simple baselines (elastic net) often matching or exceeding complex neural network architectures.</li>
-</ul>
+<p>A model trained on 10 samples from one hospital is not a biomarker; it is a hypothesis. Data leakage is the most common undetected error in published ML biomarkers. The most frequent form: normalizing or selecting features using all data before splitting, which leaks information from the test set into training. A model that works in one cohort but fails in another has not learned biology; it has learned hospital-specific or cohort-specific artifacts.</p>
+<p>External validation on an independent cohort is the only non-negotiable requirement for a clinically useful biomarker. Cross-validation on a single cohort is not sufficient; it cannot detect systematic bias (hospital-specific processing, population-specific allele frequencies, platform-specific error profiles).</p>
+<p>The noise-as-signal problem is well-documented: with enough features, models achieve apparently perfect cross-validation on random data. A permutation test is the minimum sanity check. Even with proper validation, a model that achieves AUC 0.95 on a held-out test set from the same hospital may drop to AUC 0.55 when tested at a different hospital; the features it learned were hospital-specific artifacts, not biology.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Neural networks are universal function approximators</strong> — but approximating a function and learning the correct one from limited data are different things.</li>
-<li><strong>Backpropagation applies the chain rule</strong> — each step multiplies the upstream gradient by a local gradient; numerical examples make the pattern concrete.</li>
-<li><strong>Optimizers adapt the learning process</strong> — Adam (momentum + per-parameter scaling) and AdamW (decoupled weight decay) are the default choices because different parameters need different update scales.</li>
-<li><strong>CNNs detect motifs via sliding dot product convolution</strong> — weight sharing, locality, and translation equivariance make them ideal for biological sequences; first-layer kernels should be interpretable as PWMs (Chapter 12).</li>
-<li><strong>VAEs (scVI) structure the latent space for single-cell data</strong> — the variational formulation with NB output enables principled batch correction and interpolation, but compression does not guarantee biological relevance.</li>
+<li><strong>Curse of dimensionality (<span class="math inline">\(p \gg n\)</span>)</strong> guarantees a linear separator for any labeling; aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> or regularization (L1/L2) is essential.</li>
+<li><strong>The bias-variance tradeoff</strong> means total error = bias² + variance + irreducible error. In omics, variance dominates; regularization controls it by trading a small bias increase for a large variance reduction.</li>
+<li><strong>Data leakage is the most common fatal error</strong>: all preprocessing (scaling, PCA, normalization, feature selection, batch correction) must be fit on training data only and transformed onto test data.</li>
+<li><strong>Accuracy is meaningless with class imbalance</strong>: Precision, Recall, F1, PR-AUC are correct metrics. PR-AUC detects poor positive-class performance that ROC-AUC misses because FPR is dominated by the majority class.</li>
+<li><strong>Permutation tests validate that performance exceeds chance</strong>: 100+ random label shuffles establish the null distribution. Passing the permutation test does not guarantee external validity.</li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Goodfellow, Bengio &amp; Courville: <em>Deep Learning</em> (Ch 6-8 — the fundamentals).</li>
-<li>Lopez et al.: “Deep generative modeling for single-cell transcriptomics” (<em>Nature Methods</em>, 2018) — scVI.</li>
+<li>Hastie, Tibshirani &amp; Friedman: <em>Elements of Statistical Learning</em> (Ch 7; Model Assessment and Selection).</li>
+<li>Lever, Krzywinski &amp; Altman: “Points of Significance: Model selection and overfitting” (<em>Nature Methods</em>, 2016).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If your data has fewer than 1000 samples, use a tree model. Neural networks need scale to beat trees on tabular data.</p>
+<p><strong>Johnson’s Rule:</strong> A model trained on 10 samples from one hospital is not a biomarker. It is a hypothesis.</p>
 </blockquote>
 
 
@@ -898,17 +933,41 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-5-ai/chapter-22.html" class="pagination-link" aria-label="Chapter 22: Tree-Based Models and Interpretable ML">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 22: Tree-Based Models and Interpretable ML</span></span>
+      <a href="../tier-4-systems/chapter-22.html" class="pagination-link" aria-label="Chapter 22: Perturb-seq and Functional Genomics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 22: Perturb-seq and Functional Genomics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-5-ai/chapter-24.html" class="pagination-link" aria-label="Chapter 24: Foundation Models and Generative AI in Biology">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 24: Foundation Models and Generative AI in Biology</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-5-ai/chapter-24.html" class="pagination-link" aria-label="Chapter 24: Tree-Based Models and Interpretable ML">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 24: Tree-Based Models and Interpretable ML</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Qingzhou Zhang. All rights reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+<p>Home</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<p>Omics with Johnson 101</p>
+</div>
+  </div>
+</footer>
 
 
 

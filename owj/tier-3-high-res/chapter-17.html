@@ -17,7 +17,7 @@
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 29: Cancer Genomics and Somatic Evolution – Omics with Johnson 101</title>
+<title>Chapter 17: Spatial Transcriptomics and Coordinate Math – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,8 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-6-clinical/chapter-30.html" rel="next">
-<link href="../tier-6-clinical/chapter-28.html" rel="prev">
+<link href="../tier-4-systems/chapter-18.html" rel="next">
+<link href="../tier-3-high-res/chapter-16.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -342,12 +342,10 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#germline-vs.-somatic-calling" id="toc-germline-vs.-somatic-calling" class="nav-link" data-scroll-target="#germline-vs.-somatic-calling">Germline vs.&nbsp;Somatic Calling</a></li>
-  <li><a href="#clonal-evolution" id="toc-clonal-evolution" class="nav-link" data-scroll-target="#clonal-evolution">Clonal Evolution</a></li>
-  <li><a href="#liquid-biopsy-and-ctdna" id="toc-liquid-biopsy-and-ctdna" class="nav-link" data-scroll-target="#liquid-biopsy-and-ctdna">Liquid Biopsy and ctDNA</a></li>
-  <li><a href="#tumor-mutational-burden-tmb" id="toc-tumor-mutational-burden-tmb" class="nav-link" data-scroll-target="#tumor-mutational-burden-tmb">Tumor Mutational Burden (TMB)</a></li>
-  <li><a href="#microsatellite-instability-msi" id="toc-microsatellite-instability-msi" class="nav-link" data-scroll-target="#microsatellite-instability-msi">Microsatellite Instability (MSI)</a></li>
-  <li><a href="#mutational-signatures" id="toc-mutational-signatures" class="nav-link" data-scroll-target="#mutational-signatures">Mutational Signatures</a></li>
+  <li><a href="#the-spatial-resolution-tradeoff" id="toc-the-spatial-resolution-tradeoff" class="nav-link" data-scroll-target="#the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</a></li>
+  <li><a href="#deconvolution-unmixing-mixed-spots" id="toc-deconvolution-unmixing-mixed-spots" class="nav-link" data-scroll-target="#deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</a></li>
+  <li><a href="#neighborhood-analysis-from-spots-to-tissue-organization" id="toc-neighborhood-analysis-from-spots-to-tissue-organization" class="nav-link" data-scroll-target="#neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</a></li>
+  <li><a href="#registration-aligning-data-to-anatomy" id="toc-registration-aligning-data-to-anatomy" class="nav-link" data-scroll-target="#registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -360,9 +358,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-28.html">TIER 6: Translational and Clinical Genomics</a></li><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-29.html"><span class="chapter-title">Chapter 29: Cancer Genomics and Somatic Evolution</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-15.html">TIER 3: The High-Resolution Frontier: Single-Cell and Spatial</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-17.html"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 29: Cancer Genomics and Somatic Evolution</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></h1>
 </div>
 
 
@@ -392,117 +390,113 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Cancer is Darwinian Micro-Evolution</p>
+<p><strong>Johnson’s First Principle:</strong> A Cell Without Spatial Coordinates is Headless</p>
 </blockquote>
-<p>Cancer is not a static disease. It is an accelerated Darwinian ecosystem compressed into a single human lifetime. A tumor is not a single population of identical cells; it is a collection of competing clones, each with different mutations, each vying for resources. Chemotherapy is not just treatment; it is the most powerful evolutionary selection pressure the tumor has encountered.</p>
+<p>Dissolving a tissue to isolate single cells destroys the biological map. A macrophage surrounded by healthy epithelium behaves entirely differently than one surrounded by necrotic tumor. Chapter 13 taught you to identify cell types; Chapter 14 taught you to order them in time. But development and function unfold not only in time; they are embedded in three-dimensional tissue architecture. Without spatial context, single-cell data reveals the molecules but obscures the anatomy.</p>
+<p>Spatial transcriptomics solves this by measuring gene expression while preserving tissue coordinates. The core operation is coordinate math, mapping every measurement to a position <span class="math inline">\((x, y)\)</span> in tissue space, then asking which genes vary across those coordinates, which cell types occupy which coordinates, and which neighboring coordinates communicate with each other.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="germline-vs.-somatic-calling" class="level3">
-<h3 class="anchored" data-anchor-id="germline-vs.-somatic-calling">Germline vs.&nbsp;Somatic Calling</h3>
-<p>Germline variant callers expect variant allele frequencies (VAF) of ~50% (heterozygous) or 100% (homozygous). Somatic callers must detect mutations at any VAF from 1-50%, requiring:</p>
-<ul>
-<li>A <strong>matched normal</strong> sample (blood or adjacent normal tissue) to filter germline polymorphisms</li>
-<li>A different prior that accommodates low VAFs</li>
-<li>Cross-sample contamination modeling</li>
-</ul>
-<p>A matched normal is not optional; population databases (gnomAD) cannot substitute, as they exclude rare private germline variants that are the most likely to be mistaken for somatic mutations.</p>
-</section>
-<section id="clonal-evolution" class="level3">
-<h3 class="anchored" data-anchor-id="clonal-evolution">Clonal Evolution</h3>
-<p>The Nowell (1976) clonal evolution model: a single founding cell acquires a driver mutation, proliferates, and accumulates additional mutations. Subclones emerge through branching evolution:</p>
-<pre class="code"><code>Founding clone (APC mutation)
-  ├── Subclone A (KRAS mutation) → Primary tumor dominant
-  │     └── Subclone A1 (TP53 mutation) → Metastasis
-  └── Subclone B (PIK3CA mutation) → Resistant to therapy</code></pre>
-<p><strong>VAF-based subclone detection:</strong> Each mutation’s VAF estimates the proportion of tumor cells carrying it, but this relationship depends on tumor purity <span class="math inline">\(p\)</span>; the fraction of sequenced DNA derived from cancer cells (vs.&nbsp;infiltrating normal cells or stroma). For a clonal heterozygous mutation (present in all cancer cells) in a diploid region, the cancer cell fraction (CCF) is:</p>
-<p><span class="math display">\[CCF = \frac{\text{VAF}_{\text{obs}}}{p}\]</span></p>
-<p>In a pure tumor (<span class="math inline">\(p = 1.0\)</span>), expected VAF = 0.5. At <span class="math inline">\(p = 0.25\)</span> (common in low-cellularity biopsies), the same clonal mutation has expected VAF ≈ 0.125; diluted by normal cells to the point of being undetectable by standard callers. Tumor purity is estimated from sequencing data by tools (ASCAT, PureCN, ABSOLUTE) that model the joint distribution of VAF and copy number across all heterozygous SNPs. After purity correction, VAFs are transformed to CCFs: subclonal mutations have CCF &lt; 1, while clonal mutations have CCF = 1 (present in every cancer cell). Tools like PyClone and SciClone cluster mutations by CCF to infer subclonal architecture.</p>
-</section>
-<section id="liquid-biopsy-and-ctdna" class="level3">
-<h3 class="anchored" data-anchor-id="liquid-biopsy-and-ctdna">Liquid Biopsy and ctDNA</h3>
-<p>Circulating tumor DNA (ctDNA) is fragmented DNA (~167 bp, apoptotic origin) released into the bloodstream by tumor cells:</p>
-<ul>
-<li><strong>MRD (molecular residual disease) monitoring:</strong> Detect ctDNA after surgery to identify patients with residual disease before radiographic evidence appears.</li>
-<li><strong>Resistance detection:</strong> Rising VAF of a resistance mutation (e.g., EGFR T790M) precedes radiographic progression by 3-6 months.</li>
-<li><strong>Sampling bias solution:</strong> A single biopsy captures only the dominant clone from one tumor region. ctDNA captures the aggregate mutational landscape of all metastatic sites simultaneously.</li>
-</ul>
-<p><strong>Critical caveat: clonal hematopoiesis (CHIP).</strong> Mutations in hematopoietic stem cells (most commonly DNMT3A, TET2, ASXL1) accumulate with age and are shed into the bloodstream at levels indistinguishable from tumor ctDNA. These CHIP mutations produce false-positive ctDNA results in 10-20% of liquid biopsy tests, particularly in patients over 60. Distinguishing CHIP from tumor-derived ctDNA requires paired white blood cell sequencing; if the mutation is present in the buffy coat fraction, it is CHIP, not tumor-derived. Laboratories that omit this correction report systematically inflated ctDNA detection rates and increased false-positive calls for MRD monitoring.</p>
-</section>
-<section id="tumor-mutational-burden-tmb" class="level3">
-<h3 class="anchored" data-anchor-id="tumor-mutational-burden-tmb">Tumor Mutational Burden (TMB)</h3>
-<p>TMB is the number of somatic mutations per megabase of sequenced coding DNA. It is an FDA-approved tissue-agnostic biomarker for pembrolizumab (anti-PD-1) response in solid tumors: TMB ≥ 10 mutations/Mb predicts immunotherapy benefit. The biological rationale: more mutations → more neoantigens → higher probability of T-cell recognition → better immunotherapy response.</p>
-</section>
-<section id="microsatellite-instability-msi" class="level3">
-<h3 class="anchored" data-anchor-id="microsatellite-instability-msi">Microsatellite Instability (MSI)</h3>
-<p>MSI is a hypermutator phenotype caused by mismatch repair deficiency (MMRd). MSI-high tumors accumulate hundreds of thousands of mutations at microsatellite repeats. MSI-H is an FDA-approved tissue-agnostic biomarker for immune checkpoint inhibitors. MSI testing by sequencing compares repeat lengths between tumor and normal; instability at ≥2 of 5 Bethesda markers is called MSI-H.</p>
-</section>
-<section id="mutational-signatures" class="level3">
-<h3 class="anchored" data-anchor-id="mutational-signatures">Mutational Signatures</h3>
-<p>Every mutational process leaves a characteristic imprint on the genome. The trinucleotide context of each mutation (the bases immediately 5’ and 3’ of the mutated position) reveals the underlying process. COSMIC catalogs ~80 mutational signatures across human cancer:</p>
+<section id="the-spatial-resolution-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</h3>
+<p>Spatial transcriptomics is defined by a fundamental tradeoff: whole-transcriptome coverage vs.&nbsp;single-cell resolution. No current technology achieves both. Choosing a technology means choosing where on this tradeoff curve to operate, and that choice determines what biological questions can be addressed.</p>
+<p><strong>Spatial barcoding (10x Visium, HD, Slide-seq)</strong> uses a slide printed with spatially barcoded oligonucleotides. A tissue cryosection is placed on the slide; cellular mRNA diffuses vertically into the capture probes. The barcode encodes the <span class="math inline">\((x, y)\)</span> coordinate of each capture spot, enabling reconstruction of measurement positions after sequencing. Visium spots are 55 <span class="math inline">\(\mu\)</span>m diameter at 100 <span class="math inline">\(\mu\)</span>m spacing, each capturing RNA from ~1-10 cells. Visium HD (2 <span class="math inline">\(\mu\)</span>m pixels) achieves near-single-cell resolution. The key property: whole-transcriptome coverage (all poly-adenylated RNA is captured), enabling discovery of unanticipated gene expression patterns.</p>
+<p><strong>In situ hybridization (MERFISH, Xenium, CosMx)</strong> uses fluorescent probes that hybridize directly to mRNA in the intact tissue section. Sequential barcoding cycles decode transcripts: each gene receives a binary code, and 10-20 imaging cycles decode hundreds to thousands of genes at subcellular resolution (~100-200 nm). The key property: resolution sufficient to resolve individual transcripts, enabling subcellular localization and single-cell assignment. The tradeoff: limited panel size (hundreds to thousands of genes, not the full transcriptome).</p>
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 40%">
+<col style="width: 20%">
 <col style="width: 36%">
+<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Signature</th>
-<th>Associated Process</th>
-<th>Mutation Pattern</th>
+<th>Property</th>
+<th>Spatial Barcoding</th>
+<th>In Situ Hybridization</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>SBS4</td>
-<td>Tobacco smoke (lung cancer)</td>
-<td>C&gt;A transversions, enriched at CpG</td>
+<td>Coverage</td>
+<td>Whole transcriptome (20K genes)</td>
+<td>Targeted panel (100-5,000 genes)</td>
 </tr>
 <tr class="even">
-<td>SBS3</td>
-<td>BRCA1/2 deficiency (HRD)</td>
-<td>Large deletions, duplication rearrangements</td>
+<td>Resolution</td>
+<td>Multi-cell (55 <span class="math inline">\(\mu\)</span>m spots) to near-single-cell (HD)</td>
+<td>Subcellular (~200 nm)</td>
 </tr>
 <tr class="odd">
-<td>SBS11</td>
-<td>Temozolomide treatment</td>
-<td>C&gt;T transitions at CpG</td>
+<td>Discovery power</td>
+<td>High (unbiased gene discovery)</td>
+<td>Low (only panel genes detected)</td>
 </tr>
 <tr class="even">
-<td>SBS1</td>
-<td>Spontaneous deamination (aging)</td>
-<td>C&gt;T at CpG, universal across cancers</td>
+<td>Bioinformatic challenge</td>
+<td>Deconvolution of mixed spots</td>
+<td>Molecular decoding, registration</td>
 </tr>
 </tbody>
 </table>
-<p>Mutational signature analysis is a deconvolution problem: each tumor’s mutational profile is a mixture of the signatures active in that tumor, and the activity of each signature is estimated by fitting the observed trinucleotide mutation counts to the known signature matrix. A dominant SBS4 signature in a non-smoker suggests an incidental finding requiring clinical follow-up; dominant SBS3 in a triple-negative breast cancer patient suggests PARP inhibitor eligibility regardless of BRCA1/2 mutation status.</p>
+</section>
+<section id="deconvolution-unmixing-mixed-spots" class="level3">
+<h3 class="anchored" data-anchor-id="deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</h3>
+<p>Each Visium spot captures RNA from multiple cells. Deconvolution is the inverse problem: given the mixed expression profile of a spot, estimate the cell type composition. Formally, each spot’s expression vector <span class="math inline">\(\mathbf{y}_s\)</span> is a weighted sum of cell type reference profiles:</p>
+<p><span class="math display">\[\mathbf{y}_s = \sum_{k=1}^K \beta_{sk} \cdot \boldsymbol{\mu}_k + \boldsymbol{\epsilon}_s\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mu}_k\)</span> is the reference expression profile of cell type <span class="math inline">\(k\)</span>, <span class="math inline">\(\beta_{sk}\)</span> is the proportion of type <span class="math inline">\(k\)</span> in spot <span class="math inline">\(s\)</span>, and <span class="math inline">\(\boldsymbol{\epsilon}_s\)</span> is residual noise. This requires a reference scRNA-seq dataset with annotated cell types from the same tissue. Deconvolution solves for the <span class="math inline">\(\beta_{sk}\)</span> coefficients per spot.</p>
+<p><strong>RCTD</strong> (Robust Cell Type Decomposition) models each spot’s expression as a linear combination of cell type profiles, with statistical significance testing to determine which cell types are present in each spot. The “robust” in the name refers to its handling of genes that are poorly fit by the linear model; it downweights genes whose expression deviates from the reference, preventing a few discordant genes from driving the deconvolution result.</p>
+<p><strong>Cell2location</strong> uses a Bayesian Negative Binomial model that accounts for both technical variation (NB count distribution) and biological variation (cell type abundance heterogeneity). Unlike RCTD, which estimates relative proportions, Cell2location estimates the absolute number of cells of each type per spot. This is more interpretable but requires stronger modeling assumptions about cell type expression profiles.</p>
+<p><strong>CARD</strong> incorporates spatial correlation into deconvolution, assuming that cell type abundances vary smoothly across tissue sections. This makes biological sense; a B-cell zone in the lymph node grades into a T-cell zone gradually, not in isolated spots, and improves deconvolution accuracy for spatially structured tissues.</p>
+<p><strong>The reference dependency problem.</strong> All deconvolution methods depend critically on the reference scRNA-seq dataset. If the reference lacks a cell type present in the tissue, that cell type’s contribution will be misassigned to the most transcriptionally similar available type. If the reference and spatial data come from different tissue sections, different donors, or different processing protocols, batch effects between the two datasets will distort the deconvolution. A deconvolution result is only as good as the reference it builds on.</p>
+</section>
+<section id="neighborhood-analysis-from-spots-to-tissue-organization" class="level3">
+<h3 class="anchored" data-anchor-id="neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</h3>
+<p>Once cell types are assigned to coordinates, the next question is tissue organization, which cell types are near which others, and how that proximity shapes function.</p>
+<p><strong>Spatial autocorrelation (Moran’s I)</strong> quantifies whether neighboring spots are more similar than expected by chance:</p>
+<p><span class="math display">\[I = \frac{n}{W} \frac{\sum_i \sum_j w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_i (x_i - \bar{x})^2}\]</span></p>
+<p>where <span class="math inline">\(w_{ij}\)</span> is a spatial weight matrix (1 if spots <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are neighbors, 0 otherwise), <span class="math inline">\(W\)</span> is the sum of all weights, and <span class="math inline">\(n\)</span> is the number of spots. Moran’s <span class="math inline">\(I\)</span> ranges from <span class="math inline">\([-1, +1]\)</span>: <span class="math inline">\(I &gt; 0\)</span> indicates spatial clustering (neighboring spots are more similar than expected), <span class="math inline">\(I &lt; 0\)</span> indicates a “checkerboard” pattern (neighboring spots are systematically different), and <span class="math inline">\(I \approx 0\)</span> indicates random spatial organization.</p>
+<p><strong>The null expectation.</strong> Under the null hypothesis of no spatial autocorrelation, the expected value of Moran’s <span class="math inline">\(I\)</span> is:</p>
+<p><span class="math display">\[E[I] = -\frac{1}{n-1}\]</span></p>
+<p>For large <span class="math inline">\(n\)</span> (thousands of spots), <span class="math inline">\(E[I] \approx 0\)</span>, but for small tissue sections with <span class="math inline">\(n &lt; 100\)</span>, the null expectation is meaningfully negative; a value near zero can actually indicate weak positive autocorrelation. Significance is assessed by permutation testing: randomly shuffling expression values across spots (breaking spatial structure), recomputing <span class="math inline">\(I\)</span> thousands of times, and comparing the observed <span class="math inline">\(I\)</span> to the empirical null distribution. A <span class="math inline">\(p\)</span>-value is the fraction of permuted <span class="math inline">\(I\)</span> values more extreme than the observed <span class="math inline">\(I\)</span>.</p>
+<p><strong>Neighborhood definition.</strong> The weight matrix <span class="math inline">\(w_{ij}\)</span> encodes which spots are considered neighbors. The choice of neighborhood definition determines <span class="math inline">\(W\)</span> and directly affects the computed <span class="math inline">\(I\)</span> value. Two common approaches exist: <strong><span class="math inline">\(k\)</span>-nearest neighbors</strong> (each spot connects to its <span class="math inline">\(k\)</span> closest neighbors by Euclidean distance, ensuring every spot has the same number of neighbors) and <strong>radius-based</strong> (all spots within a fixed distance threshold are neighbors, which can leave isolated spots on tissue edges with few or no neighbors). For Visium’s hexagonal grid, <span class="math inline">\(k = 6\)</span> is the natural choice; each spot has exactly six immediate neighbors corresponding to the six faces of a hexagon. Using fewer than 6 neighbors underweights spatial structure; using more than 6 dilutes local signal by including spots beyond the immediate tissue neighborhood.</p>
+<p>Moran’s <span class="math inline">\(I\)</span> is widely used to identify spatially variable genes, but the signal must be interpreted cautiously. A gene may appear spatially variable due to: biological compartmentalization (e.g., crypt vs.&nbsp;villus in intestine), tissue edge artifacts (higher signal at tissue periphery due to probe penetration), or technical variation (uneven permeabilization across the section). Comparing Moran’s <span class="math inline">\(I\)</span> across genes within the same tissue section controls for the last two sources.</p>
+<p><strong>Ligand-receptor inference (NicheNet, CellChat, SpaTalk)</strong> predicts cell-cell communication from co-expression of ligands and receptors in adjacent cell types. The approach: if cell type A expresses a ligand gene and adjacent cell type B expresses its cognate receptor, then signaling from A to B is plausible. Scores are based on prior knowledge databases of known ligand-receptor pairs and downstream signaling targets.</p>
+<p><strong>The communication inference gap.</strong> Detecting mRNA for a ligand in one cell type and its receptor in an adjacent cell type is consistent with signaling but does not prove it. mRNA abundance correlates weakly with protein secretion, and secretion does not guarantee binding or downstream pathway activation. Ligand-receptor inference identifies candidates for experimental validation, not confirmed interactions.</p>
+</section>
+<section id="registration-aligning-data-to-anatomy" class="level3">
+<h3 class="anchored" data-anchor-id="registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</h3>
+<p>Spatial transcriptomics data measures gene expression, but the biological interpretation depends on knowing which anatomical region each spot corresponds to. Registration aligns the sequencing data to the tissue histology image (H&amp;E or immunofluorescence): an affine transformation that rotates, scales, and translates the spot grid to match the tissue image coordinates.</p>
+<p>Registration is not a biologically neutral preprocessing step. An affine transformation maps original coordinates <span class="math inline">\(\mathbf{x}\)</span> to transformed coordinates <span class="math inline">\(\mathbf{x}'\)</span> via a 2×2 rotation-scaling matrix and a translation vector:</p>
+<p><span class="math display">\[\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} t_x \\ t_y \end{pmatrix}\]</span></p>
+<p>The six parameters <span class="math inline">\((a, b, c, d, t_x, t_y)\)</span> are optimized to minimize mismatch between the spot grid and the tissue boundary in the histology image. The quality of this transformation directly determines whether transcriptomic measurements map to the correct anatomical regions. A misregistration of 100 <span class="math inline">\(\mu\)</span>m (one Visium spot) can shift a spot from tumor epithelium to stroma, entirely changing its biological interpretation. For in situ methods with subcellular resolution, registration errors of a few microns can misassign transcripts to the wrong cell.</p>
+<p>The registration challenge is compounded by tissue deformation during sectioning. The tissue on the slide is not identical to the tissue in the fresh block; it has been stretched, folded, or torn. Computational registration must account for non-linear warping, not just affine transformations, to accurately map sequencing data to histology.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>A single biopsy of a metastatic tumor is a single frame of a movie. One biopsy captures only the dominant clone; the resistance-causing subclone may be in a different region of the same tumor or a different metastatic site. Multi-region sequencing studies (TRACERx, PEACE) reveal that up to 50% of driver mutations in metastatic sites are undetectable in the primary tumor biopsy.</p>
-<p>ctDNA overcomes this sampling bias: liquid biopsy captures the aggregate mutational landscape from all metastatic sites simultaneously. Rising ctDNA VAF of a resistance mutation precedes radiographic progression by 3-6 months, enabling earlier therapy switching.</p>
-<p>Subclonal architecture is the difference between therapeutic success and failure. A mutation present in 100% of tumor cells (clonal) is an ideal therapeutic target, targeting it kills all cells. A mutation present in 5% of cells (subclonal) is a target only for that subclone; the remaining 95% are unaffected, and the resistant subclone expands under selective pressure.</p>
+<p>Spatial data is a hypothesis generator, not proof. Detecting ligand-receptor pairs in adjacent cells generates candidates for cell-cell communication, but confirmation requires perturbation, knocking out the ligand or receptor and measuring the effect on the recipient cell. A correlation between a gene’s spatial expression pattern and a tissue compartment is suggestive of compartment-specific function, but the same correlation can arise from technical artifacts (tissue edge effects, permeabilization gradients) or from correlated but non-causal biological processes.</p>
+<p>The deconvolution of multi-cell spots is a statistical inference, not a measurement. Results depend heavily on the quality and relevance of the scRNA-seq reference used. A deconvolution that assigns 30% T-cells to every tumor spot likely reflects a reference artifact (e.g., shared stress-response genes between T-cells and tumor cells) rather than true T-cell infiltration. Validating deconvolution results against independent methods (immunohistochemistry, flow cytometry) is essential but rarely done.</p>
+<p>Spatial autocorrelation (Moran’s <span class="math inline">\(I\)</span>) identifies spatially variable genes, but biological interpretation requires distinguishing genuine compartment-specific expression from technical artifacts. A gene with high Moran’s <span class="math inline">\(I\)</span> that encodes a known structural protein of the extracellular matrix is plausibly compartment-specific; a gene with high Moran’s <span class="math inline">\(I\)</span> that is uniformly expressed in bulk RNA-seq is more likely an artifact of uneven tissue permeabilization.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Somatic calling requires a matched normal</strong>: population databases cannot substitute.</li>
-<li><strong>Clonal evolution</strong> produces heterogeneous subclones; VAF-based detection infers subclonal architecture.</li>
-<li><strong>ctDNA overcomes sampling bias</strong>: liquid biopsy captures aggregate mutational landscape across all metastatic sites.</li>
-<li><strong>TMB and MSI</strong> are tissue-agnostic biomarkers for immunotherapy response, based on neoantigen burden.</li>
+<li><strong>Spatial transcriptomics faces a fundamental tradeoff</strong>: whole-transcriptome coverage (Visium, Slide-seq) vs.&nbsp;single-cell resolution (MERFISH, Xenium). Technology choice determines what questions can be addressed.</li>
+<li><strong>Deconvolution (RCTD, Cell2location, CARD)</strong> estimates cell type composition per spot using scRNA-seq references; results depend critically on reference quality and relevance.</li>
+<li><strong>Moran’s <span class="math inline">\(I\)</span> quantifies spatial autocorrelation</strong> of gene expression; <strong>ligand-receptor inference</strong> identifies candidate cell-cell communication. Both require validation against artifacts.</li>
+<li><strong>Registration aligns sequencing data to histology</strong> via affine transformations; registration quality directly determines anatomical interpretability.</li>
+<li><strong>Spatial data is a hypothesis generator</strong>: correlations between expression patterns and tissue compartments suggest function but do not prove it. Perturbation experiments are required for confirmation.</li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Alexandrov et al.: “The repertoire of mutational signatures in human cancer” (Nature, 2020).</li>
-<li>Wan et al.: “Liquid biopsies come of age” (Nature Reviews Cancer, 2017).</li>
+<li>Ståhl et al.: “Visualization and analysis of gene expression in tissue sections by spatial transcriptomics” (<em>Science</em>, 2016).</li>
+<li>Cable et al.: “Robust decomposition of cell type mixtures in spatial transcriptomics” (<em>Nature Biotechnology</em>, 2022).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> A single biopsy of a metastatic tumor is a single frame of a movie. The resistance-causing subclone may be in a different region entirely.</p>
+<p><strong>Johnson’s Rule:</strong> Without spatial context, single-cell data is headless; you know the molecules but not the anatomy.</p>
 </blockquote>
 
 
@@ -912,13 +906,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-6-clinical/chapter-28.html" class="pagination-link" aria-label="Chapter 28: Variant Interpretation and ACMG Guidelines">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 28: Variant Interpretation and ACMG Guidelines</span></span>
+      <a href="../tier-3-high-res/chapter-16.html" class="pagination-link" aria-label="Chapter 16: Trajectory Inference and RNA Velocity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-6-clinical/chapter-30.html" class="pagination-link" aria-label="Chapter 30: Pathogen Genomics and Genomic Epidemiology">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-4-systems/chapter-18.html" class="pagination-link" aria-label="Chapter 18: Systems Biology and Network Graphing">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 18: Systems Biology and Network Graphing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

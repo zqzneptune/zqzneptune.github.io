@@ -15,8 +15,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 20: Perturb-seq and Functional Genomics – Omics with Johnson 101</title>
+<title>Chapter 20: Multi-Omics Integration – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-5-ai/chapter-21.html" rel="next">
+<link href="../tier-4-systems/chapter-21.html" rel="next">
 <link href="../tier-4-systems/chapter-19.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -133,6 +134,10 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book"> 
+<span class="menu-text">About</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Foundations</span>
@@ -193,6 +198,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
  <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -201,16 +214,16 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+ <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
     </ul>
   </li>
@@ -220,24 +233,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+ <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+ <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+ <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
@@ -247,24 +260,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+ <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+ <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+ <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
   </li>  
     </ul>
   </li>
@@ -274,28 +287,28 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
         <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
- <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+ <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+ <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+ <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+ <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
+ <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
+ <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
   </li>  
     </ul>
   </li>
@@ -309,6 +322,11 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -324,13 +342,13 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#crispr-cas9-biology" id="toc-crispr-cas9-biology" class="nav-link" data-scroll-target="#crispr-cas9-biology">CRISPR-Cas9 Biology</a></li>
-  <li><a href="#pooled-crispr-screens" id="toc-pooled-crispr-screens" class="nav-link" data-scroll-target="#pooled-crispr-screens">Pooled CRISPR Screens</a></li>
-  <li><a href="#perturb-seq-crispr-single-cell-readout" id="toc-perturb-seq-crispr-single-cell-readout" class="nav-link" data-scroll-target="#perturb-seq-crispr-single-cell-readout">Perturb-seq: CRISPR + Single-Cell Readout</a></li>
-  <li><a href="#interpreting-screen-results" id="toc-interpreting-screen-results" class="nav-link" data-scroll-target="#interpreting-screen-results">Interpreting Screen Results</a></li>
+  <li><a href="#the-three-axes-of-integration" id="toc-the-three-axes-of-integration" class="nav-link" data-scroll-target="#the-three-axes-of-integration">The Three Axes of Integration</a></li>
+  <li><a href="#selecting-the-integration-method" id="toc-selecting-the-integration-method" class="nav-link" data-scroll-target="#selecting-the-integration-method">Selecting the Integration Method</a></li>
+  <li><a href="#canonical-correlation-analysis-cca" id="toc-canonical-correlation-analysis-cca" class="nav-link" data-scroll-target="#canonical-correlation-analysis-cca">Canonical Correlation Analysis (CCA)</a></li>
+  <li><a href="#multi-omics-factor-analysis-mofa" id="toc-multi-omics-factor-analysis-mofa" class="nav-link" data-scroll-target="#multi-omics-factor-analysis-mofa">Multi-Omics Factor Analysis (MOFA)</a></li>
+  <li><a href="#eqtl-and-pqtl-genetic-anchors-for-causal-inference" id="toc-eqtl-and-pqtl-genetic-anchors-for-causal-inference" class="nav-link" data-scroll-target="#eqtl-and-pqtl-genetic-anchors-for-causal-inference">eQTL and pQTL: Genetic Anchors for Causal Inference</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
-  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -341,9 +359,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-4-systems/chapter-16.html">TIER 4: Systems, Networks, and Functional Architectures</a></li><li class="breadcrumb-item"><a href="../tier-4-systems/chapter-20.html"><span class="chapter-title">Chapter 20: Perturb-seq and Functional Genomics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-4-systems/chapter-18.html">TIER 4: Systems, Networks, and Functional Architectures</a></li><li class="breadcrumb-item"><a href="../tier-4-systems/chapter-20.html"><span class="chapter-title">Chapter 20: Multi-Omics Integration</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 20: Perturb-seq and Functional Genomics</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 20: Multi-Omics Integration</span></h1>
 </div>
 
 
@@ -351,7 +369,19 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 5, 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 19, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -361,80 +391,82 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Correlation is Not Causation</p>
+<p><strong>Johnson’s First Principle:</strong> Integrating Bad Data from Two Assays Yields Twice as Much Bad Data</p>
 </blockquote>
-<p>Observational multi-omics identifies correlation. A gene co-expressed with a phenotype across 500 patients may be a driver, a bystander, or a compensatory response. Only direct physical perturbation — knocking out the gene and measuring the consequence — can definitively map causal biological dependency networks.</p>
-<p>The preceding chapters of this tier have built a sophisticated toolkit for observing molecular states. Chapter 16 taught you to build networks from correlations; Chapter 17 to measure proteins; Chapter 18 to integrate across modalities. But every one of these methods is fundamentally observational. You can correlate expression with phenotype, build co-expression networks, and integrate across omics layers — and still not know which genes are causal. Perturbation resolves this ambiguity by changing the system and measuring the response.</p>
+<p>Intersecting lists of statistically significant genes from RNA-seq and proteomics does not integrate data; it compounds error rates. The overlap is dominated by the most highly expressed, easiest-to-measure genes, not by the biologically most relevant ones. True integration requires dimensionality reduction algorithms that mathematically identify shared variance between molecular layers, independent of arbitrary significance thresholds.</p>
+<p>A gene with p-value <span class="math inline">\(10^{-10}\)</span> in RNA-seq and p-value <span class="math inline">\(10^{-10}\)</span> in proteomics may appear to be a biologically validated hit. But if the top 100 genes from each dataset overlap by only 20 genes, and those 20 are the most abundant housekeeping genes, the “validated” list is dominated by measurement convenience rather than biological importance. This chapter covers the methods that avoid this trap.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="crispr-cas9-biology" class="level3">
-<h3 class="anchored" data-anchor-id="crispr-cas9-biology">CRISPR-Cas9 Biology</h3>
-<p>The CRISPR-Cas9 system: a guide RNA (gRNA) directs the Cas9 nuclease to a specific genomic locus via sequence complementarity. Cas9 creates a double-strand break ~3 bp upstream of the protospacer adjacent motif (PAM, NGG for SpCas9). The break is repaired by either: - <strong>Non-homologous end joining (NHEJ):</strong> Error-prone repair that introduces small insertions or deletions (indels). When the indel shifts the reading frame (frameshift), the result is a gene knockout via premature stop codon and nonsense-mediated decay. ~65-80% of indels are frameshifts. - <strong>Homology-directed repair (HDR):</strong> High-fidelity repair using a template. Requires co-delivery of a repair template (ssODN or plasmid). HDR efficiency is low (1-10% in most cell types) and cell-cycle dependent (G2/S phase only).</p>
-<p><strong>gRNA design principles.</strong> The gRNA must be uniquely complementary to the target gene and not match anywhere else in the genome. Design rules: target early constitutive exons (frameshifts in early exons are more likely to produce complete loss of function), avoid exons with alternative splicing or partial functional redundancy, and design multiple gRNAs per gene (3-5) to distinguish on-target effects from off-target edits. Tools: CRISPick (Broad Institute), CasOFFinder for off-target prediction.</p>
-</section>
-<section id="pooled-crispr-screens" class="level3">
-<h3 class="anchored" data-anchor-id="pooled-crispr-screens">Pooled CRISPR Screens</h3>
-<p>A pooled screen scales perturbation to the entire genome. A library of ~100,000 gRNAs targeting all ~20,000 genes (5 gRNAs per gene, plus negative controls) is synthesized as an oligonucleotide pool, cloned into a lentiviral vector, packaged into lentivirus, and transduced into cells at low multiplicity of infection (MOI &lt; 0.3) to ensure most transduced cells receive exactly one gRNA. The number of gRNAs per cell follows a Poisson distribution (Chapter 4) with parameter <span class="math inline">\(\lambda = \text{MOI}\)</span>. At MOI = 0.3, the probability of receiving two or more gRNAs is <span class="math inline">\(P(k \geq 2 \mid \lambda = 0.3) \approx 0.04\)</span> — acceptably low for screens where assigning phenotype to a single perturbation is essential.</p>
-<p><strong>Screen types:</strong> - <strong>Positive selection (enrichment):</strong> gRNAs that confer a growth advantage become enriched over time. Used to identify drug resistance genes (transduce cells, apply drug, sequence gRNAs from survivors). - <strong>Negative selection (dropout):</strong> gRNAs targeting essential genes become depleted over time. Used to identify genes required for cell survival under specific conditions. Dropout screens require careful normalization — gRNA abundance at day 0 vs.&nbsp;day 14 across control and treatment conditions. - <strong>Fluorescence-activated screens:</strong> Cells are sorted by marker expression (e.g., a surface protein for a phenotype of interest), and gRNA abundance in the high vs.&nbsp;low bins identifies genes that regulate that marker.</p>
-<p><strong>gRNA quantification from sequencing.</strong> After the selection period, genomic DNA is extracted from the cell population, and the integrated gRNA cassette is amplified by PCR. The resulting amplicon is sequenced, and reads are mapped back to the original gRNA library sequences. Each gRNA’s read count is proportional to its representation in the surviving cell population — depletion relative to the initial time point (day 0) indicates that cells carrying that gRNA were lost (negative selection), and enrichment indicates a growth advantage (positive selection). The output is a count matrix (gRNAs <span class="math inline">\(\times\)</span> time points or conditions) that feeds into the statistical models below.</p>
-<p><strong>Statistical analysis.</strong> The Negative Binomial distribution (Chapter 4) models gRNA count data, where the mean-variance relationship <span class="math inline">\(\text{Var}(Y) = \mu + \alpha \mu^2\)</span> captures both sequencing noise and biological variation across cells. Tools (MAGeCK, BAGEL) test each gRNA’s abundance change against the negative control gRNAs (non-targeting sequences) to estimate a per-gene effect size and false discovery rate. MAGeCK uses a modified NB model with mean-variance estimation pooling across all gRNAs; BAGEL uses a Bayesian framework with a prior derived from known essential and non-essential gene sets.</p>
-<p><strong>Copy number bias correction.</strong> In cancer cell lines with extensive chromosomal amplifications, a gRNA targeting an amplified region has additional target copies per cell, producing systematically higher gRNA abundance that mimics an essential gene signature — the gRNA does not appear to drop out because there are more copies to cut, not because the gene is required for survival. The CERES algorithm (Meyers et al., 2017) models each gRNA’s count as a function of both gene essentiality and local copy number, using copy number data (from WGS or SNP arrays) as a measured covariate to decouple the two effects. Without this correction, genes in amplified regions show false positive essentiality rates of 30-50% — a systematic bias that invalidates uncorrected essentiality screens in aneuploid cell lines. This is the most common computational artifact in cancer CRISPR screens and should be checked before interpreting any essentiality hits.</p>
-</section>
-<section id="perturb-seq-crispr-single-cell-readout" class="level3">
-<h3 class="anchored" data-anchor-id="perturb-seq-crispr-single-cell-readout">Perturb-seq: CRISPR + Single-Cell Readout</h3>
-<p>Pooled screens measure only a single phenotype (survival, marker expression). Perturb-seq marries CRISPR perturbation with scRNA-seq readout: each cell receives a gRNA, and the full transcriptome is measured simultaneously. This enables measurement of the complete transcriptional consequence of each knockout — not a single phenotype but thousands of expression features per perturbation.</p>
-<p><strong>The experimental pipeline.</strong> Cells are transduced with a gRNA library, then processed through the 10x Chromium (Chapter 13). The gRNA is detected as an additional feature (the gRNA transcript is captured by a specific primer during reverse transcription and sequenced alongside the cell barcode). Each cell’s transcriptome is linked to its gRNA, identifying which gene was knocked out in that cell.</p>
-<p><strong>The computational challenge</strong> is detecting the perturbation signature against background variation. A knockout of a transcription factor may affect hundreds of genes, but each gene’s individual expression change is small and noisy. The signal is in the coordinated response across multiple genes, not in any single gene’s fold change.</p>
+<section id="the-three-axes-of-integration" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-axes-of-integration">The Three Axes of Integration</h3>
 <ul>
-<li><strong>Mixscape</strong> (Seurat) classifies each cell as “perturbed” or “non-perturbed” for each gRNA using a regularized NB model. A knockout with 50% cutting efficiency means half the cells carrying a gRNA have no functional knockout — classifying them correctly is essential for detecting the perturbation signature. Mixscape uses the expression of a set of target genes (known or learned) to compute a “perturbation score” per cell.</li>
-<li><strong>scMAGeCK</strong> applies NB testing per gene per perturbation, computing enrichment scores for gene sets rather than individual genes. It aggregates evidence across all cells carrying the same gRNA using a weighted sum approach that accounts for varying knockout efficiency.</li>
+<li><p><strong>Horizontal integration:</strong> Same data modality, different batches or cohorts (e.g., RNA-seq dataset A + RNA-seq dataset B). Challenge: batch effects (Chapter 6). Correction: ComBat, Harmony, scVI for single-cell data. This is the simplest integration axis because all data share the same distributional assumptions.</p></li>
+<li><p><strong>Vertical integration:</strong> Different modalities, same biological samples (e.g., RNA-seq + ATAC-seq + proteomics on the same cells). Challenge: different data distributions (Poisson for RNA-seq, Gaussian for log-processed proteomics, binomial for ATAC-seq) and different missingness mechanisms (dropout in scRNA-seq vs.&nbsp;detection limits in proteomics). This is the axis where MOFA and CCA are most useful, because the shared sample structure constrains the solution.</p></li>
+<li><p><strong>Diagonal integration:</strong> Different modalities, different samples (e.g., scRNA-seq from one study + spatial transcriptomics from another). Challenge: no paired measurements exist, so integration relies on shared features (genes) and assumed biological similarity between datasets. Methods must infer a joint latent space without any direct correspondence between samples. The most challenging and most common real-world integration scenario; no experiment measures everything in every cell.</p></li>
 </ul>
 </section>
-<section id="interpreting-screen-results" class="level3">
-<h3 class="anchored" data-anchor-id="interpreting-screen-results">Interpreting Screen Results</h3>
-<p><strong>Essential genes:</strong> gRNAs that deplete over time identify genes required for cell survival. These are potential cancer drug targets — but a gene essential in one cell type may be dispensable in another. The “essentialome” is context-dependent, not universal.</p>
-<p><strong>Contextual essentiality and synthetic lethality.</strong> A gene may be essential only in specific genetic backgrounds. The classic example: BRCA1/2 mutations sensitize cells to PARP inhibition because the two DNA repair pathways (homologous recombination and base excision repair) compensate for each other. Loss of both is lethal, loss of either alone is viable. This is the <strong>synthetic lethality</strong> concept: two genes are synthetically lethal if mutation in either alone is viable but mutation in both is lethal. Cancer cells accumulate hundreds of mutations; each creates a vulnerability to synthetic lethal targeting.</p>
-<p>The computational challenge: distinguishing true synthetic lethality from additive effects of two independent perturbations (each causes 20% growth reduction; together they cause 40% — this is additive, not synergistic). The difference between additive and synergistic effects requires modeling the expected combined effect under independence (typically Bliss independence: <span class="math inline">\(E_{AB} = E_A + E_B - E_A E_B\)</span>) and testing for significant deviation.</p>
+<section id="selecting-the-integration-method" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-the-integration-method">Selecting the Integration Method</h3>
+<p>The choice of integration method depends primarily on whether you have paired samples and whether you seek shared or complementary variation:</p>
+<ul>
+<li><strong>If you have paired samples and want shared variation:</strong> MOFA+ factorizes the data into shared and modality-specific factors, with interpretable variance decomposition per factor per modality. The output tells you “how much of RNA variance and how much of protein variance is explained by this shared factor.”</li>
+<li><strong>If you have paired samples and want correlational structure:</strong> CCA finds linear combinations that are maximally correlated across modalities. The output tells you “which RNA and protein measurements co-vary across samples.”</li>
+<li><strong>If you have unpaired samples (diagonal integration):</strong> Seurat’s anchor-based CCA or optimal transport methods (FGOT, MultiVIT) infer a matching between datasets based on shared features. These do not require any paired observations.</li>
+<li><strong>If you need causal inference:</strong> eQTL or pQTL analysis (below) uses genetic variants as instrumental variables.</li>
+</ul>
+</section>
+<section id="canonical-correlation-analysis-cca" class="level3">
+<h3 class="anchored" data-anchor-id="canonical-correlation-analysis-cca">Canonical Correlation Analysis (CCA)</h3>
+<p>CCA finds linear combinations of variables from two datasets that are maximally correlated with each other. For two data matrices <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (e.g., RNA expression of 20,000 genes and ATAC peaks at 100,000 regions across the same 100 samples), CCA finds vectors <span class="math inline">\(w_x\)</span> and <span class="math inline">\(w_y\)</span> such that:</p>
+<p><span class="math display">\[\rho = \max_{w_x, w_y} \frac{w_x^T X^T Y w_y}{\sqrt{w_x^T X^T X w_x} \sqrt{w_y^T Y^T Y w_y}}\]</span></p>
+<p>The numerator <span class="math inline">\(w_x^T X^T Y w_y\)</span> measures the cross-covariance between the two linear combinations; the denominator normalizes by the variance of each combination. The result <span class="math inline">\(\rho\)</span> is the canonical correlation; the Pearson correlation between the two projections.</p>
+<p><strong>The <span class="math inline">\(p \gg n\)</span> problem.</strong> The CCA objective requires inverting <span class="math inline">\(X^T X\)</span> and <span class="math inline">\(Y^T Y\)</span>, which are <span class="math inline">\(p \times p\)</span> covariance matrices. With 20,000 genes and 100 samples, these matrices are rank-deficient (singular); the optimization has no unique solution because the sample covariance cannot reliably estimate <span class="math inline">\(p(p+1)/2 \approx 200\)</span> million unique entries from only 100 observations. In practice, this is resolved either by applying PCA to each modality first (reducing each to 30-50 PCs, as established in Chapter 5, then running CCA on the PC scores) or by using regularized CCA with a ridge penalty to stabilize the covariance estimates. The Seurat integration pipeline uses the PCA-then-CCA approach: it decomposes each dataset via SVD, projects into PC space, and finds canonical correlates in the compressed latent space where <span class="math inline">\(n &gt; p\)</span>.</p>
+<p><strong>The housekeeping trap.</strong> CCA components with near-perfect cross-modality correlation (<span class="math inline">\(\rho &gt; 0.9\)</span>) often reflect technical artifacts rather than biological coordination. If both modalities are dominated by abundant housekeeping genes (GAPDH, ACTB), the first CCA component may simply capture “both measurements are working correctly” rather than a biological signal. The more informative components are typically the ones with moderate correlation (<span class="math inline">\(\rho \sim 0.3-0.7\)</span>) that capture specific biological processes.</p>
+</section>
+<section id="multi-omics-factor-analysis-mofa" class="level3">
+<h3 class="anchored" data-anchor-id="multi-omics-factor-analysis-mofa">Multi-Omics Factor Analysis (MOFA)</h3>
+<p>MOFA (Argelaguet et al., 2020) extends factor analysis to multiple data modalities:</p>
+<p><span class="math display">\[Y_m = ZW_m^T + \epsilon_m\]</span></p>
+<p>where <span class="math inline">\(Y_m\)</span> is the data matrix for modality <span class="math inline">\(m\)</span>, <span class="math inline">\(Z\)</span> is the shared factor matrix (across all modalities), <span class="math inline">\(W_m\)</span> is the modality-specific weight matrix, and <span class="math inline">\(\epsilon_m\)</span> is modality-specific noise. The factors <span class="math inline">\(Z\)</span> capture the sources of variation shared across data types. Each factor is a latent variable that explains a certain amount of variance in each modality.</p>
+<p><strong>The sparsity prior that makes MOFA interpretable.</strong> MOFA places an automatic relevance determination (ARD) prior on each weight column <span class="math inline">\(W_{:, k}^{(m)}\)</span>, which shrinks irrelevant factors toward zero in a modality-specific manner. A factor that captures biological variation present in RNA but absent in ATAC will have large weights in the RNA modality and near-zero weights in the ATAC modality; the ARD prior automatically prunes it from ATAC. This is what produces the interpretable variance decomposition that distinguishes MOFA from standard factor analysis, where every factor loads on every modality with no built-in sparsity mechanism.</p>
+<p>Key outputs: 1. <strong>Variance decomposition per factor per modality:</strong> “Factor 1 explains 30% of RNA variance and 50% of ATAC variance.” This tells you which modalities contribute to each biological process. 2. <strong>Factor values per sample:</strong> Each sample gets a score for each factor, enabling clustering, time-series analysis, or association with clinical outcomes. 3. <strong>Feature weights per factor:</strong> For each factor, the genes, peaks, or proteins with the highest absolute weights are the ones driving that factor.</p>
+<p><strong>The dominant-factor caveat.</strong> The first factor in any MOFA analysis is almost always a technical confound (batch, age, sequencing depth, sample quality). This is not a bug; it reflects the reality that technical variation often dominates biological variation across modalities. Before interpreting factors biologically, verify that they correlate with the variable of interest and not with known confounders. The number of truly informative biological factors is typically small (3-10), regardless of the number of input modalities.</p>
+</section>
+<section id="eqtl-and-pqtl-genetic-anchors-for-causal-inference" class="level3">
+<h3 class="anchored" data-anchor-id="eqtl-and-pqtl-genetic-anchors-for-causal-inference">eQTL and pQTL: Genetic Anchors for Causal Inference</h3>
+<p>Expression quantitative trait loci (eQTL) use genetic variants as causal anchors to infer that gene expression changes are causal rather than confounded. The logic: if a SNP is associated with both gene expression (as an eQTL) and disease (as a GWAS hit), and the eQTL effect is plausibly causal (the variant affects a regulatory element), then the gene is a candidate causal mediator of the disease association. This is Mendelian randomization; the genetic variant is randomized at conception, independent of confounders like lifestyle or environment.</p>
+<p><strong>cis-eQTL vs.&nbsp;trans-eQTL.</strong> A cis-eQTL affects expression of a nearby gene (typically within 1 Mb of the variant). These are the most common and interpretable; the variant likely lies in a promoter, enhancer, or other regulatory element of that gene. A trans-eQTL affects expression of a distant gene (different chromosome or &gt;1 Mb away). These are rarer, harder to validate, and typically have smaller effect sizes, but they reveal regulatory networks that cross chromosomal boundaries.</p>
+<p>The GTEx consortium provides the most comprehensive eQTL atlas: ~50 tissues, &gt;800 donors, millions of cis-eQTL associations. The key finding: most GWAS variants are enriched in non-coding regulatory regions and act through gene expression regulation, not protein-coding changes. For a typical complex disease, ~60-80% of GWAS loci have a nearby eQTL in the relevant tissue, implicating gene expression dysregulation as the causal mechanism.</p>
+<p><strong>pQTL</strong> extends this logic to proteins. Protein QTLs are more directly relevant to phenotype (proteins are the functional molecules) but are harder to identify due to smaller sample sizes in proteomics studies and higher measurement variability. The overlap between eQTL and pQTL signals is only ~20-40%; consistent with the mRNA-protein decoupling established in Chapter 17. A variant that affects protein abundance without affecting mRNA is evidence of post-transcriptional regulation.</p>
+<p><strong>Mendelian randomization assumptions.</strong> The causal interpretation of eQTL-mediated GWAS colocalization rests on three assumptions that are violated more often than satisfied: (1) <strong>no horizontal pleiotropy</strong>: the genetic variant affects the disease only through the gene, not through independent pathways; (2) <strong>no linkage disequilibrium confounding</strong>: the true causal variant is the eQTL, not a correlated variant in LD that affects disease through a different gene; and (3) <strong>reliable exposure prediction</strong>: the variant is a strong predictor of gene expression (the <span class="math inline">\(F\)</span>-statistic for the variant-expression association exceeds 10). When these assumptions fail, colocalization produces a false causal inference: the variant and the gene expression appear causally linked to the disease when they are independent correlates of a hidden third factor.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>A Perturb-seq result must be interpreted through the lens of specificity and penetrance. A knockout that causes 50% of cells to change their expression state and 50% to remain unchanged suggests either: incomplete editing (Cas9 did not cut in all cells), compensatory mechanisms (paralogous genes buffer the loss), or a probabilistic threshold effect (the expression change requires additional signals present in only a fraction of cells). The response distribution — not just the mean effect — contains the biological information. A gene with a large mean effect driven by a small fraction of strongly responding cells and a majority of non-responders is fundamentally different from one with a moderate but uniform response across all cells.</p>
-<p><strong>Cutting efficiency is not knockout efficiency.</strong> A gRNA that cuts the genome with 90% efficiency may produce only 60% functional knockout — the remaining 30% of cuts were in-frame indels that preserve protein function. This discrepancy between molecular editing (detected by sequencing) and functional perturbation (detected by phenotype) is the most common source of false negatives in CRISPR screens. Measuring protein abundance by FACS or western blot is the gold standard for confirming functional knockout.</p>
-<p>Synthetic lethality is the most clinically actionable perturbation concept, but the gap between in vitro synthetic lethal hits and in vivo therapeutic efficacy is large. A gene pair that is synthetically lethal in a 2D culture may not be synthetically lethal in a 3D tumor microenvironment with hypoxia, immune pressure, and stromal interactions. In vivo CRISPR screens using barcoded tumor libraries in mice are bridging this gap, but at substantially higher cost and complexity.</p>
-<hr>
-</section>
-<section id="current-landscape-q2-2026" class="level2">
-<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
-<ul>
-<li><strong>Prime editing screens</strong> enable single-nucleotide resolution perturbation, moving beyond full knockouts to model specific patient variants — enabling functional characterization of every missense mutation in a tumor suppressor gene.</li>
-<li><strong>In vivo CRISPR screens</strong> using barcoded tumor libraries in mice are identifying genes required for metastasis, immune evasion, and drug resistance in physiologically relevant microenvironments, revealing that many in vitro essential genes are dispensable in vivo.</li>
-<li><strong>Perturb-seq at scale:</strong> 10x Genomics now offers CRISPR screening as an integrated product with 100,000+ cells per experiment, making Perturb-seq accessible to individual labs without custom microfluidics.</li>
-<li><strong>Base editing and CRISPRa/i screens</strong> (CRISPR activation and interference) enable perturbation of non-coding regulatory elements at high throughput, addressing the ~98% of the genome that does not code for protein and is inaccessible to knockout-based screens.</li>
-<li><strong>Multiplexed perturbation</strong> (Perturb-seq with 2-3 gRNAs per cell) maps genetic interactions at scale, measuring how the effect of one knockout depends on the presence of another — the functional genomics equivalent of epistasis mapping.</li>
-</ul>
+<p>Before integrating, ask: does this integration solve a biological question that single-omics cannot? The most successful multi-omics studies ask questions that are inherently multi-modal: “Which chromatin accessibility changes drive expression changes?” (requires ATAC + RNA), “Which post-translational modifications regulate protein activity independently of expression?” (requires proteomics + phosphoproteomics), or “Which genetic variants regulate gene expression in disease-relevant tissues?” (requires GWAS + eQTL).</p>
+<p>CCA components with near-perfect cross-modality correlation should be examined critically; they may reflect technical artifacts (sample quality, batch, sequencing depth) rather than biological coordination. The number of truly informative factors is typically small (3-10), regardless of the number of modalities.</p>
+<p>The dominant factor in any multi-omics analysis is almost always a technical confound (batch, age, sequencing depth). Before interpreting factors biologically, verify that they correlate with the variable of interest and not with known confounders. A MOFA factor that strongly separates cases from controls but also separates batch 1 from batch 2 is dominated by batch; the biological and technical signals are confounded, and the factor cannot be interpreted as biological.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>CRISPR-Cas9 creates double-strand breaks</strong> repaired by NHEJ (frameshift knockout) or HDR (precise editing). gRNA design requires early constitutive exons and multiple guides per gene.</li>
-<li><strong>Pooled screens</strong> measure enrichment or depletion of gRNAs under selection — the Negative Binomial model (Chapter 4) provides the statistical framework for identifying significant hits.</li>
-<li><strong>Perturb-seq</strong> combines CRISPR with scRNA-seq readout, measuring the complete transcriptional consequence of each knockout — the signal is in coordinated gene responses, not individual fold changes.</li>
-<li><strong>Synthetic lethality</strong> identifies drugs targeting cancer-specific vulnerabilities — distinguishing synergy from additive effects requires modeling expected combined effects under independence.</li>
-<li><strong>Cutting efficiency ≠ knockout efficiency</strong> — in-frame indels preserve function; measure protein to confirm knockout.</li>
+<li><strong>Three integration axes</strong>: horizontal (same modality, different batches) uses batch correction (ComBat, Harmony); vertical (different modalities, same samples) uses MOFA/CCA; diagonal (different modalities, different samples) uses optimal transport or anchor-based methods.</li>
+<li><strong>CCA</strong> finds maximally correlated linear combinations; the foundation of Seurat integration; caution: first components often capture technical artifacts, not biology.</li>
+<li><strong>MOFA</strong> factorizes variance into shared and modality-specific components with interpretable variance decomposition per factor per modality.</li>
+<li><strong>eQTL/pQTL</strong> use genetic variants as causal anchors linking genotype to molecular phenotype; the ~20-40% overlap between eQTL and pQTL signals reflects post-transcriptional regulation.</li>
+<li><strong>The dominant factor is almost always technical</strong>: verify factor-biological associations are not driven by batch, depth, or sample quality before biological interpretation.</li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Shalem et al.: “Genome-scale CRISPR-Cas9 knockout screening in human cells” (<em>Science</em>, 2014).</li>
-<li>Dixit et al.: “Perturb-Seq: dissecting molecular circuits with scalable single-cell RNA profiling of pooled genetic screens” (<em>Cell</em>, 2016).</li>
-<li>Meyers et al.: “Computational correction of copy number effect improves specificity of CRISPR-Cas9 essentiality screens in cancer cells” (<em>Nature Genetics</em>, 2017).</li>
+<li>Argelaguet et al.: “MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data” (<em>Genome Biology</em>, 2020).</li>
+<li>GTEx Consortium: “The GTEx Consortium atlas of genetic regulatory effects across human tissues” (<em>Science</em>, 2020).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If you want to know whether a gene matters, don’t look at its expression — knock it out.</p>
+<p><strong>Johnson’s Rule:</strong> If this integration does not solve a question that single-omics cannot, you are adding complexity, not insight.</p>
 </blockquote>
 
 
@@ -844,17 +876,41 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-4-systems/chapter-19.html" class="pagination-link" aria-label="Chapter 19: 3D Genome Architecture">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 19: 3D Genome Architecture</span></span>
+      <a href="../tier-4-systems/chapter-19.html" class="pagination-link" aria-label="Chapter 19: Mass Spectrometry and Proteomics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 19: Mass Spectrometry and Proteomics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-5-ai/chapter-21.html" class="pagination-link" aria-label="Chapter 21: Machine Learning Fundamentals for Biology">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 21: Machine Learning Fundamentals for Biology</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-4-systems/chapter-21.html" class="pagination-link" aria-label="Chapter 21: 3D Genome Architecture">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 21: 3D Genome Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Qingzhou Zhang. All rights reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+<p>Home</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<p>Omics with Johnson 101</p>
+</div>
+  </div>
+</footer>
 
 
 

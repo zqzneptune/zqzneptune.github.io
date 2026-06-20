@@ -15,8 +15,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 22: Tree-Based Models and Interpretable ML – Omics with Johnson 101</title>
+<title>Chapter 13: Metagenomics and the Human Microbiome – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,8 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-5-ai/chapter-23.html" rel="next">
-<link href="../tier-5-ai/chapter-21.html" rel="prev">
+<link href="../tier-2-core-omics/chapter-14.html" rel="next">
+<link href="../tier-2-core-omics/chapter-12.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -133,6 +134,10 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book"> 
+<span class="menu-text">About</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Foundations</span>
@@ -193,6 +198,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
  <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -201,16 +214,16 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+ <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
     </ul>
   </li>
@@ -220,24 +233,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+ <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+ <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+ <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
@@ -247,24 +260,24 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+ <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+ <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+ <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
   </li>  
     </ul>
   </li>
@@ -274,28 +287,28 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
         <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
- <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+ <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+ <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+ <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+ <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
+ <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
+ <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
   </li>  
     </ul>
   </li>
@@ -309,6 +322,11 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -322,28 +340,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
+  <li><a href="#johnsons-first-principle" id="toc-johnsons-first-principle" class="nav-link active" data-scroll-target="#johnsons-first-principle">Johnson’s First Principle</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees">Decision Trees</a></li>
-  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests">Random Forests</a></li>
-  <li><a href="#gradient-boosting" id="toc-gradient-boosting" class="nav-link" data-scroll-target="#gradient-boosting">Gradient Boosting</a></li>
-  <li><a href="#shap-values-explainable-feature-importance" id="toc-shap-values-explainable-feature-importance" class="nav-link" data-scroll-target="#shap-values-explainable-feature-importance">SHAP Values: Explainable Feature Importance</a></li>
+  <li><a href="#the-uncultured-majority-and-shotgun-metagenomics" id="toc-the-uncultured-majority-and-shotgun-metagenomics" class="nav-link" data-scroll-target="#the-uncultured-majority-and-shotgun-metagenomics">The Uncultured Majority and Shotgun Metagenomics</a></li>
+  <li><a href="#taxonomic-classification-two-competing-paradigms" id="toc-taxonomic-classification-two-competing-paradigms" class="nav-link" data-scroll-target="#taxonomic-classification-two-competing-paradigms">Taxonomic Classification: Two Competing Paradigms</a></li>
+  <li><a href="#metagenomic-assembly-and-mag-reconstruction" id="toc-metagenomic-assembly-and-mag-reconstruction" class="nav-link" data-scroll-target="#metagenomic-assembly-and-mag-reconstruction">Metagenomic Assembly and MAG Reconstruction</a></li>
+  <li><a href="#functional-annotation" id="toc-functional-annotation" class="nav-link" data-scroll-target="#functional-annotation">Functional Annotation</a></li>
+  <li><a href="#compositional-statistics" id="toc-compositional-statistics" class="nav-link" data-scroll-target="#compositional-statistics">Compositional Statistics</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
-  <li><a href="#current-landscape-q2-2026" id="toc-current-landscape-q2-2026" class="nav-link" data-scroll-target="#current-landscape-q2-2026">Current Landscape (Q2 2026)</a></li>
-  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
-  <ul class="collapse">
-  <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
-  </ul></li>
+  <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-21.html">TIER 5: Advanced AI and Machine Learning in Biology</a></li><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-22.html"><span class="chapter-title">Chapter 22: Tree-Based Models and Interpretable ML</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html">TIER 2: The Core Omics: Sequencing Physics and Algorithms</a></li><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-13.html">Chapter 13: Metagenomics and the Human Microbiome</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 22: Tree-Based Models and Interpretable ML</span></h1>
+<h1 class="title">Chapter 13: Metagenomics and the Human Microbiome</h1>
 </div>
 
 
@@ -351,7 +367,19 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 5, 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 19, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -360,86 +388,69 @@ window.Quarto = {
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> The Black Box is Unacceptable</p>
-</blockquote>
-<p>A deep neural network that outputs “Cancer: 95%” but cannot explain which genes drove the decision is practically useless in biology and clinical diagnostics. An algorithm that hides the biology cannot generate hypotheses, cannot be validated by domain experts, and cannot pass regulatory scrutiny.</p>
-<p>Chapter 21 established the framework for machine learning in the <span class="math inline">\(p \gg n\)</span> regime: bias-variance tradeoff, regularization, data leakage, and validation. That chapter was about <em>how to avoid fooling yourself with high-dimensional data</em>. This chapter is about <em>which model to use once you’ve done that</em> — and why tree-based models dominate tabular omics data, even as neural networks dominate sequence and image data.</p>
+<section id="johnsons-first-principle" class="level2">
+<h2 class="anchored" data-anchor-id="johnsons-first-principle">Johnson’s First Principle</h2>
+<p>The majority of microbial life on Earth, and in the human body (has never been cultured. A standard microbiological plate selects for the survivable minority. Metagenomics is the only lens that reveals the unculturable majority. Before you can interpret a microbiome, you must first understand that the data you are analyzing is a compositional shadow) a relative, not absolute, measure of community structure.</p>
 <hr>
+</section>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="decision-trees" class="level3">
-<h3 class="anchored" data-anchor-id="decision-trees">Decision Trees</h3>
-<p>A decision tree recursively partitions the feature space into rectangular regions. At each node, the algorithm selects the feature and threshold that minimize impurity:</p>
-<p><strong>Gini impurity:</strong> <span class="math inline">\(G = 1 - \sum_{c=1}^{C} p_c^2\)</span>, where <span class="math inline">\(p_c\)</span> is the proportion of samples in class <span class="math inline">\(c\)</span> at the node. Gini is minimized when all samples belong to one class (pure node) and maximized when classes are evenly split.</p>
-<p><strong>Pruning:</strong> Decision trees are prone to overfitting — a tree that grows until every leaf is pure has memorized the training data. Pruning (cost-complexity pruning) penalizes tree size: <span class="math inline">\(R_\alpha(T) = R(T) + \alpha|T|\)</span>, where <span class="math inline">\(R(T)\)</span> is the training error, <span class="math inline">\(|T|\)</span> is the number of terminal nodes, and <span class="math inline">\(\alpha\)</span> controls the penalty.</p>
+<section id="the-uncultured-majority-and-shotgun-metagenomics" class="level3">
+<h3 class="anchored" data-anchor-id="the-uncultured-majority-and-shotgun-metagenomics">The Uncultured Majority and Shotgun Metagenomics</h3>
+<p>Microbial culture plates capture only species capable of growing under laboratory oxygen concentrations, nutrient formulations, and temperature conditions. Estimates suggest fewer than 1% of environmental microbes are culturable. Shotgun metagenomics bypasses culture entirely: total DNA is extracted from a sample, fragmented, sequenced, and reads are assigned by computational classification. The resulting data represents the aggregate genomic content of all organisms in the sample; bacteria, archaea, viruses, fungi, and human host.</p>
+<p>Two primary experimental strategies exist:</p>
+<ul>
+<li><strong>16S rRNA Amplicon Sequencing:</strong> PCR amplification of the hypervariable V3-V4 region of the 16S ribosomal RNA gene using universal bacterial primers. Fast and cheap; limited to taxonomic classification only, cannot resolve function. Susceptible to primer amplification bias; certain taxa are systematically under-amplified.</li>
+<li><strong>Shotgun Metagenomics:</strong> Whole-genome sequencing of extracted community DNA. Enables both taxonomic profiling and functional gene annotation. More expensive; requires deeper sequencing depth to detect low-abundance taxa.</li>
+</ul>
 </section>
-<section id="random-forests" class="level3">
-<h3 class="anchored" data-anchor-id="random-forests">Random Forests</h3>
-<p>Random forests (Breiman, 2001) reduce variance by averaging many de-correlated trees. Two sources of randomness:</p>
-<ol type="1">
-<li><strong>Bagging (bootstrap aggregating):</strong> Each tree is trained on a bootstrap sample (random sample with replacement) of the training data.</li>
-<li><strong>Random feature subsets:</strong> At each split, only a random subset of features (typically <span class="math inline">\(\sqrt{p}\)</span> for classification, <span class="math inline">\(p/3\)</span> for regression) is considered.</li>
-</ol>
-<p>The out-of-bag (OOB) error — predictions for each training sample using trees that did not include it in their bootstrap sample — provides an unbiased performance estimate without a held-out test set.</p>
-<p>This connects directly to the bias-variance tradeoff from Chapter 21. Random forests reduce <strong>variance</strong> by averaging: individual trees are high-variance (slight changes in training data produce very different trees), but averaging <span class="math inline">\(B\)</span> de-correlated trees reduces variance by approximately <span class="math inline">\(\sigma^2 / B\)</span> without increasing bias. Gradient boosting (below) reduces <strong>bias</strong> instead — each new tree targets the residuals the ensemble cannot yet fit, at the cost of potentially increasing variance if too many trees are added.</p>
+<section id="taxonomic-classification-two-competing-paradigms" class="level3">
+<h3 class="anchored" data-anchor-id="taxonomic-classification-two-competing-paradigms">Taxonomic Classification: Two Competing Paradigms</h3>
+<p>Read-based classifiers assign taxonomy to individual sequenced reads.</p>
+<p><strong>k-mer Lowest Common Ancestor (LCA) Classifiers (Kraken2, Bracken):</strong> Each k-mer in a read is matched against a pre-built database of all reference genomes. The taxonomic classification of a read is the LCA of all matching k-mer taxa. Extremely fast (<span class="math inline">\(&gt;1\)</span> Gb/s classification speed). Bracken applies Bayesian re-estimation to produce abundance estimates at any taxonomic level. The critical limitation: unclassified reads represent the “dark matter”; novel species without reference genomes.</p>
+<p><strong>Marker-gene Profiling (MetaPhlAn4):</strong> Rather than classifying all reads, MetaPhlAn4 maps reads exclusively to species-specific single-copy marker gene databases. This avoids reference bias from human or food contamination reads. The resulting relative abundance profiles are compositionally defined: they sum to 100% across all detected species.</p>
 </section>
-<section id="gradient-boosting" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h3>
-<p>Gradient boosting (XGBoost, LightGBM, CatBoost) builds trees <strong>sequentially</strong>, where each new tree corrects the errors of the previous ensemble. The algorithm fits each new tree to the <strong>gradient of the loss function</strong> with respect to the current prediction:</p>
-<p><span class="math display">\[\text{Step } t: \quad f_t(x) = \arg\min_f \sum_{i=1}^n L(y_i, \hat{y}_i^{(t-1)} + f(x_i))\]</span></p>
-<p>where <span class="math inline">\(L\)</span> is the loss function (e.g., log-loss for classification, squared error for regression) and <span class="math inline">\(\hat{y}_i^{(t-1)}\)</span> is the prediction after <span class="math inline">\(t-1\)</span> trees.</p>
-<p>Key regularization hyperparameters: - <code>learning_rate</code> (shrinkage): how much each new tree contributes (0.01-0.3) - <code>max_depth</code>: tree complexity (typically 3-6 for boosted trees) - <code>subsample</code>: fraction of data used per tree (prevents overfitting) - <code>min_child_weight</code>: minimum sum of instance weights in a child node</p>
-<p><strong>Native missingness handling.</strong> Tree-based models handle missing values without imputation. At each split, the algorithm learns the optimal direction for missing values — sending them to the left or right child — by evaluating which split direction minimizes the loss on the training data. This is a major practical advantage over neural networks and linear models in omics, where missing data is common (failed assays, below-detection measurements, patient dropout in clinical covariates). The learned missingness direction captures non-random missingness patterns that imputation would destroy: for example, sicker patients systematically missing follow-up measurements is a clinical signal, not noise to be filled in.</p>
-<p>Gradient boosting consistently outperforms random forests on tabular data but is more sensitive to hyperparameter tuning.</p>
-<p><strong>Categorical features: the CatBoost approach.</strong> Standard gradient boosting requires numerical encoding of categorical variables (one-hot for low cardinality, label encoding for high cardinality), but naive encoding introduces target leakage — the label mean of the training data flows into the encoding of test samples. CatBoost solves this with <strong>ordered target statistics</strong>: each category is encoded by the mean target value of previously seen training samples in a random permutation, preventing leakage while preserving categorical structure. For clinical variables (hospital site, treatment arm, genetic ancestry) and experimental metadata (batch, sequencing run), this native handling is both more accurate and simpler than manual encoding.</p>
+<section id="metagenomic-assembly-and-mag-reconstruction" class="level3">
+<h3 class="anchored" data-anchor-id="metagenomic-assembly-and-mag-reconstruction">Metagenomic Assembly and MAG Reconstruction</h3>
+<p>When reference-free analysis is required, reads are assembled <em>de novo</em> into contigs. Two strategies:</p>
+<ul>
+<li><strong>Single-sample assembly:</strong> Assembles reads from one sample independently (MEGAHIT, MetaSPAdes). Produces clean species-level contigs but misses low-abundance taxa without sufficient read depth.</li>
+<li><strong>Co-assembly:</strong> Pools reads from multiple samples before assembly. Recovers rare organisms across samples, but risks generating chimeric contigs if closely related strains from different samples are incorrectly merged.</li>
+</ul>
+<p>Assembled contigs are binned into <strong>Metagenome-Assembled Genomes (MAGs)</strong> using differential coverage (the same organism has consistent depth across samples) and tetranucleotide frequency (closely related organisms share compositional signatures). MAG quality is validated using <strong>CheckM2</strong>, which predicts completeness and contamination based on lineage-specific single-copy marker gene presence and copy number.</p>
 </section>
-<section id="shap-values-explainable-feature-importance" class="level3">
-<h3 class="anchored" data-anchor-id="shap-values-explainable-feature-importance">SHAP Values: Explainable Feature Importance</h3>
-<p>SHAP (SHapley Additive exPlanations) provides <strong>additive feature attribution</strong> based on Shapley values from cooperative game theory. For each prediction, SHAP decomposes it into:</p>
-<p><span class="math display">\[\hat{y}_i = \phi_0 + \sum_{j=1}^p \phi_{ij}\]</span></p>
-<p>where <span class="math inline">\(\phi_0\)</span> is the baseline prediction (mean over training data) and <span class="math inline">\(\phi_{ij}\)</span> is the contribution of feature <span class="math inline">\(j\)</span> to prediction <span class="math inline">\(i\)</span>. Shapley values are the <strong>average marginal contribution</strong> of a feature across all possible feature coalitions — the only additive attribution method satisfying properties of local accuracy, missingness, and consistency.</p>
-<p><strong>SHAP plot types:</strong> - <strong>Summary plot:</strong> Beeswarm showing feature importance and effect direction across all samples. - <strong>Dependence plot:</strong> Feature value vs.&nbsp;SHAP value — reveals non-linear relationships and interaction effects. - <strong>Force plot:</strong> Individual prediction decomposition (used for clinical decision support).</p>
+<section id="functional-annotation" class="level3">
+<h3 class="anchored" data-anchor-id="functional-annotation">Functional Annotation</h3>
+<p><strong>HUMAnN3</strong> maps quality-controlled reads against a nucleotide database (ChocoPhlAn) and a translated protein database (UniRef90). The outputs are gene family abundances (reads-per-kilobase RPK) and pathway coverages (MetaCyc). This enables comparison of microbial community functional capacity across samples.</p>
+<p><strong>Metatranscriptomics:</strong> Total RNA shotgun sequencing measures active transcription in a community. Ribosomal RNA depletion is required to enrich for mRNA. Metatranscriptomics integrated with metagenomics reveals which genes are expressed, not just which genes are present.</p>
+</section>
+<section id="compositional-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="compositional-statistics">Compositional Statistics</h3>
+<p>Microbiome data is <strong>compositional</strong>: sequencing produces relative, not absolute, abundances. The sum of all taxon proportions is always 1 (or 100%). Applying standard statistical tests that assume independence (t-test, Wilcoxon) to compositional data violates the Aitchison simplex geometry and produces spurious results.</p>
+<p><strong>Log-ratio transformations</strong> project compositional data into Euclidean space where standard linear statistics are valid:</p>
+<ul>
+<li><strong>Centered Log-Ratio (CLR):</strong> <span class="math inline">\(\text{CLR}(x_i) = \ln\left(\frac{x_i}{g(\mathbf{x})}\right)\)</span>, where <span class="math inline">\(g(\mathbf{x})\)</span> is the geometric mean of all components.</li>
+</ul>
+<p>Compositionally robust differential abundance tools:</p>
+<ul>
+<li><strong>ALDEx2:</strong> Monte Carlo Dirichlet samples to propagate compositional uncertainty through CLR transformation before differential abundance testing.</li>
+<li><strong>ANCOM-BC:</strong> Models absolute abundance as the difference between observed log relative abundance and sample-specific bias; tests W-statistic (fraction of log-ratio comparisons significant).</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>Variable importance tells you <strong>which</strong> features matter, but not <strong>how</strong>. A gene may have high importance because high expression → high risk, or because low expression → high risk. SHAP dependence plots reveal non-linear relationships and interaction effects: a gene that is neutral at low expression but strongly predictive at high expression is biologically different from one with a linear effect.</p>
-<p>An interaction detected by SHAP (e.g., gene A’s effect depends on gene B’s expression) generates a testable biological hypothesis: are the two genes co-regulated? Do they share a pathway? Do their proteins physically interact? Each SHAP interaction should be traceable to a known biological relationship.</p>
-<p>For regulatory compliance (FDA, EMA), model explainability is increasingly required for clinical decision support. SHAP-based explanations satisfy this requirement for tree-based models, making gradient boosting with SHAP the default choice for clinically deployable ML.</p>
-<hr>
-</section>
-<section id="current-landscape-q2-2026" class="level2">
-<h2 class="anchored" data-anchor-id="current-landscape-q2-2026">Current Landscape (Q2 2026)</h2>
-<ul>
-<li><strong>CatBoost</strong> (categorical feature-native boosting) handles clinical variables (sex, ethnicity, treatment arm) without manual one-hot encoding, preserving categorical structure.</li>
-<li><strong>Explainable boosting machines (EBM)</strong> provide fully additive interpretable models that match XGBoost accuracy on tabular data while being fully decomposable into individual feature functions — making the model itself interpretable rather than requiring post-hoc explanation.</li>
-<li><strong>SHAP interaction values</strong> are being validated against known biology: a detected interaction should be traceable to a known pathway or physical interaction before being reported.</li>
-<li><strong>Regulatory guidelines</strong> (FDA, EMA) increasingly require model explainability for clinical decision support, making SHAP/EBM the default choice over black-box neural networks for clinical applications.</li>
-</ul>
+<p>The human microbiome is not a single entity; it varies by body site (gut, skin, oral, vaginal), host genetics, diet, medication history, and disease state. A microbiome study reporting “healthy vs.&nbsp;disease” differences without controlling for antibiotic use, dietary fiber intake, geographic origin, and sequencing batch is not interpretable. The effect of dietary fiber on gut Bacteroidetes:Firmicutes ratio exceeds the difference between healthy and disease states in most inflammatory bowel disease studies.</p>
+<p><strong>The Reviewer Mindset:</strong> Never apply standard statistical tests to raw relative abundance columns. If <em>Bacteroides</em> increases as a proportion, every other taxon’s relative abundance decreases automatically; even if their absolute cell counts are unchanged. Alpha diversity (Shannon entropy, species richness) and beta diversity (Bray-Curtis dissimilarity, UniFrac distance) capture distinct signals: alpha diversity describes within-sample richness; beta diversity describes between-sample compositional distance. These must not be conflated. A single MAG does not constitute evidence of an organism’s functional role in the community; its ecological role requires metatranscriptomic confirmation and ideally a germ-free mouse colonization experiment.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
-<ol type="1">
-<li><strong>Decision trees</strong> partition feature space to minimize impurity — prone to overfitting without pruning.</li>
-<li><strong>Random forests</strong> average de-correlated trees (bagging + random feature subsets) for variance reduction.</li>
-<li><strong>Gradient boosting</strong> builds trees sequentially to correct residuals — dominant for tabular data (XGBoost, LightGBM, CatBoost).</li>
-<li><strong>SHAP values</strong> decompose predictions into additive feature contributions with theoretical guarantees — essential for biological interpretation.</li>
-</ol>
-<section id="required-reading" class="level3">
-<h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
-<ul>
-<li>Breiman: “Random Forests” (Machine Learning, 2001).</li>
-<li>Lundberg &amp; Lee: “A Unified Approach to Interpreting Model Predictions” (NeurIPS, 2017).</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> For tabular data, start with a tree. Neural networks will rarely beat gradient boosting.</p>
-</blockquote>
+<p>The uncultured majority of the microbial world is accessible only through shotgun metagenomics. The primary analytical challenges are compositional statistics, assembly chimeras, and functional dark matter (unknown protein families). Every microbiome study must demonstrate control for confounders and compositional-aware statistical methods before its results are interpretable.</p>
+<p><strong>Required Reading:</strong> Quince et al.: “Shotgun metagenomics, from sampling to analysis” (<em>Nature Biotechnology</em>, 2017). Gloor et al.: “Microbiome datasets are compositional: and this is not optional” (<em>Frontiers in Microbiology</em>, 2017). Parks et al.: “CheckM2: a rapid, scalable and accurate tool for assessing microbial genome quality” (<em>Nature Methods</em>, 2023).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -845,17 +856,41 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-5-ai/chapter-21.html" class="pagination-link" aria-label="Chapter 21: Machine Learning Fundamentals for Biology">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 21: Machine Learning Fundamentals for Biology</span></span>
+      <a href="../tier-2-core-omics/chapter-12.html" class="pagination-link" aria-label="Chapter 12: Epigenomics and Hidden Signals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 12: Epigenomics and Hidden Signals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-5-ai/chapter-23.html" class="pagination-link" aria-label="Chapter 23: Neural Networks and Deep Learning in Biology">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 23: Neural Networks and Deep Learning in Biology</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-2-core-omics/chapter-14.html" class="pagination-link" aria-label="Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics">
+        <span class="nav-page-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Qingzhou Zhang. All rights reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+<p>Home</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<p>Omics with Johnson 101</p>
+</div>
+  </div>
+</footer>
 
 
 

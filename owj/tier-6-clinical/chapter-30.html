@@ -15,8 +15,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 30: Career Dynamics and the Bioinformatic Mindset – Omics with Johnson 101</title>
+<title>Chapter 30: Pathogen Genomics and Genomic Epidemiology – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,6 +84,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -104,6 +134,10 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book"> 
+<span class="menu-text">About</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-foundations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Foundations</span>
@@ -164,6 +198,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
  <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
+ <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
+ <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -172,16 +214,16 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Spatial Transcriptomics and Coordinate Math</span></a>
+ <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+ <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+ <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
     </ul>
   </li>
@@ -191,24 +233,24 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Multi-Omics Integration</span></a>
+ <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: 3D Genome Architecture</span></a>
+ <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Perturb-seq and Functional Genomics</span></a>
+ <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
@@ -218,24 +260,24 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Machine Learning Fundamentals for Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Tree-Based Models and Interpretable ML</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Neural Networks and Deep Learning in Biology</span></a>
+ <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Foundation Models and Generative AI in Biology</span></a>
+ <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: DNA Foundation Models and Genomic AI</span></a>
+ <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
+ <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
+ <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
   </li>  
     </ul>
   </li>
@@ -245,28 +287,28 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
         <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-27.html">
- <span class="dropdown-text">Chapter 27: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Pathogen Genomics and Genomic Epidemiology</span></a>
+ <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></a>
+ <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a>
+ <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: Epilogue — The Unresolved Problems</span></a>
+ <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
+ <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
+ <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
   </li>  
     </ul>
   </li>
@@ -280,6 +322,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -295,15 +342,12 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-five-career-routes" id="toc-the-five-career-routes" class="nav-link" data-scroll-target="#the-five-career-routes">The Five Career Routes</a></li>
-  <li><a href="#the-t-shaped-bioinformatician" id="toc-the-t-shaped-bioinformatician" class="nav-link" data-scroll-target="#the-t-shaped-bioinformatician">The T-Shaped Bioinformatician</a></li>
-  <li><a href="#navigating-academia-vs.-biotech-vs.-pharma" id="toc-navigating-academia-vs.-biotech-vs.-pharma" class="nav-link" data-scroll-target="#navigating-academia-vs.-biotech-vs.-pharma">Navigating Academia vs.&nbsp;Biotech vs.&nbsp;Pharma</a></li>
-  <li><a href="#the-replication-mandate" id="toc-the-replication-mandate" class="nav-link" data-scroll-target="#the-replication-mandate">The Replication Mandate</a></li>
-  <li><a href="#separating-signal-from-hype" id="toc-separating-signal-from-hype" class="nav-link" data-scroll-target="#separating-signal-from-hype">Separating Signal from Hype</a></li>
-  <li><a href="#open-science-as-career-infrastructure" id="toc-open-science-as-career-infrastructure" class="nav-link" data-scroll-target="#open-science-as-career-infrastructure">Open Science as Career Infrastructure</a></li>
+  <li><a href="#the-molecular-clock" id="toc-the-molecular-clock" class="nav-link" data-scroll-target="#the-molecular-clock">The Molecular Clock</a></li>
+  <li><a href="#phylogenetic-trees-and-phylodynamics" id="toc-phylogenetic-trees-and-phylodynamics" class="nav-link" data-scroll-target="#phylogenetic-trees-and-phylodynamics">Phylogenetic Trees and Phylodynamics</a></li>
+  <li><a href="#antimicrobial-resistance-amr-detection" id="toc-antimicrobial-resistance-amr-detection" class="nav-link" data-scroll-target="#antimicrobial-resistance-amr-detection">Antimicrobial Resistance (AMR) Detection</a></li>
+  <li><a href="#genomic-surveillance-infrastructure" id="toc-genomic-surveillance-infrastructure" class="nav-link" data-scroll-target="#genomic-surveillance-infrastructure">Genomic Surveillance Infrastructure</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
-  <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a></li>
   </ul>
 </nav>
@@ -311,9 +355,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-26.html">TIER 6: Translational and Clinical Genomics</a></li><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-30.html"><span class="chapter-title">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-28.html">TIER 6: Translational and Clinical Genomics</a></li><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-30.html"><span class="chapter-title">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 30: Career Dynamics and the Bioinformatic Mindset</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></h1>
 </div>
 
 
@@ -321,7 +365,19 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 5, 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 19, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -331,65 +387,50 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> The Tools Will Change, The Principles Will Not</p>
+<p><strong>Johnson’s First Principle:</strong> The Mutation Rate is a Molecular Clock</p>
 </blockquote>
-<p>Every tool you learn today will be obsolete in three years. The math and physics you learn in this curriculum will serve you for your entire career. Software engineering discipline is what separates a student from a professional.</p>
+<p>Every replication introduces errors. In a virus with a genome of 10,000 bases and a mutation rate of <span class="math inline">\(10^{-4}\)</span> per base per replication, each infected individual carries a slightly different viral population. These mutations accumulate over time, providing a record of transmission history, geographic spread, and evolutionary adaptation.</p>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-five-career-routes" class="level3">
-<h3 class="anchored" data-anchor-id="the-five-career-routes">The Five Career Routes</h3>
-<p><strong>Route 1: Systems Biologist</strong> — Integrating multi-omics at scale, understanding emergent properties of biological networks. Requires depth in statistics and linear algebra. Home: academic core facilities, pharma research.</p>
-<p><strong>Route 2: Algorithmic Pioneer</strong> — Developing new algorithms for pangenomics, long-read assembly, spatial analysis. Requires deep CS background (data structures, complexity theory). Home: top-tier CS departments, genome centers, biotech R&amp;D.</p>
-<p><strong>Route 3: Planetary-Scale Architect</strong> — Engineering at the scale of population genomics (All of Us, UK Biobank). Requires distributed systems, cloud architecture, workflow engineering. Home: sequencing centers, cloud providers, large biobanks.</p>
-<p><strong>Route 4: Synthetic Architect</strong> — Designing new biological systems (synbio, protein design, genetic circuit engineering). Requires ML/DL + molecular biology fluency. Home: synthetic biology startups, foundries.</p>
-<p><strong>Route 5: Clinical Translationalist</strong> — Bridging genome discovery to patient care (genetic counseling, precision medicine). Requires clinical genomics, regulatory knowledge (CLIA/CAP), communication skills. Home: hospital genetics departments, diagnostic labs.</p>
+<section id="the-molecular-clock" class="level3">
+<h3 class="anchored" data-anchor-id="the-molecular-clock">The Molecular Clock</h3>
+<p>The molecular clock is the rate at which mutations accumulate in a genome over time. For RNA viruses (SARS-CoV-2, influenza, HIV), the substitution rate is approximately <span class="math inline">\(10^{-3}\)</span> to <span class="math inline">\(10^{-4}\)</span> substitutions per site per year; roughly 1-2 mutations per genome per month for SARS-CoV-2.</p>
+<p>This rate is fast enough to track transmission chains in near-real-time, but slow enough that sequences from the same outbreak cluster together phylogenetically.</p>
 </section>
-<section id="the-t-shaped-bioinformatician" class="level3">
-<h3 class="anchored" data-anchor-id="the-t-shaped-bioinformatician">The T-Shaped Bioinformatician</h3>
-<p>The most durable career model in computational biology is the T-shape: deep expertise in one domain (the vertical bar) — statistical genetics, ML for genomics, clinical pipeline engineering, or another core area — complemented by broad competency across adjacent fields (the horizontal bar). The depth ensures you can solve non-trivial problems in your core area; the breadth enables effective collaboration across disciplines ranging from molecular biology to software engineering. A T-shaped profile is more career-resilient than narrow specialization (vulnerable to technology shifts) or pure breadth (the “jack of all trades” trap that prevents deep contributions).</p>
+<section id="phylogenetic-trees-and-phylodynamics" class="level3">
+<h3 class="anchored" data-anchor-id="phylogenetic-trees-and-phylodynamics">Phylogenetic Trees and Phylodynamics</h3>
+<p>Phylogenetic reconstruction (IQ-TREE, FastTree, RAxML-NG) builds a tree relating pathogen sequences. Branch lengths reflect genetic distance; tree topology reflects transmission relationships.</p>
+<p><strong>Substitution models</strong> specify the relative rates of different nucleotide changes during evolution. The general time-reversible (GTR) model (the standard for most pathogen phylogenies) estimates six exchangeability rate parameters (transitions like A↔︎G are typically 2-5× faster than transversions like A↔︎C) and accounts for variable rates across sites via a gamma distribution (GTR+Γ). The choice of model affects branch length estimation: an overly simple model underestimates divergence at saturated sites, producing artificially short terminal branches.</p>
+<p>Phylodynamics combines phylogenetics with epidemiology: the shape of the tree encodes information about population dynamics. A “star-shaped” tree (many short branches radiating from a single point) indicates rapid exponential growth. A “ladder-shaped” tree indicates sustained transmission with ongoing lineage turnover.</p>
+<p>Molecular clock dating (BEAST, TreeTime) calibrates the tree with dates: tip dates (sampling dates of each sequence) and a clock model estimate the time to most recent common ancestor (tMRCA) for any clade. Three clock models differ in their assumptions: a <strong>strict clock</strong> assumes all lineages evolve at the same rate (rarely realistic for real pathogen populations); a <strong>relaxed lognormal clock</strong> allows each branch to have a different rate drawn from a lognormal distribution (the default for most phylodynamic analyses); and a <strong>relaxed exponential clock</strong> draws rates from an exponential distribution for simpler parameterization. The choice of clock model affects tMRCA estimates, using a strict clock when rates vary across lineages systematically biases divergence dates toward the present.</p>
 </section>
-<section id="navigating-academia-vs.-biotech-vs.-pharma" class="level3">
-<h3 class="anchored" data-anchor-id="navigating-academia-vs.-biotech-vs.-pharma">Navigating Academia vs.&nbsp;Biotech vs.&nbsp;Pharma</h3>
-<p>Academia offers freedom to explore fundamental questions but requires grant funding and has increasing pressure to produce. Biotech startups offer equity and speed but have high failure rates and require broad skillsets. Large pharma offers stability and resources but has slower pace and more bureaucracy.</p>
-<p>The key career decision is not which sector, but which problem you want to solve. The best bioinformaticians follow the problem, not the sector.</p>
+<section id="antimicrobial-resistance-amr-detection" class="level3">
+<h3 class="anchored" data-anchor-id="antimicrobial-resistance-amr-detection">Antimicrobial Resistance (AMR) Detection</h3>
+<p>Resistance arises through point mutations (target modification), horizontal gene transfer (acquisition of resistance genes on plasmids), or efflux pump upregulation.</p>
+<p>Computational detection: align sequencing reads to the CARD (Comprehensive Antibiotic Resistance Database) or ResFinder databases. Horizontal gene transfer (HGT) detection requires identifying mobile genetic elements (transposases, integrases) flanking resistance genes in metagenomic or isolate assemblies.</p>
 </section>
-<section id="the-replication-mandate" class="level3">
-<h3 class="anchored" data-anchor-id="the-replication-mandate">The Replication Mandate</h3>
-<p>The most important skill in bioinformatics is not programming — it is the extreme patience required to independently replicate confusing paper methodologies. <strong>The reproducibility crisis by the numbers:</strong> estimates suggest 50-85% of published computational biology results cannot be fully reproduced due to missing code, undocumented parameters, unavailable data, or procedural errors. Before building on a published result, you must be able to reproduce it. If you cannot, the original paper may be wrong, and any work built on it is wasted.</p>
-<p>A practical career strategy: maintain a “reproducibility notebook” for each method you use, documenting exactly which parameters, versions, preprocessing steps, and software environments were required to match the published results. This notebook becomes your personal benchmark for evaluating new tools and the starting point for your own analyses.</p>
-</section>
-<section id="separating-signal-from-hype" class="level3">
-<h3 class="anchored" data-anchor-id="separating-signal-from-hype">Separating Signal from Hype</h3>
-<p>How to evaluate a new method: does it outperform simple baselines on held-out data? Has it been validated by independent groups? Does the improvement justify the added complexity?</p>
-<p>Common patterns of hype: claims without negative controls, performance reported only on the training set, cherry-picked examples, no comparison to existing methods, no discussion of failure cases.</p>
-</section>
-<section id="open-science-as-career-infrastructure" class="level3">
-<h3 class="anchored" data-anchor-id="open-science-as-career-infrastructure">Open Science as Career Infrastructure</h3>
-<p>Preprints, open code repositories, and public data are the expected standard in computational biology. Every published analysis should include: the complete codebase (GitHub with permanent DOI via Zenodo), a containerized environment (Dockerfile or Singularity definition), and all intermediate processed data (not just final figures). Papers providing these artifacts receive more citations, generate more collaboration opportunities, and are more frequently built upon by other groups — building a cumulative reputation advantage over closed-science equivalents.</p>
+<section id="genomic-surveillance-infrastructure" class="level3">
+<h3 class="anchored" data-anchor-id="genomic-surveillance-infrastructure">Genomic Surveillance Infrastructure</h3>
+<p>Nextstrain provides real-time phylogenetic tracking of pathogen evolution. Built on Augur (bioinformatics pipeline: alignment → tree → dating → annotation) and Auspice (visualization), it enabled the first real-time genomic epidemiology during the COVID-19 pandemic.</p>
+<p>Essential concepts: lineage nomenclature (Pango lineages for SARS-CoV-2), defining mutations for variants of concern, monitoring immune escape mutations in spike protein.</p>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>The question “should I use method A or method B?” is almost always secondary to “does this experiment answer the biological question?” A perfectly executed analysis of the wrong experiment is worthless. Learn to evaluate experimental design before writing a single line of code.</p>
-<p>Imposter syndrome is pervasive in computational biology because the field is too vast for any single human to master. The field spans biochemistry, molecular biology, statistics, computer science, machine learning, and clinical medicine. No one knows all of it. The best practitioners know their gaps and know how to collaborate across disciplines.</p>
-</section>
-<section id="current-landscape" class="level2">
-<h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
-<ul>
-<li>The AI-assisted bioinformatics workflow is becoming standard: LLMs for code generation, but with the critical requirement that the scientist validates all outputs.</li>
-<li>Portfolio-based hiring (GitHub + publications + reproducible analyses) is replacing credential-based hiring in industry.</li>
-<li>Academic bioinformatics core facilities are increasingly adopting service-based models with defined SLAs for pipeline work.</li>
-<li>The most in-demand skill in 2026 is the ability to communicate biological findings to non-computational audiences — not the ability to build the most sophisticated model.</li>
-</ul>
+<p>A phylogenetic tree of pathogen sequences does not directly prove transmission direction; it proves relatedness. A cluster of identical sequences from patients in the same hospital is strong evidence of nosocomial transmission, but identical sequences can also arise from a common unsampled source.</p>
+<p><strong>Recombination breaks the tree assumption.</strong> Many pathogens (HIV, SARS-CoV-2, influenza) undergo recombination or reassortment, producing genomes whose segments have distinct evolutionary histories. A bifurcating tree cannot represent a genome that is half lineage A and half lineage B; recombination creates phylogenetic networks, not trees. Recombination detection tools (RDP5, GARD) identify breakpoints and partition the alignment into regions with distinct phylogenies before tree inference. Ignoring recombination produces misleading branch lengths and false-positive signals of adaptive evolution.</p>
+<p>Immune escape mutations must be interpreted in context: a mutation that reduces antibody neutralization in vitro may or may not affect vaccine effectiveness in vivo. The correlate of protection is not simply the number of mutations but their effect on the specific epitopes targeted by vaccine-induced immunity.</p>
+<p>The molecular clock has a resolution limit. If the mutation rate is 1 per genome per month, sequences sampled days apart may be indistinguishable, making within-outbreak transmission inference ambiguous.</p>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ul>
-<li>All references from Chapters 1-29</li>
-<li>Markowetz: “All biology is computational biology” (PLOS Biology, 2017)</li>
+<li>Hadfield et al.: “Nextstrain: real-time tracking of pathogen evolution” (Bioinformatics, 2018)</li>
+<li>Rambaut et al.: “A dynamic nomenclature proposal for SARS-CoV-2 lineages to assist genomic epidemiology” (Nature Microbiology, 2020)</li>
+<li>Jia et al.: “CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database” (NAR, 2023)</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> The tools will change every three years. If you understand the math and the physics, you are immune to obsolescence.</p>
+<p><strong>Johnson’s Rule:</strong> A phylogenetic tree is a hypothesis of relatedness, not a proven transmission chain. The molecular clock only ticks so fast.</p>
 </blockquote>
 
 
@@ -798,17 +839,41 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-6-clinical/chapter-29.html" class="pagination-link" aria-label="Chapter 29: The Capstone — Architecting the Clinical Pipeline">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 29: The Capstone — Architecting the Clinical Pipeline</span></span>
+      <a href="../tier-6-clinical/chapter-29.html" class="pagination-link" aria-label="Chapter 29: Cancer Genomics and Somatic Evolution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 29: Cancer Genomics and Somatic Evolution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-6-clinical/chapter-31.html" class="pagination-link" aria-label="Chapter 31: Epilogue — The Unresolved Problems">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 31: Epilogue — The Unresolved Problems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-6-clinical/chapter-31.html" class="pagination-link" aria-label="Chapter 31: The Capstone (Architecting the Clinical Pipeline)">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 31: The Capstone (Architecting the Clinical Pipeline)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Qingzhou Zhang. All rights reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+<p>Home</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../index.html#about-this-book">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<p>Omics with Johnson 101</p>
+</div>
+  </div>
+</footer>
 
 
 
