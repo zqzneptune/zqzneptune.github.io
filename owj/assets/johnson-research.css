@@ -140,6 +140,10 @@ a:hover {
   font-size: 0.9rem;
 }
 
+.quarto-title-meta {
+  display: none !important;
+}
+
 /* ==========================================================================
    Table of Contents
    ========================================================================== */
@@ -1069,4 +1073,91 @@ strong:hover, b:hover {
   box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3);
   transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   Buy Me a Coffee CTA
+   ========================================================================== */
+.bmc-cta-container {
+  margin: var(--jp-space-3xl) 0 var(--jp-space-xl) 0;
+  border-top: 1px solid var(--jp-border);
+  padding-top: var(--jp-space-2xl);
+}
+
+.bmc-cta-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--jp-surface);
+  border: 1px solid var(--jp-border);
+  border-radius: 8px;
+  padding: var(--jp-space-xl);
+  gap: var(--jp-space-xl);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.bmc-cta-card:hover {
+  border-color: var(--jp-primary-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bmc-cta-content {
+  flex: 1;
+}
+
+.bmc-cta-title {
+  font-family: var(--jp-font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--jp-primary);
+  margin-top: 0;
+  margin-bottom: var(--jp-space-xs);
+}
+
+.bmc-cta-text {
+  font-family: var(--jp-font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--jp-text-secondary);
+  margin-bottom: 0;
+}
+
+.bmc-cta-button {
+  display: inline-block;
+  font-family: var(--jp-font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white !important;
+  background-color: var(--jp-primary);
+  padding: var(--jp-space-sm) var(--jp-space-lg);
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.bmc-cta-button:hover {
+  background-color: var(--jp-primary-light);
+  color: white !important;
+}
+
+/* Hide BMC CTA on the landing page where the slides exist */
+body:has(.hero-slideshow) .bmc-cta-container {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .bmc-cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--jp-space-lg);
+    gap: var(--jp-space-md);
+  }
+  
+  .bmc-cta-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 

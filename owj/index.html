@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tier-1-foundations/chapter-01.html" rel="next">
+<link href="./tier-1-foundations/chapter-00.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="assets/johnson-research.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html#about-this-book"> 
+    <a class="nav-link" href="./tier-1-foundations/chapter-00.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -114,6 +114,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Foundations</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-foundations">    
+        <li>
+    <a class="dropdown-item" href="./tier-1-foundations/chapter-00.html">
+ <span class="dropdown-text">Lecture 0: The First Principles Paradigm</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./tier-1-foundations/chapter-01.html">
  <span class="dropdown-text">Chapter 1: The Bioinformatic Computing Environment</span></a>
@@ -306,23 +310,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#the-six-tiers-of-mastery" id="toc-the-six-tiers-of-mastery" class="nav-link active" data-scroll-target="#the-six-tiers-of-mastery">The Six Tiers of Mastery</a></li>
-  <li><a href="#choose-your-pathway" id="toc-choose-your-pathway" class="nav-link" data-scroll-target="#choose-your-pathway">Choose Your Pathway</a></li>
-  <li><a href="#about-this-book" id="toc-about-this-book" class="nav-link" data-scroll-target="#about-this-book">About This Book</a>
-  <ul class="collapse">
-  <li><a href="#the-philosophical-mandate-first-principles-first" id="toc-the-philosophical-mandate-first-principles-first" class="nav-link" data-scroll-target="#the-philosophical-mandate-first-principles-first">The Philosophical Mandate: First Principles First</a></li>
-  <li><a href="#curriculum-architecture" id="toc-curriculum-architecture" class="nav-link" data-scroll-target="#curriculum-architecture">Curriculum Architecture</a></li>
-  <li><a href="#the-reviewer-mindset" id="toc-the-reviewer-mindset" class="nav-link" data-scroll-target="#the-reviewer-mindset">The Reviewer Mindset</a></li>
-  <li><a href="#structure-of-the-chapters" id="toc-structure-of-the-chapters" class="nav-link" data-scroll-target="#structure-of-the-chapters">Structure of the Chapters</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -353,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 4, 2026</p>
     </div>
   </div>
     
@@ -424,14 +412,14 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
-let slideInterval = setInterval(() => moveSlide(1), 8000);
+let slideInterval = setInterval(() => moveSlide(1), 4300);
 
 document.querySelector('.hero-slideshow').addEventListener('mouseenter', () => {
   clearInterval(slideInterval);
 });
 
 document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
-  slideInterval = setInterval(() => moveSlide(1), 8000);
+  slideInterval = setInterval(() => moveSlide(1), 4300);
 });
 </script>
 
@@ -444,196 +432,24 @@ document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
   </ul>
 </div>
 
-<section id="the-six-tiers-of-mastery" class="level2">
-<h2 class="anchored" data-anchor-id="the-six-tiers-of-mastery">The Six Tiers of Mastery</h2>
-<div class="tiers-grid">
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 1</span>
-    <h3 class="tier-card-title anchored">Foundations</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-1-foundations/chapter-01.html">Ch 1: Computing Environment</a></li>
-    <li><a href="./tier-1-foundations/chapter-02.html">Ch 2: Reproducibility &amp; DAGs</a></li>
-    <li><a href="./tier-1-foundations/chapter-03.html">Ch 3: Programming Paradigms</a></li>
-    <li><a href="./tier-1-foundations/chapter-04.html">Ch 4: Probability Distributions</a></li>
-    <li><a href="./tier-1-foundations/chapter-05.html">Ch 5: Linear Algebra &amp; SVD</a></li>
-    <li><a href="./tier-1-foundations/chapter-06.html">Ch 6: Statistical Inference</a></li>
-  </ul>
-</div>
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 2</span>
-    <h3 class="tier-card-title anchored">Core Omics</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-2-core-omics/chapter-07.html">Ch 7: Sequencing Physics</a></li>
-    <li><a href="./tier-2-core-omics/chapter-08.html">Ch 8: Sequence Alignment</a></li>
-    <li><a href="./tier-2-core-omics/chapter-09.html">Ch 9: Assembly Algorithms</a></li>
-    <li><a href="./tier-2-core-omics/chapter-10.html">Ch 10: Variant Calling &amp; HMMs</a></li>
-    <li><a href="./tier-2-core-omics/chapter-11.html">Ch 11: Transcriptomics &amp; EM</a></li>
-    <li><a href="./tier-2-core-omics/chapter-12.html">Ch 12: Epigenomics Signals</a></li>
-    <li><a href="./tier-2-core-omics/chapter-13.html">Ch 13: Metagenomics</a></li>
-    <li><a href="./tier-2-core-omics/chapter-14.html">Ch 14: GWAS &amp; Genotypics</a></li>
-  </ul>
-</div>
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 3</span>
-    <h3 class="tier-card-title anchored">High-Resolution</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-3-high-res/chapter-15.html">Ch 15: Single-Cell RNA-seq</a></li>
-    <li><a href="./tier-3-high-res/chapter-16.html">Ch 16: Trajectory &amp; RNA Velocity</a></li>
-    <li><a href="./tier-3-high-res/chapter-17.html">Ch 17: Spatial Transcriptomics</a></li>
-  </ul>
-</div>
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 4</span>
-    <h3 class="tier-card-title anchored">Systems Biology</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-4-systems/chapter-18.html">Ch 18: Network Analysis</a></li>
-    <li><a href="./tier-4-systems/chapter-19.html">Ch 19: Mass Spec &amp; Proteomics</a></li>
-    <li><a href="./tier-4-systems/chapter-20.html">Ch 20: Multi-Omics Integration</a></li>
-    <li><a href="./tier-4-systems/chapter-21.html">Ch 21: 3D Genome &amp; Hi-C</a></li>
-    <li><a href="./tier-4-systems/chapter-22.html">Ch 22: Perturb-seq &amp; Genomics</a></li>
-  </ul>
-</div>
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 5</span>
-    <h3 class="tier-card-title anchored">AI &amp; ML</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-5-ai/chapter-23.html">Ch 23: ML Fundamentals</a></li>
-    <li><a href="./tier-5-ai/chapter-24.html">Ch 24: Tree-Based Models</a></li>
-    <li><a href="./tier-5-ai/chapter-25.html">Ch 25: Neural Networks</a></li>
-    <li><a href="./tier-5-ai/chapter-26.html">Ch 26: Foundation Models</a></li>
-    <li><a href="./tier-5-ai/chapter-27.html">Ch 27: DNA Foundation Models</a></li>
-  </ul>
-</div>
-
-<div class="tier-card">
-  <div class="tier-card-header">
-    <span class="tier-card-badge">Tier 6</span>
-    <h3 class="tier-card-title anchored">Clinical Genomics</h3>
-  </div>
-  <ul class="tier-card-chapters">
-    <li><a href="./tier-6-clinical/chapter-28.html">Ch 28: ACMG Interpretation</a></li>
-    <li><a href="./tier-6-clinical/chapter-29.html">Ch 29: Cancer Genomics</a></li>
-    <li><a href="./tier-6-clinical/chapter-30.html">Ch 30: Pathogen Genomics</a></li>
-    <li><a href="./tier-6-clinical/chapter-31.html">Ch 31: Clinical Pipeline Design</a></li>
-    <li><a href="./tier-6-clinical/chapter-32.html">Ch 32: Career Dynamics</a></li>
-    <li><a href="./tier-6-clinical/chapter-33.html">Ch 33: Epilogue &amp; Frontiers</a></li>
-  </ul>
-</div>
-
-</div>
-</section>
-<section id="choose-your-pathway" class="level2">
-<h2 class="anchored" data-anchor-id="choose-your-pathway">Choose Your Pathway</h2>
-<div class="cta-banners-container">
-
-<div class="cta-banner">
-  <div class="cta-banner-icon">
-    <span class="cta-banner-icon-bg"><i class="fa-solid fa-dna"></i></span>
-    <h4 class="anchored">Biologists</h4>
-  </div>
-  <div class="cta-banner-content">
-    <p class="cta-banner-text"><strong>Transition from laboratory protocols to statistical code.</strong> Learn the mathematical foundations of biological probability distributions and regression models from the ground up, with biological intuition leading every equation.</p>
-    <a href="./tier-1-foundations/chapter-04.html" class="cta-banner-btn">Start with Probability (Ch 4)</a>
-  </div>
-</div>
-
-<div class="cta-banner">
-  <div class="cta-banner-icon">
-    <span class="cta-banner-icon-bg"><i class="fa-solid fa-terminal"></i></span>
-    <h4 class="anchored">Computer Scientists</h4>
-  </div>
-  <div class="cta-banner-content">
-    <p class="cta-banner-text"><strong>Apply your algorithmic mastery to biological systems.</strong> Skip the software tutorials and dive directly into sequencing physics, Burrows-Wheeler alignments, de novo graph assembly, and deep transformer architectures for DNA.</p>
-    <a href="./tier-2-core-omics/chapter-07.html" class="cta-banner-btn">Dive into Sequencing Physics (Ch 7)</a>
-  </div>
-</div>
-
-<div class="cta-banner">
-  <div class="cta-banner-icon">
-    <span class="cta-banner-icon-bg"><i class="fa-solid fa-stethoscope"></i></span>
-    <h4 class="anchored">Clinicians</h4>
-  </div>
-  <div class="cta-banner-content">
-    <p class="cta-banner-text"><strong>Demystify variant calling pipeline designs and reports.</strong> Gain the rigorous statistical and clinical context necessary to interpret patient genomes, ACMG variant guidelines, and cancer somatic evolutionary dynamics.</p>
-    <a href="./tier-6-clinical/chapter-28.html" class="cta-banner-btn">Explore ACMG Interpretation (Ch 28)</a>
-  </div>
-</div>
-
-<div class="cta-banner">
-  <div class="cta-banner-icon">
-    <span class="cta-banner-icon-bg"><i class="fa-solid fa-graduation-cap"></i></span>
-    <h4 class="anchored">Fresh Students</h4>
-  </div>
-  <div class="cta-banner-content">
-    <p class="cta-banner-text"><strong>Build a complete structural curriculum.</strong> Follow the logical progression tier by tier. Establish computational rigor, master core genomic algorithms, study systems-level biology, and transition into modern clinical applications.</p>
-    <a href="./tier-1-foundations/chapter-01.html" class="cta-banner-btn">Start from the Beginning (Ch 1)</a>
-  </div>
-</div>
-
-</div>
-</section>
-<section id="about-this-book" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-book">About This Book</h2>
-<section id="the-philosophical-mandate-first-principles-first" class="level3">
-<h3 class="anchored" data-anchor-id="the-philosophical-mandate-first-principles-first">The Philosophical Mandate: First Principles First</h3>
-<p>Modern biology is a quantitative science. The transition from classical observational biology to high-throughput genomic science has transformed the discipline into one dominated by physical chemistry, algorithmic logic, and statistical inference.</p>
-<p>Most tutorials and manuals in bioinformatics focus on the <strong>syntax</strong> of software tools: how to run a command, which flags to pass, and how to format the input. <em>Omics with Johnson</em> is built on the opposite premise: that software is transient, but the underlying physical and mathematical principles are permanent.</p>
-<p>Every chapter in this book begins with a <strong>First Principle</strong>: the foundational physical or mathematical truth that justifies the existence of the computational methods discussed. We teach:</p>
-<ul>
-<li><p>The <strong>physics</strong> of the measurement instrument (e.g., fluorescence chemistry, electrical current fluctuations) before the data format.</p></li>
-<li><p>The <strong>mathematics</strong> of the algorithm (e.g., prefix trees, graph theory) before the alignment command.</p></li>
-<li><p>The <strong>statistics</strong> of the probability distribution (e.g., negative binomial overdispersion, singular value decomposition) before the software package.</p></li>
-</ul>
-<p>By understanding the physics and mathematics first, the student stops being a pipeline operator and becomes a computational architect.</p>
-</section>
-<section id="curriculum-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="curriculum-architecture">Curriculum Architecture</h3>
-<p>The book is organized into six progressive tiers spanning 33 chapters, designed to move from hardware and Unix environments to clinical genomics and career dynamics:</p>
-<ol type="1">
-<li><p><strong>Tier 1: Foundations</strong> (Chapters 1–6): Covers the physical computing environment, reproducibility infrastructure, programming paradigms, probability distributions, linear algebra, and statistical inference.</p></li>
-<li><p><strong>Tier 2: Core Omics</strong> (Chapters 7–14): Explores sequencing chemistry, sequence alignment algorithms, genome assembly, variant calling models, transcriptomics, epigenomics, metagenomics, and statistical genetics.</p></li>
-<li><p><strong>Tier 3: High-Resolution</strong> (Chapters 15–17): Covers single-cell RNA-seq, trajectory inference, spatial transcriptomics, and cellular coordinate mathematics.</p></li>
-<li><p><strong>Tier 4: Systems</strong> (Chapters 18–22): Discusses networks, mass spectrometry proteomics, multi-omic integration, 3D genomics, and Perturb-seq functional genomics.</p></li>
-<li><p><strong>Tier 5: AI/ML</strong> (Chapters 23–27): Demystifies machine learning fundamentals, tree-based models, neural networks, and generative protein/DNA foundation models.</p></li>
-<li><p><strong>Tier 6: Clinical</strong> (Chapters 28–33): Focuses on clinical variant interpretation, cancer genomics, pathogen epidemiology, clinical pipeline validation, career paths, and unresolved problems.</p></li>
-</ol>
-</section>
-<section id="the-reviewer-mindset" class="level3">
-<h3 class="anchored" data-anchor-id="the-reviewer-mindset">The Reviewer Mindset</h3>
-<p>Throughout the chapters, we emphasize the “Reviewer Mindset.” This is the practice of auditing data, questioning defaults, and assuming every published dataset is flawed until it has been independently validated.</p>
-<p>We do not teach the reader to accept results blindly. We teach them to locate batch effects, recognize confounding factors, identify mapping ambiguity, and construct rigorous control checks.</p>
-</section>
-<section id="structure-of-the-chapters" class="level3">
-<h3 class="anchored" data-anchor-id="structure-of-the-chapters">Structure of the Chapters</h3>
-<p>To maintain structural clarity and focus, every chapter adheres to a strict four-part template:</p>
-<ol type="1">
-<li><p><strong>Johnson’s First Principle:</strong> The mathematical or physical bottleneck.</p></li>
-<li><p><strong>Core Concepts:</strong> The algorithmic and statistical foundations.</p></li>
-<li><p><strong>Biological Interpretation:</strong> How to translate computational signals into biological insights, including pitfalls and the Reviewer Mindset.</p></li>
-<li><p><strong>Current Landscape:</strong> A quarterly-refreshed review of recent landmark papers and emerging methods.</p></li>
-</ol>
-<p>This book contains no software tutorials or step-by-step labs. Code is included for illustration only, demonstrating production-grade logic and programming design.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
+<div class="bmc-cta-container">
+  <div class="bmc-cta-card">
+    <div class="bmc-cta-content">
+      <h3 class="bmc-cta-title">Support the Curriculum</h3>
+      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+        curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
+    </div>
+    <div class="bmc-cta-action">
+      <a href="https://buymeacoffee.com/zqzneptune" target="_blank" class="bmc-cta-button">
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
+</div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1038,8 +854,8 @@ document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tier-1-foundations/chapter-01.html" class="pagination-link" aria-label="Chapter 1: The Bioinformatic Computing Environment">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 1: The Bioinformatic Computing Environment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tier-1-foundations/chapter-00.html" class="pagination-link" aria-label="The First Principles Paradigm">
+        <span class="nav-page-text"><span class="chapter-title">The First Principles Paradigm</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1057,14 +873,14 @@ document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./index.html#about-this-book">
+    <a class="nav-link" href="./tier-1-foundations/chapter-00.html">
 <p>About</p>
 </a>
   </li>  
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Omics with Johnson 101</p>
+<p>Last Modified: July 4, 2026</p>
 </div>
   </div>
 </footer>
