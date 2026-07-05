@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -300,6 +291,7 @@ window.Quarto = {
   <li><a href="#weighted-gene-co-expression-network-analysis-wgcna" id="toc-weighted-gene-co-expression-network-analysis-wgcna" class="nav-link" data-scroll-target="#weighted-gene-co-expression-network-analysis-wgcna">Weighted Gene Co-expression Network Analysis (WGCNA)</a></li>
   <li><a href="#protein-protein-interaction-networks" id="toc-protein-protein-interaction-networks" class="nav-link" data-scroll-target="#protein-protein-interaction-networks">Protein-Protein Interaction Networks</a></li>
   <li><a href="#guilt-by-association" id="toc-guilt-by-association" class="nav-link" data-scroll-target="#guilt-by-association">Guilt-by-Association</a></li>
+  <li><a href="#pathway-enrichment-analysis-ora-gsea-and-the-background-gene-set-pitfall" id="toc-pathway-enrichment-analysis-ora-gsea-and-the-background-gene-set-pitfall" class="nav-link" data-scroll-target="#pathway-enrichment-analysis-ora-gsea-and-the-background-gene-set-pitfall">Pathway Enrichment Analysis: ORA, GSEA, and the Background Gene Set Pitfall</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -395,6 +387,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="guilt-by-association">Guilt-by-Association</h3>
 <p>Uncharacterized genes are assigned function based on their network neighbors. If a gene of unknown function is connected to three ribosomal proteins, it is likely involved in translation. This principle is the basis for most automated functional annotation pipelines (GO term prediction, gene function databases).</p>
 <p>The limitation is circularity: well-studied genes have more known interactions and will appear as higher-priority nodes regardless of biological relevance. A gene connected to TP53 is not necessarily functionally related to TP53; it may be connected because TP53 is the most studied protein in biology and interacts with many partners. Network propagation amplifies this bias: seeds are typically well-studied genes, and heat propagates to their well-studied neighbors. Comparing results against degree-matched controls (randomly selecting hubs as seeds) quantifies the extent of literature bias in the propagation result.</p>
+</section>
+<section id="pathway-enrichment-analysis-ora-gsea-and-the-background-gene-set-pitfall" class="level3">
+<h3 class="anchored" data-anchor-id="pathway-enrichment-analysis-ora-gsea-and-the-background-gene-set-pitfall">Pathway Enrichment Analysis: ORA, GSEA, and the Background Gene Set Pitfall</h3>
+<p>Once you have identified differentially expressed genes or network modules, you must translate these lists of gene symbols into biological pathways.</p>
+<ul>
+<li><strong>Over-Representation Analysis (ORA):</strong> Uses the hypergeometric distribution (Fisher’s exact test) to determine if a pathway is enriched in your gene list compared to what you would expect by chance.</li>
+<li><strong>The Background Gene Set Pitfall:</strong> This is the most common statistical error in enrichment analysis. When running Fisher’s exact test, you must specify the “background gene set” (the gene universe). If you default to using the entire human genome (~20,000 genes) as background when your experiment (e.g., cell-type-specific RNA-seq or a targeted proteomics panel) was only capable of detecting 10,000 genes, your analysis is invalid. Using an artificially large background deflates the probability of random overlap, creating highly inflated, false-positive p-values for common pathways. Always restrict your background set to only those genes that were actually detected or assayed in your experiment.</li>
+<li><strong>Gene Set Enrichment Analysis (GSEA):</strong> Avoids arbitrary differential expression thresholds by ranking the entire transcriptome based on a metric (e.g., signal-to-noise ratio or Wald statistic) and calculating a running enrichment score (ES) using a Kolmogorov-Smirnov-like statistic. GSEA captures subtle, coordinated shifts in entire pathways that single-gene tests miss.</li>
+</ul>
 <hr>
 </section>
 </section>

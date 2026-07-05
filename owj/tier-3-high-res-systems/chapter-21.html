@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -299,6 +290,7 @@ window.Quarto = {
   <li><a href="#crispr-cas9-biology" id="toc-crispr-cas9-biology" class="nav-link" data-scroll-target="#crispr-cas9-biology">CRISPR-Cas9 Biology</a></li>
   <li><a href="#pooled-crispr-screens" id="toc-pooled-crispr-screens" class="nav-link" data-scroll-target="#pooled-crispr-screens">Pooled CRISPR Screens</a></li>
   <li><a href="#perturb-seq-crispr-single-cell-readout" id="toc-perturb-seq-crispr-single-cell-readout" class="nav-link" data-scroll-target="#perturb-seq-crispr-single-cell-readout">Perturb-seq: CRISPR + Single-Cell Readout</a></li>
+  <li><a href="#guide-cell-assignment-and-sgrna-leakage" id="toc-guide-cell-assignment-and-sgrna-leakage" class="nav-link" data-scroll-target="#guide-cell-assignment-and-sgrna-leakage">Guide-Cell Assignment and sgRNA Leakage</a></li>
   <li><a href="#interpreting-screen-results" id="toc-interpreting-screen-results" class="nav-link" data-scroll-target="#interpreting-screen-results">Interpreting Screen Results</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
@@ -381,6 +373,14 @@ window.Quarto = {
 <ul>
 <li><p><strong>Mixscape</strong> (Seurat) classifies each cell as “perturbed” or “non-perturbed” for each gRNA using a regularized NB model. A knockout with 50% cutting efficiency means half the cells carrying a gRNA have no functional knockout, classifying them correctly is essential for detecting the perturbation signature. Mixscape uses the expression of a set of target genes (known or learned) to compute a “perturbation score” per cell.</p></li>
 <li><p><strong>scMAGeCK</strong> applies NB testing per gene per perturbation, computing enrichment scores for gene sets rather than individual genes. It aggregates evidence across all cells carrying the same gRNA using a weighted sum approach that accounts for varying knockout efficiency.</p></li>
+</ul>
+</section>
+<section id="guide-cell-assignment-and-sgrna-leakage" class="level3">
+<h3 class="anchored" data-anchor-id="guide-cell-assignment-and-sgrna-leakage">Guide-Cell Assignment and sgRNA Leakage</h3>
+<p>In Perturb-seq, mapping a cell to its transduced sgRNA is not a simple binary lookup. Because multiple guides can contaminate a droplet (due to physical co-encapsulation or ambient sgRNA leakage from lysing cells), we must model the guide assignment statistically.</p>
+<ul>
+<li><strong>The Assignment Heuristic:</strong> We count the number of UMI reads for each sgRNA in each cell. Standard pipelines apply a thresholding heuristic: a cell is assigned to guide <span class="math inline">\(g\)</span> if the count of <span class="math inline">\(g\)</span> exceeds a minimum UMI threshold (typically <span class="math inline">\(\geq 3\)</span>) and comprises a significant fraction (e.g., <span class="math inline">\(\geq 80\%\)</span>) of the cell’s total sgRNA counts.</li>
+<li><strong>Ambient sgRNA Contamination:</strong> In large-scale screens, cell lysis releases free lentiviral sgRNA transcripts into the cell suspension. These ambient transcripts are captured inside droplets containing unrelated cells. Without probabilistic models (such as those in <strong>Mixscape</strong> or <strong>SCEPTRE</strong>) that calculate the probability of guide capture versus ambient background, this “sgRNA leakage” results in mislabeling up to <strong>10-15% of cells</strong>, creating false-negative results and dampening the detected knockout signature.</li>
 </ul>
 </section>
 <section id="interpreting-screen-results" class="level3">

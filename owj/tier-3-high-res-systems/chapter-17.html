@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -297,6 +288,7 @@ window.Quarto = {
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#the-spatial-resolution-tradeoff" id="toc-the-spatial-resolution-tradeoff" class="nav-link" data-scroll-target="#the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</a></li>
+  <li><a href="#cell-segmentation-the-image-based-bottleneck" id="toc-cell-segmentation-the-image-based-bottleneck" class="nav-link" data-scroll-target="#cell-segmentation-the-image-based-bottleneck">Cell Segmentation: The Image-Based Bottleneck</a></li>
   <li><a href="#deconvolution-unmixing-mixed-spots" id="toc-deconvolution-unmixing-mixed-spots" class="nav-link" data-scroll-target="#deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</a></li>
   <li><a href="#neighborhood-analysis-from-spots-to-tissue-organization" id="toc-neighborhood-analysis-from-spots-to-tissue-organization" class="nav-link" data-scroll-target="#neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</a></li>
   <li><a href="#registration-aligning-data-to-anatomy" id="toc-registration-aligning-data-to-anatomy" class="nav-link" data-scroll-target="#registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</a></li>
@@ -392,6 +384,11 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="cell-segmentation-the-image-based-bottleneck" class="level3">
+<h3 class="anchored" data-anchor-id="cell-segmentation-the-image-based-bottleneck">Cell Segmentation: The Image-Based Bottleneck</h3>
+<p>Image-based spatial platforms (such as Xenium and MERFISH) detect the spatial coordinates of individual transcript molecules with sub-micron precision. However, to analyze this data similarly to single-cell RNA-seq, we must group these molecules into cells. This is <strong>cell segmentation</strong>, and it represents the primary bottleneck of image-based spatial analysis.</p>
+<p>We run deep learning segmentation models (such as Cellpose or Mesmer) on nuclear stains (DAPI) and membrane/cytoplasm markers to draw physical boundaries around cells. * <strong>The Segmentation Errors:</strong> These models frequently make two critical errors: 1. <strong>Undersegmentation:</strong> Grouping transcripts from overlapping or adjacent cells into a single boundary, generating a false hybrid “cell type” that does not exist in nature. 2. <strong>Oversegmentation:</strong> Splitting a single large cell into multiple smaller compartments, creating artificial cell fragments (e.g., a “cell” containing only mitochondrial reads and no nucleus). * <strong>Panel Constraint Bias:</strong> Unlike sequencing-based methods, image-based methods rely on pre-designed targeted probe panels. What you do not probe remains invisible. A cell cannot be annotated if its marker genes are not on the panel, and downstream deconvolution or cell type assignment is strictly bounded by these probe design choices.</p>
 </section>
 <section id="deconvolution-unmixing-mixed-spots" class="level3">
 <h3 class="anchored" data-anchor-id="deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</h3>

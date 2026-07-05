@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -302,7 +293,7 @@ window.Quarto = {
   <li><a href="#graph-cleaning-and-resolution" id="toc-graph-cleaning-and-resolution" class="nav-link" data-scroll-target="#graph-cleaning-and-resolution">Graph Cleaning and Resolution</a></li>
   <li><a href="#long-read-assembly" id="toc-long-read-assembly" class="nav-link" data-scroll-target="#long-read-assembly">Long-Read Assembly</a></li>
   <li><a href="#validation-metrics" id="toc-validation-metrics" class="nav-link" data-scroll-target="#validation-metrics">Validation Metrics</a></li>
-  <li><a href="#metagenomic-binning" id="toc-metagenomic-binning" class="nav-link" data-scroll-target="#metagenomic-binning">Metagenomic Binning</a></li>
+  <li><a href="#metagenomic-binning-and-assembly-trade-offs" id="toc-metagenomic-binning-and-assembly-trade-offs" class="nav-link" data-scroll-target="#metagenomic-binning-and-assembly-trade-offs">Metagenomic Binning and Assembly Trade-offs</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -450,14 +441,21 @@ def build_debruijn(reads, k=31):
 <p>N50 is the most widely reported, and most widely misused; assembly metric. High N50 does not mean high quality. A contiguous but systematically wrong assembly (mis-joined repeats, collapsed segmental duplications) can achieve high N50 while having low biological accuracy. BUSCO scores measure conserved gene content, not structural correctness. QV estimation via k-mer comparison (merqury) provides the most honest accuracy assessment by comparing k-mer frequencies between the assembly and raw reads.</p>
 <p><strong>Genome size estimation.</strong> Before assembly, the k-mer frequency spectrum (histogram of k-mer occurrence counts) provides a rapid genome size estimate: <span class="math inline">\(G = \frac{\text{total distinct k-mers}}{\text{peak k-mer coverage}}\)</span>, where the peak in the distribution corresponds to the haploid sequencing depth. If the estimated size deviates substantially from the expected genome size, the data may be contaminated, have unexpected ploidy, or suffer from systematic sequencing bias, catching this before assembly saves hours of failed computation.</p>
 </section>
-<section id="metagenomic-binning" class="level3">
-<h3 class="anchored" data-anchor-id="metagenomic-binning">Metagenomic Binning</h3>
-<p>For metagenomic data, the assembly produces a mixture of contigs from multiple organisms. <strong>Binning</strong> groups contigs into metagenome-assembled genomes (MAGs) using two orthogonal signals:</p>
+<section id="metagenomic-binning-and-assembly-trade-offs" class="level3">
+<h3 class="anchored" data-anchor-id="metagenomic-binning-and-assembly-trade-offs">Metagenomic Binning and Assembly Trade-offs</h3>
+<p>For metagenomic data, the assembly produces a mixture of contigs from multiple organisms. This introduces a major upstream decision: <strong>single-sample assembly vs.&nbsp;co-assembly</strong>.</p>
 <ul>
-<li><p><strong>Composition:</strong> Tetranucleotide frequency (TNF) profiles; each genome has a characteristic oligonucleotide signature that distinguishes it from other genomes in the sample.</p></li>
+<li><strong>Single-Sample Assembly:</strong> Each sample is assembled independently. This reduces graph complexity and minimizes the risk of generating chimeric contigs (mis-joining homologous regions from distinct bacterial strains). However, it lacks the power to reconstruct genomes of low-abundance taxa.</li>
+<li><strong>Co-assembly:</strong> Pooling reads from multiple samples to boost sequencing depth. While co-assembly enables the reconstruction of rare genomes, it introduces extreme computational graph complexity and frequently mis-assembles homologous regions across closely related strains into false, non-existent hybrid contigs. I suggest starting with single-sample assembly and moving to co-assembly only for highly correlated sample cohorts (e.g., longitudinal samples from the same individual).</li>
+</ul>
+<p>Once contigs are assembled, <strong>binning</strong> groups contigs into Metagenome-Assembled Genomes (MAGs) using two orthogonal signals:</p>
+<ul>
+<li><p><strong>Composition:</strong> Tetranucleotide frequency (TNF) profiles; each genome has a characteristic oligonucleotide signature that distinguishes it from other genomes.</p></li>
 <li><p><strong>Coverage:</strong> Differential abundance across samples; contigs from the same genome have correlated coverage profiles across multiple samples or conditions.</p></li>
 </ul>
-<p>Tools: CONCOCT, MetaBAT2, MaxBin2. Validation: CheckM assesses MAG quality via lineage-specific single-copy marker genes. An “essentially complete” MAG requires &gt;90% completeness and &lt;5% contamination. A MAG is a population consensus, not a single genome; it represents the average genome of all cells assigned to that taxonomic bin, and within-bin strain diversity is masked.</p>
+<p>Tools: CONCOCT, MetaBAT2, MaxBin2.</p>
+<p><strong>Validation and Quality Control:</strong> We assess MAG quality using CheckM or CheckM2, which scans for lineage-specific single-copy marker genes. A publication-grade, high-quality draft MAG requires: 1. <strong>Completeness &gt; 90%</strong> (having at least 90% of the lineage-specific single-copy markers present). 2. <strong>Contamination &lt; 5%</strong> (having less than 5% of the marker genes duplicated, which would indicate contamination from other bins).</p>
+<p>A MAG is always a population consensus, not a single clonal genome; it represents the average genome of all cells assigned to that taxonomic bin, and within-bin strain diversity is masked.</p>
 <hr>
 </section>
 </section>
@@ -465,7 +463,7 @@ def build_debruijn(reads, k=31):
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
 <p>A genome assembly is a statistical inference, not a ground truth. The N50 metric is widely misused; a high N50 can mask systematic misassembly (collapsed duplications, mis-joined repeats). BUSCO scores measure conserved gene content, not genome-wide structural correctness. A 95% BUSCO score means 5% of conserved genes are missing or fragmented, but it says nothing about whether the remaining 95% are correctly assembled.</p>
 <p>Short-read-only assemblies of eukaryotic genomes are fundamentally incomplete. The telomere-to-telomere (T2T) human genome required PacBio HiFi (10-25 kb CCS reads) + ultra-long ONT (&gt;100 kb reads) + manual curation with optical maps. Any eukaryotic assembly derived from short reads alone should be treated as a draft.</p>
-<p>For metagenomic binning, completeness and contamination are competing objectives: aggressive binning produces fewer, cleaner MAGs but misses low-abundance organisms; lenient binning captures more diversity at the cost of contaminated bins. A MAG is always a consensus sequence across a population of cells that share the same taxonomic bin, and strain-level variation within the bin is invisible to the consensus.</p>
+<p>For metagenomic binning, completeness and contamination are competing objectives. Co-assembling multiple samples increases assembly depth for rare organisms but risks generating chimeric genomes by mis-assembling homologous regions from distinct bacterial strains; single-sample assembly is safer but misses low-abundance taxa. Validation via CheckM is required to prove a MAG has sufficient marker gene coverage (&gt;90% completeness, &lt;5% contamination) before making downstream ecological inferences.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">

@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -301,6 +292,7 @@ window.Quarto = {
   <li><a href="#canonical-correlation-analysis-cca" id="toc-canonical-correlation-analysis-cca" class="nav-link" data-scroll-target="#canonical-correlation-analysis-cca">Canonical Correlation Analysis (CCA)</a></li>
   <li><a href="#multi-omics-factor-analysis-mofa" id="toc-multi-omics-factor-analysis-mofa" class="nav-link" data-scroll-target="#multi-omics-factor-analysis-mofa">Multi-Omics Factor Analysis (MOFA)</a></li>
   <li><a href="#eqtl-and-pqtl-genetic-anchors-for-causal-inference" id="toc-eqtl-and-pqtl-genetic-anchors-for-causal-inference" class="nav-link" data-scroll-target="#eqtl-and-pqtl-genetic-anchors-for-causal-inference">eQTL and pQTL: Genetic Anchors for Causal Inference</a></li>
+  <li><a href="#weighted-nearest-neighbor-wnn-and-the-integration-benchmark" id="toc-weighted-nearest-neighbor-wnn-and-the-integration-benchmark" class="nav-link" data-scroll-target="#weighted-nearest-neighbor-wnn-and-the-integration-benchmark">Weighted Nearest Neighbor (WNN) and the Integration Benchmark</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -399,6 +391,14 @@ window.Quarto = {
 <p>The GTEx consortium provides the most comprehensive eQTL atlas: ~50 tissues, &gt;800 donors, millions of cis-eQTL associations. The key finding: most GWAS variants are enriched in non-coding regulatory regions and act through gene expression regulation, not protein-coding changes. For a typical complex disease, ~60-80% of GWAS loci have a nearby eQTL in the relevant tissue, implicating gene expression dysregulation as the causal mechanism.</p>
 <p><strong>pQTL</strong> extends this logic to proteins. Protein QTLs are more directly relevant to phenotype (proteins are the functional molecules) but are harder to identify due to smaller sample sizes in proteomics studies and higher measurement variability. The overlap between eQTL and pQTL signals is only ~20-40%; consistent with the mRNA-protein decoupling established in Chapter 17. A variant that affects protein abundance without affecting mRNA is evidence of post-transcriptional regulation.</p>
 <p><strong>Mendelian randomization assumptions.</strong> The causal interpretation of eQTL-mediated GWAS colocalization rests on three assumptions that are violated more often than satisfied: (1) <strong>no horizontal pleiotropy</strong>: the genetic variant affects the disease only through the gene, not through independent pathways; (2) <strong>no linkage disequilibrium confounding</strong>: the true causal variant is the eQTL, not a correlated variant in LD that affects disease through a different gene; and (3) <strong>reliable exposure prediction</strong>: the variant is a strong predictor of gene expression (the <span class="math inline">\(F\)</span>-statistic for the variant-expression association exceeds 10). When these assumptions fail, colocalization produces a false causal inference: the variant and the gene expression appear causally linked to the disease when they are independent correlates of a hidden third factor.</p>
+</section>
+<section id="weighted-nearest-neighbor-wnn-and-the-integration-benchmark" class="level3">
+<h3 class="anchored" data-anchor-id="weighted-nearest-neighbor-wnn-and-the-integration-benchmark">Weighted Nearest Neighbor (WNN) and the Integration Benchmark</h3>
+<p>For single-cell multi-omic datasets where multiple modalities are measured in the <em>same</em> physical cells (e.g., 10x Multiome: RNA + ATAC; CITE-seq: RNA + Surface Protein), we do not need to align separate cells. Instead, we must construct a single joint representation of cell similarity that weights the relative contribution of each modality per cell.</p>
+<ul>
+<li><strong>The WNN Algorithm:</strong> Seurat’s Weighted Nearest Neighbor (WNN) calculates cell-specific modality weights. For each cell, it computes its nearest neighbors in RNA space and predicts its protein/ATAC expression, and vice versa. If a modality’s neighbors accurately predict the other modality’s expression, that modality gets a high weight for that cell. The cell’s final distance to its neighbors is the weighted sum of its distances in the individual modality spaces, enabling the identification of cell states defined by a combination of both signals (e.g., distinguishing CD4+ and CD8+ memory T cells using surface proteins when their mRNA profiles are nearly identical).</li>
+<li><strong>The Integration Benchmark:</strong> When integrating different cells across datasets (diagonal or horizontal multi-omic alignment), researchers frequently rely on anchor-based alignment (like Seurat’s <code>FindTransferAnchors</code> or standard CCA). However, you must approach these methods with extreme skepticism. A rigorous <strong>2026 benchmark study (Genome Biology)</strong> evaluated multi-modal single-cell integration algorithms on complex tissues. The authors found that standard anchor-based workflows mislabeled up to <strong>45% of cells</strong> in complex lineages, leading to a staggering <strong>59% false-positive rate</strong> in downstream cis-regulatory network inferences. The benchmark demonstrated that <strong>optimal transport-based alignment</strong> (which treats integration as an entropy-regularized probability matching problem) significantly outperformed heuristic anchoring, preserving true lineage boundaries without over-aligning distinct populations.</li>
+</ul>
 <hr>
 </section>
 </section>

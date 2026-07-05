@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -301,6 +292,7 @@ window.Quarto = {
   <li><a href="#from-counts-to-structure-the-dimensionality-escape" id="toc-from-counts-to-structure-the-dimensionality-escape" class="nav-link" data-scroll-target="#from-counts-to-structure-the-dimensionality-escape">From Counts to Structure: The Dimensionality Escape</a></li>
   <li><a href="#umap-visualization-not-inference" id="toc-umap-visualization-not-inference" class="nav-link" data-scroll-target="#umap-visualization-not-inference">UMAP: Visualization, Not Inference</a></li>
   <li><a href="#doublet-detection" id="toc-doublet-detection" class="nav-link" data-scroll-target="#doublet-detection">Doublet Detection</a></li>
+  <li><a href="#multi-sample-integration-and-seurat-v5-layer-design" id="toc-multi-sample-integration-and-seurat-v5-layer-design" class="nav-link" data-scroll-target="#multi-sample-integration-and-seurat-v5-layer-design">Multi-Sample Integration and Seurat V5 Layer Design</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -406,6 +398,19 @@ window.Quarto = {
 <li><p>The expected doublet rate is typically 3-8% per 10x channel</p></li>
 </ul>
 <p>Doublets cannot be completely eliminated by loading concentration. Even at optimal loading, physical doublets occur. Joint analysis of combined channels amplifies the problem: a doublet between a T-cell and a macrophage in one channel appears as a valid intermediate state unless detected and removed.</p>
+</section>
+<section id="multi-sample-integration-and-seurat-v5-layer-design" class="level3">
+<h3 class="anchored" data-anchor-id="multi-sample-integration-and-seurat-v5-layer-design">Multi-Sample Integration and Seurat V5 Layer Design</h3>
+<p>When analyzing single-cell datasets across multiple biological conditions, batches, or patients, you face the challenge of <strong>batch effects</strong>. These are technical variations (e.g., cell capture efficiency, sequencing depth, sample viability) that systematically shift cell positions in the expression space, masquerading as novel cell types or states.</p>
+<ul>
+<li><strong>The Integration Dilemma:</strong> The goal of integration is to align equivalent biological states across datasets while preserving true biological differences. Standard methods operate on the lower-dimensional PCA space:
+<ol type="1">
+<li><strong>Canonical Correlation Analysis (CCA):</strong> Projects both datasets onto shared dimensions that maximize correlation, assuming that the major biological structures are conserved. It is highly effective for identifying equivalent states but can over-correct and erase dataset-specific responses.</li>
+<li><strong>Mutual Nearest Neighbors (MNN) / FastMNN:</strong> Identifies cell pairs across datasets that are mutual nearest neighbors. It projects one dataset onto the other based on the batch correction vector, which is more conservative and less prone to over-alignment.</li>
+<li><strong>Harmony (PCA-based iterative clustering):</strong> Projects cells into PCA space, performs soft clustering, and iteratively shifts cells to maximize cluster-level batch mixture. Harmony is extremely fast and scales to millions of cells.</li>
+</ol></li>
+<li><strong>Seurat V5 Assay Design:</strong> Historically, batch integration required copying and splitting the full expression matrix, which doubled the memory footprint. Seurat V5 addresses this with a new <strong>Assays v5</strong> design: a single object houses raw counts in distinct <strong>layers</strong> (e.g., <code>counts.batch1</code>, <code>counts.batch2</code>). Normalization, variable feature selection, and dimensional reduction run across these layers independently or jointly without splitting the object. Integration is executed by specifying an integration method directly on the reduction layer (e.g., <code>IntegrateLayers(method = CCAIntegration)</code>), which generates a corrected low-dimensional space (e.g., <code>integrated.cca</code>) while preserving the raw, un-integrated counts in the background. This prevents data leakage and makes it easy to compare integrated vs.&nbsp;un-integrated states.</li>
+</ul>
 <hr>
 </section>
 </section>

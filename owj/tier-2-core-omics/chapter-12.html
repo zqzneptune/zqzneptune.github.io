@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -413,7 +404,7 @@ window.Quarto = {
 </table>
 <p><strong>Antibody specificity is the dominant factor in ChIP-seq quality.</strong> A poorly validated antibody pulls down off-target proteins, producing clean-looking peaks at biologically irrelevant sites that pass all computational filters. The essential quality metric is the FRiP score (Fraction of Reads in Peaks): for a well-characterized transcription factor, FRiP &gt; 5% indicates enrichment above background, while FRiP &lt; 1% suggests the antibody failed. There is no computational method that can rescue a poor antibody; the enrichment simply is not there.</p>
 <p><strong>Broad vs.&nbsp;narrow peak calling.</strong> Histone modifications fall into two structurally distinct classes. Narrow marks (H3K27ac, H3K4me3, CTCF) produce focal enrichment at specific regulatory elements, typically 200-1000 bp. Broad marks (H3K27me3, H3K9me3) produce diffuse enrichment across tens of kilobases to megabases. MACS2 handles both via its <code>--broad</code> flag, which changes the background model to detect contiguous regions of enrichment rather than isolated peaks. Using narrow-peak mode on a broad histone mark cuts each domain into hundreds of fragmented “peaks” that violate the assumption of independent binding events; each “peak” is not an independent biological observation.</p>
-<p><strong>CUT&amp;Tag</strong> (Cleavage Under Targets and Tagmentation) has largely replaced ChIP-seq for histone modifications in many applications. A protein-A-Tn5 fusion is guided to the target protein by a primary antibody, and the Tn5 is activated by adding magnesium, which cuts and tags DNA locally. Advantages: lower cell input (100-1,000 cells vs.&nbsp;<span class="math inline">\(10^6\)</span> for ChIP-seq), higher signal-to-noise ratio, native (non-crosslinked) conditions that avoid epitope masking. The tradeoff: CUT&amp;Tag requires a high-quality primary antibody with high affinity, and the short tagmentation fragments (~150 bp) are less informative for broad domain calls.</p>
+<p><strong>CUT&amp;Tag</strong> (Cleavage Under Targets and Tagmentation) has largely replaced ChIP-seq for histone modifications in many applications. In this protocol, a protein-A-Tn5 fusion protein is guided directly to the target protein by a primary antibody under native (non-crosslinked) conditions, and the Tn5 is activated by adding magnesium, which cuts and tags DNA locally. By tagmenting under physiological conditions rather than crosslinking and sonication, it avoids epitope masking and reduces background genomic noise by &gt;90%. Advantages: lower cell input (100–1,000 cells vs.&nbsp;<span class="math inline">\(10^6\)</span> for ChIP-seq) and higher signal-to-noise ratio. The tradeoff: CUT&amp;Tag requires a high-quality primary antibody with high affinity, and the short tagmentation fragments (~150 bp) are less informative for broad domain calls.</p>
 </section>
 <section id="layer-2-where-chromatin-is-open-atac-seq" class="level1">
 <h1>## Layer 2: Where Chromatin is Open (ATAC-seq)</h1>
@@ -464,13 +455,14 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<p><strong>The Tn5 “Smart Molecular Scissors” Metaphor:</strong> Imagine the Tn5 transposase as a smart molecular scissor: it integrates adapters preferentially in nucleosome-free regions (&lt;100 bp), leaving nucleosome-wrapped regions untouched. Thus, a successful ATAC-seq library displays a physical hallmark of chromatin architecture: a distinct fragment length periodicity.</p>
 <p><strong>ATAC-seq cannot identify which transcription factor is bound at each accessible site.</strong> Open chromatin is a necessary condition for transcription factor binding but not sufficient; an accessible region may be occupied by any of dozens of factors with motifs in that region, or by none at all. Determining which factor is bound requires either:</p>
 <ol type="1">
 <li><p><strong>Motif analysis</strong> (below): which transcription factor binding motifs are enriched in the accessible regions</p></li>
 <li><p><strong>Orthogonal ChIP-seq</strong> for the specific factor of interest</p></li>
 <li><p><strong>Footprinting</strong>: Tn5 cutting is blocked where a transcription factor is bound, creating a depletion of cut sites at the motif position. The nucleotide-resolution cutting pattern reveals “footprints” of ~15-30 bp where the factor protects DNA from integration; detectable as local dips in the Tn5 cut frequency within open peaks.</p></li>
 </ol>
-<p>The nucleosome signal in ATAC-seq provides an internal quality metric. A successful assay shows a strong ~147 bp periodicity (mononucleosomal fragments) alongside the sub-nucleosomal open chromatin fragments (&lt; 100 bp). Loss of the nucleosomal ladder indicates over-digestion; absence of sub-nucleosomal fragments indicates under-digestion or insufficient transposase activity.</p>
+<p><strong>The Nucleosome Ladder as the Physical QC:</strong> The fragment size distribution is the ultimate physical diagnostic of your wet-lab execution. A successful assay displays a clear nucleosomal ladder: a prominent peak at <span class="math inline">\(&lt;100\text{ bp}\)</span> representing nucleosome-free open regions, followed by a series of periodic peaks at ~200 bp (mononucleosomes), ~400 bp (dinucleosomes), and ~600 bp (trinucleosomes). If the distribution shows a monotonic drop-off with no nucleosome peaks, your Tn5 was over-active or your cells were dead (over-digestion). If there are no sub-nucleosomal fragments, your Tn5 was under-active or your permeabilization failed. Check this plot before writing a single line of alignment code.</p>
 <section id="macs2-peak-calling-poisson-background-and-signal-detection" class="level3">
 <h3 class="anchored" data-anchor-id="macs2-peak-calling-poisson-background-and-signal-detection">MACS2 Peak Calling: Poisson Background and Signal Detection</h3>
 <p>MACS2 models the background read distribution as a Poisson process. As established in Chapter 4, the Poisson models sampling noise when events occur independently at a constant rate, which describes the null hypothesis for ChIP-seq: in the absence of binding, sonicated DNA fragments are randomly distributed across the genome. For a window of length <span class="math inline">\(w\)</span>, the expected number of reads under the null hypothesis is:</p>

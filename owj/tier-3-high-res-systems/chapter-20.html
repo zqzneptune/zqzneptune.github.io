@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -299,6 +290,7 @@ window.Quarto = {
   <li><a href="#proximity-ligation-and-hi-c-physics" id="toc-proximity-ligation-and-hi-c-physics" class="nav-link" data-scroll-target="#proximity-ligation-and-hi-c-physics">Proximity Ligation and Hi-C Physics</a></li>
   <li><a href="#topological-structures" id="toc-topological-structures" class="nav-link" data-scroll-target="#topological-structures">Topological Structures</a></li>
   <li><a href="#loop-extrusion-model" id="toc-loop-extrusion-model" class="nav-link" data-scroll-target="#loop-extrusion-model">Loop Extrusion Model</a></li>
+  <li><a href="#tad-boundary-detection-the-insulation-index" id="toc-tad-boundary-detection-the-insulation-index" class="nav-link" data-scroll-target="#tad-boundary-detection-the-insulation-index">TAD Boundary Detection: The Insulation Index</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -373,6 +365,15 @@ window.Quarto = {
 <li><p><strong>Nested hierarchy:</strong> TADs contain sub-TADs which contain finer loops. The extrusion model explains this as partial extrusion; a loop can be stalled at early CTCF sites or continue to more distant ones.</p></li>
 <li><p><strong>Size distribution:</strong> Loops show a characteristic distribution peaking at 100-500 kb, consistent with the processivity of cohesin extrusion before stalling.</p></li>
 </ol>
+</section>
+<section id="tad-boundary-detection-the-insulation-index" class="level3">
+<h3 class="anchored" data-anchor-id="tad-boundary-detection-the-insulation-index">TAD Boundary Detection: The Insulation Index</h3>
+<p>To identify the coordinates of TAD boundaries from a normalized Hi-C contact matrix, we use the <strong>Insulation Index</strong> algorithm (Crane et al., 2015).</p>
+<ul>
+<li><strong>The Insulation Principle:</strong> Since TADs are self-interacting domains with high internal contact frequency but low contact frequency crossing their boundaries, the boundary represents an “insulator” of chromatin interaction.</li>
+<li><strong>The Diamond Window Operator:</strong> The algorithm slides a square “diamond” window (typically 100-200 kb on a side) along the diagonal of the contact matrix. At each genomic bin <span class="math inline">\(i\)</span>, the insulation score is the sum of all contact frequencies within the diamond centered at that bin.</li>
+<li><strong>Local Minima Detection:</strong> Within a TAD, the score is high because the diamond captures dense intra-domain contacts. When the diamond sits directly on a TAD boundary, the score drops to a local minimum because it captures the depleted inter-domain contacts crossing the boundary. The algorithm identifies TAD boundaries as the local minima of this insulation score curve, using a delta threshold (difference between the minimum and adjacent peaks) to control for noise.</li>
+</ul>
 <hr>
 </section>
 </section>

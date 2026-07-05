@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -297,6 +288,9 @@ window.Quarto = {
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
   <li><a href="#what-is-being-sequenced-and-at-what-molecular-level" id="toc-what-is-being-sequenced-and-at-what-molecular-level" class="nav-link" data-scroll-target="#what-is-being-sequenced-and-at-what-molecular-level">What is Being Sequenced and at What Molecular Level</a></li>
+  <li><a href="#the-lab-bench-metaphor-translating-wet-lab-to-code" id="toc-the-lab-bench-metaphor-translating-wet-lab-to-code" class="nav-link" data-scroll-target="#the-lab-bench-metaphor-translating-wet-lab-to-code">The “Lab Bench” Metaphor: Translating Wet-Lab to Code</a></li>
+  <li><a href="#rrna-contamination-the-bsa-bottleneck" id="toc-rrna-contamination-the-bsa-bottleneck" class="nav-link" data-scroll-target="#rrna-contamination-the-bsa-bottleneck">rRNA Contamination: The BSA Bottleneck</a></li>
+  <li><a href="#strand-specificity-aligning-the-primer-direction" id="toc-strand-specificity-aligning-the-primer-direction" class="nav-link" data-scroll-target="#strand-specificity-aligning-the-primer-direction">Strand-Specificity: Aligning the Primer Direction</a></li>
   <li><a href="#splice-aware-alignment-why-dna-aligners-fail-on-rna-seq" id="toc-splice-aware-alignment-why-dna-aligners-fail-on-rna-seq" class="nav-link" data-scroll-target="#splice-aware-alignment-why-dna-aligners-fail-on-rna-seq">Splice-Aware Alignment: Why DNA Aligners Fail on RNA-seq</a></li>
   <li><a href="#expectation-maximization-for-transcript-quantification" id="toc-expectation-maximization-for-transcript-quantification" class="nav-link" data-scroll-target="#expectation-maximization-for-transcript-quantification">Expectation-Maximization for Transcript Quantification</a></li>
   <li><a href="#normalization-why-rpkmfpkm-are-wrong" id="toc-normalization-why-rpkmfpkm-are-wrong" class="nav-link" data-scroll-target="#normalization-why-rpkmfpkm-are-wrong">Normalization: Why RPKM/FPKM Are Wrong</a></li>
@@ -357,6 +351,26 @@ window.Quarto = {
 <li><p><strong>What is Being Sequenced:</strong> Total RNA or messenger RNA (mRNA) transcribed from the genome.</p></li>
 <li><p><strong>Molecular Level:</strong> The transcript and isoform abundance level. Transcriptomics measures the expression levels of individual genes and their spliced isoforms in biological samples.</p></li>
 </ul>
+</section>
+<section id="the-lab-bench-metaphor-translating-wet-lab-to-code" class="level3">
+<h3 class="anchored" data-anchor-id="the-lab-bench-metaphor-translating-wet-lab-to-code">The “Lab Bench” Metaphor: Translating Wet-Lab to Code</h3>
+<p>To understand computational transcriptomics, you must translate these digital operations into the physical biochemistry of the wet-lab. Treating them as abstract text manipulation leads to fundamental interpretation errors.</p>
+<ul>
+<li><strong>Biological Replicates (<span class="math inline">\(n \ge 3\)</span>) are your Western Blot Loading Controls:</strong> Just as you cannot draw conclusions from a single Western blot lane without a GAPDH loading control, you cannot infer differential expression without biological replicates to measure population variance. A single sample is a pilot, not a result.</li>
+<li><strong>Sequence Alignment is a Genomic Hybridization Assay:</strong> The reference genome acts as a multiplexed membrane, and your FASTQ reads are fluorescently labeled probes. The aligner determines where each probe “hybridizes” by sequence complementarity.</li>
+<li><strong>Expression Quantification is a Gel Band Gray-Scale Scan:</strong> Software like <code>featureCounts</code> acts as the scanner, measuring the density (read count) at each genomic coordinate “band”.</li>
+<li><strong>TPM/FPKM Normalization is Ratio-to-Loading-Control:</strong> It represents the relative fraction of a transcript in the library, which is useful for visualization and comparison of relative expressions.</li>
+<li><strong>Raw Counts are qPCR Ct Values:</strong> Just as you must run delta-delta-Ct calculations on raw cycles rather than normalized percentages, differential expression models (like <code>DESeq2</code>) must run on raw, un-normalized integer counts. Normalizing before statistical testing breaks the negative binomial variance model and inflates false-positive rates.</li>
+</ul>
+</section>
+<section id="rrna-contamination-the-bsa-bottleneck" class="level3">
+<h3 class="anchored" data-anchor-id="rrna-contamination-the-bsa-bottleneck">rRNA Contamination: The BSA Bottleneck</h3>
+<p>Ribosomal RNA (rRNA) constitutes over <span class="math inline">\(80-90\%\)</span> of total cellular RNA. If you sequence a library without removing rRNA, it acts like a massive BSA protein contamination in a Western blot sample—it saturates the detector and compresses the dynamic range of your target signal (mRNA) to nearly zero, leaving few reads for analysis.</p>
+<p>You must run tools like <code>SortMeRNA</code> to audit rRNA contamination. High rRNA rates (<span class="math inline">\(&gt;10\%\)</span>) indicate the wet-lab depletion (poly-A selection or ribo-depletion) failed.</p>
+</section>
+<section id="strand-specificity-aligning-the-primer-direction" class="level3">
+<h3 class="anchored" data-anchor-id="strand-specificity-aligning-the-primer-direction">Strand-Specificity: Aligning the Primer Direction</h3>
+<p>Modern RNA-seq libraries preserve the strand orientation of the original RNA molecule (using dUTP marking). If you run <code>featureCounts</code> or <code>Salmon</code> with the wrong strand parameter (e.g., <code>-s 1</code> instead of <code>-s 2</code> in featureCounts, or <code>ISR</code> instead of <code>ISF</code> in Salmon), the software will align reads to the opposite strand. Because many genomic loci have overlapping genes on opposite strands, you will either get zero counts or mis-attribute reads to antisense transcripts. Always audit your library protocol (e.g., dUTP/stranded-reverse vs.&nbsp;directional) before running quantification.</p>
 </section>
 <section id="splice-aware-alignment-why-dna-aligners-fail-on-rna-seq" class="level3">
 <h3 class="anchored" data-anchor-id="splice-aware-alignment-why-dna-aligners-fail-on-rna-seq">Splice-Aware Alignment: Why DNA Aligners Fail on RNA-seq</h3>

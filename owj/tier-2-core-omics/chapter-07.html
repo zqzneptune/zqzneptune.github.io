@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -303,6 +294,7 @@ window.Quarto = {
   <li><a href="#from-raw-camera-signals-to-fastq" id="toc-from-raw-camera-signals-to-fastq" class="nav-link" data-scroll-target="#from-raw-camera-signals-to-fastq">From Raw Camera Signals to FASTQ</a></li>
   <li><a href="#decoding-the-fastq-specification" id="toc-decoding-the-fastq-specification" class="nav-link" data-scroll-target="#decoding-the-fastq-specification">Decoding the FASTQ Specification</a></li>
   <li><a href="#understanding-quality-scores-the-phred-scale" id="toc-understanding-quality-scores-the-phred-scale" class="nav-link" data-scroll-target="#understanding-quality-scores-the-phred-scale">Understanding Quality Scores (The Phred Scale)</a></li>
+  <li><a href="#wgs-vs.-wes-the-physical-mechanics-of-target-enrichment" id="toc-wgs-vs.-wes-the-physical-mechanics-of-target-enrichment" class="nav-link" data-scroll-target="#wgs-vs.-wes-the-physical-mechanics-of-target-enrichment">WGS vs.&nbsp;WES: The Physical Mechanics of Target Enrichment</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
   <ul class="collapse">
@@ -478,8 +470,21 @@ F:FFA9FEE,EE.E/FFEF&lt;F:FF/FF:F8FFF9FFDFD/</code></pre>
 <li><p><strong>Reads are Discrete Count Data:</strong> A FASTQ file contains individual, integer counts of reads. You cannot observe a fraction of a read. Therefore, continuous normal statistics are fundamentally inappropriate for raw sequence data (Chapter 4).</p></li>
 <li><p><strong>Sequencing yields Relative (Compositional) Quantifications:</strong> The sequencer has a fixed capacity (e.g., 300 million reads per lane). If Sample A has twice as many reads as Sample B, it does not mean Sample A had a higher starting concentration of molecules in the tube. It only means Sample A took up a larger <em>fraction</em> of the sequencer’s total output. Read counts are relative measurements, and they must be normalized for sequencing depth and library composition before any biological comparison can be made.</p></li>
 </ol>
-<hr>
 </section>
+</section>
+<section id="wgs-vs.-wes-the-physical-mechanics-of-target-enrichment" class="level3">
+<h3 class="anchored" data-anchor-id="wgs-vs.-wes-the-physical-mechanics-of-target-enrichment">WGS vs.&nbsp;WES: The Physical Mechanics of Target Enrichment</h3>
+<p>Whole Genome Sequencing (WGS) and Whole Exome Sequencing (WES) are not just different computational analysis pathways; they represent entirely distinct physical library preparations with different biochemical constraints.</p>
+<ul>
+<li><p><strong>The Physical Bias of Capture:</strong> WGS sequences the entire genome, typically using a PCR-free library preparation that minimizes GC-bias and PCR amplification artifacts. WES, by contrast, relies on a hybridization capture step. After DNA fragmentation, biotinylated oligonucleotide probes (baits) designed to target the exonic regions (representing ~1.5% of the human genome) are hybridized to the library. These probe-bound fragments are then physically pulled down using streptavidin-coated magnetic beads.</p></li>
+<li><p><strong>Targeted Efficiency vs.&nbsp;Genomic Fairness:</strong> WES is an “efficiency-first” approach based on the empirical observation that ~85% of known disease-causing mutations reside in coding exons. However, this hybrid-capture process introduces severe physical limitations:</p>
+<ol type="1">
+<li><strong>GC Bias and Capture Efficiency:</strong> Hybridization is highly sensitive to melting temperature (<span class="math inline">\(T_m\)</span>), resulting in poor capture efficiency in extremely GC-rich or AT-rich exons, causing “cold spots” where sequencing coverage is zero despite the region being coding.</li>
+<li><strong>Regulatory and Intronic Blind Spots:</strong> WES is completely blind to deep intronic mutations that cause aberrant splicing, and to regulatory mutations in enhancers, promoters, and non-coding RNAs.</li>
+<li><strong>Evenness of Coverage:</strong> WGS provides “fair” and relatively even coverage across the genome. WES coverage is highly uneven, with peak-and-valley distributions driven by probe binding affinities. Thus, while WES is cost-effective for identifying coding mutations, WGS is far superior for structural variant detection, copy number analysis, and identifying novel non-coding regulatory variants.</li>
+</ol></li>
+</ul>
+<hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">

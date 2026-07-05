@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L5446ZHH5E');
-</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
@@ -383,6 +374,11 @@ window.Quarto = {
 <li><p><strong>The Assumption:</strong> Reads align contiguously to the genome with few gaps or mismatches.</p></li>
 <li><p><strong>The Technology:</strong> These tools index the genome using the <strong>Burrows-Wheeler Transform (BWT)</strong> and the <strong>FM-index</strong>, which compresses the 3 Gb human genome into a ~2 GB index that fits in RAM, allowing exact seed searches in linear time.</p></li>
 <li><p><strong>Usage:</strong> BWA-MEM is the gold standard for variant calling (WGS/WES); Bowtie2 is preferred for short reads with minimal gaps (e.g., ChIP-seq or metagenomic profiling).</p></li>
+<li><p><strong>The BWA-MEM Parameter Choices:</strong> In production genomic pipelines, running BWA-MEM with default parameters is a rookie mistake. I recommend using two crucial flags:</p>
+<ol type="1">
+<li><strong><code>-M</code></strong>: This flag marks shorter split hits as secondary (rather than supplementary). This is a critical prerequisite for downstream duplicate marking tools (like Picard MarkDuplicates or GATK). If you omit the <code>-M</code> flag, these tools will fail to recognize and eliminate PCR duplicates from split-aligned reads, artificially inflating your depth and causing false somatic variant calls.</li>
+<li><strong><code>-K &lt;integer&gt;</code></strong>: In multi-threaded execution, BWA-MEM processes reads in chunks. By default, the chunk size changes dynamically based on thread scheduling, leading to slightly different alignment outputs depending on the thread count (non-deterministic runs). Specifying a fixed chunk size (e.g., <code>-K 100000000</code>) forces BWA-MEM to process identical chunks regardless of threading, guaranteeing 100% computational reproducibility across runs.</li>
+</ol></li>
 </ul>
 </section>
 <section id="rna-seq-splice-aware-aligners-star" class="level4">
