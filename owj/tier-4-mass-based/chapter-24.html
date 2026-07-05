@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 28: Variant Interpretation and ACMG Guidelines – Omics with Johnson 101</title>
+<title>Chapter 24: Lipidomics and Other Mass Spectrometry Assays – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-6-clinical/chapter-29.html" rel="next">
-<link href="../tier-5-ai/chapter-27.html" rel="prev">
+<link href="../tier-4-mass-based/chapter-23.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -84,6 +83,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -184,106 +212,56 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -317,13 +295,18 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-acmgamp-five-tier-system" id="toc-the-acmgamp-five-tier-system" class="nav-link" data-scroll-target="#the-acmgamp-five-tier-system">The ACMG/AMP Five-Tier System</a></li>
-  <li><a href="#evidence-codes-and-scoring" id="toc-evidence-codes-and-scoring" class="nav-link" data-scroll-target="#evidence-codes-and-scoring">Evidence Codes and Scoring</a></li>
-  <li><a href="#gnomad-population-frequency-database" id="toc-gnomad-population-frequency-database" class="nav-link" data-scroll-target="#gnomad-population-frequency-database">gnomAD: Population Frequency Database</a></li>
-  <li><a href="#in-silico-prediction-tools" id="toc-in-silico-prediction-tools" class="nav-link" data-scroll-target="#in-silico-prediction-tools">In Silico Prediction Tools</a></li>
-  <li><a href="#clinvar-and-the-vus-crisis" id="toc-clinvar-and-the-vus-crisis" class="nav-link" data-scroll-target="#clinvar-and-the-vus-crisis">ClinVar and the VUS Crisis</a></li>
+  <li><a href="#what-is-being-measured-and-at-what-molecular-level" id="toc-what-is-being-measured-and-at-what-molecular-level" class="nav-link" data-scroll-target="#what-is-being-measured-and-at-what-molecular-level">What Is Being Measured and at What Molecular Level</a></li>
+  <li><a href="#the-chemical-complexity-of-lipids" id="toc-the-chemical-complexity-of-lipids" class="nav-link" data-scroll-target="#the-chemical-complexity-of-lipids">The Chemical Complexity of Lipids</a></li>
+  <li><a href="#specialized-extraction-protocols" id="toc-specialized-extraction-protocols" class="nav-link" data-scroll-target="#specialized-extraction-protocols">Specialized Extraction Protocols</a></li>
+  <li><a href="#analytical-strategies-shotgun-vs.-lc-ms" id="toc-analytical-strategies-shotgun-vs.-lc-ms" class="nav-link" data-scroll-target="#analytical-strategies-shotgun-vs.-lc-ms">Analytical Strategies: Shotgun vs.&nbsp;LC-MS</a></li>
+  <li><a href="#resolving-isomers-ion-mobility-spectrometry-ims" id="toc-resolving-isomers-ion-mobility-spectrometry-ims" class="nav-link" data-scroll-target="#resolving-isomers-ion-mobility-spectrometry-ims">Resolving Isomers: Ion Mobility Spectrometry (IMS)</a></li>
   </ul></li>
-  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#the-reviewer-mindset-the-oxidation-warning" id="toc-the-reviewer-mindset-the-oxidation-warning" class="nav-link" data-scroll-target="#the-reviewer-mindset-the-oxidation-warning">The Reviewer Mindset: The Oxidation Warning</a></li>
+  <li><a href="#dynamic-membrane-remodeling" id="toc-dynamic-membrane-remodeling" class="nav-link" data-scroll-target="#dynamic-membrane-remodeling">Dynamic Membrane Remodeling</a></li>
+  </ul></li>
+  <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -334,9 +317,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-28.html">TIER 6: Translational and Clinical Genomics</a></li><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-28.html"><span class="chapter-title">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-4-mass-based/chapter-22.html">TIER 4: Mass-Based Omics</a></li><li class="breadcrumb-item"><a href="../tier-4-mass-based/chapter-24.html"><span class="chapter-title">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 28: Variant Interpretation and ACMG Guidelines</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></h1>
 </div>
 
 
@@ -354,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -366,151 +349,107 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> If You Would Not Change a Treatment, Do Not Report a Variant as Pathogenic</p>
+<p><strong>Johnson’s First Principle:</strong> Lipids Are Active Cellular Gatekeepers, Not Passive Fat Storage</p>
+<p>I suggest you discard the textbook view of lipids as mere energy-storing fat droplets. Lipids are structural barriers, signaling mediators, and anchors for membrane-spanning proteins. They dictate membrane fluidity, organize microdomains (lipid rafts), and initiate signaling cascades that control cell survival and death. Because lipids are highly hydrophobic and structurally complex, they require specialized extraction and analytical protocols. If you want to understand membrane biophysics or lipid-mediated signaling, you must measure lipids using dedicated lipidomic workflows.</p>
 </blockquote>
-<p>A p-value does not treat a patient. In clinical genomics, variant classification must be quantified, repeatable, and legally defensible. When a report enters a patient’s medical record, it becomes a legal document. Calling a benign variant pathogenic leads to unnecessary surgery; missing a pathogenic variant leads to missed treatment.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-acmgamp-five-tier-system" class="level3">
-<h3 class="anchored" data-anchor-id="the-acmgamp-five-tier-system">The ACMG/AMP Five-Tier System</h3>
-<p>The American College of Medical Genetics and Genomics (ACMG) and the Association for Molecular Pathology (AMP) published the framework for variant interpretation in 2015 (Richards et al., <em>Genetics in Medicine</em>):</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Tier</th>
-<th>Category</th>
-<th>Clinical Action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>5</td>
-<td>Pathogenic</td>
-<td>Confirmatory testing, family screening</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Likely Pathogenic</td>
-<td>Medical management (with caution)</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Variant of Uncertain Significance (VUS)</td>
-<td>No clinical action</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Likely Benign</td>
-<td>No action</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td>Benign</td>
-<td>No action</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="evidence-codes-and-scoring" class="level3">
-<h3 class="anchored" data-anchor-id="evidence-codes-and-scoring">Evidence Codes and Scoring</h3>
-<p>Pathogenic and benign classifications are built from evidence codes:</p>
-<p><strong>Pathogenic evidence codes:</strong></p>
+<section id="what-is-being-measured-and-at-what-molecular-level" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-being-measured-and-at-what-molecular-level">What Is Being Measured and at What Molecular Level</h3>
 <ul>
-<li><p><strong>PVS1</strong> (very strong): Null variant (nonsense, frameshift, canonical splice site) in a gene where loss-of-function is a known disease mechanism. <strong>Critical exception:</strong> a null variant in the last exon or within 50 bp of the final exon junction typically escapes nonsense-mediated decay (NMD), producing a truncated protein that may retain partial function. Such variants require PVS1 downgrading to PS1 or PM4 depending on transcript structure; the strongest evidence code cannot be applied without confirming that NMD will be triggered.</p></li>
-<li><p><strong>PS1</strong> (strong): Same amino acid change as a previously established pathogenic variant.</p></li>
-<li><p><strong>PM2</strong> (moderate): Absent from population databases (gnomAD). <em>Note: PM2 alone is not sufficient for pathogenicity; it only supports it when combined with other codes.</em></p></li>
-<li><p><strong>PP3</strong> (supporting): Multiple in silico prediction tools (SIFT, PolyPhen, CADD, REVEL) predict damaging effect. PP3 is supporting evidence only, never strong.</p></li>
+<li><p><strong>What Is Being Measured:</strong> Hydrophobic small molecules (fatty acids, glycerolipids, glycerophospholipids, sphingolipids, saccharolipids, polyketides, sterols, prenols).</p></li>
+<li><p><strong>Molecular Level:</strong> The cellular membrane structure and lipid signaling mediator levels. Lipidomics characterizes the diversity of lipid species, tracking their specific fatty acid tail lengths and saturation states.</p></li>
 </ul>
-<p><strong>Benign evidence codes:</strong></p>
+</section>
+<section id="the-chemical-complexity-of-lipids" class="level3">
+<h3 class="anchored" data-anchor-id="the-chemical-complexity-of-lipids">The Chemical Complexity of Lipids</h3>
+<p>I recommend you appreciate the structural complexity that makes lipid identification particularly challenging:</p>
 <ul>
-<li><p><strong>BA1</strong> (stand-alone): Allele frequency &gt;5% in any population database. A single BA1 code can classify a variant as Benign.</p></li>
-<li><p><strong>BS1</strong> (strong): Allele frequency &gt;1% for recessive, &gt;0.5% for dominant.</p></li>
-<li><p><strong>BP4</strong> (supporting): In silico predictions suggest benign effect.</p></li>
+<li><p><strong>Isobaric Species:</strong> Many lipids share the exact same nominal mass but differ in their elemental composition (isobaric) or their structural configuration (isomeric). For example, PC(34:1) represents a phosphatidylcholine with 34 carbons and 1 double bond in its fatty acid tails, but this could be composed of PC(16:0/18:1) or PC(18:0/16:1).</p></li>
+<li><p><strong>Double-Bond Positions:</strong> The position (<span class="math inline">\(sn-1\)</span> vs <span class="math inline">\(sn-2\)</span>) and stereochemistry (<em>cis</em> vs <em>trans</em>) of double bonds alters the lipid’s physical properties but is difficult to resolve using conventional mass spectrometry.</p></li>
 </ul>
-<p>The scoring matrix combines codes to determine the final classification:</p>
-<table class="table">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 72%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Classification</th>
-<th>Rule (minimum evidence combination)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Pathogenic</td>
-<td>1 PVS1 + 1 PS + 1 PM + 1 PP, or 1 PVS1 + 2 PS, or 3 PS, or 2 PS + 2 PM</td>
-</tr>
-<tr class="even">
-<td>Likely Pathogenic</td>
-<td>1 PVS1 + 1 PM, or 1 PS + 1 PM, or ≥3 PM, or 2 PM + 2 PP</td>
-</tr>
-<tr class="odd">
-<td>VUS</td>
-<td>Does not meet criteria for any other tier</td>
-</tr>
-<tr class="even">
-<td>Likely Benign</td>
-<td>≥2 BS codes, or 1 BS + 1 BP</td>
-</tr>
-<tr class="odd">
-<td>Benign</td>
-<td>1 BA1 (stand-alone), or ≥2 BS</td>
-</tr>
-</tbody>
-</table>
-<p>The matrix intentionally makes Pathogenic harder to reach than Benign: a single BA1 code (population frequency &gt;5% in any ancestral population) immediately classifies a variant as Benign, while Pathogenic always requires multiple independent lines of evidence.</p>
 </section>
-<section id="gnomad-population-frequency-database" class="level3">
-<h3 class="anchored" data-anchor-id="gnomad-population-frequency-database">gnomAD: Population Frequency Database</h3>
-<p>gnomAD (Karczewski et al., 2020) aggregates exome/genome data from 141,456 humans. Key statistics per variant: allele frequency (AF), number of carriers, and machine learning-based metrics including the <strong>constraint score</strong> (observed vs.&nbsp;expected variation in each gene). A gene under strong constraint (observed/expected ratio significantly &lt;1) is more likely to cause disease when disrupted.</p>
-<p><strong>Critical caveat:</strong> gnomAD’s ancestry composition is predominantly European (56%). Variant frequencies in underrepresented populations (African, Latino, Indigenous) are less well-characterized, leading to more VUS calls in these populations.</p>
+<section id="specialized-extraction-protocols" class="level3">
+<h3 class="anchored" data-anchor-id="specialized-extraction-protocols">Specialized Extraction Protocols</h3>
+<p>Unlike hydrophilic metabolites, lipids require organic solvents for separation from proteins and polar molecules. I will teach you the three major extraction methods:</p>
+<ol type="1">
+<li><p><strong>Folch Extraction:</strong> Uses a mixture of chloroform and methanol (2:1, v/v) with water. The lipids partition into the lower chloroform phase. It is the historical gold standard for total lipid recovery but chloroform is toxic and the lower phase is difficult to pipet without contamination.</p></li>
+<li><p><strong>Bligh and Dyer Extraction:</strong> Similar to Folch but optimized for biological samples with high water content, adjusting the solvent ratio to achieve a monophasic mixture before adding water to split phases.</p></li>
+<li><p><strong>MTBE (Methyl-tert-butyl ether) Extraction:</strong> Uses MTBE and methanol. The major advantage: lipids partition into the upper organic phase. This makes automated pipetting and high-throughput workflows much cleaner, as you can draw off the lipid layer without disturbing the protein pellet or the aqueous phase at the bottom.</p></li>
+</ol>
 </section>
-<section id="in-silico-prediction-tools" class="level3">
-<h3 class="anchored" data-anchor-id="in-silico-prediction-tools">In Silico Prediction Tools</h3>
-<p>Multiple computational tools predict variant deleteriousness:</p>
+<section id="analytical-strategies-shotgun-vs.-lc-ms" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-strategies-shotgun-vs.-lc-ms">Analytical Strategies: Shotgun vs.&nbsp;LC-MS</h3>
+<p>I recommend you understand the two competing paradigms for analyzing extracted lipids:</p>
 <ul>
-<li><p><strong>SIFT:</strong> Conservation-based; predicts whether amino acid substitution affects protein function.</p></li>
-<li><p><strong>PolyPhen-2:</strong> Structure and sequence-based.</p></li>
-<li><p><strong>CADD:</strong> Integrates annotations into a single C-score by contrasting variants that survived natural selection against simulated variants. The score is Phred-scaled: CADD 10 means the variant is in the top 10% of deleteriousness genome-wide, 20 means top 1%, 30 means top 0.1%. The commonly used threshold of CADD &gt; 20 as “likely deleterious” is a heuristic, not a clinically validated cutoff; it trades sensitivity for specificity and should never be used as the sole evidence for pathogenicity.</p></li>
-<li><p><strong>REVEL:</strong> Ensemble predictor combining 13 individual tools; recommended as the default for missense variant interpretation by current guidelines.</p></li>
+<li><p><strong>Shotgun Lipidomics (Direct Infusion):</strong> Lipids are infused directly into the mass spectrometer (often using nanoelectrospray) without chromatographic separation.</p>
+<ul>
+<li><p><em>Advantages:</em> Fast, highly reproducible, and enables constant spray conditions for quantitative comparisons.</p></li>
+<li><p><em>Limitations:</em> Susceptible to severe ion suppression, and cannot separate structural isomers.</p></li>
+</ul></li>
+<li><p><strong>LC-MS Lipidomics:</strong> Lipids are separated using reverse-phase (C18 or C8) or normal-phase (HILIC) liquid chromatography before entering the mass spectrometer.</p>
+<ul>
+<li><p><em>Advantages:</em> Reduces ion suppression, resolves many isomeric lipid species, and provides retention time as an orthogonal identification metric.</p></li>
+<li><p><em>Limitations:</em> Longer run times, and retention time drift requires alignment algorithms.</p></li>
+</ul></li>
 </ul>
-<p>All in silico predictions are <strong>supporting evidence only</strong> (PP3/BP4), never strong. They cannot be used alone to classify a variant.</p>
 </section>
-<section id="clinvar-and-the-vus-crisis" class="level3">
-<h3 class="anchored" data-anchor-id="clinvar-and-the-vus-crisis">ClinVar and the VUS Crisis</h3>
-<p>ClinVar is the public database of human variant classifications submitted by clinical laboratories and research groups. Each submission has a review status (0-4 stars): 4-star submissions have been reviewed by an expert panel.</p>
-<p><strong>The VUS crisis:</strong> 40-50% of reported variants are classified as VUS, and this rate is <strong>2x higher in underrepresented populations</strong>. A Black woman is twice as likely as a White woman to receive a VUS instead of a definitive classification for the same family history. This is a health equity crisis.</p>
+<section id="resolving-isomers-ion-mobility-spectrometry-ims" class="level3">
+<h3 class="anchored" data-anchor-id="resolving-isomers-ion-mobility-spectrometry-ims">Resolving Isomers: Ion Mobility Spectrometry (IMS)</h3>
+<p>An emerging dimension in lipidomics is Ion Mobility Spectrometry. IMS separates ions in the gas phase based on their size, shape, and charge as they drift through a buffer gas under the influence of an electric field.</p>
+<ul>
+<li><strong>Collision Cross Section (CCS):</strong> The physical cross-sectional area of a lipid ion. CCS is a highly reproducible physical property that depends on the lipid’s three-dimensional shape. By combining <span class="math inline">\(m/z\)</span>, retention time, and CCS, you can confidently distinguish lipid isomers (such as determining the double-bond position) that are identical by mass spectrometry alone.</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>The VUS crisis reflects fundamental uncertainty: most missense variants in the human genome have never been observed in a clinical context, and their functional effects cannot be confidently predicted. A VUS is not actionable; clinical action on a VUS is outside the standard of care. Patients who receive VUS results experience anxiety and may pursue unnecessary interventions.</p>
-<p>The asymmetry of the ACMG system is intentional but creates a bias: it is easier to classify a variant as Benign (requiring only one BA1 code) than as Pathogenic (requiring multiple codes). This means that extremely rare variants that are actually benign remain classified as VUS indefinitely.</p>
-<p>Phenotype plays a critical role but is often ignored in computational variant interpretation; a variant that fully segregates with disease in a large family with complete penetrance is strongly Pathogenic regardless of population frequency, but segregation evidence is often missing from clinical records.</p>
+<section id="the-reviewer-mindset-the-oxidation-warning" class="level3">
+<h3 class="anchored" data-anchor-id="the-reviewer-mindset-the-oxidation-warning">The Reviewer Mindset: The Oxidation Warning</h3>
+<p>Lipids containing unsaturated fatty acids are highly susceptible to auto-oxidation when exposed to oxygen, light, or heat. This process (lipid peroxidation) creates artifactual oxidized lipid species and destroys the native lipids.</p>
+<p>If you are reviewing a lipidomics study, I recommend you look for these quality control steps:</p>
+<ul>
+<li><p><strong>Antioxidants:</strong> Did the authors add antioxidants like BHT (butylated hydroxytoluene) during extraction?</p></li>
+<li><p><strong>Storage Conditions:</strong> Were the samples stored at <span class="math inline">\(-80^\circ\text{C}\)</span> under an atmosphere of nitrogen or argon? Storing lipid extracts at <span class="math inline">\(-20^\circ\text{C}\)</span> in standard air for months will lead to extensive oxidation, rendering the dataset invalid.</p></li>
+</ul>
+</section>
+<section id="dynamic-membrane-remodeling" class="level3">
+<h3 class="anchored" data-anchor-id="dynamic-membrane-remodeling">Dynamic Membrane Remodeling</h3>
+<p>The specific composition of lipids determines membrane biophysics. I suggest you focus on:</p>
+<ul>
+<li><p><strong>The Saturation Index:</strong> Cancer cells often remodel their membranes by increasing the proportion of saturated and monounsaturated fatty acids relative to polyunsaturated fatty acids. This makes the membrane more resistant to lipid peroxidation and ferroptosis (an iron-dependent form of non-apoptotic cell death), protecting the tumor from chemotherapy.</p></li>
+<li><p><strong>Signaling Cascades:</strong> Cleavage of membrane lipids by phospholipases releases signaling mediators (such as arachidonic acid, the precursor for pro-inflammatory eicosanoids). Understanding these dynamics requires tracking the free fatty acids alongside the parent membrane phospholipids.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="current-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
+<ul>
+<li><p><strong>LIPID MAPS Consortium:</strong> The international classification system and reference database that standardizes lipid nomenclature, structural definitions, and mass spectra.</p></li>
+<li><p><strong>LipidSearch and MS-DIAL:</strong> High-throughput software tools designed specifically for peak detection, alignment, and annotation of lipid species from LC-MS/MS data.</p></li>
+<li><p><strong>Single-Cell Lipidomics:</strong> Emerging microfluidic platforms coupled with high-resolution MS are starting to profile lipid compositions at single-cell resolution, though sensitivity limits remain a major bottleneck.</p></li>
+</ul>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>ACMG/AMP 5-tier system</strong> (Benign to Pathogenic) with evidence codes (PVS1, PS1, PM2, PP3, BA1): codes combine via the scoring matrix.</p></li>
-<li><p><strong>Population frequency (gnomAD)</strong> is the first filter, &gt;5% AF = benign. Ancestry matching is critical.</p></li>
-<li><p><strong>In silico predictions are supporting only</strong> (PP3): never strong enough alone for clinical classification.</p></li>
-<li><p><strong>The VUS crisis is a health equity crisis</strong>: 40-50% of variants are VUS, with 2x higher rates in underrepresented populations.</p></li>
+<li><p><strong>Lipids are dynamic gatekeepers:</strong> They dictate membrane biophysics and cell signaling, requiring distinct extraction and ionization protocols.</p></li>
+<li><p><strong>Choose your extraction carefully:</strong> MTBE extraction is preferred for high-throughput pipelines because the lipids partition into the easily accessible upper phase.</p></li>
+<li><p><strong>Shotgun vs.&nbsp;LC-MS:</strong> Shotgun is fast and reproducible; LC-MS resolves isomers and reduces ion suppression.</p></li>
+<li><p><strong>Ion Mobility adds the CCS dimension:</strong> CCS measurements resolve structural isomers based on physical shape rather than mass alone.</p></li>
+<li><p><strong>Unsaturated lipids oxidize rapidly:</strong> Protect samples with antioxidants (BHT) and inert gas storage to prevent technical artifacts.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Richards et al.: “Standards and guidelines for the interpretation of sequence variants” (Genetics in Medicine, 2015).</p></li>
-<li><p>Karczewski et al.: “The mutational constraint spectrum quantified from variation in 141,456 humans” (Nature, 2020).</p></li>
+<li>Fahy et al.: “Update of the LIPID MAPS comprehensive classification system for lipids” (<em>Journal of Lipid Research</em>, 2009).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If you would not change your own family’s treatment based on this variant, do not report it as pathogenic.</p>
+<p><strong>Johnson’s Rule:</strong> Lipids are the physical walls of the cell’s compartments. If you do not measure the wall composition, you cannot understand how the molecular machines inside are isolated or regulated.</p>
 </blockquote>
 
 
@@ -521,8 +460,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -934,14 +873,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-5-ai/chapter-27.html" class="pagination-link" aria-label="Chapter 27: DNA Foundation Models and Genomic AI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 27: DNA Foundation Models and Genomic AI</span></span>
+      <a href="../tier-4-mass-based/chapter-23.html" class="pagination-link" aria-label="Chapter 23: Metabolomics and Mass-Based Profiling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 23: Metabolomics and Mass-Based Profiling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-6-clinical/chapter-29.html" class="pagination-link" aria-label="Chapter 29: Cancer Genomics and Somatic Evolution">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 29: Cancer Genomics and Somatic Evolution</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -965,7 +901,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

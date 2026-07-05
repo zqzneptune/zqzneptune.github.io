@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 5: Linear Algebra and Dimensionality Reduction – Omics with Johnson 101</title>
+<title>Chapter 5: Visualizing High-Dimensional Biology (PCA and Clustering) – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -51,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -84,35 +84,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -213,106 +184,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,12 +267,15 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#from-covariance-to-eigenvectors" id="toc-from-covariance-to-eigenvectors" class="nav-link" data-scroll-target="#from-covariance-to-eigenvectors">From Covariance to Eigenvectors</a></li>
-  <li><a href="#singular-value-decomposition-svd" id="toc-singular-value-decomposition-svd" class="nav-link" data-scroll-target="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a></li>
-  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
-  <li><a href="#beyond-pca-mds-and-lda" id="toc-beyond-pca-mds-and-lda" class="nav-link" data-scroll-target="#beyond-pca-mds-and-lda">Beyond PCA: MDS and LDA</a></li>
+  <li><a href="#pca-intuitive-coordinate-rotation" id="toc-pca-intuitive-coordinate-rotation" class="nav-link" data-scroll-target="#pca-intuitive-coordinate-rotation">PCA: Intuitive Coordinate Rotation</a></li>
+  <li><a href="#how-to-read-a-pca-plot" id="toc-how-to-read-a-pca-plot" class="nav-link" data-scroll-target="#how-to-read-a-pca-plot">How to Read a PCA Plot</a></li>
+  <li><a href="#the-scree-plot-deciding-how-many-pcs-matter" id="toc-the-scree-plot-deciding-how-many-pcs-matter" class="nav-link" data-scroll-target="#the-scree-plot-deciding-how-many-pcs-matter">The Scree Plot: Deciding How Many PCs Matter</a></li>
   </ul></li>
-  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#rule-1-color-by-batch-before-you-color-by-biology" id="toc-rule-1-color-by-batch-before-you-color-by-biology" class="nav-link" data-scroll-target="#rule-1-color-by-batch-before-you-color-by-biology">Rule 1: Color by Batch Before You Color by Biology</a></li>
+  <li><a href="#rule-2-inspect-the-loadings-for-biological-sanity" id="toc-rule-2-inspect-the-loadings-for-biological-sanity" class="nav-link" data-scroll-target="#rule-2-inspect-the-loadings-for-biological-sanity">Rule 2: Inspect the Loadings for Biological Sanity</a></li>
+  </ul></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -362,9 +286,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-00.html">TIER 1: Foundations: Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-05.html"><span class="chapter-title">Chapter 5: Linear Algebra and Dimensionality Reduction</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-00.html">TIER 1: Foundations: Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-05.html"><span class="chapter-title">Chapter 5: Visualizing High-Dimensional Biology (PCA and Clustering)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 5: Linear Algebra and Dimensionality Reduction</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 5: Visualizing High-Dimensional Biology (PCA and Clustering)</span></h1>
 </div>
 
 
@@ -382,7 +306,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -394,88 +318,75 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Omics Data is a Mathematical Matrix</p>
+<p><strong>Johnson’s First Principle:</strong> Dimensionality Reduction Compresses Space, Not Signal</p>
+<p>An RNA-seq dataset measuring 20,000 genes across 50 samples is not a simple spreadsheet; it is a mathematical matrix in 20,000-dimensional space. Every sample is a vector positioned along 20,000 gene coordinate axes. The human brain cannot visualize anything beyond three dimensions. We must rely on linear algebra to rotate and compress this high-dimensional space into a two-dimensional plot, allowing us to see how biological samples relate.</p>
 </blockquote>
-<p>An RNA-seq experiment with 20,000 genes across 500 samples is not a spreadsheet; it is a mathematical matrix <span class="math inline">\(X \in \mathbb{R}^{20{,}000 \times 500}\)</span>. Every sample is a vector in 20,000-dimensional space. The human brain cannot visualize anything beyond three dimensions, so we must rely on linear algebra to rotate and compress this matrix into a lower-dimensional space where biological signal separates from technical noise.</p>
-<p>The fundamental assumption that makes this possible is that biological variation is <strong>low-rank</strong>: most of the 20,000 genes are not independently varying. A handful of biological processes (cell type, treatment response, cell cycle, stress) drive the majority of transcriptional variation, and each process affects hundreds of genes in coordinated patterns. The observed data <span class="math inline">\(X\)</span> is approximately the sum of a low-rank biological matrix <span class="math inline">\(L\)</span> (rank <span class="math inline">\(k \ll 20{,}000\)</span>) and noise <span class="math inline">\(N\)</span>:</p>
-<p><span class="math display">\[X \approx L + N\]</span></p>
-<p>Dimensionality reduction is the search for <span class="math inline">\(L\)</span>; the low-dimensional structure hidden inside the high-dimensional noise.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="from-covariance-to-eigenvectors" class="level3">
-<h3 class="anchored" data-anchor-id="from-covariance-to-eigenvectors">From Covariance to Eigenvectors</h3>
-<p>The first question dimensionality reduction answers is: “in which directions does the data vary most?” The answer comes from the <strong>covariance matrix</strong> <span class="math inline">\(\Sigma\)</span>, where <span class="math inline">\(\Sigma_{ij}\)</span> is the covariance between genes <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> across all samples. <span class="math inline">\(\Sigma\)</span> captures the coordinated variation of all genes simultaneously.</p>
-<p>An <strong>eigenvector</strong> <span class="math inline">\(\vec{v}\)</span> of the covariance matrix satisfies:</p>
-<p><span class="math display">\[\Sigma \vec{v} = \lambda \vec{v}\]</span></p>
-<p>Interpretation: <span class="math inline">\(\vec{v}\)</span> is a direction in gene expression space, and <span class="math inline">\(\lambda\)</span> (the eigenvalue) is the amount of variance captured by that direction. The eigenvectors with the largest eigenvalues are the axes of maximum biological variation. The eigenvector with the largest eigenvalue is the single direction that captures the most variance; the second-largest is the next, orthogonal to the first; and so on.</p>
-<p>This is the mechanical basis of dimensionality reduction: instead of examining 20,000 individual gene dimensions, we project the data onto the top <span class="math inline">\(k\)</span> eigenvectors, which capture the most variance per axis.</p>
+<p>In genomics, the data you analyze has far more dimensions (variables) than samples. This is the <strong>high-dimensional data problem</strong>.</p>
+<p>However, genes do not act independently. Biological processes (like cell division, immune activation, or tissue differentiation) involve the coordinated expression of hundreds of genes simultaneously. This means the true biological signal does not occupy 20,000 independent dimensions—it is low-rank, meaning it is governed by a small number of coordinated biological pathways.</p>
+<p>We use <strong>Principal Component Analysis (PCA)</strong> to find these coordinated signals and project them onto a 2D or 3D plot.</p>
+<section id="pca-intuitive-coordinate-rotation" class="level3">
+<h3 class="anchored" data-anchor-id="pca-intuitive-coordinate-rotation">PCA: Intuitive Coordinate Rotation</h3>
+<p>Imagine a cloud of points representing your samples. PCA rotates this cloud of data points in high-dimensional space until it finds the direction of <strong>maximum variation</strong>.</p>
+<ul>
+<li><p><strong>Principal Component 1 (PC1):</strong> The single coordinate axis along which the data points are most spread out. It captures the strongest signal (variance) in the dataset.</p></li>
+<li><p><strong>Principal Component 2 (PC2):</strong> The second axis, chosen to be completely perpendicular (orthogonal) to PC1, capturing the next largest amount of variation.</p></li>
+</ul>
+<p>By plotting your samples using PC1 as the X-axis and PC2 as the Y-axis, you compress 20,000 genes into a simple 2D scatter plot.</p>
 </section>
-<section id="singular-value-decomposition-svd" class="level3">
-<h3 class="anchored" data-anchor-id="singular-value-decomposition-svd">Singular Value Decomposition (SVD)</h3>
-<p>SVD is a theorem proving that any matrix <span class="math inline">\(X \in \mathbb{R}^{n \times p}\)</span> can be factored into three simpler matrices:</p>
-<p><span class="math display">\[X = U D V^T\]</span></p>
-<p>where: - <span class="math inline">\(U \in \mathbb{R}^{n \times n}\)</span> contains left singular vectors; gene patterns (how genes co-vary) - <span class="math inline">\(V^T \in \mathbb{R}^{p \times p}\)</span> contains right singular vectors; sample patterns (how samples relate) - <span class="math inline">\(D\)</span> is a diagonal matrix of <strong>singular values</strong> <span class="math inline">\(d_1 \geq d_2 \geq \dots \geq d_k \geq 0\)</span>, each representing the magnitude of variation along the corresponding axis</p>
-<p>(The SVD is often written <span class="math inline">\(U \Sigma V^T\)</span> in other texts, but this chapter reserves <span class="math inline">\(\Sigma\)</span> for the covariance matrix; the two are mathematically distinct, and using different symbols avoids confusion.)</p>
-<p>The singular values are the bridge between SVD and the covariance matrix. The eigenvalues of <span class="math inline">\(X^T X\)</span> (the sample covariance matrix, up to scaling) are the squares of the singular values: <span class="math inline">\(\lambda_i = d_i^2\)</span>. This means SVD simultaneously computes the directions of maximum variance (via <span class="math inline">\(V\)</span>) and the projection of the data onto those directions (via <span class="math inline">\(UD\)</span>).</p>
-<p><strong>Full vs.&nbsp;thin SVD.</strong> The description above gives the <em>full</em> SVD where <span class="math inline">\(U\)</span> is <span class="math inline">\(n \times n\)</span> and <span class="math inline">\(V\)</span> is <span class="math inline">\(p \times p\)</span>. In practice, for <span class="math inline">\(n \gg p\)</span> (more genes than samples), only the first <span class="math inline">\(p\)</span> singular values are non-zero, and computing the full <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(U\)</span> is wasteful. The <strong>thin SVD</strong> computes only the first <span class="math inline">\(k = \min(n, p)\)</span> columns of <span class="math inline">\(U\)</span> and rows of <span class="math inline">\(V^T\)</span>, producing <span class="math inline">\(U \in \mathbb{R}^{n \times k}\)</span>, <span class="math inline">\(D \in \mathbb{R}^{k \times k}\)</span>, and <span class="math inline">\(V^T \in \mathbb{R}^{k \times p}\)</span>. This is what <code>svd(X)</code> returns by default in R and <code>scipy.linalg.svd</code> with <code>full_matrices=False</code> in Python. For a 20,000-gene, 500-sample matrix, thin SVD computes a <span class="math inline">\(20{,}000 \times 500\)</span> matrix <span class="math inline">\(U\)</span> instead of <span class="math inline">\(20{,}000 \times 20{,}000\)</span>; a 40x memory saving.</p>
-<p><strong>The Eckart-Young theorem</strong> is the reason SVD is the foundation of dimensionality reduction: the truncated SVD that keeps only the top <span class="math inline">\(d\)</span> singular values gives the lowest possible reconstruction error of any rank-<span class="math inline">\(d\)</span> approximation. In other words, SVD provides the optimal linear compression; no other linear method can preserve more information in <span class="math inline">\(d\)</span> dimensions:</p>
-<pre class="code"><code>svd_result &lt;- svd(X)
-variance_explained &lt;- svd_result$d^2 / sum(svd_result$d^2)
-
-# Rank-2 approximation retains as much variance as mathematically possible
-d &lt;- 2
-X_2 &lt;- svd_result$u[, 1:d] %*% diag(svd_result$d[1:d]) %*% t(svd_result$v[, 1:d])</code></pre>
-</section>
-<section id="principal-component-analysis-pca" class="level3">
-<h3 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h3>
-<p>PCA is SVD applied to a <strong>centered</strong> data matrix (the mean of each gene subtracted), which ensures that variance is measured around the biological baseline rather than around the origin:</p>
+<section id="how-to-read-a-pca-plot" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-read-a-pca-plot">How to Read a PCA Plot</h3>
 <ol type="1">
-<li>Center: <span class="math inline">\(X_{c, ij} = X_{ij} - \bar{X}_{i\cdot}\)</span></li>
-<li>Run SVD: <span class="math inline">\(X_c = U D V^T\)</span></li>
-<li>Principal component scores (sample positions in PC space): <span class="math inline">\(Z = U D\)</span></li>
-<li>Loadings (gene weights defining each PC): <span class="math inline">\(V\)</span></li>
+<li><p><strong>PCA Scores (The Sample Points):</strong> Each point on a PCA plot represents a single biological sample. If two sample points are close to each other on the plot, it means they have highly similar transcriptomes. If they are far apart, their gene expression profiles differ.</p></li>
+<li><p><strong>PCA Loadings (The Genes):</strong> Loadings are weights that define how much each gene contributes to a given PC. A gene with a high positive loading on PC1 is highly expressed in samples positioned on the right side of the plot and lowly expressed in samples on the left. Loadings connect the mathematical axes back to biological pathways.</p></li>
+<li><p><strong>Variance Explained:</strong> Every PC has an associated percentage (e.g., “PC1: 45% variance explained”). This tells you what proportion of the total transcriptomic variation is captured by that PC. If PC1 and PC2 together explain 60% of the variance, a 2D scatter plot represents the majority of the signal in your data.</p></li>
 </ol>
-<pre class="code"><code>pca_result &lt;- prcomp(X, center = TRUE, scale. = FALSE)
-# pca_result$x: PC scores (samples × PCs)
-# pca_result$rotation: Loadings (genes × PCs)</code></pre>
-<p>The PCA is optimal in the sense defined by Eckart-Young: the first PC captures the maximum possible variance in one dimension, the second captures the maximum remaining variance orthogonal to the first, and so on. This guarantee is what makes PCA the default starting point for any omics analysis.</p>
-<p><strong>The scree plot.</strong> The variance explained by each PC, plotted in descending order, is called a scree plot. The plot answers the question: “how many dimensions does the biological signal occupy?” If the plot shows a clear elbow (a sharp drop followed by a long, flat tail) the components before the elbow capture biological signal and those after capture noise. However, many real datasets show no clear elbow. This does not mean “no signal”; it means the signal is distributed across many components, which is expected for polygenic traits, branching developmental processes, or data with multiple overlapping sources of variation.</p>
-<p><strong>How many PCs to keep.</strong> There is no universal answer, but three heuristics guide the choice: - <strong>Cumulative variance threshold:</strong> keep enough PCs to explain 50-80% of total variance. In most omics datasets, this requires 10-50 PCs. The exact threshold depends on the downstream task, clustering benefits from more PCs (capturing subtle structure), while visualization requires only 2-3. - <strong>Parallel analysis:</strong> compare the observed eigenvalues to those from a null matrix (random data of the same dimensions). PCs with eigenvalues exceeding the null distribution are retained; this is more principled than the elbow heuristic but computationally heavier. - <strong>Purpose-driven:</strong> for downstream use (batch correction, UMAP initialization), keep 30-50 PCs regardless of the elbow. The additional PCs contribute small but cumulatively meaningful variance, and modern methods are robust to including a few noise-dominated dimensions.</p>
 </section>
-<section id="beyond-pca-mds-and-lda" class="level3">
-<h3 class="anchored" data-anchor-id="beyond-pca-mds-and-lda">Beyond PCA: MDS and LDA</h3>
-<p><strong>Multi-Dimensional Scaling (MDS)</strong> generalizes PCA to arbitrary distance metrics. While PCA uses Euclidean distance implicitly (via covariance), MDS can preserve Bray-Curtis distances (standard for microbiome data), identity-by-state distances (population genetics), or any user-defined dissimilarity. Classical MDS (PCoA) with Euclidean distance is equivalent to PCA. The tradeoff: MDS with non-Euclidean distances can reveal structure invisible to PCA, but the axes lack the direct variance interpretation that makes PCA loadings interpretable.</p>
-<p><strong>Linear Discriminant Analysis (LDA)</strong> is supervised: it finds axes that maximize the ratio of between-group to within-group variance, separating known groups optimally. LDA is not a dimensionality reduction method for exploration; it is a classification method that happens to produce a low-dimensional projection. With <span class="math inline">\(p \gg n\)</span> (more genes than samples), LDA overfits catastrophically and should be applied to PCA scores, not raw genes.</p>
-<p>Both MDS and LDA should be used after PCA, not instead of it. PCA compresses the data to a tractable number of dimensions (typically 50); MDS or LDA on those scores adds specific analytical value (non-Euclidean distances or supervised separation) that PCA cannot provide.</p>
+<section id="the-scree-plot-deciding-how-many-pcs-matter" class="level3">
+<h3 class="anchored" data-anchor-id="the-scree-plot-deciding-how-many-pcs-matter">The Scree Plot: Deciding How Many PCs Matter</h3>
+<p>A scree plot shows the percentage of variance explained by each Principal Component in descending order.</p>
+<p>You look for the <strong>“elbow”</strong> in the plot—the point where the variance explained drops sharply and flattens out. The PCs before the elbow contain the biological signal; the flat tail after the elbow contains random technical noise. For downstream analyses (like clustering), researchers typically keep only the top PCs (usually 10 to 30) before the elbow, discarding the noise-only dimensions.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p><strong>Color your PCA by batch before you color it by biology.</strong> If batch effects dominate variance, PC1 = batch, not biology. This is the single most important diagnostic step in any omics analysis. If PC1 separates sequencing batches but not experimental conditions, the data has a confound that must be addressed through batch correction (ComBat, limma) before any biological interpretation. This diagnostic is so important that it has its own chapter (Chapter 6).</p>
-<p><strong>PCA is linear.</strong> Biological relationships that are non-linear in expression space (developmental trajectories, cyclic processes (cell cycle), branching differentiation) will not be captured by the first few principal components. A scree plot with no clear elbow does not mean “no biological signal”; it may mean the signal is non-linear. For such data, non-linear methods (t-SNE, UMAP) are appropriate, but always start with PCA to compress to 50 dimensions first.</p>
-<p><strong>Loading vectors are biologically interpretable.</strong> The genes with the largest absolute loadings on PC1 are the primary drivers of the largest transcriptional variation in the dataset. In breast cancer data, PC1 loadings are dominated by ER signaling genes (ESR1, GATA3, FOXA1). In a study with a strong batch effect, PC1 loadings may be dominated by ribosomal or mitochondrial genes, indicating technical artifact. Examining the top 20 loadings of PC1 and PC2 should be a routine step in any PCA analysis; it connects the mathematical projection back to the biology.</p>
+<p>PCA is the primary quality control tool in genomics. Before you analyze your data for biological significance, you must audit the PCA plot.</p>
+<section id="rule-1-color-by-batch-before-you-color-by-biology" class="level3">
+<h3 class="anchored" data-anchor-id="rule-1-color-by-batch-before-you-color-by-biology">Rule 1: Color by Batch Before You Color by Biology</h3>
+<p>When you receive your sequencing data, the first thing you should do is plot a PCA of the samples and color the points by <strong>technical variables</strong> (e.g., sequencing run day, library preparation batch, or technician).</p>
+<ul>
+<li><p>If the samples cluster cleanly by biological group (e.g., tumor vs.&nbsp;normal), your biological signal is strong.</p></li>
+<li><p>If the samples cluster by the date they were prepped, the primary driver of variation in your dataset is a <strong>technical batch effect</strong>. You must correct for this batch effect before you can trust any biological discoveries (as discussed in Chapter 6).</p></li>
+</ul>
+</section>
+<section id="rule-2-inspect-the-loadings-for-biological-sanity" class="level3">
+<h3 class="anchored" data-anchor-id="rule-2-inspect-the-loadings-for-biological-sanity">Rule 2: Inspect the Loadings for Biological Sanity</h3>
+<p>Do not treat the principal components as abstract numbers. Look at the top 10 genes with the highest loadings on PC1 and PC2.</p>
+<ul>
+<li><p>In cancer samples, PC1 is often driven by cell proliferation genes (e.g., <em>MKI67</em>, <em>PCNA</em>).</p></li>
+<li><p>If your top loadings are dominated by mitochondrial genes (e.g., <em>MT-CO1</em>), it is a technical warning sign: high mitochondrial expression indicates dying cells, meaning the primary variation in your experiment is cell death, not biology.</p></li>
+</ul>
 <hr>
+</section>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Omics data is a matrix</strong>: biological variation is low-rank. SVD decomposes <span class="math inline">\(X = U D V^T\)</span>, providing the optimal rank-<span class="math inline">\(k\)</span> approximation (Eckart-Young theorem).</p></li>
-<li><p><strong>PCA = SVD on centered data</strong>: PC scores = <span class="math inline">\(U D\)</span> (sample positions), loadings = <span class="math inline">\(V\)</span> (gene weights).</p></li>
-<li><p><strong>Singular values connect to covariance</strong>: <span class="math inline">\(\lambda_i = d_i^2\)</span> are the eigenvalues of <span class="math inline">\(X^T X\)</span>, and the eigenvectors identify axes of maximum variance.</p></li>
-<li><p><strong>The scree plot estimates intrinsic dimensionality</strong>: look for the elbow. No elbow means the signal is distributed or non-linear.</p></li>
-<li><p><strong>Color by batch before coloring by biology</strong>: if PC1 separates batches, the data has a confound. Examine loading vectors to interpret what each PC represents.</p></li>
-<li><p><strong>PCA is linear</strong>: use it for compression to 50 dimensions before non-linear methods (t-SNE, UMAP).</p></li>
+<li><p><strong>Genomic data is high-dimensional</strong>: PCA compresses thousands of genes into a low-dimensional space we can visualize.</p></li>
+<li><p><strong>PCs are directions of maximum variation</strong>: PC1 captures the strongest signal; PC2 captures the second strongest.</p></li>
+<li><p><strong>Distance equals similarity</strong>: Samples that cluster close together on a PCA plot have similar expression profiles.</p></li>
+<li><p><strong>Use PCA for quality control</strong>: Color by technical variables first to detect batch effects, and audit gene loadings for biological sanity.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Strang: <em>Linear Algebra and Learning from Data</em> (Ch 1-3): SVD and PCA.</p></li>
-<li><p>Alter, Brown &amp; Botstein: “Singular value decomposition for genome-wide expression data processing and modeling” (<em>PNAS</em>, 2000).</p></li>
+<li>Bioconductor PCA Workflow: Practice loading a count table in R, centering the data, running <code>prcomp()</code>, and plotting the results.</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> Always color your PCA by batch before you color it by biology. If you skip this step, you have no idea whether PC1 is biology or a confound.</p>
+<p><strong>Johnson’s Rule:</strong> A PCA plot is the mirror of your experiment. If your samples cluster by the day they were prepped rather than the drug they were treated with, no statistical trick can save your analysis. Find the batch confounder before you write the manuscript.</p>
 </blockquote>
 
 
@@ -486,8 +397,8 @@ X_2 &lt;- svd_result$u[, 1:d] %*% diag(svd_result$d[1:d]) %*% t(svd_result$v[, 1
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -899,13 +810,13 @@ X_2 &lt;- svd_result$u[, 1:d] %*% diag(svd_result$d[1:d]) %*% t(svd_result$v[, 1
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-1-foundations/chapter-04.html" class="pagination-link" aria-label="Chapter 4: Probability Distributions in Sequencing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 4: Probability Distributions in Sequencing</span></span>
+      <a href="../tier-1-foundations/chapter-04.html" class="pagination-link" aria-label="Chapter 4: Statistical Foundations of Sequencing Counts (Overdispersion)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 4: Statistical Foundations of Sequencing Counts (Overdispersion)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-1-foundations/chapter-06.html" class="pagination-link" aria-label="Chapter 6: Statistical Inference and Confounder Management">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 6: Statistical Inference and Confounder Management</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-1-foundations/chapter-06.html" class="pagination-link" aria-label="Chapter 6: Hypothesis Testing and Confounder Management (FDR &amp; Batch Effects)">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 6: Hypothesis Testing and Confounder Management (FDR &amp; Batch Effects)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -930,7 +841,7 @@ X_2 &lt;- svd_result$u[, 1:d] %*% diag(svd_result$d[1:d]) %*% t(svd_result$v[, 1
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

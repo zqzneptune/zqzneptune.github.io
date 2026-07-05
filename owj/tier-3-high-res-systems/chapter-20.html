@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 23: Machine Learning Fundamentals for Biology – Omics with Johnson 101</title>
+<title>Chapter 20: 3D Genome Architecture – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-5-ai/chapter-24.html" rel="next">
-<link href="../tier-4-systems/chapter-22.html" rel="prev">
+<link href="../tier-3-high-res-systems/chapter-21.html" rel="next">
+<link href="../tier-3-high-res-systems/chapter-19.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,106 +213,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,11 +296,9 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-curse-of-dimensionality-p-gg-n" id="toc-the-curse-of-dimensionality-p-gg-n" class="nav-link" data-scroll-target="#the-curse-of-dimensionality-p-gg-n">The Curse of Dimensionality (<span class="math inline">\(p \gg n\)</span>)</a></li>
-  <li><a href="#the-bias-variance-tradeoff" id="toc-the-bias-variance-tradeoff" class="nav-link" data-scroll-target="#the-bias-variance-tradeoff">The Bias-Variance Tradeoff</a></li>
-  <li><a href="#data-leakage-the-most-common-fatal-error" id="toc-data-leakage-the-most-common-fatal-error" class="nav-link" data-scroll-target="#data-leakage-the-most-common-fatal-error">Data Leakage: The Most Common Fatal Error</a></li>
-  <li><a href="#model-validation" id="toc-model-validation" class="nav-link" data-scroll-target="#model-validation">Model Validation</a></li>
-  <li><a href="#metrics-why-accuracy-lies" id="toc-metrics-why-accuracy-lies" class="nav-link" data-scroll-target="#metrics-why-accuracy-lies">Metrics: Why Accuracy Lies</a></li>
+  <li><a href="#proximity-ligation-and-hi-c-physics" id="toc-proximity-ligation-and-hi-c-physics" class="nav-link" data-scroll-target="#proximity-ligation-and-hi-c-physics">Proximity Ligation and Hi-C Physics</a></li>
+  <li><a href="#topological-structures" id="toc-topological-structures" class="nav-link" data-scroll-target="#topological-structures">Topological Structures</a></li>
+  <li><a href="#loop-extrusion-model" id="toc-loop-extrusion-model" class="nav-link" data-scroll-target="#loop-extrusion-model">Loop Extrusion Model</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -363,9 +311,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html">TIER 5: Advanced AI and Machine Learning in Biology</a></li><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html"><span class="chapter-title">Chapter 23: Machine Learning Fundamentals for Biology</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-15.html">TIER 3: High-Resolution &amp; Systems</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-20.html"><span class="chapter-title">Chapter 20: 3D Genome Architecture</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 23: Machine Learning Fundamentals for Biology</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 20: 3D Genome Architecture</span></h1>
 </div>
 
 
@@ -383,7 +331,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -395,139 +343,65 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> The Only Metric That Matters is Generalization to Unseen Data</p>
+<p><strong>Johnson’s First Principle:</strong> The Genome is Folded in Three Dimensions</p>
 </blockquote>
-<p>A model trained on 50 patients with 20,000 genes can achieve 99.9% accuracy; even with randomly shuffled labels. When <span class="math inline">\(p &gt; n\)</span>, a linear separator exists for any labeling. This is not learning; it is exploiting excess degrees of freedom. The only metric that matters is generalization to unseen data.</p>
-<p>Chapter 6 established the statistical framework for inference: hypothesis testing, multiple testing correction, and confounder management. That framework answers “is there a difference?” Machine learning answers a different question: “can I predict this outcome from these measurements?” The two are complementary; statistical inference identifies associations, machine learning tests whether those associations are predictive in independent data. A gene with p-value <span class="math inline">\(10^{-10}\)</span> that does not generalize to a held-out cohort has statistical significance without practical utility.</p>
+<p>Linear proximity on a chromosome is a false indicator of regulatory interaction. A promoter and its enhancer may be separated by 500 kilobases of linear sequence but brought into physical contact through chromatin looping. The linear genome is a coordinate system; the 3D genome is the functional reality.</p>
+<p>Chapter 12 introduced the epigenome as software running on the DNA hardware. But software execution depends not just on which proteins are bound and which regions are accessible; it depends on which genomic elements are physically brought together in 3D space. An enhancer cannot activate a promoter if it is in a different physical compartment of the nucleus, regardless of how accessible the chromatin is at each element individually. Three-dimensional genome architecture is the spatial constraint that regulatory logic operates within.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-curse-of-dimensionality-p-gg-n" class="level3">
-<h3 class="anchored" data-anchor-id="the-curse-of-dimensionality-p-gg-n">The Curse of Dimensionality (<span class="math inline">\(p \gg n\)</span>)</h3>
-<p>In bioinformatics, you typically have <span class="math inline">\(n = 50\)</span> patients and <span class="math inline">\(p = 20,000\)</span> genes. When <span class="math inline">\(p &gt; n\)</span>, a fundamental theorem guarantees: <span class="math inline">\(n\)</span> points in <span class="math inline">\(\mathbb{R}^p\)</span> span at most <span class="math inline">\(n-1\)</span> dimensions, providing unlimited degrees of freedom to orient a separating hyperplane. For any binary labeling (even random coin flips) a linear separator exists. This is not learning; it is dimensionality exploitation.</p>
-<p><strong>The concentration of distances:</strong> In high dimensions, all pairwise distances converge to the same value. The ratio of nearest to farthest neighbor distance approaches 1 as <span class="math inline">\(p \to \infty\)</span>. K-nearest neighbors fails because there are no “nearest” neighbors.</p>
-<p><strong>Minimum sample size heuristic:</strong> A stable linear classifier requires <span class="math inline">\(n \geq 10 \cdot p\)</span>. With <span class="math inline">\(p = 20,000\)</span>, you need <span class="math inline">\(n \geq 200,000\)</span> samples. Since this is rarely achievable in omics, aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> is essential before any supervised learning.</p>
-<p><strong>Regularization is the primary solution to <span class="math inline">\(p &gt; n\)</span>.</strong> L1 regularization (Lasso) drives irrelevant feature weights to exactly zero, performing embedded feature selection. L2 regularization (Ridge) shrinks all weights toward zero without eliminating features. Elastic Net combines both. In the <span class="math inline">\(p &gt; n\)</span> regime, unregularized models are mathematically guaranteed to overfit; regularization encodes the prior belief that most features are irrelevant.</p>
+<section id="proximity-ligation-and-hi-c-physics" class="level3">
+<h3 class="anchored" data-anchor-id="proximity-ligation-and-hi-c-physics">Proximity Ligation and Hi-C Physics</h3>
+<p>Hi-C measures physical proximity across the genome. The biochemical logic is simple: crosslink spatially adjacent chromatin with formaldehyde (fixing proteins and DNA that are within ~1 nm of each other), digest with a restriction enzyme (typically HindIII or MboI), ligate the crosslinked fragments back together (creating chimeric junctions between loci that were physically close in 3D space), reverse crosslinks, and sequence the junctions. Each sequencing read pair maps to two different genomic loci; the closer they are in 3D space, the more frequently they are ligated together.</p>
+<p>The output is a contact matrix <span class="math inline">\(M_{ij}\)</span>, where each entry records the number of ligation events observed between locus <span class="math inline">\(i\)</span> and locus <span class="math inline">\(j\)</span> across millions of cells. The matrix is symmetric (<span class="math inline">\(M_{ij} = M_{ji}\)</span>) because proximity ligation is bidirectional; only the upper triangle contains unique information. For a genome binned at 1 Mb resolution, this produces a 3,000 <span class="math inline">\(\times\)</span> 3,000 contact matrix. At the highest sequencing depth (5-10 billion reads), kilobase-resolution contact maps are possible in targeted regions.</p>
+<p><strong>Resolution scales with sequencing depth.</strong> Resolution is defined by the bin size, and the required read depth scales quadratically as bins shrink: 1 Mb bins need ~20 million read pairs, 100 kb bins need ~200 million, and 10 kb bins need ~5 billion. Halving the bin size doubles the number of bins along each axis, quadrupling the total entries; most of which remain sparse at high resolution. In practice, compartment analysis uses 100-500 kb bins, TAD boundaries are visible at 10-50 kb, and individual loop detection requires 5-10 kb bins with correspondingly deep sequencing.</p>
+<p><strong>The decay law and normalization.</strong> Contact frequency decays with genomic distance following a polymer physics scaling law: <span class="math inline">\(M_{ij} \sim |i - j|^{-1}\)</span> for interphase chromatin (or <span class="math inline">\(|i - j|^{-2}\)</span> for mitotic chromosomes). This means that nearby loci (1-10 kb apart) always have high contact frequency regardless of biological loop formation. This distance-dependent background must be removed before biological signal can be interpreted. The standard approach is <strong>observed-over-expected</strong> (obs/exp) normalization: for each genomic distance <span class="math inline">\(s = |i - j|\)</span>, compute the expected contact frequency as the average over all locus pairs at that distance, then divide each entry by its distance-matched expectation. After obs/exp normalization, a value <span class="math inline">\(&gt; 1\)</span> means “more contacts than expected given the genomic distance between the two loci”; this is how TAD boundaries and loop anchors appear as enriched features in the normalized matrix.</p>
+<p><strong>Iterative Correction and Eigenvector decomposition (ICE)</strong> and Knight-Ruiz (KR) matrix balancing normalize the contact matrix by removing systematic biases: GC content bias (GC-rich regions are more mappable), restriction site density bias (fragments with more restriction sites produce more ligation products), and fragment length effects (longer fragments have higher ligation probability). Both methods model biases as multiplicative factors: the observed contact count <span class="math inline">\(M_{ij}\)</span> equals the true contact frequency <span class="math inline">\(T_{ij}\)</span> multiplied by bias factors <span class="math inline">\(b_i\)</span> and <span class="math inline">\(b_j\)</span> for each locus (<span class="math inline">\(M_{ij} = T_{ij} \cdot b_i b_j\)</span>). Under the assumption that all loci have equal “visibility” in the absence of biological structure, the correction solves for <span class="math inline">\(b_i\)</span> such that each row sum becomes uniform. After dividing by the bias factors, the normalized matrix <span class="math inline">\(M_{ij} / (b_i b_j)\)</span> reflects biological contact frequency independent of sequence-level biases. KR is faster; ICE handles sparser matrices better.</p>
 </section>
-<section id="the-bias-variance-tradeoff" class="level3">
-<h3 class="anchored" data-anchor-id="the-bias-variance-tradeoff">The Bias-Variance Tradeoff</h3>
-<p>Total prediction error decomposes into three components:</p>
-<p><span class="math display">\[\text{Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}\]</span></p>
-<ul>
-<li><strong>Bias:</strong> Error from incorrect assumptions. A linear model fitted to non-linear data has high bias; it systematically misses the true relationship.</li>
-<li><strong>Variance:</strong> Error from sensitivity to training data. A deep decision tree has high variance; change 5% of the training samples and the tree structure changes completely.</li>
-<li><strong>Irreducible error:</strong> Measurement noise that cannot be modeled away.</li>
-</ul>
-<p>The tradeoff: as model complexity increases (more parameters, less regularization), bias decreases but variance increases. The optimal model minimizes total error at the point where the marginal decrease in bias equals the marginal increase in variance. In omics, where <span class="math inline">\(n\)</span> is small, variance dominates unless controlled through regularization, dimensionality reduction, or simple models.</p>
-<p><strong>Regularization exploits this tradeoff directly.</strong> L1 regularization (Lasso) drives weights to exactly zero; this increases bias (the model cannot use those features at all) but collapses variance by eliminating the dimensions where noise dominates. L2 regularization (Ridge) shrinks all weights toward zero, increasing bias slightly (the constrained fit is less accurate) while reducing variance proportionally to the number of correlated features. Elastic Net combines both. In the <span class="math inline">\(p &gt; n\)</span> regime where variance is extreme, even a small bias investment yields a large variance reduction; the net effect is lower total error. Cross-validation finds the optimal regularization strength <span class="math inline">\(\lambda\)</span> by balancing this tradeoff.</p>
+<section id="topological-structures" class="level3">
+<h3 class="anchored" data-anchor-id="topological-structures">Topological Structures</h3>
+<p>The normalized contact matrix reveals hierarchical 3D structures at three scales:</p>
+<p><strong>A/B Compartments</strong> are the largest scale (multimegabase, typically 5-100 Mb). The first principal component of the normalized contact matrix (or the first eigenvector of the correlation matrix) partitions the genome into two states: A compartments are gene-rich, transcriptionally active, early replicating, and enriched for activating histone marks (H3K27ac, H3K4me3). B compartments are gene-poor, transcriptionally silent, late replicating, and enriched for repressive marks (H3K9me3, H3K27me3). The compartment signal is visible as a “plaid” pattern in the contact matrix; checkerboard enrichment indicating that A loci preferentially contact other A loci, and B loci preferentially contact other B loci.</p>
+<p><strong>Topologically Associating Domains (TADs)</strong> are megabase-scale (typically 200 kb - 2 Mb) regions within which contact frequency is enriched relative to the background. TADs are visible as triangular blocks along the diagonal of the contact matrix. TAD boundaries are sharply demarcated by convergent CTCF motifs bound by CTCF and cohesin. Disruption of TAD boundaries (by deletion of the CTCF site or mutation of CTCF itself) causes ectopic enhancer-promoter contacts across the boundary, leading to misregulation of developmental genes. This mechanism is directly implicated in developmental disorders (such as limb malformations from boundary deletions in the EPHA4 locus) and cancer (TAD boundary disruptions causing oncogene activation by distal enhancers).</p>
+<p><strong>Enhancer-Promoter loops</strong> are sub-Mb contacts identified by significant contact enrichment relative to the local TAD background. These are the functional units of gene regulation; a physical connection between a distal enhancer and its target promoter through the cohesin-CTCF extrusion machinery. Methods for loop identification (Fit-Hi-C, HiCCUPS, Mustache) differ primarily in how they model the background distribution: Fit-Hi-C fits a spline to the distance-decay curve and tests each contact against it; HiCCUPS searches for local enrichment relative to the surrounding region in the contact matrix; Mustache uses a binomial model with FDR control.</p>
 </section>
-<section id="data-leakage-the-most-common-fatal-error" class="level3">
-<h3 class="anchored" data-anchor-id="data-leakage-the-most-common-fatal-error">Data Leakage: The Most Common Fatal Error</h3>
-<p>Data leakage occurs when information from the test set influences the training process. Common patterns:</p>
+<section id="loop-extrusion-model" class="level3">
+<h3 class="anchored" data-anchor-id="loop-extrusion-model">Loop Extrusion Model</h3>
+<p>The dominant mechanistic model for loop and TAD formation: the cohesin complex loads onto chromatin and actively extrudes a loop, reeling the chromatin fiber through its ring structure until it encounters CTCF proteins bound in a specific orientation (convergent motifs). The CTCF-cohesin interaction stalls extrusion, creating a stable loop anchored at the two CTCF sites. This model explains three key observations:</p>
 <ol type="1">
-<li><strong>PCA before split:</strong> Computing PCA on all 50 patients, then splitting. PCA rotation was influenced by test data.</li>
-<li><strong>Feature selection before split:</strong> Selecting differentially expressed genes using all samples, then splitting.</li>
-<li><strong>Batch correction before split:</strong> Applying ComBat to full dataset. Test data influenced batch parameter estimates.</li>
-<li><strong>Normalization before split:</strong> Computing mean/variance from all data including test.</li>
-<li><strong>Feature scaling before split:</strong> Standardizing (z-scores) or min-max scaling on all data before splitting leaks test information into the scaling parameters.</li>
+<li><p><strong>Directional bias:</strong> CTCF motifs at loop anchors are almost exclusively in convergent orientation (→ ←), never divergent (← →). The extrusion model predicts this; cohesin can only be stopped by CTCF when it encounters the motif from the correct direction.</p></li>
+<li><p><strong>Nested hierarchy:</strong> TADs contain sub-TADs which contain finer loops. The extrusion model explains this as partial extrusion; a loop can be stalled at early CTCF sites or continue to more distant ones.</p></li>
+<li><p><strong>Size distribution:</strong> Loops show a characteristic distribution peaking at 100-500 kb, consistent with the processivity of cohesin extrusion before stalling.</p></li>
 </ol>
-<p><strong>Correct workflow:</strong> All preprocessing (PCA, feature selection, normalization, batch correction, feature scaling) must be fit on training data only and transformed onto test data. Regularization and PCA are both sensitive to feature scale; a gene measured in TPM (~0-10,000) will dominate over a clinical variable like age (~0-100) if not standardized. Standard practice: transform each feature to z-scores using training-set mean and standard deviation, then apply the same transformation to the test set. sklearn <code>Pipeline</code> enforces this:</p>
-<pre class="code"><code># WRONG (data leakage)
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)  # fit on ALL data
-X_train, X_test = train_test_split(X_scaled, y)
-
-# RIGHT (no leakage)
-X_train, X_test = train_test_split(X, y)
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)   # fit on TRAIN only
-X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
-</section>
-<section id="model-validation" class="level3">
-<h3 class="anchored" data-anchor-id="model-validation">Model Validation</h3>
-<p><strong>Train/test split:</strong> The test set is used exactly once, at the end of all development. If you tune hyperparameters based on test performance, your reported performance is biased upward.</p>
-<p><strong>K-fold cross-validation:</strong> Partition data into <span class="math inline">\(K\)</span> folds (typically 5 or 10), train on <span class="math inline">\(K-1\)</span>, evaluate on the held-out fold, repeat. Report mean <span class="math inline">\(\pm\)</span> standard deviation.</p>
-<p><strong>Nested cross-validation:</strong> Required when tuning hyperparameters. The outer loop (e.g., 5-fold) holds out 20% of data as a test fold. The inner loop runs cross-validation on the remaining 80% to select optimal hyperparameters. A model is trained with those optimal parameters on the 80% and evaluated on the held-out 20%. This repeats for each outer fold; the average outer-loop performance is the unbiased estimate. Without nesting, hyperparameter optimization leaks information, tuning on the full dataset and reporting CV performance on the same data is effectively reporting training performance.</p>
-<p><strong>Permutation test:</strong> Train the model on label-shuffled data. If the model achieves AUC &gt; 0.5 on shuffled labels, the pipeline is detecting spurious structure, not biology. Run 100+ permutations to establish the null distribution. <em>Caveat:</em> a model that passes the permutation test (performance exceeds chance on this dataset) may still fail external validation; it may have learned dataset-specific artifacts (batch, hospital, sequencing protocol) rather than generalizable biology. The permutation test confirms the model learned structured patterns, not that those patterns are biological.</p>
-</section>
-<section id="metrics-why-accuracy-lies" class="level3">
-<h3 class="anchored" data-anchor-id="metrics-why-accuracy-lies">Metrics: Why Accuracy Lies</h3>
-<p>In a dataset of 99 healthy and 1 diseased patient, a model predicting “healthy” for everyone achieves 99% accuracy. It is completely useless.</p>
-<table class="table">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 40%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Metric</th>
-<th>Definition</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Precision (PPV)</td>
-<td>TP / (TP + FP)</td>
-<td>Minimize false alarms</td>
-</tr>
-<tr class="even">
-<td>Recall (Sensitivity)</td>
-<td>TP / (TP + FN)</td>
-<td>Minimize missed diagnoses</td>
-</tr>
-<tr class="odd">
-<td>Specificity</td>
-<td>TN / (TN + FP)</td>
-<td>True negative rate</td>
-</tr>
-<tr class="even">
-<td>F1 Score</td>
-<td><span class="math inline">\(2 \cdot \frac{P \cdot R}{P + R}\)</span></td>
-<td>Imbalanced classification</td>
-</tr>
-<tr class="odd">
-<td>ROC-AUC</td>
-<td>TPR vs.&nbsp;FPR across thresholds</td>
-<td>Balanced classes</td>
-</tr>
-<tr class="even">
-<td>PR-AUC</td>
-<td>Precision vs.&nbsp;Recall across thresholds</td>
-<td>Rare positive class</td>
-</tr>
-</tbody>
-</table>
-<p><strong>ROC-AUC caveat:</strong> AUC can be high even with poorly calibrated probabilities. <strong>Brier score</strong> measures calibration: <span class="math inline">\(\text{Brier} = \frac{1}{N} \sum (y_i - \hat{p}_i)^2\)</span>. A well-calibrated model has Brier close to 0. A model that outputs 0.99 for everything has high AUC but poor calibration.</p>
-<p><strong>Johnson’s Rule:</strong> If your classes are imbalanced (which they almost always are), read Precision-Recall, not ROC-AUC. The reason: ROC-AUC plots TPR against FPR, and FPR is dominated by the majority class; a model that misses all positives can still achieve high ROC-AUC if it correctly labels most negatives. Precision focuses on the positive class directly: a false positive among the rare positives is a large penalty. PR-AUC detects poor positive-class performance that ROC-AUC misses.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>A model trained on 10 samples from one hospital is not a biomarker; it is a hypothesis. Data leakage is the most common undetected error in published ML biomarkers. The most frequent form: normalizing or selecting features using all data before splitting, which leaks information from the test set into training. A model that works in one cohort but fails in another has not learned biology; it has learned hospital-specific or cohort-specific artifacts.</p>
-<p>External validation on an independent cohort is the only non-negotiable requirement for a clinically useful biomarker. Cross-validation on a single cohort is not sufficient; it cannot detect systematic bias (hospital-specific processing, population-specific allele frequencies, platform-specific error profiles).</p>
-<p>The noise-as-signal problem is well-documented: with enough features, models achieve apparently perfect cross-validation on random data. A permutation test is the minimum sanity check. Even with proper validation, a model that achieves AUC 0.95 on a held-out test set from the same hospital may drop to AUC 0.55 when tested at a different hospital; the features it learned were hospital-specific artifacts, not biology.</p>
+<p>A contact matrix is a population average across millions of cells. A strong contact in bulk Hi-C may represent a constant loop in all cells, or a statistically significant contact that occurs in only 5% of cells but is enriched far above the background expectation. Single-cell Hi-C and imaging-based methods (DNA-MERFISH, Oligopaint) have shown that TADs and compartments are stochastic at the single-cell level: any given cell has only a fraction of the loops detected in bulk, but the population average converges to the structures we call TADs.</p>
+<p>The biological interpretation question is not “does this loop exist?” but “in which cells, at what frequency, and under what conditions does this loop form?” Loops that are constitutive (present in most cells across conditions) are likely structural; they organize the genome into a stable architecture. Loops that form only in specific cell types or after stimulation are likely regulatory; they mediate cell-type-specific or signal-responsive gene expression.</p>
+<p>A/B compartment status correlates with transcriptional activity, but the direction of causality is bidirectional. Active transcription can drive a locus into the A compartment (transcription opens the region), and compartment assignment can influence transcription (spatial proximity to active regions promotes expression). Disentangling directionality requires perturbation experiments, for example, tethering a locus to the nuclear lamina (forced B compartmentalization) and measuring the transcriptional effect.</p>
+<p>The linear-to-3D mapping challenge is substantial. A GWAS variant 500 kb from the nearest gene may regulate that gene through a loop, or it may regulate a completely different gene brought into contact by the 3D architecture. Variant-to-function mapping that only considers linear distance to the nearest TSS will systematically misattribute non-coding variants to the wrong target gene.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Curse of dimensionality (<span class="math inline">\(p \gg n\)</span>)</strong> guarantees a linear separator for any labeling; aggressive dimensionality reduction to <span class="math inline">\(p \leq n/10\)</span> or regularization (L1/L2) is essential.</p></li>
-<li><p><strong>The bias-variance tradeoff</strong> means total error = bias² + variance + irreducible error. In omics, variance dominates; regularization controls it by trading a small bias increase for a large variance reduction.</p></li>
-<li><p><strong>Data leakage is the most common fatal error</strong>: all preprocessing (scaling, PCA, normalization, feature selection, batch correction) must be fit on training data only and transformed onto test data.</p></li>
-<li><p><strong>Accuracy is meaningless with class imbalance</strong>: Precision, Recall, F1, PR-AUC are correct metrics. PR-AUC detects poor positive-class performance that ROC-AUC misses because FPR is dominated by the majority class.</p></li>
-<li><p><strong>Permutation tests validate that performance exceeds chance</strong>: 100+ random label shuffles establish the null distribution. Passing the permutation test does not guarantee external validity.</p></li>
+<li><p><strong>Hi-C measures 3D proximity via proximity ligation</strong>: contact frequency decays as <span class="math inline">\(\sim 1/s\)</span> with distance; ICE/KR normalization removes sequence biases to reveal biological structure.</p></li>
+<li><p><strong>Three hierarchical structures</strong>: A/B compartments (multimegabase, active vs.&nbsp;silent), TADs (megabase, regulatory neighborhood), enhancer-promoter loops (sub-Mb, functional contacts).</p></li>
+<li><p><strong>The loop extrusion model</strong> explains convergent CTCF motif orientation, nested TAD hierarchy, and loop size distribution through cohesin-mediated loop extrusion stalled by CTCF.</p></li>
+<li><p><strong>Bulk Hi-C is a population average</strong>: single-cell methods reveal that TADs and loops are stochastic, not deterministic, structures.</p></li>
+<li><p><strong>3D genome interpretation requires perturbation</strong>: compartment status and transcription have bidirectional causality; static measurements cannot resolve direction.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Hastie, Tibshirani &amp; Friedman: <em>Elements of Statistical Learning</em> (Ch 7; Model Assessment and Selection).</p></li>
-<li><p>Lever, Krzywinski &amp; Altman: “Points of Significance: Model selection and overfitting” (<em>Nature Methods</em>, 2016).</p></li>
+<li><p>Lieberman-Aiden et al.: “Comprehensive mapping of long-range interactions reveals folding principles of the human genome” (<em>Science</em>, 2009).</p></li>
+<li><p>Rao et al.: “A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping” (<em>Cell</em>, 2014).</p></li>
+<li><p>Fudenberg et al.: “Formation of chromosomal domains by loop extrusion” (<em>Cell Reports</em>, 2016).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> A model trained on 10 samples from one hospital is not a biomarker. It is a hypothesis.</p>
+<p><strong>Johnson’s Rule:</strong> Linear distance does not equal regulatory distance. If you are only looking at genes and their nearest neighbors, you are missing the regulatory architecture.</p>
 </blockquote>
 
 
@@ -538,8 +412,8 @@ X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -951,13 +825,13 @@ X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-4-systems/chapter-22.html" class="pagination-link" aria-label="Chapter 22: Perturb-seq and Functional Genomics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 22: Perturb-seq and Functional Genomics</span></span>
+      <a href="../tier-3-high-res-systems/chapter-19.html" class="pagination-link" aria-label="Chapter 19: Multi-Omics Integration">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 19: Multi-Omics Integration</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-5-ai/chapter-24.html" class="pagination-link" aria-label="Chapter 24: Tree-Based Models and Interpretable ML">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 24: Tree-Based Models and Interpretable ML</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-3-high-res-systems/chapter-21.html" class="pagination-link" aria-label="Chapter 21: Perturb-seq and Functional Genomics">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 21: Perturb-seq and Functional Genomics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -982,7 +856,7 @@ X_test_scaled = scaler.transform(X_test)          # transform TEST</code></pre>
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

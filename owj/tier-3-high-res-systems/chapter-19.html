@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 17: Spatial Transcriptomics and Coordinate Math – Omics with Johnson 101</title>
+<title>Chapter 19: Multi-Omics Integration – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-4-systems/chapter-18.html" rel="next">
-<link href="../tier-3-high-res/chapter-16.html" rel="prev">
+<link href="../tier-3-high-res-systems/chapter-20.html" rel="next">
+<link href="../tier-3-high-res-systems/chapter-18.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,106 +213,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,10 +296,11 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-spatial-resolution-tradeoff" id="toc-the-spatial-resolution-tradeoff" class="nav-link" data-scroll-target="#the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</a></li>
-  <li><a href="#deconvolution-unmixing-mixed-spots" id="toc-deconvolution-unmixing-mixed-spots" class="nav-link" data-scroll-target="#deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</a></li>
-  <li><a href="#neighborhood-analysis-from-spots-to-tissue-organization" id="toc-neighborhood-analysis-from-spots-to-tissue-organization" class="nav-link" data-scroll-target="#neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</a></li>
-  <li><a href="#registration-aligning-data-to-anatomy" id="toc-registration-aligning-data-to-anatomy" class="nav-link" data-scroll-target="#registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</a></li>
+  <li><a href="#the-three-axes-of-integration" id="toc-the-three-axes-of-integration" class="nav-link" data-scroll-target="#the-three-axes-of-integration">The Three Axes of Integration</a></li>
+  <li><a href="#selecting-the-integration-method" id="toc-selecting-the-integration-method" class="nav-link" data-scroll-target="#selecting-the-integration-method">Selecting the Integration Method</a></li>
+  <li><a href="#canonical-correlation-analysis-cca" id="toc-canonical-correlation-analysis-cca" class="nav-link" data-scroll-target="#canonical-correlation-analysis-cca">Canonical Correlation Analysis (CCA)</a></li>
+  <li><a href="#multi-omics-factor-analysis-mofa" id="toc-multi-omics-factor-analysis-mofa" class="nav-link" data-scroll-target="#multi-omics-factor-analysis-mofa">Multi-Omics Factor Analysis (MOFA)</a></li>
+  <li><a href="#eqtl-and-pqtl-genetic-anchors-for-causal-inference" id="toc-eqtl-and-pqtl-genetic-anchors-for-causal-inference" class="nav-link" data-scroll-target="#eqtl-and-pqtl-genetic-anchors-for-causal-inference">eQTL and pQTL: Genetic Anchors for Causal Inference</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -362,9 +313,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-15.html">TIER 3: The High-Resolution Frontier: Single-Cell and Spatial</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-17.html"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-15.html">TIER 3: High-Resolution &amp; Systems</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-19.html"><span class="chapter-title">Chapter 19: Multi-Omics Integration</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 19: Multi-Omics Integration</span></h1>
 </div>
 
 
@@ -382,7 +333,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -394,113 +345,87 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> A Cell Without Spatial Coordinates is Headless</p>
+<p><strong>Johnson’s First Principle:</strong> Integrating Bad Data from Two Assays Yields Twice as Much Bad Data</p>
 </blockquote>
-<p>Dissolving a tissue to isolate single cells destroys the biological map. A macrophage surrounded by healthy epithelium behaves entirely differently than one surrounded by necrotic tumor. Chapter 13 taught you to identify cell types; Chapter 14 taught you to order them in time. But development and function unfold not only in time; they are embedded in three-dimensional tissue architecture. Without spatial context, single-cell data reveals the molecules but obscures the anatomy.</p>
-<p>Spatial transcriptomics solves this by measuring gene expression while preserving tissue coordinates. The core operation is coordinate math, mapping every measurement to a position <span class="math inline">\((x, y)\)</span> in tissue space, then asking which genes vary across those coordinates, which cell types occupy which coordinates, and which neighboring coordinates communicate with each other.</p>
+<p>Intersecting lists of statistically significant genes from RNA-seq and proteomics does not integrate data; it compounds error rates. The overlap is dominated by the most highly expressed, easiest-to-measure genes, not by the biologically most relevant ones. True integration requires dimensionality reduction algorithms that mathematically identify shared variance between molecular layers, independent of arbitrary significance thresholds.</p>
+<p>A gene with p-value <span class="math inline">\(10^{-10}\)</span> in RNA-seq and p-value <span class="math inline">\(10^{-10}\)</span> in proteomics may appear to be a biologically validated hit. But if the top 100 genes from each dataset overlap by only 20 genes, and those 20 are the most abundant housekeeping genes, the “validated” list is dominated by measurement convenience rather than biological importance. This chapter covers the methods that avoid this trap.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-spatial-resolution-tradeoff" class="level3">
-<h3 class="anchored" data-anchor-id="the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</h3>
-<p>Spatial transcriptomics is defined by a fundamental tradeoff: whole-transcriptome coverage vs.&nbsp;single-cell resolution. No current technology achieves both. Choosing a technology means choosing where on this tradeoff curve to operate, and that choice determines what biological questions can be addressed.</p>
-<p><strong>Spatial barcoding (10x Visium, HD, Slide-seq)</strong> uses a slide printed with spatially barcoded oligonucleotides. A tissue cryosection is placed on the slide; cellular mRNA diffuses vertically into the capture probes. The barcode encodes the <span class="math inline">\((x, y)\)</span> coordinate of each capture spot, enabling reconstruction of measurement positions after sequencing. Visium spots are 55 <span class="math inline">\(\mu\)</span>m diameter at 100 <span class="math inline">\(\mu\)</span>m spacing, each capturing RNA from ~1-10 cells. Visium HD (2 <span class="math inline">\(\mu\)</span>m pixels) achieves near-single-cell resolution. The key property: whole-transcriptome coverage (all poly-adenylated RNA is captured), enabling discovery of unanticipated gene expression patterns.</p>
-<p><strong>In situ hybridization (MERFISH, Xenium, CosMx)</strong> uses fluorescent probes that hybridize directly to mRNA in the intact tissue section. Sequential barcoding cycles decode transcripts: each gene receives a binary code, and 10-20 imaging cycles decode hundreds to thousands of genes at subcellular resolution (~100-200 nm). The key property: resolution sufficient to resolve individual transcripts, enabling subcellular localization and single-cell assignment. The tradeoff: limited panel size (hundreds to thousands of genes, not the full transcriptome).</p>
-<table class="table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 36%">
-<col style="width: 44%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Spatial Barcoding</th>
-<th>In Situ Hybridization</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Coverage</td>
-<td>Whole transcriptome (20K genes)</td>
-<td>Targeted panel (100-5,000 genes)</td>
-</tr>
-<tr class="even">
-<td>Resolution</td>
-<td>Multi-cell (55 <span class="math inline">\(\mu\)</span>m spots) to near-single-cell (HD)</td>
-<td>Subcellular (~200 nm)</td>
-</tr>
-<tr class="odd">
-<td>Discovery power</td>
-<td>High (unbiased gene discovery)</td>
-<td>Low (only panel genes detected)</td>
-</tr>
-<tr class="even">
-<td>Bioinformatic challenge</td>
-<td>Deconvolution of mixed spots</td>
-<td>Molecular decoding, registration</td>
-</tr>
-</tbody>
-</table>
+<section id="the-three-axes-of-integration" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-axes-of-integration">The Three Axes of Integration</h3>
+<ul>
+<li><p><strong>Horizontal integration:</strong> Same data modality, different batches or cohorts (e.g., RNA-seq dataset A + RNA-seq dataset B). Challenge: batch effects (Chapter 6). Correction: ComBat, Harmony, scVI for single-cell data. This is the simplest integration axis because all data share the same distributional assumptions.</p></li>
+<li><p><strong>Vertical integration:</strong> Different modalities, same biological samples (e.g., RNA-seq + ATAC-seq + proteomics on the same cells). Challenge: different data distributions (Poisson for RNA-seq, Gaussian for log-processed proteomics, binomial for ATAC-seq) and different missingness mechanisms (dropout in scRNA-seq vs.&nbsp;detection limits in proteomics). This is the axis where MOFA and CCA are most useful, because the shared sample structure constrains the solution.</p></li>
+<li><p><strong>Diagonal integration:</strong> Different modalities, different samples (e.g., scRNA-seq from one study + spatial transcriptomics from another). Challenge: no paired measurements exist, so integration relies on shared features (genes) and assumed biological similarity between datasets. Methods must infer a joint latent space without any direct correspondence between samples. The most challenging and most common real-world integration scenario; no experiment measures everything in every cell.</p></li>
+</ul>
 </section>
-<section id="deconvolution-unmixing-mixed-spots" class="level3">
-<h3 class="anchored" data-anchor-id="deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</h3>
-<p>Each Visium spot captures RNA from multiple cells. Deconvolution is the inverse problem: given the mixed expression profile of a spot, estimate the cell type composition. Formally, each spot’s expression vector <span class="math inline">\(\mathbf{y}_s\)</span> is a weighted sum of cell type reference profiles:</p>
-<p><span class="math display">\[\mathbf{y}_s = \sum_{k=1}^K \beta_{sk} \cdot \boldsymbol{\mu}_k + \boldsymbol{\epsilon}_s\]</span></p>
-<p>where <span class="math inline">\(\boldsymbol{\mu}_k\)</span> is the reference expression profile of cell type <span class="math inline">\(k\)</span>, <span class="math inline">\(\beta_{sk}\)</span> is the proportion of type <span class="math inline">\(k\)</span> in spot <span class="math inline">\(s\)</span>, and <span class="math inline">\(\boldsymbol{\epsilon}_s\)</span> is residual noise. This requires a reference scRNA-seq dataset with annotated cell types from the same tissue. Deconvolution solves for the <span class="math inline">\(\beta_{sk}\)</span> coefficients per spot.</p>
-<p><strong>RCTD</strong> (Robust Cell Type Decomposition) models each spot’s expression as a linear combination of cell type profiles, with statistical significance testing to determine which cell types are present in each spot. The “robust” in the name refers to its handling of genes that are poorly fit by the linear model; it downweights genes whose expression deviates from the reference, preventing a few discordant genes from driving the deconvolution result.</p>
-<p><strong>Cell2location</strong> uses a Bayesian Negative Binomial model that accounts for both technical variation (NB count distribution) and biological variation (cell type abundance heterogeneity). Unlike RCTD, which estimates relative proportions, Cell2location estimates the absolute number of cells of each type per spot. This is more interpretable but requires stronger modeling assumptions about cell type expression profiles.</p>
-<p><strong>CARD</strong> incorporates spatial correlation into deconvolution, assuming that cell type abundances vary smoothly across tissue sections. This makes biological sense; a B-cell zone in the lymph node grades into a T-cell zone gradually, not in isolated spots, and improves deconvolution accuracy for spatially structured tissues.</p>
-<p><strong>The reference dependency problem.</strong> All deconvolution methods depend critically on the reference scRNA-seq dataset. If the reference lacks a cell type present in the tissue, that cell type’s contribution will be misassigned to the most transcriptionally similar available type. If the reference and spatial data come from different tissue sections, different donors, or different processing protocols, batch effects between the two datasets will distort the deconvolution. A deconvolution result is only as good as the reference it builds on.</p>
+<section id="selecting-the-integration-method" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-the-integration-method">Selecting the Integration Method</h3>
+<p>The choice of integration method depends primarily on whether you have paired samples and whether you seek shared or complementary variation:</p>
+<ul>
+<li><p><strong>If you have paired samples and want shared variation:</strong> MOFA+ factorizes the data into shared and modality-specific factors, with interpretable variance decomposition per factor per modality. The output tells you “how much of RNA variance and how much of protein variance is explained by this shared factor.”</p></li>
+<li><p><strong>If you have paired samples and want correlational structure:</strong> CCA finds linear combinations that are maximally correlated across modalities. The output tells you “which RNA and protein measurements co-vary across samples.”</p></li>
+<li><p><strong>If you have unpaired samples (diagonal integration):</strong> Seurat’s anchor-based CCA or optimal transport methods (FGOT, MultiVIT) infer a matching between datasets based on shared features. These do not require any paired observations.</p></li>
+<li><p><strong>If you need causal inference:</strong> eQTL or pQTL analysis (below) uses genetic variants as instrumental variables.</p></li>
+</ul>
 </section>
-<section id="neighborhood-analysis-from-spots-to-tissue-organization" class="level3">
-<h3 class="anchored" data-anchor-id="neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</h3>
-<p>Once cell types are assigned to coordinates, the next question is tissue organization, which cell types are near which others, and how that proximity shapes function.</p>
-<p><strong>Spatial autocorrelation (Moran’s I)</strong> quantifies whether neighboring spots are more similar than expected by chance:</p>
-<p><span class="math display">\[I = \frac{n}{W} \frac{\sum_i \sum_j w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_i (x_i - \bar{x})^2}\]</span></p>
-<p>where <span class="math inline">\(w_{ij}\)</span> is a spatial weight matrix (1 if spots <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are neighbors, 0 otherwise), <span class="math inline">\(W\)</span> is the sum of all weights, and <span class="math inline">\(n\)</span> is the number of spots. Moran’s <span class="math inline">\(I\)</span> ranges from <span class="math inline">\([-1, +1]\)</span>: <span class="math inline">\(I &gt; 0\)</span> indicates spatial clustering (neighboring spots are more similar than expected), <span class="math inline">\(I &lt; 0\)</span> indicates a “checkerboard” pattern (neighboring spots are systematically different), and <span class="math inline">\(I \approx 0\)</span> indicates random spatial organization.</p>
-<p><strong>The null expectation.</strong> Under the null hypothesis of no spatial autocorrelation, the expected value of Moran’s <span class="math inline">\(I\)</span> is:</p>
-<p><span class="math display">\[E[I] = -\frac{1}{n-1}\]</span></p>
-<p>For large <span class="math inline">\(n\)</span> (thousands of spots), <span class="math inline">\(E[I] \approx 0\)</span>, but for small tissue sections with <span class="math inline">\(n &lt; 100\)</span>, the null expectation is meaningfully negative; a value near zero can actually indicate weak positive autocorrelation. Significance is assessed by permutation testing: randomly shuffling expression values across spots (breaking spatial structure), recomputing <span class="math inline">\(I\)</span> thousands of times, and comparing the observed <span class="math inline">\(I\)</span> to the empirical null distribution. A <span class="math inline">\(p\)</span>-value is the fraction of permuted <span class="math inline">\(I\)</span> values more extreme than the observed <span class="math inline">\(I\)</span>.</p>
-<p><strong>Neighborhood definition.</strong> The weight matrix <span class="math inline">\(w_{ij}\)</span> encodes which spots are considered neighbors. The choice of neighborhood definition determines <span class="math inline">\(W\)</span> and directly affects the computed <span class="math inline">\(I\)</span> value. Two common approaches exist: <strong><span class="math inline">\(k\)</span>-nearest neighbors</strong> (each spot connects to its <span class="math inline">\(k\)</span> closest neighbors by Euclidean distance, ensuring every spot has the same number of neighbors) and <strong>radius-based</strong> (all spots within a fixed distance threshold are neighbors, which can leave isolated spots on tissue edges with few or no neighbors). For Visium’s hexagonal grid, <span class="math inline">\(k = 6\)</span> is the natural choice; each spot has exactly six immediate neighbors corresponding to the six faces of a hexagon. Using fewer than 6 neighbors underweights spatial structure; using more than 6 dilutes local signal by including spots beyond the immediate tissue neighborhood.</p>
-<p>Moran’s <span class="math inline">\(I\)</span> is widely used to identify spatially variable genes, but the signal must be interpreted cautiously. A gene may appear spatially variable due to: biological compartmentalization (e.g., crypt vs.&nbsp;villus in intestine), tissue edge artifacts (higher signal at tissue periphery due to probe penetration), or technical variation (uneven permeabilization across the section). Comparing Moran’s <span class="math inline">\(I\)</span> across genes within the same tissue section controls for the last two sources.</p>
-<p><strong>Ligand-receptor inference (NicheNet, CellChat, SpaTalk)</strong> predicts cell-cell communication from co-expression of ligands and receptors in adjacent cell types. The approach: if cell type A expresses a ligand gene and adjacent cell type B expresses its cognate receptor, then signaling from A to B is plausible. Scores are based on prior knowledge databases of known ligand-receptor pairs and downstream signaling targets.</p>
-<p><strong>The communication inference gap.</strong> Detecting mRNA for a ligand in one cell type and its receptor in an adjacent cell type is consistent with signaling but does not prove it. mRNA abundance correlates weakly with protein secretion, and secretion does not guarantee binding or downstream pathway activation. Ligand-receptor inference identifies candidates for experimental validation, not confirmed interactions.</p>
+<section id="canonical-correlation-analysis-cca" class="level3">
+<h3 class="anchored" data-anchor-id="canonical-correlation-analysis-cca">Canonical Correlation Analysis (CCA)</h3>
+<p>CCA finds linear combinations of variables from two datasets that are maximally correlated with each other. For two data matrices <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (e.g., RNA expression of 20,000 genes and ATAC peaks at 100,000 regions across the same 100 samples), CCA finds vectors <span class="math inline">\(w_x\)</span> and <span class="math inline">\(w_y\)</span> such that:</p>
+<p><span class="math display">\[\rho = \max_{w_x, w_y} \frac{w_x^T X^T Y w_y}{\sqrt{w_x^T X^T X w_x} \sqrt{w_y^T Y^T Y w_y}}\]</span></p>
+<p>The numerator <span class="math inline">\(w_x^T X^T Y w_y\)</span> measures the cross-covariance between the two linear combinations; the denominator normalizes by the variance of each combination. The result <span class="math inline">\(\rho\)</span> is the canonical correlation; the Pearson correlation between the two projections.</p>
+<p><strong>The <span class="math inline">\(p \gg n\)</span> problem.</strong> The CCA objective requires inverting <span class="math inline">\(X^T X\)</span> and <span class="math inline">\(Y^T Y\)</span>, which are <span class="math inline">\(p \times p\)</span> covariance matrices. With 20,000 genes and 100 samples, these matrices are rank-deficient (singular); the optimization has no unique solution because the sample covariance cannot reliably estimate <span class="math inline">\(p(p+1)/2 \approx 200\)</span> million unique entries from only 100 observations. In practice, this is resolved either by applying PCA to each modality first (reducing each to 30-50 PCs, as established in Chapter 5, then running CCA on the PC scores) or by using regularized CCA with a ridge penalty to stabilize the covariance estimates. The Seurat integration pipeline uses the PCA-then-CCA approach: it decomposes each dataset via SVD, projects into PC space, and finds canonical correlates in the compressed latent space where <span class="math inline">\(n &gt; p\)</span>.</p>
+<p><strong>The housekeeping trap.</strong> CCA components with near-perfect cross-modality correlation (<span class="math inline">\(\rho &gt; 0.9\)</span>) often reflect technical artifacts rather than biological coordination. If both modalities are dominated by abundant housekeeping genes (GAPDH, ACTB), the first CCA component may simply capture “both measurements are working correctly” rather than a biological signal. The more informative components are typically the ones with moderate correlation (<span class="math inline">\(\rho \sim 0.3-0.7\)</span>) that capture specific biological processes.</p>
 </section>
-<section id="registration-aligning-data-to-anatomy" class="level3">
-<h3 class="anchored" data-anchor-id="registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</h3>
-<p>Spatial transcriptomics data measures gene expression, but the biological interpretation depends on knowing which anatomical region each spot corresponds to. Registration aligns the sequencing data to the tissue histology image (H&amp;E or immunofluorescence): an affine transformation that rotates, scales, and translates the spot grid to match the tissue image coordinates.</p>
-<p>Registration is not a biologically neutral preprocessing step. An affine transformation maps original coordinates <span class="math inline">\(\mathbf{x}\)</span> to transformed coordinates <span class="math inline">\(\mathbf{x}'\)</span> via a 2×2 rotation-scaling matrix and a translation vector:</p>
-<p><span class="math display">\[\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} t_x \\ t_y \end{pmatrix}\]</span></p>
-<p>The six parameters <span class="math inline">\((a, b, c, d, t_x, t_y)\)</span> are optimized to minimize mismatch between the spot grid and the tissue boundary in the histology image. The quality of this transformation directly determines whether transcriptomic measurements map to the correct anatomical regions. A misregistration of 100 <span class="math inline">\(\mu\)</span>m (one Visium spot) can shift a spot from tumor epithelium to stroma, entirely changing its biological interpretation. For in situ methods with subcellular resolution, registration errors of a few microns can misassign transcripts to the wrong cell.</p>
-<p>The registration challenge is compounded by tissue deformation during sectioning. The tissue on the slide is not identical to the tissue in the fresh block; it has been stretched, folded, or torn. Computational registration must account for non-linear warping, not just affine transformations, to accurately map sequencing data to histology.</p>
+<section id="multi-omics-factor-analysis-mofa" class="level3">
+<h3 class="anchored" data-anchor-id="multi-omics-factor-analysis-mofa">Multi-Omics Factor Analysis (MOFA)</h3>
+<p>MOFA (Argelaguet et al., 2020) extends factor analysis to multiple data modalities:</p>
+<p><span class="math display">\[Y_m = ZW_m^T + \epsilon_m\]</span></p>
+<p>where <span class="math inline">\(Y_m\)</span> is the data matrix for modality <span class="math inline">\(m\)</span>, <span class="math inline">\(Z\)</span> is the shared factor matrix (across all modalities), <span class="math inline">\(W_m\)</span> is the modality-specific weight matrix, and <span class="math inline">\(\epsilon_m\)</span> is modality-specific noise. The factors <span class="math inline">\(Z\)</span> capture the sources of variation shared across data types. Each factor is a latent variable that explains a certain amount of variance in each modality.</p>
+<p><strong>The sparsity prior that makes MOFA interpretable.</strong> MOFA places an automatic relevance determination (ARD) prior on each weight column <span class="math inline">\(W_{:, k}^{(m)}\)</span>, which shrinks irrelevant factors toward zero in a modality-specific manner. A factor that captures biological variation present in RNA but absent in ATAC will have large weights in the RNA modality and near-zero weights in the ATAC modality; the ARD prior automatically prunes it from ATAC. This is what produces the interpretable variance decomposition that distinguishes MOFA from standard factor analysis, where every factor loads on every modality with no built-in sparsity mechanism.</p>
+<p>Key outputs:</p>
+<ol type="1">
+<li><p><strong>Variance decomposition per factor per modality:</strong> “Factor 1 explains 30% of RNA variance and 50% of ATAC variance.” This tells you which modalities contribute to each biological process.</p></li>
+<li><p><strong>Factor values per sample:</strong> Each sample gets a score for each factor, enabling clustering, time-series analysis, or association with clinical outcomes.</p></li>
+<li><p><strong>Feature weights per factor:</strong> For each factor, the genes, peaks, or proteins with the highest absolute weights are the ones driving that factor.</p></li>
+</ol>
+<p><strong>The dominant-factor caveat.</strong> The first factor in any MOFA analysis is almost always a technical confound (batch, age, sequencing depth, sample quality). This is not a bug; it reflects the reality that technical variation often dominates biological variation across modalities. Before interpreting factors biologically, verify that they correlate with the variable of interest and not with known confounders. The number of truly informative biological factors is typically small (3-10), regardless of the number of input modalities.</p>
+</section>
+<section id="eqtl-and-pqtl-genetic-anchors-for-causal-inference" class="level3">
+<h3 class="anchored" data-anchor-id="eqtl-and-pqtl-genetic-anchors-for-causal-inference">eQTL and pQTL: Genetic Anchors for Causal Inference</h3>
+<p>Expression quantitative trait loci (eQTL) use genetic variants as causal anchors to infer that gene expression changes are causal rather than confounded. The logic: if a SNP is associated with both gene expression (as an eQTL) and disease (as a GWAS hit), and the eQTL effect is plausibly causal (the variant affects a regulatory element), then the gene is a candidate causal mediator of the disease association. This is Mendelian randomization; the genetic variant is randomized at conception, independent of confounders like lifestyle or environment.</p>
+<p><strong>cis-eQTL vs.&nbsp;trans-eQTL.</strong> A cis-eQTL affects expression of a nearby gene (typically within 1 Mb of the variant). These are the most common and interpretable; the variant likely lies in a promoter, enhancer, or other regulatory element of that gene. A trans-eQTL affects expression of a distant gene (different chromosome or &gt;1 Mb away). These are rarer, harder to validate, and typically have smaller effect sizes, but they reveal regulatory networks that cross chromosomal boundaries.</p>
+<p>The GTEx consortium provides the most comprehensive eQTL atlas: ~50 tissues, &gt;800 donors, millions of cis-eQTL associations. The key finding: most GWAS variants are enriched in non-coding regulatory regions and act through gene expression regulation, not protein-coding changes. For a typical complex disease, ~60-80% of GWAS loci have a nearby eQTL in the relevant tissue, implicating gene expression dysregulation as the causal mechanism.</p>
+<p><strong>pQTL</strong> extends this logic to proteins. Protein QTLs are more directly relevant to phenotype (proteins are the functional molecules) but are harder to identify due to smaller sample sizes in proteomics studies and higher measurement variability. The overlap between eQTL and pQTL signals is only ~20-40%; consistent with the mRNA-protein decoupling established in Chapter 17. A variant that affects protein abundance without affecting mRNA is evidence of post-transcriptional regulation.</p>
+<p><strong>Mendelian randomization assumptions.</strong> The causal interpretation of eQTL-mediated GWAS colocalization rests on three assumptions that are violated more often than satisfied: (1) <strong>no horizontal pleiotropy</strong>: the genetic variant affects the disease only through the gene, not through independent pathways; (2) <strong>no linkage disequilibrium confounding</strong>: the true causal variant is the eQTL, not a correlated variant in LD that affects disease through a different gene; and (3) <strong>reliable exposure prediction</strong>: the variant is a strong predictor of gene expression (the <span class="math inline">\(F\)</span>-statistic for the variant-expression association exceeds 10). When these assumptions fail, colocalization produces a false causal inference: the variant and the gene expression appear causally linked to the disease when they are independent correlates of a hidden third factor.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>Spatial data is a hypothesis generator, not proof. Detecting ligand-receptor pairs in adjacent cells generates candidates for cell-cell communication, but confirmation requires perturbation, knocking out the ligand or receptor and measuring the effect on the recipient cell. A correlation between a gene’s spatial expression pattern and a tissue compartment is suggestive of compartment-specific function, but the same correlation can arise from technical artifacts (tissue edge effects, permeabilization gradients) or from correlated but non-causal biological processes.</p>
-<p>The deconvolution of multi-cell spots is a statistical inference, not a measurement. Results depend heavily on the quality and relevance of the scRNA-seq reference used. A deconvolution that assigns 30% T-cells to every tumor spot likely reflects a reference artifact (e.g., shared stress-response genes between T-cells and tumor cells) rather than true T-cell infiltration. Validating deconvolution results against independent methods (immunohistochemistry, flow cytometry) is essential but rarely done.</p>
-<p>Spatial autocorrelation (Moran’s <span class="math inline">\(I\)</span>) identifies spatially variable genes, but biological interpretation requires distinguishing genuine compartment-specific expression from technical artifacts. A gene with high Moran’s <span class="math inline">\(I\)</span> that encodes a known structural protein of the extracellular matrix is plausibly compartment-specific; a gene with high Moran’s <span class="math inline">\(I\)</span> that is uniformly expressed in bulk RNA-seq is more likely an artifact of uneven tissue permeabilization.</p>
+<p>Before integrating, ask: does this integration solve a biological question that single-omics cannot? The most successful multi-omics studies ask questions that are inherently multi-modal: “Which chromatin accessibility changes drive expression changes?” (requires ATAC + RNA), “Which post-translational modifications regulate protein activity independently of expression?” (requires proteomics + phosphoproteomics), or “Which genetic variants regulate gene expression in disease-relevant tissues?” (requires GWAS + eQTL).</p>
+<p>CCA components with near-perfect cross-modality correlation should be examined critically; they may reflect technical artifacts (sample quality, batch, sequencing depth) rather than biological coordination. The number of truly informative factors is typically small (3-10), regardless of the number of modalities.</p>
+<p>The dominant factor in any multi-omics analysis is almost always a technical confound (batch, age, sequencing depth). Before interpreting factors biologically, verify that they correlate with the variable of interest and not with known confounders. A MOFA factor that strongly separates cases from controls but also separates batch 1 from batch 2 is dominated by batch; the biological and technical signals are confounded, and the factor cannot be interpreted as biological.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Spatial transcriptomics faces a fundamental tradeoff</strong>: whole-transcriptome coverage (Visium, Slide-seq) vs.&nbsp;single-cell resolution (MERFISH, Xenium). Technology choice determines what questions can be addressed.</p></li>
-<li><p><strong>Deconvolution (RCTD, Cell2location, CARD)</strong> estimates cell type composition per spot using scRNA-seq references; results depend critically on reference quality and relevance.</p></li>
-<li><p><strong>Moran’s <span class="math inline">\(I\)</span> quantifies spatial autocorrelation</strong> of gene expression; <strong>ligand-receptor inference</strong> identifies candidate cell-cell communication. Both require validation against artifacts.</p></li>
-<li><p><strong>Registration aligns sequencing data to histology</strong> via affine transformations; registration quality directly determines anatomical interpretability.</p></li>
-<li><p><strong>Spatial data is a hypothesis generator</strong>: correlations between expression patterns and tissue compartments suggest function but do not prove it. Perturbation experiments are required for confirmation.</p></li>
+<li><p><strong>Three integration axes</strong>: horizontal (same modality, different batches) uses batch correction (ComBat, Harmony); vertical (different modalities, same samples) uses MOFA/CCA; diagonal (different modalities, different samples) uses optimal transport or anchor-based methods.</p></li>
+<li><p><strong>CCA</strong> finds maximally correlated linear combinations; the foundation of Seurat integration; caution: first components often capture technical artifacts, not biology.</p></li>
+<li><p><strong>MOFA</strong> factorizes variance into shared and modality-specific components with interpretable variance decomposition per factor per modality.</p></li>
+<li><p><strong>eQTL/pQTL</strong> use genetic variants as causal anchors linking genotype to molecular phenotype; the ~20-40% overlap between eQTL and pQTL signals reflects post-transcriptional regulation.</p></li>
+<li><p><strong>The dominant factor is almost always technical</strong>: verify factor-biological associations are not driven by batch, depth, or sample quality before biological interpretation.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Ståhl et al.: “Visualization and analysis of gene expression in tissue sections by spatial transcriptomics” (<em>Science</em>, 2016).</p></li>
-<li><p>Cable et al.: “Robust decomposition of cell type mixtures in spatial transcriptomics” (<em>Nature Biotechnology</em>, 2022).</p></li>
+<li><p>Argelaguet et al.: “MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data” (<em>Genome Biology</em>, 2020).</p></li>
+<li><p>GTEx Consortium: “The GTEx Consortium atlas of genetic regulatory effects across human tissues” (<em>Science</em>, 2020).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> Without spatial context, single-cell data is headless; you know the molecules but not the anatomy.</p>
+<p><strong>Johnson’s Rule:</strong> If this integration does not solve a question that single-omics cannot, you are adding complexity, not insight.</p>
 </blockquote>
 
 
@@ -511,8 +436,8 @@ window.Quarto = {
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -924,13 +849,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-3-high-res/chapter-16.html" class="pagination-link" aria-label="Chapter 16: Trajectory Inference and RNA Velocity">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></span>
+      <a href="../tier-3-high-res-systems/chapter-18.html" class="pagination-link" aria-label="Chapter 18: Systems Biology and Network Graphing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 18: Systems Biology and Network Graphing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-4-systems/chapter-18.html" class="pagination-link" aria-label="Chapter 18: Systems Biology and Network Graphing">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 18: Systems Biology and Network Graphing</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-3-high-res-systems/chapter-20.html" class="pagination-link" aria-label="Chapter 20: 3D Genome Architecture">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 20: 3D Genome Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -955,7 +880,7 @@ window.Quarto = {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 7: Sequencing Physics and Data Formats – Omics with Johnson 101</title>
+<title>Chapter 7: Sequencing Physics, Chemistry, and Raw Formats – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -51,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,106 +213,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,12 +296,18 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#error-profiles-determine-analytic-validity" id="toc-error-profiles-determine-analytic-validity" class="nav-link" data-scroll-target="#error-profiles-determine-analytic-validity">Error Profiles Determine Analytic Validity</a></li>
-  <li><a href="#fastq-and-the-meaning-of-quality-scores" id="toc-fastq-and-the-meaning-of-quality-scores" class="nav-link" data-scroll-target="#fastq-and-the-meaning-of-quality-scores">FASTQ and the Meaning of Quality Scores</a></li>
-  <li><a href="#sambamcram-alignment-formats" id="toc-sambamcram-alignment-formats" class="nav-link" data-scroll-target="#sambamcram-alignment-formats">SAM/BAM/CRAM: Alignment Formats</a></li>
-  <li><a href="#coordinate-systems-and-off-by-one-errors" id="toc-coordinate-systems-and-off-by-one-errors" class="nav-link" data-scroll-target="#coordinate-systems-and-off-by-one-errors">Coordinate Systems and Off-by-One Errors</a></li>
+  <li><a href="#a-brief-history-from-capillaries-to-massive-parallelization" id="toc-a-brief-history-from-capillaries-to-massive-parallelization" class="nav-link" data-scroll-target="#a-brief-history-from-capillaries-to-massive-parallelization">A Brief History: From Capillaries to Massive Parallelization</a></li>
+  <li><a href="#why-ngs-dominates-the-field-clinical-and-basic-applications" id="toc-why-ngs-dominates-the-field-clinical-and-basic-applications" class="nav-link" data-scroll-target="#why-ngs-dominates-the-field-clinical-and-basic-applications">Why NGS Dominates the Field: Clinical and Basic Applications</a></li>
+  <li><a href="#illumina-chemistry-sequencing-by-synthesis-under-the-hood" id="toc-illumina-chemistry-sequencing-by-synthesis-under-the-hood" class="nav-link" data-scroll-target="#illumina-chemistry-sequencing-by-synthesis-under-the-hood">Illumina Chemistry: Sequencing-by-Synthesis Under the Hood</a></li>
+  <li><a href="#alternatives-and-technology-evolution-long-read-sequencing" id="toc-alternatives-and-technology-evolution-long-read-sequencing" class="nav-link" data-scroll-target="#alternatives-and-technology-evolution-long-read-sequencing">Alternatives and Technology Evolution: Long-Read sequencing</a></li>
+  <li><a href="#from-raw-camera-signals-to-fastq" id="toc-from-raw-camera-signals-to-fastq" class="nav-link" data-scroll-target="#from-raw-camera-signals-to-fastq">From Raw Camera Signals to FASTQ</a></li>
+  <li><a href="#decoding-the-fastq-specification" id="toc-decoding-the-fastq-specification" class="nav-link" data-scroll-target="#decoding-the-fastq-specification">Decoding the FASTQ Specification</a></li>
+  <li><a href="#understanding-quality-scores-the-phred-scale" id="toc-understanding-quality-scores-the-phred-scale" class="nav-link" data-scroll-target="#understanding-quality-scores-the-phred-scale">Understanding Quality Scores (The Phred Scale)</a></li>
   </ul></li>
-  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#positional-quality-decay-the-3-drop" id="toc-positional-quality-decay-the-3-drop" class="nav-link" data-scroll-target="#positional-quality-decay-the-3-drop">Positional Quality Decay (The 3’ Drop)</a></li>
+  </ul></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -362,9 +318,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html">TIER 2: The Core Omics: Sequencing Physics and Algorithms</a></li><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html"><span class="chapter-title">Chapter 7: Sequencing Physics and Data Formats</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html">TIER 2: The Core Omics: Sequencing Physics and Algorithms</a></li><li class="breadcrumb-item"><a href="../tier-2-core-omics/chapter-07.html"><span class="chapter-title">Chapter 7: Sequencing Physics, Chemistry, and Raw Formats</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 7: Sequencing Physics and Data Formats</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 7: Sequencing Physics, Chemistry, and Raw Formats</span></h1>
 </div>
 
 
@@ -382,7 +338,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -394,225 +350,168 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> File Formats Encode Mechanical Laws</p>
+<p><strong>Johnson’s First Principle:</strong> You Cannot Process a File Correctly If You Do Not Understand the Physics of the Machine That Generated It</p>
+<p>A sequencing file (such as a FASTQ file) is not just abstract text on your screen; it is a digital recording of a physical chemistry experiment. The numbers, characters, and coordinates inside these files represent light signals, electrical currents, and chemical reactions that occurred inside a sequencing instrument. If you treat these files as generic databases without understanding the hardware chemistry under the hood, your downstream analyses will be fundamentally blind to technical errors.</p>
 </blockquote>
-<p>A FASTQ file from an Illumina sequencer encodes substitution error probabilities derived from reversible terminator fluorescence decay. A FASTQ file from an Oxford Nanopore sequencer encodes indel probabilities derived from neural network basecalling of ionic current. Both use the same ASCII character encoding, but the biological meaning of a Q30 score is fundamentally different; one predicts a substitution, the other predicts an indel. If you treat both as “just text files” and apply the same quality filter, you are applying the wrong error model to your data.</p>
-<p>File formats are not arbitrary containers. They are the digital translation of the physical measurement made by the sequencer, and you cannot process a file correctly if you do not understand the physics of the machine that generated it.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="error-profiles-determine-analytic-validity" class="level3">
-<h3 class="anchored" data-anchor-id="error-profiles-determine-analytic-validity">Error Profiles Determine Analytic Validity</h3>
-<p>Every sequencing platform has a characteristic error signature; the type, rate, and positional distribution of mistakes it makes. Choosing a sequencing platform is choosing an error profile, and that profile determines what analyses are valid:</p>
+<section id="a-brief-history-from-capillaries-to-massive-parallelization" class="level3">
+<h3 class="anchored" data-anchor-id="a-brief-history-from-capillaries-to-massive-parallelization">A Brief History: From Capillaries to Massive Parallelization</h3>
+<p>For decades, the gold standard of sequencing was <strong>Sanger Sequencing</strong>. Developed by Frederick Sanger in 1977, this method relies on chain-termination chemistry.</p>
+<ol type="1">
+<li><p><strong>The Chemistry:</strong> DNA polymerase copies a target strand using standard nucleotides (dNTPs) mixed with a small concentration of fluorescently labeled chain-terminating nucleotides (ddNTPs).</p></li>
+<li><p><strong>The Measurement:</strong> Whenever a ddNTP is incorporated, synthesis stops. This creates a mixture of DNA fragments of every possible length, each ending with a colored label. These fragments are separated by size using capillary electrophoresis, and a laser reads the color of each fragment as it passes by.</p></li>
+</ol>
+<p>While Sanger sequencing is highly accurate and yields long reads (up to 900 base pairs), it has a catastrophic bottleneck: it can only sequence one DNA molecule (or one PCR product) per capillary run. It is targeted, slow, and expensive.</p>
+<p>The Next-Generation Sequencing (NGS) revolution solved this bottleneck by replacing single-capillary runs with <strong>Massive Parallelization</strong>. Instead of reading one long fragment at a time, NGS instruments sequence billions of short DNA fragments simultaneously on a single glass surface (a flow cell). This dropped the cost of sequencing a million bases by more than 100,000-fold, transitioning genomics from a boutique academic luxury to a central pillar of clinical medicine.</p>
+</section>
+<section id="why-ngs-dominates-the-field-clinical-and-basic-applications" class="level3">
+<h3 class="anchored" data-anchor-id="why-ngs-dominates-the-field-clinical-and-basic-applications">Why NGS Dominates the Field: Clinical and Basic Applications</h3>
+<p>The high throughput of NGS makes it the default tool for both discovery research and medical diagnostics:</p>
+<ul>
+<li><p><strong>Pathogen Tracking (Genomic Epidemiology):</strong> During the COVID-19 pandemic, researchers worldwide used NGS to sequence SARS-CoV-2 genomes directly from patient samples. By comparing mutational changes across thousands of viral genomes, systems like Nextstrain mapped the evolution and spread of variants (like Omicron or Delta) in real time.</p></li>
+<li><p><strong>Non-Invasive Prenatal Testing (NIPT):</strong> Clinicians sequence cell-free DNA (cfDNA) circulating in the mother’s blood. By counting the relative proportion of reads mapping to Chromosome 21 versus other chromosomes, software can identify fetal trisomies (Down syndrome) without invasive amniocentesis.</p></li>
+<li><p><strong>Oncology Liquid Biopsies:</strong> Sequencing circulating tumor DNA (ctDNA) in a patient’s blood to detect rare somatic mutations, enabling early cancer detection and real-time treatment monitoring.</p></li>
+</ul>
+</section>
+<section id="illumina-chemistry-sequencing-by-synthesis-under-the-hood" class="level3">
+<h3 class="anchored" data-anchor-id="illumina-chemistry-sequencing-by-synthesis-under-the-hood">Illumina Chemistry: Sequencing-by-Synthesis Under the Hood</h3>
+<p>The dominant technology in the NGS market is Illumina’s <strong>Sequencing-by-Synthesis (SBS)</strong>.</p>
+<p>To understand what you are measuring, you must understand the four steps of the Illumina protocol:</p>
+<ol type="1">
+<li><p><strong>Library Preparation:</strong> DNA is sheared into short fragments (~200–500 bp). Synthetic adapter sequences are ligated (attached) to both ends of each fragment. These adapters contain <strong>barcodes (indices)</strong> that allow you to mix multiple samples together in the same run, along with sequencing primer binding sites.</p></li>
+<li><p><strong>Cluster Generation (Bridge Amplification):</strong> The DNA library is loaded onto a glass <strong>flow cell</strong> covered in short oligonucleotide lawns. The adapters bind to these oligos. Through a series of isothermal PCR cycles, each single DNA molecule is amplified into a dense physical cluster of ~1,000 identical clonal copies. This clustering is necessary because a single molecule does not emit enough light to be detected by the camera.</p></li>
+<li><p><strong>Reversible Terminator Incorporation:</strong> The instrument floods the flow cell with DNA polymerase and four modified nucleotides. Each nucleotide has a unique fluorescent dye (red, green, blue, or yellow) and a <strong>reversible blocking group</strong> that prevents the polymerase from adding more than one base at a time.</p></li>
+<li><p><strong>Imaging and Cleavage:</strong> The unbound nucleotides are washed away. A laser excites the fluorescent dyes, and a high-resolution camera takes a picture of the flow cell. The color of the light emitted by each cluster tells the instrument which base was added. Finally, the blocking group and dye are chemically cleaved (removed), allowing the next nucleotide to bind in the next cycle.</p></li>
+</ol>
+</section>
+<section id="alternatives-and-technology-evolution-long-read-sequencing" class="level3">
+<h3 class="anchored" data-anchor-id="alternatives-and-technology-evolution-long-read-sequencing">Alternatives and Technology Evolution: Long-Read sequencing</h3>
+<p>While Illumina’s short-read chemistry is highly accurate and cheap, short reads (~150 bp) cannot easily span large structural variants, repeat regions, or highly homologous genes. This bottleneck drove the evolution of long-read sequencing technologies:</p>
+<ul>
+<li><p><strong>Pacific Biosciences (PacBio) SMRT Sequencing:</strong> This chemistry uses <strong>Zero-Mode Waveguides (ZMWs)</strong>—billions of tiny metallic wells where a single DNA polymerase is anchored at the bottom. As fluorescently labeled bases are incorporated in real time, the camera records the light pulse. By attaching circular adapters to the DNA (Circular Consensus Sequencing or CCS), the polymerase circles the template multiple times, allowing the random errors to be averaged out, yielding highly accurate (Q30) long reads (&gt;10 kb).</p></li>
+<li><p><strong>Oxford Nanopore Technologies (ONT) Sequencing:</strong> Instead of using light, ONT measures <strong>ionic current</strong>. A motor protein feeds a single strand of DNA through a protein pore embedded in an electrically charged membrane. Each combination of bases (k-mers) blocking the pore produces a distinct drop in the electrical current. A neural network basecaller decodes these electrical fluctuations directly into sequence strings. ONT can sequence molecules of arbitrary length (up to megabases), but it is prone to systematic errors in homopolymer regions (e.g., distinguishing a run of 6 Adenines from 7 Adenines).</p></li>
+</ul>
+</section>
+<section id="from-raw-camera-signals-to-fastq" class="level3">
+<h3 class="anchored" data-anchor-id="from-raw-camera-signals-to-fastq">From Raw Camera Signals to FASTQ</h3>
+<p>The direct output of an Illumina sequencer is a directory of binary base call files called <strong>BCL files</strong>. BCL files record the fluorescent color detected at each cluster coordinate for every cycle of the run.</p>
+<p>To convert these raw coordinate signals into a usable format, you must run a tool like <code>bcl2fastq</code> or <code>bcl-convert</code>. This tool performs two critical steps:</p>
+<ol type="1">
+<li><p><strong>Base Calling:</strong> Converts the color signals into DNA letters (A, C, G, T) and assigns a quality score to each call.</p></li>
+<li><p><strong>Demultiplexing:</strong> Reads the short index barcode sequences on the adapters and assigns each read to its corresponding sample file.</p></li>
+</ol>
+<p>The output of this process is a set of raw <strong>FASTQ files</strong>.</p>
+</section>
+<section id="decoding-the-fastq-specification" class="level3">
+<h3 class="anchored" data-anchor-id="decoding-the-fastq-specification">Decoding the FASTQ Specification</h3>
+<p>A FASTQ file contains four lines per read:</p>
+<pre class="text"><code>@SRR1234567.1 1/1
+GATCGATCGATCGATCGATCGATCGATCGATCGATCGATC
++
+F:FFA9FEE,EE.E/FFEF&lt;F:FF/FF:F8FFF9FFDFD/</code></pre>
+<ul>
+<li><p><strong>Line 1 (The Header):</strong> Always starts with <code>@</code> and contains the read name, sequencing instrument ID, flow cell coordinates, and sample index/lane details.</p></li>
+<li><p><strong>Line 2 (The Sequence):</strong> The raw base calls (A, C, G, T, or N for undetermined bases).</p></li>
+<li><p><strong>Line 3 (The Spacer):</strong> Always starts with <code>+</code> and is sometimes followed by a repetition of the header.</p></li>
+<li><p><strong>Line 4 (The Quality Scores):</strong> A string of ASCII characters matching the length of the sequence on Line 2. Each character represents a Phred quality score.</p></li>
+</ul>
+</section>
+<section id="understanding-quality-scores-the-phred-scale" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-quality-scores-the-phred-scale">Understanding Quality Scores (The Phred Scale)</h3>
+<p>The quality string encodes the probability (<span class="math inline">\(P_e\)</span>) that a base call is incorrect. The <strong>Phred score (<span class="math inline">\(Q\)</span>)</strong> is calculated using a logarithmic scale: <span class="math display">\[Q = -10 \log_{10}(P_e)\]</span></p>
+<p>A higher Phred score means a lower error probability. To represent these values as a single character in text files, the Phred score is offset by 33 (or 64 in older pipelines) and mapped to the standard ASCII character table (Phred+33).</p>
+<p>For example, a Phred score of 30 (<span class="math inline">\(Q = 30\)</span>) has an ASCII value of <span class="math inline">\(30 + 33 = 63\)</span>, which corresponds to the character <code>?</code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 18%">
-<col style="width: 16%">
-<col style="width: 18%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Technology</th>
-<th>Measurement</th>
-<th>Error Mode</th>
-<th>Read Length</th>
-<th>Throughput (per run)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Illumina SBS</td>
-<td>Fluorescence (reversible terminators)</td>
-<td>Substitutions, 3’ quality decay</td>
-<td>150-300 bp</td>
-<td>10+ billion reads</td>
-</tr>
-<tr class="even">
-<td>PacBio SMRT</td>
-<td>Real-time fluorescence (ZMW)</td>
-<td>Random indels (correctable by CCS)</td>
-<td>10-100 kb</td>
-<td>~1 million CCS reads</td>
-</tr>
-<tr class="odd">
-<td>Oxford Nanopore</td>
-<td>Ionic current (motor protein)</td>
-<td>Indels, homopolymer errors</td>
-<td>10-200 kb</td>
-<td>~100 million reads</td>
-</tr>
-<tr class="even">
-<td>Sanger</td>
-<td>Capillary fluorescence</td>
-<td>Quality decay with read length</td>
-<td>400-900 bp</td>
-<td>Single read</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Illumina sequencing-by-synthesis</strong> remains the dominant technology. DNA fragments are bridge-amplified into clonal clusters on a flow cell. Reversible terminator nucleotides with distinct fluorophores are incorporated one cycle at a time. After each cycle, a fraction of molecules fail to incorporate (phasing) or incorporate two nucleotides (pre-phasing), and the fraction of synchronized molecules decays exponentially with cycle number: <span class="math inline">\(S(n) = S_0 e^{-\lambda n}\)</span> where <span class="math inline">\(\lambda\)</span> is the combined phasing + pre-phasing rate per cycle. When <span class="math inline">\(S(n)\)</span> drops below the detection threshold (~cycles 150-300), the read terminates; this is a fundamental physical limit of the sequencing chemistry, not a software truncation. Raw output is in BCL format; demultiplexing and base calling convert it to FASTQ (a step where index hopping artifacts can arise from misassigned barcodes during multiplexed sequencing). The error signature is dominated by substitutions (particularly at the 3’ end where quality decays) with a very low indel rate. Substitution error rate is ~0.1-1%.</p>
-<p><strong>PacBio SMRT sequencing</strong> immobilizes a single DNA polymerase at the bottom of a zero-mode waveguide (ZMW). Fluorescently labeled nucleotide incorporation is detected in real time. Continuous long reads (CLR) achieve 10-100 kb with ~15% error, but the errors are random indels rather than substitutions; a critical distinction, because random indels can be corrected by consensus. Circular consensus sequencing (CCS/HiFi) ligates hairpin adapters to both ends of the template, creating a circular molecule that the polymerase reads around multiple times. The CCS algorithm detects pass boundaries and computes a consensus: with ~15% single-pass indel error and 10+ passes, the consensus error drops to ~0.1% (<span class="math inline">\(0.15^{10} \approx 3\times 10^{-9}\)</span> in theory; systematic biases limit accuracy to ~99.9% in practice). The tradeoff is throughput; each CCS read requires many passes, reducing the number of unique molecules sequenced.</p>
-<p><strong>Oxford Nanopore sequencing</strong> uses a motor protein to feed a single DNA strand through a protein nanopore embedded in an electrically resistant membrane. As 3-5 nucleotides occupy the pore simultaneously, each k-mer produces a characteristic ionic current level. Because the same base produces different currents depending on its flanking nucleotides (a non-linear, context-dependent mapping), a neural network basecaller (Guppy, Dorado) decodes the current signal into bases. Error rates have improved rapidly (currently ~1-5% for raw reads, Q20+), but the error profile is distinct: predominantly insertions and deletions in homopolymer regions (strings of identical bases like AAAAA vs.&nbsp;AAAAAA). Substitutions are rarer. This has implications for variant calling; indels in homopolymers are the most common artifact.</p>
-</section>
-<section id="fastq-and-the-meaning-of-quality-scores" class="level3">
-<h3 class="anchored" data-anchor-id="fastq-and-the-meaning-of-quality-scores">FASTQ and the Meaning of Quality Scores</h3>
-<p>The FASTQ format encodes each read as four lines: <code>@header</code>, sequence, <code>+</code>, and quality scores. The Phred quality score transforms error probability into a convenient logarithmic scale:</p>
-<p><span class="math display">\[Q = -10 \log_{10}(P_{\text{error}})\]</span></p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Q Score</th>
-<th>Error Probability</th>
-<th>Base Call Accuracy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Q10</td>
-<td>10%</td>
-<td>90%</td>
-</tr>
-<tr class="even">
-<td>Q20</td>
-<td>1%</td>
-<td>99%</td>
-</tr>
-<tr class="odd">
-<td>Q30</td>
-<td>0.1%</td>
-<td>99.9%</td>
-</tr>
-<tr class="even">
-<td>Q40</td>
-<td>0.01%</td>
-<td>99.99%</td>
-</tr>
-</tbody>
-</table>
-<p>The same Q score from different platforms encodes fundamentally different error types. An Illumina Q30 means there is a 0.1% chance that the base is a <em>substitution</em> error. A Nanopore Q30 means there is a 0.1% chance that the base is an <em>indel</em> error relative to the true sequence. When filtering reads or computing variant likelihoods, the error type matters as much as the error rate. A substitution error model applied to Nanopore data will systematically underestimate the probability of indels and overestimate the probability of perfect matches.</p>
-<p>Illumina uses Phred+33 encoding (ASCII offset 33). Older Solexa data used Phred+64. BWA and SAMtools detect the encoding automatically in most cases, but format conversion scripts can misidentify the offset; a perennial source of hard-to-diagnose quality filtering bugs.</p>
-</section>
-<section id="sambamcram-alignment-formats" class="level3">
-<h3 class="anchored" data-anchor-id="sambamcram-alignment-formats">SAM/BAM/CRAM: Alignment Formats</h3>
-<p>The SAM (Sequence Alignment/Map) format records each aligned read as a line with 11 required tab-separated fields. The critical fields for filtering:</p>
-<table class="table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 20%">
-<col style="width: 55%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Name</th>
-<th>What It Encodes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>QNAME</td>
-<td>Read name</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>FLAG</td>
-<td>Bitwise flag; encodes pairing, strand, mapping status</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>RNAME</td>
-<td>Reference sequence name (chromosome)</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>POS</td>
-<td>1-based leftmost mapping position</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>MAPQ</td>
-<td>Mapping quality: <span class="math inline">\(-10 \log_{10} P(\text{read is misplaced})\)</span></td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>CIGAR</td>
-<td>Compact representation of alignment operations (matches, mismatches, indels, soft clips)</td>
-</tr>
-</tbody>
-</table>
-<p>The FLAG field is a bitwise integer: each bit encodes a boolean property. FLAG = 83 (binary 1010011) means “paired, mapped in proper pair, mate is reverse strand, and this is read 1.” Understanding FLAG filtering is essential for extracting properly mapped paired-end reads and excluding unpaired, unmapped, or discordant alignments.</p>
-<p>The MAPQ score is not a general “confidence” measure; it specifically encodes the probability that the read is placed at the wrong genomic location. A read that maps uniquely to a repetitive region can have high MAPQ but be placed on the wrong repeat copy. A read with MAPQ 0 may be correctly assigned if the true position is ambiguous but the read genuinely comes from that region.</p>
-<p><strong>BAM</strong> is the binary, compressed version of SAM, using BGZF compression. <strong>CRAM</strong> achieves 30-60% further compression over BAM by storing only the differences from the reference genome rather than the full aligned sequence. CRAM is the standard for large-scale archival (1000 Genomes, UK Biobank) but requires the reference genome to be available for decompression.</p>
-<p>The alignment information in SAM/BAM/CRAM is the product of the search heuristics described in Chapter 8; the BWT/FM-index, minimizers, and seed-and-extend algorithms that determine where and how each read maps. A BAM file records the output of these algorithms, but interpreting the FLAG and MAPQ fields requires understanding the algorithmic decisions behind them.</p>
-</section>
-<section id="coordinate-systems-and-off-by-one-errors" class="level3">
-<h3 class="anchored" data-anchor-id="coordinate-systems-and-off-by-one-errors">Coordinate Systems and Off-by-One Errors</h3>
-<table class="table">
-<colgroup>
+<col style="width: 12%">
+<col style="width: 21%">
+<col style="width: 30%">
+<col style="width: 11%">
 <col style="width: 23%">
-<col style="width: 50%">
-<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Format</th>
-<th>Coordinate System</th>
-<th>Example</th>
+<th style="text-align: center;">Character</th>
+<th style="text-align: center;">Phred Score (<span class="math inline">\(Q\)</span>)</th>
+<th style="text-align: center;">Error Probability (<span class="math inline">\(P_e\)</span>)</th>
+<th style="text-align: center;">Accuracy</th>
+<th style="text-align: center;">Meaning in Practice</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>BED</td>
-<td>0-indexed, half-open</td>
-<td><code>chr1 1000 2000</code> = bases 1000-1999 (length 1000)</td>
+<td style="text-align: center;"><code>*</code></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">12.5%</td>
+<td style="text-align: center;">87.5%</td>
+<td style="text-align: center;">Highly unreliable</td>
 </tr>
 <tr class="even">
-<td>GFF/GTF</td>
-<td>1-indexed, closed</td>
-<td><code>chr1 1000 2000</code> = bases 1000-2000 (length 1001)</td>
+<td style="text-align: center;"><code>5</code></td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">1.0%</td>
+<td style="text-align: center;">99.0%</td>
+<td style="text-align: center;">Standard minimum</td>
 </tr>
 <tr class="odd">
-<td>VCF</td>
-<td>1-indexed</td>
-<td>POS = leftmost position of variant</td>
+<td style="text-align: center;"><code>?</code></td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">0.1%</td>
+<td style="text-align: center;">99.9%</td>
+<td style="text-align: center;">High-quality call</td>
 </tr>
 <tr class="even">
-<td>SAM/BAM</td>
-<td>1-indexed (POS field)</td>
-<td>Reference position of leftmost aligned base</td>
+<td style="text-align: center;"><code>I</code></td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">0.01%</td>
+<td style="text-align: center;">99.99%</td>
+<td style="text-align: center;">Excellent accuracy</td>
 </tr>
 </tbody>
 </table>
-<p>Converting between formats requires adding or subtracting 1 from the start coordinate. This is the single most common format-related bug in bioinformatics: a BED-to-GFF conversion that forgets to subtract 1 produces intervals shifted by one base. For a 1 Mb interval this is negligible, but for a transcription factor binding motif (6-12 bp), a 1 bp shift can completely change the motif content of the peak. A typical scenario: a collaborator provides ChIP-seq peaks in BED format; importing them into R with rtracklayer (which defaults to 1-indexed GFF) shifts every peak coordinate by +1, moving the motif entirely out of the peak call for narrow binding events.</p>
+<section id="clues-for-quantitative-analysis-the-relative-nature-of-counts" class="level4">
+<h4 class="anchored" data-anchor-id="clues-for-quantitative-analysis-the-relative-nature-of-counts">Clues for Quantitative Analysis: The Relative Nature of Counts</h4>
+<p>Before we align these reads, you must internalize two biological and mathematical realities of sequencing data. We will rely heavily on these clues in later chapters:</p>
+<ol type="1">
+<li><p><strong>Reads are Discrete Count Data:</strong> A FASTQ file contains individual, integer counts of reads. You cannot observe a fraction of a read. Therefore, continuous normal statistics are fundamentally inappropriate for raw sequence data (Chapter 4).</p></li>
+<li><p><strong>Sequencing yields Relative (Compositional) Quantifications:</strong> The sequencer has a fixed capacity (e.g., 300 million reads per lane). If Sample A has twice as many reads as Sample B, it does not mean Sample A had a higher starting concentration of molecules in the tube. It only means Sample A took up a larger <em>fraction</em> of the sequencer’s total output. Read counts are relative measurements, and they must be normalized for sequencing depth and library composition before any biological comparison can be made.</p></li>
+</ol>
 <hr>
+</section>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>The error profile of your sequencer determines the limits of what you can detect. Illumina substitutions are tolerable for germline SNP calling at moderate allele frequencies (20-50% VAF where the signal exceeds the error floor of 0.1%) but catastrophic for detecting rare somatic mutations at 1% VAF; a true variant is indistinguishable from a sequencing error at the same rate. PacBio HiFi indels are systematic (homopolymer) and correctable with moderate coverage (15x+). Nanopore direct RNA-seq can detect base modifications (m6A, pseudouridine) because modified bases produce distinct current patterns during translocation, but requires matched untreated controls to distinguish modifications from basecalling errors.</p>
-<p>FASTQ quality scores from different platforms are not directly comparable. An Illumina Q30 and a Nanopore Q30 both mean “1 in 1,000 probability of error,” but the expected structural consequences differ. A read with MAPQ 0 from a DNA aligner (BWA) may map perfectly if aligned with a splice-aware aligner (STAR); the aligner encodes an assumption about the type of variation expected, and applying the wrong assumption discards valid data.</p>
-<p>The practical takeaway: before starting any analysis, document the sequencing platform, its error profile, and the format assumptions of your tools. A pipeline that works for Illumina germline data will silently fail on PacBio HiFi somatic data or Nanopore direct RNA data; not because the code is wrong, but because the error model is wrong.</p>
+<p>When auditing a raw dataset, you must look beyond the raw sequence and examine the quality score patterns.</p>
+<section id="positional-quality-decay-the-3-drop" class="level3">
+<h3 class="anchored" data-anchor-id="positional-quality-decay-the-3-drop">Positional Quality Decay (The 3’ Drop)</h3>
+<p>If you plot the average Phred scores across the length of Illumina reads, you will notice a systematic decay: quality scores are highest at the 5’ beginning of the read and drop at the 3’ end.</p>
+<p>This drop is driven by the physical chemistry of the flow cell. Over 150 cycles of synthesis, two technical issues accumulate:</p>
+<ul>
+<li><p><strong>Phasing:</strong> A small percentage of clonal copy molecules fail to incorporate a base during a cycle, falling behind.</p></li>
+<li><p><strong>Pre-phasing:</strong> Some molecules incorporate two bases, skipping ahead.</p></li>
+</ul>
+<p>As the molecules in a cluster lose synchrony, the fluorescent signal becomes mixed (blurry). The instrument can no longer confidently distinguish which base is being added, and the Phred score drops. If your quality scores drop below Q20 at the 3’ end, you may need to trim the reads before alignment to prevent false-positive mapping.</p>
 <hr>
+</section>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Platforms differ in error type, not just error rate</strong>: Illumina makes substitutions, PacBio makes random indels, Nanopore makes homopolymer errors. The same Q score from different platforms means different things.</p></li>
-<li><p><strong>Phred scores are logarithmic error probabilities</strong>: Q30 = 1/1000 error rate, but the error type (substitution vs.&nbsp;indel) depends on the platform.</p></li>
-<li><p><strong>File formats encode coordinate systems</strong>: BED (0-indexed), GFF/VCF (1-indexed). Off-by-one errors are the most common format-related bug in bioinformatics.</p></li>
-<li><p><strong>BAM/CRAM are production formats</strong>: CRAM stores differences from reference for 30-60% compression over BAM, but requires the reference for decompression.</p></li>
+<li><p><strong>Sanger is targeted; NGS is parallel</strong>: Massive parallelization dropped sequencing costs and made genome-wide assays clinical realities.</p></li>
+<li><p><strong>Illumina sequences by synthesis</strong>: Reversible terminators incorporate one fluorescent base per cycle; coordinate images are translated from BCL files to FASTQ.</p></li>
+<li><p><strong>Phred scores are logarithmic</strong>: <span class="math inline">\(Q = -10 \log_{10}(P_e)\)</span>. A Q30 score represents a 99.9% base call accuracy.</p></li>
+<li><p><strong>Counts are relative</strong>: Read counts reflect the proportion of a molecule in the sequencing library, not its absolute biological concentration.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Cock et al.: “The Sanger FASTQ file format for sequences with quality scores” (<em>Nucleic Acids Research</em>, 2010).</p></li>
-<li><p>Li et al.: “The Sequence Alignment/Map format and SAMtools” (<em>Bioinformatics</em>, 2009).</p></li>
+<li>Cock et al.: “The Sanger FASTQ file format for sequences with quality scores” (Nucleic Acids Research, 2010). A historical and technical breakdown of Phred encoding.</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If you do not know the error profile of your sequencer, you do not know your data.</p>
+<p><strong>Johnson’s Rule:</strong> A FASTQ file is the raw signal of a physical chemistry reaction. If your quality score plots show sudden drops in the middle of a run, the chemistry failed on the flow cell. Never trust an aligner to correct for a failing instrument.</p>
 </blockquote>
 
 
@@ -623,8 +522,8 @@ window.Quarto = {
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -1036,13 +935,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-1-foundations/chapter-06.html" class="pagination-link" aria-label="Chapter 6: Statistical Inference and Confounder Management">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 6: Statistical Inference and Confounder Management</span></span>
+      <a href="../tier-1-foundations/chapter-06.html" class="pagination-link" aria-label="Chapter 6: Hypothesis Testing and Confounder Management (FDR &amp; Batch Effects)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 6: Hypothesis Testing and Confounder Management (FDR &amp; Batch Effects)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-2-core-omics/chapter-08.html" class="pagination-link" aria-label="Chapter 8: Algorithmic Foundations of Sequence Alignment">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-2-core-omics/chapter-08.html" class="pagination-link" aria-label="Chapter 8: Alignment Mechanics and Mapping Formats (SAM/BAM)">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 8: Alignment Mechanics and Mapping Formats (SAM/BAM)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1067,7 +966,7 @@ window.Quarto = {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

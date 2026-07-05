@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 15: Single-Cell RNA-seq and Dimensionality Escape – Omics with Johnson 101</title>
+<title>Chapter 23: Metabolomics and Mass-Based Profiling – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-3-high-res/chapter-16.html" rel="next">
-<link href="../tier-2-core-omics/chapter-14.html" rel="prev">
+<link href="../tier-4-mass-based/chapter-24.html" rel="next">
+<link href="../tier-4-mass-based/chapter-22.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,106 +213,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,13 +296,18 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#microfluidics-and-barcoding-the-10x-chromium" id="toc-microfluidics-and-barcoding-the-10x-chromium" class="nav-link" data-scroll-target="#microfluidics-and-barcoding-the-10x-chromium">Microfluidics and Barcoding: The 10x Chromium</a></li>
-  <li><a href="#the-sparsity-crisis" id="toc-the-sparsity-crisis" class="nav-link" data-scroll-target="#the-sparsity-crisis">The Sparsity Crisis</a></li>
-  <li><a href="#from-counts-to-structure-the-dimensionality-escape" id="toc-from-counts-to-structure-the-dimensionality-escape" class="nav-link" data-scroll-target="#from-counts-to-structure-the-dimensionality-escape">From Counts to Structure: The Dimensionality Escape</a></li>
-  <li><a href="#umap-visualization-not-inference" id="toc-umap-visualization-not-inference" class="nav-link" data-scroll-target="#umap-visualization-not-inference">UMAP: Visualization, Not Inference</a></li>
-  <li><a href="#doublet-detection" id="toc-doublet-detection" class="nav-link" data-scroll-target="#doublet-detection">Doublet Detection</a></li>
+  <li><a href="#what-is-being-measured-and-at-what-molecular-level" id="toc-what-is-being-measured-and-at-what-molecular-level" class="nav-link" data-scroll-target="#what-is-being-measured-and-at-what-molecular-level">What Is Being Measured and at What Molecular Level</a></li>
+  <li><a href="#analytical-platforms-mass-spectrometry-vs.-nmr" id="toc-analytical-platforms-mass-spectrometry-vs.-nmr" class="nav-link" data-scroll-target="#analytical-platforms-mass-spectrometry-vs.-nmr">Analytical Platforms: Mass Spectrometry vs.&nbsp;NMR</a></li>
+  <li><a href="#targeted-vs.-untargeted-workflows" id="toc-targeted-vs.-untargeted-workflows" class="nav-link" data-scroll-target="#targeted-vs.-untargeted-workflows">Targeted vs.&nbsp;Untargeted Workflows</a></li>
+  <li><a href="#metabolite-identification-and-reference-databases" id="toc-metabolite-identification-and-reference-databases" class="nav-link" data-scroll-target="#metabolite-identification-and-reference-databases">Metabolite Identification and Reference Databases</a></li>
+  <li><a href="#multivariate-statistics-pca-vs.-pls-da" id="toc-multivariate-statistics-pca-vs.-pls-da" class="nav-link" data-scroll-target="#multivariate-statistics-pca-vs.-pls-da">Multivariate Statistics: PCA vs.&nbsp;PLS-DA</a></li>
   </ul></li>
-  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#the-reviewer-mindset-the-quenching-mandate" id="toc-the-reviewer-mindset-the-quenching-mandate" class="nav-link" data-scroll-target="#the-reviewer-mindset-the-quenching-mandate">The Reviewer Mindset: The Quenching Mandate</a></li>
+  <li><a href="#confounders-and-compositional-shadows" id="toc-confounders-and-compositional-shadows" class="nav-link" data-scroll-target="#confounders-and-compositional-shadows">Confounders and Compositional Shadows</a></li>
+  </ul></li>
+  <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -363,9 +318,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-15.html">TIER 3: The High-Resolution Frontier: Single-Cell and Spatial</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res/chapter-15.html"><span class="chapter-title">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-4-mass-based/chapter-22.html">TIER 4: Mass-Based Omics</a></li><li class="breadcrumb-item"><a href="../tier-4-mass-based/chapter-23.html"><span class="chapter-title">Chapter 23: Metabolomics and Mass-Based Profiling</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 23: Metabolomics and Mass-Based Profiling</span></h1>
 </div>
 
 
@@ -383,7 +338,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -395,86 +350,115 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Bulk RNA-seq is a Fruit Smoothie</p>
+<p><strong>Johnson’s First Principle:</strong> Genomics Predicts What Might Happen, but Metabolomics Tells You What Is Actually Happening</p>
+<p>I suggest you think of the cell not as a collection of static genetic blueprints, but as a dynamic, running chemical engine. DNA (genomics) represents potential; RNA (transcriptomics) indicates transcriptional intent; proteins (proteomics) represent the physical machinery; but the small molecule metabolites (metabolomics) are the actual downstream endpoints of all upstream regulation and environmental interactions. To understand the immediate physiological state of a cell, tissue, or organism, you must measure its metabolites.</p>
 </blockquote>
-<p>Bulk RNA-seq crushes 100,000 cells into a tube and sequences the average. A T-cell and a neuron co-ingested in a bulk sample produce an average expression profile that corresponds to no biological reality. Cell types are discrete physical identities, and averaging destroys the signal of rare but biologically critical populations.</p>
-<p>Single-cell RNA-seq escapes this averaging problem but creates three new ones in its place: sparsity (90% of entries are zero), dimensionality (30,000 genes measured per cell), and ambiguity of measurement units (UMI counts vs.&nbsp;read counts vs.&nbsp;molecules). The statistical challenge of single-cell analysis is not the sequencing; it is recovering biological structure from a data matrix where most entries are zero, most genes carry no signal, and the unit of replication is a sample, not a cell.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="microfluidics-and-barcoding-the-10x-chromium" class="level3">
-<h3 class="anchored" data-anchor-id="microfluidics-and-barcoding-the-10x-chromium">Microfluidics and Barcoding: The 10x Chromium</h3>
-<p>Three fluid streams converge in a microfluidic channel: cells in suspension, barcoded hydrogel beads, and oil. At the junction, droplets form spontaneously; each <strong>GEM (Gel Bead-In-Emulsion)</strong> contains approximately 0 or 1 cell plus 1 bead carrying a unique barcode.</p>
-<p><strong>Poisson loading.</strong> The number of cells per droplet follows a Poisson distribution. To minimize doublets (two cells in one droplet), the cell concentration is kept low so that most GEMs contain 0 cells. The fraction of GEMs containing at least one cell is <span class="math inline">\(P(\geq 1) = 1 - e^{-\lambda}\)</span>. At <span class="math inline">\(\lambda = 0.1\)</span>, only ~9.5% of GEMs have a cell, but among those, the doublet rate <span class="math inline">\(P(\geq 2|\geq 1) \approx \lambda/2 \approx 5\%\)</span>, meaning ~95% of occupied GEMs are singlets. This is a deliberate tradeoff: lowering the cell concentration reduces doublets but also reduces the number of cells captured per run. Standard 10x runs target ~10,000 cells with an expected doublet rate of ~4-8% at <span class="math inline">\(\lambda \approx 0.05\)</span>-<span class="math inline">\(0.1\)</span>.</p>
-<p><strong>UMI collapse: from reads to molecules.</strong> Each mRNA molecule receives a unique molecular identifier (UMI) (a random 10-12 bp sequence) during reverse transcription. After sequencing, reads sharing the same cell barcode, gene, and UMI are collapsed into a single count. This is conceptually transformative: 10 sequencing reads with the same UMI represent 1 original mRNA molecule, not 10. Without UMIs, PCR duplicates inflate apparent expression, and the count matrix reflects amplification history as much as biological abundance.</p>
-<p>The consequence is that scRNA-seq count distributions differ from bulk RNA-seq in a subtle but important way. Chapter 4 established that bulk RNA-seq counts follow a Negative Binomial distribution: <span class="math inline">\(\text{Var}(Y) = \mu + \alpha \mu^2\)</span>, where the quadratic term <span class="math inline">\(\alpha \mu^2\)</span> captures both technical (amplification) and biological (cell-to-cell) variation. In scRNA-seq with UMIs, amplification noise is largely removed by UMI collapse (a single molecule either is captured and receives a UMI or is not. This makes the capture process approximately Poisson: <span class="math inline">\(\text{Capture} \sim \text{Poisson}(\lambda_{\text{capture}} \cdot \text{mRNA}_{\text{cell}})\)</span>. But the biological parameter <span class="math inline">\(\lambda\)</span> itself varies across cells) some cells express a gene at 10 copies, others at 0. If <span class="math inline">\(\lambda\)</span> follows a Gamma distribution across the cell population (the natural model for cell-to-cell expression variability), then the mixture of <span class="math inline">\(\text{Poisson}(\lambda)\)</span> with Gamma-distributed <span class="math inline">\(\lambda\)</span> yields exactly the Negative Binomial from Chapter 4: <span class="math inline">\(\text{Var}(Y) = \mu + \alpha\mu^2\)</span>. The critical difference from bulk RNA-seq: the dispersion <span class="math inline">\(\alpha\)</span> in scRNA-seq reflects biological variability alone (amplification noise is removed by UMI collapse), while in bulk RNA-seq <span class="math inline">\(\alpha\)</span> captures both technical amplification noise and biological variability. The UMI removes the amplification variance term but not the biological variance.</p>
-</section>
-<section id="the-sparsity-crisis" class="level3">
-<h3 class="anchored" data-anchor-id="the-sparsity-crisis">The Sparsity Crisis</h3>
-<p>Single-cell data is ~90% zero entries. A gene expressed at 10 mRNA copies per cell in bulk RNA-seq may appear in only 1-10% of individual cells. Understanding why requires distinguishing two sources of zeros:</p>
+<section id="what-is-being-measured-and-at-what-molecular-level" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-being-measured-and-at-what-molecular-level">What Is Being Measured and at What Molecular Level</h3>
 <ul>
-<li><strong>Technical dropout:</strong> The mRNA molecule existed in the cell but was not captured (failed to enter the droplet, was not reverse-transcribed, or was not sequenced). At typical capture efficiencies of 10-30%, a cell expressing a gene at 10 copies will on average capture 1-3 molecules and miss 7-9.</li>
-<li><strong>Biological zeros:</strong> The gene is genuinely not expressed in this cell; the transcription rate is zero in that cell type or state.</li>
+<li><p><strong>What Is Being Measured:</strong> Small molecules (metabolites, amino acids, sugars, organic acids, lipids) typically under <span class="math inline">\(1.5\)</span> kDa.</p></li>
+<li><p><strong>Molecular Level:</strong> The cellular or biofluid biochemical concentration level. Metabolomics captures the active physiological processes and phenotypic endpoints of cellular metabolism in real time.</p></li>
 </ul>
-<p>The distinction matters because they require different handling. Technical dropout is a sampling problem (increase capture efficiency or sequencing depth), while biological zeros are the signal of cell-type specificity. Most scRNA-seq analysis does not attempt to separate them explicitly; instead, clustering methods rely on the observation that highly expressed cell-type marker genes have sufficient capture to define clusters, while dropout-affected genes simply contribute noise that the dimensionality reduction step filters out.</p>
-<p><strong>Capture efficiency and its consequences.</strong> Standard 10x Chromium captures ~10-30% of mRNA molecules per cell. This means for a gene with 10 mRNA copies per cell, the expected observed count is 1-3 UMI counts in expressing cells, and zero in 70-90% of cells that do express it. The expected fraction of cells with at least one UMI is <span class="math inline">\(1 - e^{-\lambda}\)</span>, where <span class="math inline">\(\lambda\)</span> is the true mean expression multiplied by capture efficiency. At <span class="math inline">\(\lambda = 1\)</span>, ~63% of cells show at least one count; at <span class="math inline">\(\lambda = 0.1\)</span>, only ~9.5% do. The observed sparsity is thus a direct consequence of the physical capture efficiency; it is not a modeling choice.</p>
-<p>The zero-inflated Negative Binomial (ZINB) models both sources of zeros as a mixture: a point mass at zero (dropout) plus an NB distribution for the expressed component. However, debate continues over whether zero-inflation is needed at all, with UMIs and moderate expression levels, the observed zeros may be adequately explained by Poisson sampling alone, without an explicit zero-inflation component. The practical implication: ZINB-based normalization methods (SCTransform, ZINB-WaVE) are standard but should be validated against simpler NB models for the specific dataset.</p>
 </section>
-<section id="from-counts-to-structure-the-dimensionality-escape" class="level3">
-<h3 class="anchored" data-anchor-id="from-counts-to-structure-the-dimensionality-escape">From Counts to Structure: The Dimensionality Escape</h3>
-<p>A typical scRNA-seq experiment produces a count matrix of ~30,000 genes <span class="math inline">\(\times\)</span> ~10,000 cells (300 million entries, 90% of which are zero. Working directly in 30,000-dimensional space is computationally intractable and statistically meaningless (the curse of dimensionality: distances between points converge in high dimensions). The solution is the dimensionality escape) successive compression steps that reduce the data to a biologically interpretable low-dimensional representation.</p>
-<p><strong>Step 1: Feature selection.</strong> Most of the 30,000 genes are not informative. The first step selects genes with high variance relative to their mean (dispersion), typically 2,000-5,000 highly variable genes (HVGs). The rationale: a gene expressed uniformly at 1 count per cell across all cells carries no information about cell identity; a gene with mean 1 count and variance 10 is biologically informative. Feature selection reduces the matrix from 30,000 <span class="math inline">\(\times\)</span> 10,000 to 3,000 <span class="math inline">\(\times\)</span> 10,000 while retaining the biologically relevant dimensions.</p>
-<p><strong>Step 2: Normalization.</strong> Raw UMI counts must be normalized to account for differences in sequencing depth across cells. A cell with 50,000 total UMIs and a cell with 5,000 total UMIs will have systematically different counts for every gene, ignoring this confounds biological variation with technical depth.</p>
+<section id="analytical-platforms-mass-spectrometry-vs.-nmr" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-platforms-mass-spectrometry-vs.-nmr">Analytical Platforms: Mass Spectrometry vs.&nbsp;NMR</h3>
+<p>I recommend you understand the physical and chemical tradeoffs between the two dominant platforms in metabolomics:</p>
+<ol type="1">
+<li><p><strong>Mass Spectrometry (MS):</strong> Typically coupled with Liquid Chromatography (LC-MS) or Gas Chromatography (GC-MS).</p>
 <ul>
-<li><strong>Library-size normalization (scran):</strong> Compute size factors per cell by pooling cells with similar expression profiles, then normalize counts by dividing by the size factor. This is the scRNA-seq analogue of DESeq2’s median-of-ratios normalization from Chapter 4.</li>
-<li><strong>SCTransform:</strong> Fits a regularized Negative Binomial (ZINB) model per gene, regressing out sequencing depth. The Pearson residuals from the model are the normalized expression values. SCTransform handles the mean-variance relationship explicitly, removing the need for separate HVG selection; it replaces Steps 1 and 2 with a single regularized regression.</li>
-<li><strong>Log-normalization:</strong> <span class="math inline">\(\log(1 + \text{CPM})\)</span>; simple and fast, but distorts the mean-variance relationship and is not recommended as the sole normalization step.</li>
+<li><p><em>Sensitivity:</em> Extremely high. It can detect picomolar to nanomolar concentrations, capturing thousands of small molecule features in a single run.</p></li>
+<li><p><em>Ionization constraints:</em> Molecules must be ionized (typically via ESI or chemical ionization). This makes the system susceptible to <strong>matrix effects</strong> (co-eluting compounds suppressing or enhancing the ionization of the target analyte).</p></li>
+</ul></li>
+<li><p><strong>Nuclear Magnetic Resonance (NMR):</strong> Measures the magnetic properties of atomic nuclei (typically <span class="math inline">\(^1\text{H}\)</span> or <span class="math inline">\(^{13}\text{C}\)</span>).</p>
+<ul>
+<li><p><em>Reproducibility:</em> Superior to MS. It is non-destructive, highly quantitative, and requires minimal sample preparation.</p></li>
+<li><p><em>Sensitivity:</em> Low. It requires micromolar concentrations, meaning it only detects the top 50–100 highly abundant metabolites.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="targeted-vs.-untargeted-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="targeted-vs.-untargeted-workflows">Targeted vs.&nbsp;Untargeted Workflows</h3>
+<p>I will teach you to distinguish between these two experimental strategies, as they require entirely different analytical frameworks:</p>
+<ul>
+<li><p><strong>Targeted Metabolomics:</strong> Focuses on a pre-defined panel of chemically characterized molecules. You optimize the chromatography and mass spectrometer parameters (such as Multiple Reaction Monitoring, or MRM) to detect specific parent-to-product ion transitions. This yields absolute quantification (e.g., micromoles per liter) using internal stable-isotope standards, but is blind to any molecule outside the target list.</p></li>
+<li><p><strong>Untargeted Metabolomics:</strong> Profiles all detectable chemical features (peaks with unique <span class="math inline">\(m/z\)</span> and retention times) in a sample. This is a discovery-driven approach. The output is a matrix of relative peak intensities. The primary bottleneck is metabolite identification: converting a list of thousands of mass peaks into verified chemical structures.</p></li>
 </ul>
-<p><strong>Recommendation:</strong> SCTransform is the best default for most single-cell analyses; its ZINB-based residuals handle dropout and overdispersion jointly, remove the need for separate HVG selection, and are well-behaved for PCA. Use scran’s pooling-based size factors when you need to preserve absolute expression levels for cross-condition differential expression, where residual-based values can be harder to interpret.</p>
-<p>The normalization choice determines what signal the downstream steps see. Under-normalization leaves depth confounders in the data, and the first principal components will capture sequencing depth rather than biology. Over-normalization (aggressive regression of all technical factors) can remove biological signal correlated with library complexity, such as cell-cycle effects or activation states.</p>
-<p><strong>Step 3: PCA compression.</strong> The normalized matrix (3,000 genes <span class="math inline">\(\times\)</span> 10,000 cells) is reduced to ~50 principal components. Why does PCA work on a sparse, zero-inflated matrix? Because genes are correlated (the covariance structure exists in the sparse matrix because co-expressed genes vary together across cells. A gene expressed in only 5% of cells contributes to the covariance when it is expressed; the zeros simply add noise that the top PCs average out. The first PC typically captures a dominant source of variation (cell type, cell cycle, or technical artifact) inspect it before trusting it). The number of PCs to retain is chosen by the <strong>elbow heuristic</strong>: plot the variance explained per PC and keep the PCs before the curve flattens. For 10x data, this is typically 15-50 PCs. Too few PCs discard rare cell types; too many introduce noise that degrades clustering. PCA compresses 3,000 dimensions to ~50 while preserving the structure needed for clustering.</p>
-<p><strong>Step 4: Graph construction and clustering.</strong> The 50-dimensional PCA embedding is used to construct a K-nearest neighbor (KNN) graph: each cell is a node connected to its <span class="math inline">\(k\)</span> nearest neighbors (typically <span class="math inline">\(k = 10\)</span>-<span class="math inline">\(30\)</span>) by Euclidean distance in PCA space. The graph is the key data structure because it captures neighborhood relationships without requiring cells to be close in the original 30,000-dimensional space; two cells of the same type that are far apart in gene space can be connected through intermediate cells.</p>
-<p>The <strong>Leiden algorithm</strong> optimizes modularity on this graph by moving cells between communities until the partition is stable. The resolution parameter controls cluster granularity: higher resolution produces more clusters, but each cluster must be validated biologically. The algorithm will find clusters in random noise; cluster existence is a property of the algorithm, not necessarily of the data.</p>
 </section>
-<section id="umap-visualization-not-inference" class="level3">
-<h3 class="anchored" data-anchor-id="umap-visualization-not-inference">UMAP: Visualization, Not Inference</h3>
-<p>UMAP (Uniform Manifold Approximation and Projection) builds a fuzzy simplicial complex from the KNN graph in PCA space and optimizes a low-dimensional (2D) embedding. Compared to t-SNE, UMAP preserves more global structure, is computationally faster, and produces more deterministic embeddings. The key parameters: <code>n_neighbors</code> (higher = more global structure preserved) and <code>min_dist</code> (lower = tighter cluster packing).</p>
-<p><strong>Critical caveats:</strong> - UMAP is a visualization, not a clustering. Different random seeds produce different visual arrangements even with the same data. - Cluster sizes and distances in UMAP are not interpretable; the algorithm can produce visually separated clusters from continuous gradients. - The same UMAP parameters applied to different random seeds or subsamples produce visually different plots, yet the biological interpretation should be the same.</p>
-<p>t-SNE (t-distributed Stochastic Neighbor Embedding) is an older alternative that converts high-dimensional distances to probabilities and minimizes KL divergence. t-SNE preserves local structure well but has additional limitations: cluster positions and sizes are not interpretable, perplexity choice is non-obvious, and different random seeds produce substantially different outputs.</p>
+<section id="metabolite-identification-and-reference-databases" class="level3">
+<h3 class="anchored" data-anchor-id="metabolite-identification-and-reference-databases">Metabolite Identification and Reference Databases</h3>
+<p>In untargeted workflows, identifying a metabolite requires matching its accurate mass (MS1), isotopic pattern, retention time, and fragmentation pattern (MS2) against reference databases:</p>
+<ul>
+<li><p><strong>HMDB (Human Metabolome Database):</strong> The primary source of truth for human metabolite annotations, containing detailed physiological concentrations and disease associations.</p></li>
+<li><p><strong>METLIN and GNPS:</strong> Databases of tandem mass spectra (MS/MS) used to match fragmentation profiles.</p></li>
+<li><p><em>Confidence levels:</em> Annotations are classified from Level 1 (identified via comparison with an authentic chemical standard analyzed on the same instrument) down to Level 4 (unknown feature with molecular formula only).</p></li>
+</ul>
 </section>
-<section id="doublet-detection" class="level3">
-<h3 class="anchored" data-anchor-id="doublet-detection">Doublet Detection</h3>
-<p>Doublets (two cells in one droplet) produce expression profiles that are combinations of two distinct cell types. They appear as intermediate cells in UMAP and form spurious clusters. Computational detection (Scrublet, DoubletFinder): - Simulates doublets from random pairs of real cells - Trains a classifier to distinguish simulated vs.&nbsp;observed cells based on the adjacency of their expression profiles to other cells - The expected doublet rate is typically 3-8% per 10x channel</p>
-<p>Doublets cannot be completely eliminated by loading concentration. Even at optimal loading, physical doublets occur. Joint analysis of combined channels amplifies the problem: a doublet between a T-cell and a macrophage in one channel appears as a valid intermediate state unless detected and removed.</p>
+<section id="multivariate-statistics-pca-vs.-pls-da" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-statistics-pca-vs.-pls-da">Multivariate Statistics: PCA vs.&nbsp;PLS-DA</h3>
+<p>Because untargeted metabolomics yields thousands of chemical features across a relatively small number of samples (<span class="math inline">\(p \gg n\)</span>), you must use dimensionality reduction to interpret the data:</p>
+<ul>
+<li><p><strong>Principal Component Analysis (PCA):</strong> An unsupervised method that rotates the data matrix to maximize variance along orthogonal axes (principal components). I suggest using PCA first to identify batch effects, outliers, and natural biological groupings without bias.</p></li>
+<li><p><strong>Partial Least Squares-Discriminant Analysis (PLS-DA):</strong> A supervised method that rotates the matrix to maximize the covariance between the spectral features and the class labels (e.g., healthy vs.&nbsp;diseased).</p></li>
+</ul>
+<p><span class="math display">\[\mathbf{Y} = \mathbf{X}\mathbf{B} + \mathbf{E}\]</span></p>
+<p>Here, the algorithm actively guides the projection to separate the groups.</p>
+<blockquote class="blockquote">
+<p>[!WARNING] <strong>The PLS-DA Overfitting Trap.</strong> Because PLS-DA is supervised, it will find a hyperplane that separates your groups even if the data consists of pure random noise. You must never report PLS-DA separation without validating it. I recommend using two metrics: <span class="math inline">\(R^2\)</span> (fraction of variance explained by the model) and <span class="math inline">\(Q^2\)</span> (predictive variance estimated by cross-validation). A model with high <span class="math inline">\(R^2\)</span> but low or negative <span class="math inline">\(Q^2\)</span> is overfitted and biologically useless. Furthermore, you must run permutation tests—shuffling the class labels 1,000 times to construct an empirical null distribution of <span class="math inline">\(Q^2\)</span>—to prove your model’s classification is statistically significant.</p>
+</blockquote>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>Never trust a cluster you cannot name. If you cannot find known marker genes for a cluster, it may be a doublet, a batch effect, or a technical artifact. UMAP is a visualization, not a clustering; different random seeds produce different visual arrangements, and the resolution parameter is a tuning decision that must be justified biologically, not computationally.</p>
-<p>Pseudo-bulk aggregation (summing counts across all cells of a type per sample) restores the unit of replication; the biological sample, not the cell. Treating each cell as an independent replicate inflates statistical power by orders of magnitude and produces irreproducible results. Differential expression from single-cell data must use pseudo-bulk approaches or mixed models that account for the sample-level correlation structure. A dataset with 3 cases and 3 controls, each with 5,000 cells, has 6 replicates, not 30,000.</p>
-<p>Cluster annotation is the most subjective step in scRNA-seq analysis. Expression of a single canonical marker (e.g., CD3D for T-cells) is suggestive but not definitive; CD3D fragments may align to a different gene in a different species, or a macrophage may have picked up T-cell mRNA from phagocytosis. Multi-marker validation, cross-reference with published atlases, and consistency across samples are required for rigorous annotation.</p>
+<section id="the-reviewer-mindset-the-quenching-mandate" class="level3">
+<h3 class="anchored" data-anchor-id="the-reviewer-mindset-the-quenching-mandate">The Reviewer Mindset: The Quenching Mandate</h3>
+<p>Metabolic activity operates on a millisecond timescale. Enzymes do not stop working when you place a tissue sample on ice; indeed, cold shock can activate stress pathways and completely alter the metabolite profile within minutes.</p>
+<p>Therefore, I suggest you adopt a critical mindset when reviewing metabolomics papers:</p>
+<ul>
+<li><p><strong>Quenching:</strong> Was metabolic activity stopped instantaneously? I suggest looking for immediate liquid nitrogen snap-freezing or addition of cold organic solvents (like methanol/acetonitrile at <span class="math inline">\(-20^\circ\text{C}\)</span>).</p></li>
+<li><p><strong>The Ice Pitfall:</strong> If the authors harvested cells by centrifugation at room temperature or left tissues on ice for 30 minutes before extraction, their metabolic profiles represent harvesting stress, not the physiological state of the organism. Do not trust their biological conclusions.</p></li>
+</ul>
+</section>
+<section id="confounders-and-compositional-shadows" class="level3">
+<h3 class="anchored" data-anchor-id="confounders-and-compositional-shadows">Confounders and Compositional Shadows</h3>
+<p>Metabolic profiles are highly sensitive to external variables. I suggest you control for these major confounders:</p>
+<ul>
+<li><p><strong>Dietary and Circadian Cycles:</strong> Metabolites in biofluids fluctuate wildly based on fasting status, diurnal cycles, and physical activity. Lacking standardized collection times makes the data uninterpretable.</p></li>
+<li><p><strong>The Microbiome:</strong> A significant fraction of metabolites in human plasma (including short-chain fatty acids and bile acids) are synthesized or modified by the gut microbiota. A change in blood metabolites may reflect a shift in microbial ecology rather than host biology.</p></li>
+<li><p><strong>Compositional Normalization:</strong> Like sequencing data, total metabolite signal is bounded by the instrument’s loading capacity. I recommend normalizing peak intensities by total signal (probabilistic quotient normalization, or PQN) or using internal standards to avoid compositional biases.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="current-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
+<ul>
+<li><p><strong>Spatial Metabolomics (MALDI-MSI):</strong> Matrix-Assisted Laser Desorption/Ionization imaging mass spectrometry allows mapping of small molecule distributions directly across thin tissue sections at near-single-cell resolution.</p></li>
+<li><p><strong>High-Resolution MS (Orbitrap Astral):</strong> Recent instruments achieve sub-ppm mass accuracy and extremely high scan speeds, allowing untargeted workflows to identify thousands of previously undetectable low-abundance metabolites.</p></li>
+<li><p><strong>MetaboAnalyst 6.0:</strong> The primary open-source suite for metabolomics statistical analysis, pathway enrichment, and multi-omics integration.</p></li>
+</ul>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Microfluidic barcoding + UMIs</strong> enable molecular counting of 10,000+ cells per experiment, eliminating PCR bias. The capture process is approximately Poisson; remaining biological overdispersion motivates NB models.</p></li>
-<li><p><strong>The dimensionality escape</strong> proceeds in four steps: feature selection (HVGs) → normalization (scran/SCTransform) → PCA (50 dimensions) → KNN graph + Leiden clustering. Each step compresses the representation toward biological structure.</p></li>
-<li><p><strong>Sparsity (90% zeros)</strong> combines technical dropout (low capture efficiency) and biological zeros (cell-type specificity). ZINB models attempt to separate them, but debate continues on whether explicit zero-inflation is necessary with UMIs.</p></li>
-<li><p><strong>PCA on sparse data works</strong> because genes are correlated; the covariance structure exists, and the top PCs extract the dominant biological signals.</p></li>
-<li><p><strong>Pseudo-bulk analysis</strong> is required for valid differential expression; cells within a sample are not independent replicates.</p></li>
-<li><p><strong>Cluster annotation requires multi-marker validation</strong>: a single marker gene is not sufficient for cell-type identification.</p></li>
+<li><p><strong>Metabolites are dynamic endpoints:</strong> They reflect the real-time physiological execution of the system, distinct from the potential state captured by genomics.</p></li>
+<li><p><strong>MS has sensitivity; NMR has reproducibility:</strong> Choose your platform based on whether you need deep discovery (LC-MS) or absolute quantification of major pathways (NMR).</p></li>
+<li><p><strong>Untargeted workflows require identification validation:</strong> Convert peaks to metabolites using databases like HMDB, paying attention to annotation confidence levels (Level 1–4).</p></li>
+<li><p><strong>PLS-DA overfits easily:</strong> Always validate supervised projections using <span class="math inline">\(Q^2\)</span> cross-validation and label-shuffling permutation tests.</p></li>
+<li><p><strong>Quenching must be instantaneous:</strong> Avoid harvesting artifacts by snap-freezing samples immediately.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Zheng et al.: “Massively parallel digital transcriptional profiling of single cells” (<em>Nature Communications</em>, 2017).</p></li>
-<li><p>McInnes et al.: “UMAP: Uniform Manifold Approximation and Projection” (<em>Journal of Open Source Software</em>, 2018).</p></li>
-<li><p>Luecken &amp; Theis: “Current best practices in single-cell RNA-seq analysis” (<em>Molecular Systems Biology</em>, 2019).</p></li>
+<li><p>Wishart et al.: “HMDB 5.0: the Human Metabolome Database for 2022” (<em>Nucleic Acids Research</em>, 2022).</p></li>
+<li><p>Gloor et al.: “Microbiome datasets are compositional: and this is not optional” (<em>Frontiers in Microbiology</em>, 2017).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> Never trust a cluster you cannot name.</p>
+<p><strong>Johnson’s Rule:</strong> Genomics is the blueprint; proteomics is the machinery; metabolomics is the exhaust. If you want to know how the engine is running, you must analyze the exhaust. Never assume transcription correlates with biochemical output.</p>
 </blockquote>
 
 
@@ -485,8 +469,8 @@ window.Quarto = {
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -898,13 +882,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-2-core-omics/chapter-14.html" class="pagination-link" aria-label="Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span>
+      <a href="../tier-4-mass-based/chapter-22.html" class="pagination-link" aria-label="Chapter 22: Mass Spectrometry and Proteomics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 22: Mass Spectrometry and Proteomics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-3-high-res/chapter-16.html" class="pagination-link" aria-label="Chapter 16: Trajectory Inference and RNA Velocity">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-4-mass-based/chapter-24.html" class="pagination-link" aria-label="Chapter 24: Lipidomics and Other Mass Spectrometry Assays">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -929,7 +913,7 @@ window.Quarto = {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

@@ -11,7 +11,7 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,6 +33,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -51,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -84,35 +119,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -213,106 +219,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,17 +302,17 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-bottleneck-framework" id="toc-the-bottleneck-framework" class="nav-link" data-scroll-target="#the-bottleneck-framework">The Bottleneck Framework</a></li>
-  <li><a href="#the-operating-system-hardware-traffic-cop" id="toc-the-operating-system-hardware-traffic-cop" class="nav-link" data-scroll-target="#the-operating-system-hardware-traffic-cop">The Operating System: Hardware Traffic Cop</a></li>
-  <li><a href="#why-unix-dominates-bioinformatics" id="toc-why-unix-dominates-bioinformatics" class="nav-link" data-scroll-target="#why-unix-dominates-bioinformatics">Why UNIX Dominates Bioinformatics</a></li>
-  <li><a href="#cpu-the-compute-resource" id="toc-cpu-the-compute-resource" class="nav-link" data-scroll-target="#cpu-the-compute-resource">CPU: The Compute Resource</a></li>
-  <li><a href="#ram-the-working-memory" id="toc-ram-the-working-memory" class="nav-link" data-scroll-target="#ram-the-working-memory">RAM: The Working Memory</a></li>
-  <li><a href="#storage-and-io-the-data-movement-bottleneck" id="toc-storage-and-io-the-data-movement-bottleneck" class="nav-link" data-scroll-target="#storage-and-io-the-data-movement-bottleneck">Storage and I/O: The Data Movement Bottleneck</a></li>
-  <li><a href="#stream-processing-the-pipe-as-io-bypass" id="toc-stream-processing-the-pipe-as-io-bypass" class="nav-link" data-scroll-target="#stream-processing-the-pipe-as-io-bypass">Stream Processing: The Pipe as I/O Bypass</a></li>
-  <li><a href="#hpc-job-scheduling-with-slurm" id="toc-hpc-job-scheduling-with-slurm" class="nav-link" data-scroll-target="#hpc-job-scheduling-with-slurm">HPC Job Scheduling with SLURM</a></li>
-  <li><a href="#persistent-sessions-with-tmux" id="toc-persistent-sessions-with-tmux" class="nav-link" data-scroll-target="#persistent-sessions-with-tmux">Persistent Sessions with tmux</a></li>
+  <li><a href="#the-three-bottlenecks" id="toc-the-three-bottlenecks" class="nav-link" data-scroll-target="#the-three-bottlenecks">The Three Bottlenecks</a></li>
+  <li><a href="#the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop" id="toc-the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop" class="nav-link" data-scroll-target="#the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop">The Memory Wall: Why Opening a 10GB File Crashes Your Laptop</a></li>
+  <li><a href="#the-leverage-of-the-terminal-unix-streams-and-pipes" id="toc-the-leverage-of-the-terminal-unix-streams-and-pipes" class="nav-link" data-scroll-target="#the-leverage-of-the-terminal-unix-streams-and-pipes">The Leverage of the Terminal: UNIX Streams and Pipes</a></li>
+  <li><a href="#essential-command-line-streams" id="toc-essential-command-line-streams" class="nav-link" data-scroll-target="#essential-command-line-streams">Essential Command-Line Streams</a></li>
+  <li><a href="#remote-server-basics-ssh-and-tmux" id="toc-remote-server-basics-ssh-and-tmux" class="nav-link" data-scroll-target="#remote-server-basics-ssh-and-tmux">Remote Server Basics: SSH and tmux</a></li>
   </ul></li>
-  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
+  <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#how-to-diagnose-bottlenecks-locally" id="toc-how-to-diagnose-bottlenecks-locally" class="nav-link" data-scroll-target="#how-to-diagnose-bottlenecks-locally">How to Diagnose Bottlenecks Locally</a></li>
+  </ul></li>
+  <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -387,7 +343,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -399,218 +355,120 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Compute is Physical, Not Magical</p>
+<p><strong>Johnson’s First Principle:</strong> Compute is a Physical, Not a Magical Resource</p>
+<p>All bioinformatics is performed on computers. Every command you run—whether aligning millions of sequencing reads, filtering genomic variants, or plotting gene expression—must direct physical electrons through a silicon chip. If you do not understand the hardware limits of your computer, your analysis will fail. You will try to open a 10-gigabyte sequencing file in a basic text editor or Excel, your system will freeze, and you will not understand why. A professional understands that hardware capacity governs data capacity.</p>
 </blockquote>
-<p>A modern CPU contains billions of transistors etched onto a silicon die. Every operation (reading a file, aligning a read, training a model) directs the flow of electrons through a physical lattice. Computation costs time and energy. A student who types <code>wc -l</code> and sees a number appear has understood nothing. A professional who types <code>wc -l</code> and estimates completion time from I/O throughput, RAM bandwidth, and CPU cache has understood everything.</p>
-<p>The corollary is that every pipeline failure traces to one of three physical bottlenecks: the CPU is maxed out and needs parallelization; the disk cannot feed data fast enough and the CPU stalls waiting; or the data does not fit in RAM and the operating system kills the process. Identifying which of these three is happening, and knowing what to do about it; is the first skill a bioinformatician must develop.</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-bottleneck-framework" class="level3">
-<h3 class="anchored" data-anchor-id="the-bottleneck-framework">The Bottleneck Framework</h3>
-<p>A running process consumes three physical resources: <strong>CPU cycles</strong> (computation), <strong>RAM</strong> (working memory), and <strong>I/O bandwidth</strong> (data movement from storage). At any moment, one of these is the limiting factor; the bottleneck, and the other two are underutilized.</p>
-<p>The diagnostic question is simple: - <strong>CPU at 100%, pipeline slow:</strong> the task is CPU-bound. More cores or a faster algorithm will help. - <strong>CPU below 50%, pipeline slow:</strong> the task is I/O-bound. The CPU spends most of its time waiting for data from storage. Faster storage or streaming will help. - <strong>Memory climbing steadily toward available RAM:</strong> the task is memory-bound. The process will be killed when it exceeds physical RAM. Streaming, memory-mapped files, or a lower-memory algorithm will help.</p>
-<p>Every tool and concept in this chapter exists to answer one of these three diagnostic questions. Understanding <em>which</em> bottleneck you face determines <em>which</em> tool you reach for.</p>
+<p>As a biological researcher, you will rarely write complex, multi-node supercomputing scripts. Most of your daily work will involve processing a single dataset at a time on your local laptop, a high-performance desktop workstation, or a remote institutional server. However, biological data is inherently large. Even a single RNA-seq or metagenomic sample can easily exceed 5 to 50 gigabytes of raw data.</p>
+<p>To manage this volume without crashing your computer, you must understand the three physical bottlenecks of computation: <strong>CPU (processing power)</strong>, <strong>RAM (working memory)</strong>, and <strong>Storage I/O (disk read/write speed)</strong>.</p>
+<section id="the-three-bottlenecks" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-bottlenecks">The Three Bottlenecks</h3>
+<ol type="1">
+<li><p><strong>CPU (Central Processing Unit):</strong> The brain of the computer. It executes instructions. CPU bottlenecks occur when you run complex algorithms (like sequence alignment or clustering). If your CPU is running at 100% across all cores, your task is CPU-bound; it is computation-limited.</p></li>
+<li><p><strong>RAM (Random Access Memory):</strong> The temporary, high-speed workspace of the computer. When a program runs, it loads data into RAM so the CPU can access it instantly. RAM is volatile (erased when the computer turns off) and limited. If your data exceeds your physical RAM, your operating system will crash or force-kill the program.</p></li>
+<li><p><strong>Storage I/O (Input/Output):</strong> Your hard drive (SSD or HDD) where files are stored long-term. Disk I/O bottlenecks occur when the CPU is sitting idle because it cannot read data off the disk fast enough. If you read a massive file from a slow mechanical hard drive, your pipeline stalls.</p></li>
+</ol>
 </section>
-<section id="the-operating-system-hardware-traffic-cop" class="level3">
-<h3 class="anchored" data-anchor-id="the-operating-system-hardware-traffic-cop">The Operating System: Hardware Traffic Cop</h3>
-<p>An Operating System (OS) sits between physical hardware and software applications, managing resource allocation. Modern OSes enforce a strict separation between the <strong>kernel</strong> (privileged hardware access) and <strong>user-space</strong> (where applications run). This architecture is a safety mechanism; if your Python script has a memory leak, the kernel kills it without crashing the machine.</p>
-<p>When a program needs hardware access, it issues a <strong>system call</strong>:</p>
+<section id="the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop" class="level3">
+<h3 class="anchored" data-anchor-id="the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop">The Memory Wall: Why Opening a 10GB File Crashes Your Laptop</h3>
+<p>A common mistake for young researchers is trying to view a raw biological data file (like a <code>.fastq</code> or <code>.sam</code> file) using default software (like Microsoft Word, Excel, or TextEdit).</p>
+<p>Standard office applications are designed to load the <strong>entire file</strong> into RAM before displaying it. If you try to open a 15GB FASTQ file on an 8GB RAM laptop, the operating system is forced to search for space. When physical RAM is exhausted, the OS tries to write temporary data to your hard drive (called “swapping”), slowing your computer to a crawl. Eventually, the Linux kernel invokes a mechanism called the <strong>OOM (Out-of-Memory) Killer</strong> to force-terminate the text editor to save the machine from freezing.</p>
+<blockquote class="blockquote">
+<p>[!NOTE] <strong>The OOM Killer:</strong> This is a kernel safety feature. It acts as an automated emergency brake. If you run a script and it suddenly terminates with the word <code>Killed</code>, it almost always means you exceeded your machine’s physical memory.</p>
+</blockquote>
+<p>To process genomic scale datasets, you cannot use office software. You must use the UNIX command line and the concept of <strong>stream processing</strong>.</p>
+</section>
+<section id="the-leverage-of-the-terminal-unix-streams-and-pipes" class="level3">
+<h3 class="anchored" data-anchor-id="the-leverage-of-the-terminal-unix-streams-and-pipes">The Leverage of the Terminal: UNIX Streams and Pipes</h3>
+<p>The UNIX operating system dominates bioinformatics because of a simple, elegant abstraction: <strong>everything is treated as a file</strong>.</p>
+<p>Instead of loading a massive file into memory all at once, the terminal allows you to stream data line-by-line. This is called <strong>stream processing</strong>. The memory footprint of the program remains constant (usually just a few megabytes), regardless of whether the file is 10 megabytes or 10 terabytes.</p>
+<p>The key leverage tool is the <strong>pipe operator (<code>|</code>)</strong>. It redirects the output of one program directly into the input of another, entirely in RAM, without writing intermediate temporary files to your disk.</p>
+<p>Let us look at a practical example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Novice Approach: writes huge intermediate files to disk, wasting I/O and RAM</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"chr1"</span> large_dataset.sam <span class="op">&gt;</span> temp_chromosome1.sam</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> temp_chromosome1.sam</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> temp_chromosome1.sam</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Professional Approach: streaming data in memory via a pipe</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"chr1"</span> large_dataset.sam <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the professional approach, <code>grep</code> reads <code>large_dataset.sam</code> line-by-line, filters for rows containing <code>"chr1"</code>, and pushes only those matching lines directly to <code>wc</code> (word count). The data flows through a small memory buffer in RAM. No intermediate files are written to the disk, saving time and storage space.</p>
+</section>
+<section id="essential-command-line-streams" class="level3">
+<h3 class="anchored" data-anchor-id="essential-command-line-streams">Essential Command-Line Streams</h3>
+<p>To navigate biological data, you must master a small set of general-purpose UNIX utilities:</p>
 <ul>
-<li><code>read(fd, buf, count)</code>; Read bytes from a file descriptor</li>
-<li><code>write(fd, buf, count)</code>; Write bytes to a file descriptor</li>
-<li><code>mmap(addr, length, prot, flags, fd, offset)</code>; Map a file into memory</li>
-<li><code>fork()</code>; Create a new process</li>
-<li><code>execve(path, argv, envp)</code>; Load a new program</li>
+<li><p><code>cat</code> and <code>zcat</code>: Display files (or compressed <code>.gz</code> files) as a stream.</p></li>
+<li><p><code>head</code> and <code>tail</code>: View the first or last few lines of a file (essential for checking file formats without loading the whole file).</p></li>
+<li><p><code>grep</code>: Search for matching patterns (e.g., finding a barcode or primer sequence).</p></li>
+<li><p><code>awk</code>: A powerful column-oriented text processor (perfect for filtering tab-delimited coordinate files like BED or GFF).</p></li>
+<li><p><code>sed</code>: A stream editor used to replace text patterns on the fly.</p></li>
 </ul>
-<p>Every bioinformatics operation (reading a FASTQ, writing a BAM, launching a subprocess) is a system call. The OS scheduler decides how to allocate CPU time, RAM pages, and I/O bandwidth among all running processes. If a program spends most of its time in <code>read()</code>, it is I/O-bound. If it spends time in <code>sched_yield()</code>, it is waiting for the CPU scheduler.</p>
-<p><strong>Why this matters for bottleneck diagnosis:</strong> Tools like <code>strace</code> or <code>perf</code> can reveal which system call dominates execution time. A process spending 80% of its time in <code>read()</code> is clearly I/O-bound; there is no point adding more CPU cores.</p>
 </section>
-<section id="why-unix-dominates-bioinformatics" class="level3">
-<h3 class="anchored" data-anchor-id="why-unix-dominates-bioinformatics">Why UNIX Dominates Bioinformatics</h3>
-<p>UNIX (specifically Linux) is the lingua franca of computational biology. POSIX (Portable Operating System Interface) guarantees compatibility across systems: a shell script written on macOS will run on a Linux HPC cluster, a cloud instance, and a supercomputer.</p>
-<p>The core abstraction (<strong>everything is a file</strong>: is what makes stream processing possible. Data files, hard drives (<code>/dev/sda</code>), keyboard input (<code>/dev/stdin</code>), terminal output (<code>/dev/stdout</code>), and network sockets are all accessed via the same <code>read()</code>/<code>write()</code> system calls. This is why <code>grep</code> and <code>awk</code> can process piped data and files with identical syntax) the pipe operator simply connects one process’s stdout (a file descriptor) to another’s stdin.</p>
-<p>100% of the TOP500 supercomputers run Linux. The bioinformatics ecosystem (BWA, GATK, SAMtools, DESeq2, Salmon, STAR) is developed and tested on Linux. Resistance to learning the UNIX command line is resistance to doing bioinformatics.</p>
-</section>
-<section id="cpu-the-compute-resource" class="level3">
-<h3 class="anchored" data-anchor-id="cpu-the-compute-resource">CPU: The Compute Resource</h3>
-<p><strong>Cores and threads.</strong> A modern CPU contains multiple physical <strong>cores</strong>, each capable of running an independent instruction stream. <strong>Hyperthreading</strong> presents two logical threads per physical core, but a tool requesting 64 CPUs typically gets at most 32x throughput; the extra threads share the same execution units. Diagnosing whether hyperthreading is active is straightforward:</p>
-<pre class="code"><code>grep "cpu cores" /proc/cpuinfo | uniq      # Physical cores
-grep "siblings" /proc/cpuinfo | uniq        # Logical threads</code></pre>
-<p>If siblings exceed cpu cores, hyperthreading is on. A pipeline that requests “all CPUs” on a hyperthreaded system may waste resources by oversubscribing physical execution units.</p>
-<p><strong>SIMD (Single Instruction, Multiple Data).</strong> Modern CPUs contain vector units that perform the same operation on multiple data points simultaneously. Tools like BWA-MEM2 and minimap2 leverage SIMD for significant speedups that naive Python implementations cannot match. This is why replacing <code>bwa</code> with <code>bwa-mem2</code> can produce a 2x speedup without any change in output; the algorithm is identical, but the new version uses SIMD instructions.</p>
-<p><strong>The parallelization ceiling: Amdahl’s Law.</strong> Parallel speedup is bounded by the serial fraction of the workload. Amdahl’s Law formalizes this:</p>
-<p><span class="math display">\[S = \frac{1}{(1-p) + p/n}\]</span></p>
-<p>where <span class="math inline">\(S\)</span> is speedup, <span class="math inline">\(p\)</span> is the fraction that can be parallelized, and <span class="math inline">\(n\)</span> is the number of cores. If 10% of the alignment step is serial (loading the reference index, writing the output header), <span class="math inline">\(p = 0.90\)</span> and the maximum speedup is <span class="math inline">\(1/(0.10 + 0.90/n)\)</span>, approaching <span class="math inline">\(10\times\)</span> even with infinite cores. The first question when parallelizing is not “how many cores do I have” but “what fraction of this task is serial.”</p>
-<p><strong>When CPU is the bottleneck:</strong> <code>htop</code> shows all cores near 100%, but the pipeline is slower than desired. The solution is to parallelize across cores (use multi-threaded tools, split input files) or to use a more efficient algorithm (SIMD-optimized tools, C/Fortran libraries instead of Python loops).</p>
-</section>
-<section id="ram-the-working-memory" class="level3">
-<h3 class="anchored" data-anchor-id="ram-the-working-memory">RAM: The Working Memory</h3>
-<p><strong>The memory hierarchy.</strong> Data moves through a series of progressively slower storage layers, with the CPU at the center:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Layer</th>
-<th>Latency</th>
-<th>Relative to L1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>L1 cache</td>
-<td>0.5 ns</td>
-<td>1x</td>
-</tr>
-<tr class="even">
-<td>L2 cache</td>
-<td>7 ns</td>
-<td>14x</td>
-</tr>
-<tr class="odd">
-<td>L3 cache</td>
-<td>~40 ns</td>
-<td>80x</td>
-</tr>
-<tr class="even">
-<td>RAM</td>
-<td>100 ns</td>
-<td>200x</td>
-</tr>
-<tr class="odd">
-<td>NVMe SSD</td>
-<td>20,000 ns</td>
-<td>40,000x</td>
-</tr>
-<tr class="even">
-<td>HDD seek</td>
-<td>10,000,000 ns</td>
-<td>20,000,000x</td>
-</tr>
-</tbody>
-</table>
-<p>The critical gap is between RAM and storage, but only for random access patterns, reading scattered locations across a file. Sequential access (reading a file from start to end) is fast because the hardware prefetcher anticipates the next cache line and the OS read-ahead buffer loads the next block before it is requested. A <code>grep</code> that scans a 50 GB FASTQ sequentially can saturate NVMe bandwidth (~5 GB/s). A <code>samtools view</code> without a BAI index that seeks to a specific genomic region makes thousands of random reads; each requiring a disk seek, and runs 100x slower. The access pattern, not just the data volume, determines whether the bottleneck is the storage device.</p>
-<p>Loading a 100 GB FASTQ file with <code>read.csv()</code> reads the entire file into RAM. If the machine has 64 GB of RAM, the OS will swap to disk (using SSD as extremely slow RAM) and eventually invoke the <strong>OOM (Out-of-Memory) killer</strong>: the kernel process that terminates the offending program.</p>
-<p><strong>When memory is the bottleneck:</strong> <code>htop</code> shows RAM usage climbing steadily toward 100%, and the pipeline eventually crashes with a killed process. The forensic record of this event:</p>
-<pre class="code"><code>dmesg | grep -i oom   # Kernel log showing which process was killed</code></pre>
-<p><strong>Preventive memory management:</strong></p>
-<pre class="code"><code>ulimit -v 8000000     # Set 8 GB virtual memory limit (fail fast, not at hour 47)</code></pre>
-<p>The <code>ulimit</code> command prevents the OOM scenario by failing immediately when the limit is exceeded, rather than letting the process thrash for hours before the kernel intervenes. Setting a memory limit based on a test dataset run is a hallmark of production-grade pipeline engineering.</p>
-<p><strong>The two professional solutions to memory-bound problems</strong> are streaming and memory-mapped files, both of which avoid loading the entire dataset into RAM at once. These are covered next.</p>
-</section>
-<section id="storage-and-io-the-data-movement-bottleneck" class="level3">
-<h3 class="anchored" data-anchor-id="storage-and-io-the-data-movement-bottleneck">Storage and I/O: The Data Movement Bottleneck</h3>
-<p>Storage speed varies by over three orders of magnitude depending on technology:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Device</th>
-<th>Sequential Read</th>
-<th>Random Access</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>HDD</td>
-<td>~150 MB/s</td>
-<td>~1 MB/s</td>
-</tr>
-<tr class="even">
-<td>SATA SSD</td>
-<td>~500 MB/s</td>
-<td>~50 MB/s</td>
-</tr>
-<tr class="odd">
-<td>NVMe SSD</td>
-<td>~3-7 GB/s</td>
-<td>~500 MB/s</td>
-</tr>
-</tbody>
-</table>
-<p>The gap between HDD and NVMe is 100x for sequential reads and 500x for random access. This difference explains why BAM files require <code>.bai</code> indexes. Without an index, <code>samtools view</code> must scan the entire BAM file to find reads in a region. With an index, it reads only the relevant compressed block, reducing a minutes-long random seek to milliseconds.</p>
-<p><strong>The page cache: why the second read is free.</strong> When the OS reads a file from disk, it keeps the data in a region of RAM called the <strong>page cache</strong>. A subsequent read of the same file returns instantly from memory; <code>iostat</code> shows 0% utilization because no disk access occurred. This creates a trap for pipeline development: the first run of <code>samtools view</code> is slow (reading from disk), but the second run appears fast (reading from cache), leading the developer to think the pipeline is faster than it will be on a cold cache. Always measure I/O performance on a cold cache (after <code>echo 3 &gt; /proc/sys/vm/drop_caches</code>, or on the first run after a reboot) to get realistic benchmarks.</p>
-<p><strong>When I/O is the bottleneck:</strong> <code>htop</code> shows CPU below 50% and the pipeline is slow. The diagnostic tools:</p>
-<pre class="code"><code>iostat -x 2          # I/O statistics every 2 seconds (check %util)
-iotop -oP            # Per-process I/O activity (which process is reading?)</code></pre>
-<p>If <code>iostat</code> shows a device at 100% utilization, the storage system is saturated. The solution is faster storage (NVMe over HDD), streaming (fewer intermediate files), or data reduction (filtering reads before expensive operations).</p>
-</section>
-<section id="stream-processing-the-pipe-as-io-bypass" class="level3">
-<h3 class="anchored" data-anchor-id="stream-processing-the-pipe-as-io-bypass">Stream Processing: The Pipe as I/O Bypass</h3>
-<p>The pipe operator (<code>|</code>) is the most important tool in the bioinformatician’s I/O optimization toolkit. It connects the stdout of one process directly to the stdin of another without writing to disk. Data flows through a kernel buffer; entirely in memory, and is consumed incrementally:</p>
-<pre class="code"><code># Novice: writes ~20 GB of intermediate files to disk
-grep "BRCA1" huge_file.fastq &gt; temp.txt
-sort temp.txt &gt; sorted.txt
-uniq -c sorted.txt &gt; counts.txt
-
-# Professional: streaming pipeline, one disk read, everything in memory
-grep "BRCA1" huge_file.fastq | sort | uniq -c</code></pre>
-<p>The streaming version reads the file once, processes it through three tools in memory, and writes the final result. The novice version reads and writes the same data three times, tripling I/O time and wearing the disk.</p>
-<p>Streaming also solves memory-bound problems. The essential streaming tools:</p>
+<section id="remote-server-basics-ssh-and-tmux" class="level3">
+<h3 class="anchored" data-anchor-id="remote-server-basics-ssh-and-tmux">Remote Server Basics: SSH and tmux</h3>
+<p>As a sole researcher, your laptop will often lack the RAM or CPU cores to run genomic alignments. Your institution will provide access to a remote Linux server.</p>
+<p>You connect to this server using <strong>SSH (Secure Shell)</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@server.university.edu</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once connected, your terminal is executing commands directly on the remote machine. However, if your internet connection drops—even for a split second—your SSH session will disconnect. The operating system sends a termination signal (SIGHUP) to your running programs, killing your analysis midway.</p>
+<p>To prevent this, you must run your commands inside a <strong>persistent terminal multiplexer</strong>, such as <code>tmux</code> (or <code>screen</code>).</p>
+<p><code>tmux</code> creates an isolated shell session that runs independently of your SSH connection. If your laptop loses power or internet, the process on the server continues to execute uninterrupted.</p>
 <ul>
-<li><code>grep</code>; pattern matching</li>
-<li><code>awk</code>; column math and text processing</li>
-<li><code>sed</code>; text replacement</li>
-<li><code>sort | uniq -c</code>; frequency counting</li>
-<li><code>fold</code>; line wrapping (useful for k-mer generation)</li>
+<li><p><code>tmux new -s my_analysis</code>: Create a new session named “my_analysis”.</p></li>
+<li><p><code>Ctrl+b</code> followed by <code>d</code>: Detach from the session (leaving your script running in the background).</p></li>
+<li><p><code>tmux attach -t my_analysis</code>: Reconnect to your running session from any computer at any time.</p></li>
 </ul>
-<p><strong>The generalization:</strong> Any pipeline step that writes a transient intermediate file should be examined for whether the I/O is necessary. If the next step can consume a stream, eliminate the file.</p>
-</section>
-<section id="hpc-job-scheduling-with-slurm" class="level3">
-<h3 class="anchored" data-anchor-id="hpc-job-scheduling-with-slurm">HPC Job Scheduling with SLURM</h3>
-<p>When analysis exceeds a single workstation, jobs are submitted to a cluster. SLURM (Simple Linux Utility for Resource Management) is the dominant scheduler in academic bioinformatics. Users write submission scripts that specify hardware requirements and submit them to queues (partitions):</p>
-<pre class="code"><code>#!/bin/bash
-#SBATCH --job-name=alignment
-#SBATCH --time=48:00:00
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=128G
-
-module load bwa/0.7.17
-bwa mem -t 16 reference.fa sample_R1.fastq.gz sample_R2.fastq.gz \
-  | samtools sort -@ 4 -o sample_sorted.bam -</code></pre>
-<p><strong>The bottleneck framework applied to SLURM:</strong> The most common SLURM mistakes are failures to estimate resource requirements, which is the same diagnostic problem this chapter is built around. Over-requesting CPUs (requesting 64 on a hyperthreaded system with 32 physical cores leaves 32 cores idle that other users cannot use). Over-requesting time (delays scheduling because the job must wait for a longer time window). Under-requesting memory (OOM at hour 47 of a 48-hour job; the job fails, and the queue position is lost).</p>
-<p>The solution is to profile the pipeline on a test dataset first, measure actual CPU, memory, and time usage, then request resources with a 2x safety margin:</p>
-<pre class="code"><code>sbatch my_script.sh              # Submit job
-squeue -u $USER                  # Check job status
-scancel JOBID                    # Cancel job
-sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS  # Actual resource usage</code></pre>
-</section>
-<section id="persistent-sessions-with-tmux" class="level3">
-<h3 class="anchored" data-anchor-id="persistent-sessions-with-tmux">Persistent Sessions with tmux</h3>
-<p>A dropped SSH connection sends SIGHUP, terminating all child processes, including a pipeline that has been running for 46 hours. <code>tmux</code> decouples running processes from the terminal session, so the pipeline survives disconnection:</p>
-<pre class="code"><code>tmux new -s pipeline1            # Start session
-# Ctrl-b, d                      # Detach (session continues after disconnect)
-tmux attach -t pipeline1         # Reattach from anywhere</code></pre>
-<p>This is a small tool with an outsized impact: it prevents the “SSH disconnected, job lost” failure mode that every bioinformatician encounters. Use <code>tmux</code> (or <code>screen</code>) for any pipeline running longer than a few minutes on a remote machine.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>The bottleneck framework transforms how a bioinformatician approaches a new analysis. Before looking at algorithms or parameters, the professional asks: “What is the rate-limiting resource, and how do I measure it?”</p>
-<p><strong>CPU-bound diagnosis:</strong> <code>htop</code> shows all cores above 90%. The pipeline is compute-limited. Parallelize across samples, use multi-threaded tools, or switch to SIMD-optimized implementations. The gain from parallelization is bounded by Amdahl’s Law; if 10% of the pipeline is serial, maximum speedup is 10x regardless of cores.</p>
-<p><strong>I/O-bound diagnosis:</strong> <code>htop</code> shows CPU below 50%, <code>iostat</code> shows the disk at 100% utilization. The pipeline is data-movement-limited. <strong>Caveat:</strong> this heuristic assumes the tool is multi-threaded. A single-threaded aligner on a 32-core machine shows only ~3% CPU usage regardless of whether it is CPU-bound or I/O-bound; the low CPU percentage reflects idle cores, not a stalled pipeline. To distinguish, check whether a single core is saturated (<code>htop</code> per-core view, or <code>mpstat -P ALL 1</code>). If one core is at 100% and the rest are idle, the tool is single-threaded and CPU-bound. If all cores are below 50% and the tool is multi-threaded, then it is I/O-bound. Switch to streaming (pipes), use faster storage (NVMe over HDD), add BAM/CRAM indexes to reduce random access, or reduce data volume (filter reads before alignment).</p>
-<p><strong>Memory-bound diagnosis:</strong> <code>htop</code> shows RAM climbing to capacity, <code>dmesg</code> shows OOM kills. The pipeline is capacity-limited. Switch to streaming (generators in Python), use memory-mapped files (<code>mmap</code> via <code>numpy.memmap</code> or <code>pandas.read_csv(chunksize=...)</code>), estimate memory from a test dataset and provision appropriately.</p>
-<p>A genome assembler requiring 400 GB of RAM on a 128 GB workstation is not “running slowly”; it is failing. The correct response is not to wait longer; it is to estimate memory requirements from a test dataset, provision appropriate resources, or use an algorithm with lower memory footprint.</p>
-<p>Every intermediate file written to disk represents an I/O bottleneck that could have been avoided with a pipe. The question “did I write a file I could have streamed?” should be asked of every step in every pipeline.</p>
+<p>When your analysis runs slowly or crashes, you must diagnose the hardware bottleneck before trying to change your biological parameters or software tools.</p>
+<section id="how-to-diagnose-bottlenecks-locally" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-diagnose-bottlenecks-locally">How to Diagnose Bottlenecks Locally</h3>
+<ol type="1">
+<li><p><strong>Check Resource Utilization with <code>htop</code>:</strong> Open a terminal window and run <code>htop</code>. This displays a visual representation of your CPU cores and RAM usage.</p>
+<ul>
+<li><p>If you see 8 CPU bars all at 100%, your task is CPU-bound. If your tool supports multi-threading (e.g., using <code>-t</code> or <code>-p</code> flags in aligners), you can speed it up by allocating more cores.</p></li>
+<li><p>If you see your memory bar (RAM) full, and the computer is unresponsive, your task is memory-bound. You must stream the file in smaller chunks rather than loading it all at once.</p></li>
+</ul></li>
+<li><p><strong>Verify Memory Crashes with <code>dmesg</code>:</strong> If your script abruptly stopped and displayed the word <code>Killed</code>, run the following command to check if the operating system killed it due to memory limits:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmesg</span> <span class="at">-T</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="at">-E</span> <span class="st">"oom|kill"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you see a line stating <code>Out of memory: Kill process</code>, you have hit the memory wall. You must rewrite your code to process data in chunks or move to a server with more RAM.</p></li>
+<li><p><strong>Monitor Disk Capacity with <code>df -h</code>:</strong> Before downloading massive FASTQ datasets from repositories like the Sequence Read Archive (SRA), check your remaining storage:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Running out of disk space midway through a sequence alignment will corrupt your output files, forcing you to restart the process.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="current-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
+<p>While raw command-line tools are essential, modern bioinformatics has evolved to make remote development more user-friendly:</p>
+<ul>
+<li><p><strong>VS Code Remote Development:</strong> Instead of editing files on a remote server using complex terminal editors (like <code>vim</code> or <code>nano</code>), you can use Visual Studio Code with the <strong>Remote - SSH</strong> extension. This allows you to edit files, view plots, and run terminal commands on the remote server using a standard, familiar desktop interface.</p></li>
+<li><p><strong>Mamba/Conda Environment Managers:</strong> Software installation has moved away from manual compilation. As we will discuss in the next chapter, package managers allow sole researchers to set up complete environments with a single command.</p></li>
+</ul>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><strong>Compute is physical</strong>: every operation costs time and energy. Every pipeline failure traces to one of three bottlenecks: CPU, I/O, or memory.</li>
-<li><strong>Diagnose before you optimize</strong>: <code>htop</code> tells you CPU vs.&nbsp;I/O. <code>iostat</code> tells you I/O saturation. <code>dmesg</code> tells you OOM kills. Measure the bottleneck before choosing the solution.</li>
-<li><strong>Streaming eliminates disk I/O</strong>: pipes keep data flowing through memory. Never write transient intermediate files.</li>
-<li><strong>Memory has a hierarchy</strong>: L1 cache → RAM → SSD → HDD. The gap between layers is the source of most performance problems.</li>
-<li><strong>SLURM resource requests must be measured, not guessed</strong>: profile on a test dataset, request 2x safety margin via <code>sacct</code>.</li>
-<li><strong><code>tmux</code> prevents the disconnected-SSH failure</strong>: use it for any remote pipeline longer than a few minutes.</li>
+<li><p><strong>Compute is physical</strong>: Every command consumes CPU cycles, RAM, and Disk I/O.</p></li>
+<li><p><strong>Do not load large files into text editors</strong>: Use <code>head</code> or <code>zcat</code> to inspect files.</p></li>
+<li><p><strong>Pipes prevent memory bottlenecks</strong>: Use the pipe operator (<code>|</code>) to stream data line-by-line in memory without writing intermediate files to disk.</p></li>
+<li><p><strong><code>tmux</code> is your safety net</strong>: Run all server analyses inside a tmux session to prevent connection-drop crashes.</p></li>
+<li><p><strong>Diagnose first</strong>: Use <code>htop</code> to identify CPU vs.&nbsp;RAM bottlenecks, and <code>dmesg</code> to check for OOM memory kills.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Tenenbaum &amp; Bos: <em>Modern Operating Systems</em> (Chapters 1-3): OS architecture, process management, memory hierarchy.</p></li>
-<li><p>UNIX command-line fundamentals: pipes, redirection, stream processing with <code>grep</code>, <code>awk</code>, <code>sed</code>.</p></li>
+<li><p>UNIX Shell Basics: Learn the usage of <code>head</code>, <code>tail</code>, <code>grep</code>, <code>awk</code>, and pipes (<code>|</code>).</p></li>
+<li><p>SSH Basics: Understand how to securely copy files between your local machine and a server using <code>scp</code> or <code>rsync</code>.</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If you cannot navigate a UNIX terminal blindfolded, you cannot do bioinformatics at scale. A 100 GB file does not fit in <code>read.csv()</code>, but it fits in a pipe.</p>
+<p><strong>Johnson’s Rule:</strong> A 100-gigabyte genomic dataset does not fit into an Excel sheet, but it fits perfectly into a UNIX pipe. Master stream processing, or you will spend your career waiting for frozen laptops to reboot.</p>
 </blockquote>
 
 
@@ -621,8 +479,8 @@ tmux attach -t pipeline1         # Reattach from anywhere</code></pre>
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -1039,8 +897,8 @@ tmux attach -t pipeline1         # Reattach from anywhere</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-1-foundations/chapter-02.html" class="pagination-link" aria-label="Chapter 2: Engineering Reproducibility and Workflow Orchestration">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 2: Engineering Reproducibility and Workflow Orchestration</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-1-foundations/chapter-02.html" class="pagination-link" aria-label="Chapter 2: Organizing and Securing Your Analysis (Git &amp; Conda)">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 2: Organizing and Securing Your Analysis (Git &amp; Conda)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1065,7 +923,7 @@ tmux attach -t pipeline1         # Reattach from anywhere</code></pre>
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

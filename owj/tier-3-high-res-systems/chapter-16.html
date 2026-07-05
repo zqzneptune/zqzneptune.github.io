@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 31: The Capstone (Architecting the Clinical Pipeline) – Omics with Johnson 101</title>
+<title>Chapter 16: Trajectory Inference and RNA Velocity – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-6-clinical/chapter-32.html" rel="next">
-<link href="../tier-6-clinical/chapter-30.html" rel="prev">
+<link href="../tier-3-high-res-systems/chapter-17.html" rel="next">
+<link href="../tier-3-high-res-systems/chapter-15.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -84,6 +84,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -184,106 +213,56 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -317,11 +296,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#end-to-end-germline-architecture" id="toc-end-to-end-germline-architecture" class="nav-link" data-scroll-target="#end-to-end-germline-architecture">End-to-End Germline Architecture</a></li>
-  <li><a href="#somatic-pipeline-architecture" id="toc-somatic-pipeline-architecture" class="nav-link" data-scroll-target="#somatic-pipeline-architecture">Somatic Pipeline Architecture</a></li>
-  <li><a href="#validation-and-regulatory-requirements" id="toc-validation-and-regulatory-requirements" class="nav-link" data-scroll-target="#validation-and-regulatory-requirements">Validation and Regulatory Requirements</a></li>
-  <li><a href="#data-management-and-chain-of-custody" id="toc-data-management-and-chain-of-custody" class="nav-link" data-scroll-target="#data-management-and-chain-of-custody">Data Management and Chain of Custody</a></li>
-  <li><a href="#artificial-intelligence-as-a-medical-device-samd" id="toc-artificial-intelligence-as-a-medical-device-samd" class="nav-link" data-scroll-target="#artificial-intelligence-as-a-medical-device-samd">Artificial Intelligence as a Medical Device (SaMD)</a></li>
+  <li><a href="#pseudotime-ordering-cells-without-a-clock" id="toc-pseudotime-ordering-cells-without-a-clock" class="nav-link" data-scroll-target="#pseudotime-ordering-cells-without-a-clock">Pseudotime: Ordering Cells Without a Clock</a></li>
+  <li><a href="#rna-velocity-the-physics-of-splicing" id="toc-rna-velocity-the-physics-of-splicing" class="nav-link" data-scroll-target="#rna-velocity-the-physics-of-splicing">RNA Velocity: The Physics of Splicing</a></li>
+  <li><a href="#cellrank-integrating-velocity-with-connectivity" id="toc-cellrank-integrating-velocity-with-connectivity" class="nav-link" data-scroll-target="#cellrank-integrating-velocity-with-connectivity">CellRank: Integrating Velocity with Connectivity</a></li>
+  <li><a href="#validation-when-the-trajectory-is-wrong" id="toc-validation-when-the-trajectory-is-wrong" class="nav-link" data-scroll-target="#validation-when-the-trajectory-is-wrong">Validation: When the Trajectory is Wrong</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -334,9 +312,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-28.html">TIER 6: Translational and Clinical Genomics</a></li><li class="breadcrumb-item"><a href="../tier-6-clinical/chapter-31.html"><span class="chapter-title">Chapter 31: The Capstone (Architecting the Clinical Pipeline)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-15.html">TIER 3: High-Resolution &amp; Systems</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-16.html"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 31: The Capstone (Architecting the Clinical Pipeline)</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></h1>
 </div>
 
 
@@ -354,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2026</p>
+      <p class="date-modified">July 5, 2026</p>
     </div>
   </div>
     
@@ -366,92 +344,94 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s Final Principle:</strong> The Pipeline IS the Laboratory</p>
+<p><strong>Johnson’s First Principle:</strong> Biology is a Continuum</p>
 </blockquote>
-<p>In clinical genomics, the pipeline must pass regulatory inspection (CLIA, CAP, ISO 15189). It must survive audits, employee turnover, software deprecation, and hardware failures. If it cannot reproduce yesterday’s result, a patient is misdiagnosed. The pipeline IS the laboratory.</p>
+<p>A hematopoietic stem cell does not instantaneously transform into a red blood cell. It passes through thousands of intermediate transcriptomic states. If you force developing cells into discrete clusters, you destroy the timeline of their evolution. Chapter 13 showed how to identify cell types; this chapter addresses a deeper question: within a cell type, how do cells transition from one state to another?</p>
+<p>The challenge is observational: you have a single snapshot; tissue from a single time point, but you need temporal information. Pseudotime and RNA velocity recover this temporal dimension from static data by exploiting two different signals: transcriptional similarity between cells (pseudotime) and the kinetics of RNA splicing (velocity).</p>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="end-to-end-germline-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="end-to-end-germline-architecture">End-to-End Germline Architecture</h3>
-<p>The standard clinical germline analysis pipeline follows a modular workflow:</p>
-<pre class="code"><code>FASTQ → BWA → MarkDuplicates → BQSR → HaplotypeCaller →
-Joint Genotyping → VQSR → VEP → ACMG Classification → Report</code></pre>
-<p>Each step must be version-pinned, containerized, and parameter-logged:</p>
-<pre class="code"><code># Example: version-tracked alignment step
-BWA_VERSION="0.7.17"
-PICARD_VERSION="2.27.5"
-GATK_VERSION="4.4.0.0"
-
-bwa mem -t 16 -K 10000000 -R "@RG\tID:${SAMPLE}\tSM:${SAMPLE}" \
-  ${REFERENCE} ${READ1} ${READ2} | \
-  gatk MarkDuplicates -I /dev/stdin -O ${SAMPLE}.dedup.bam \
-    -M ${SAMPLE}.dedup.metrics</code></pre>
-<p><strong>VQSR (Variant Quality Score Recalibration).</strong> The pipeline uses a Gaussian mixture model to distinguish true variants from sequencing artifacts. VQSR trains on known truth sites (HapMap, 1000 Genomes, Omni) to learn the multidimensional distribution of variant features (QualByDepth (QD), FisherStrand (FS), StrandOddsRatio (SOR), MappingQuality (MQ), and ReadPosRankSum) then applies this model to score novel variants. A VQSR tranche of 99.9% sensitivity retains nearly all true variants while filtering ~90% of artifacts. <strong>Critical limitation:</strong> VQSR requires ~50+ training samples with truth sites. For smaller cohorts or non-human species, hard filtering (QD &gt; 2.0, FS &lt; 60.0, MQ &gt; 40.0) replaces VQSR.</p>
+<section id="pseudotime-ordering-cells-without-a-clock" class="level3">
+<h3 class="anchored" data-anchor-id="pseudotime-ordering-cells-without-a-clock">Pseudotime: Ordering Cells Without a Clock</h3>
+<p>Pseudotime algorithms order cells along a developmental trajectory using transcriptional similarity, without knowledge of real time. The fundamental assumption is that cells captured at different points along a continuous process can be ordered by their expression profiles: a cell halfway through differentiation expresses a characteristic set of intermediate genes that places it between the starting and ending states.</p>
+<p><strong>Minimum Spanning Trees (Monocle).</strong> Builds a KNN graph in reduced-dimension space and finds the shortest path connecting all cells (the minimum spanning tree). With user-specified root cells (the “start”), pseudotime is the distance along the MST from the root to each cell. Changing the root changes all downstream interpretations; the root assumption is the critical user decision. Monocle also learns the “ordering” genes (those that change along the trajectory) as part of the algorithm, which can create circularity: the selected genes determine the trajectory, and the trajectory determines which genes are selected. This is not a bug; it is the algorithm’s best inference, but it means that different initial gene selections can produce different trajectories from the same data.</p>
+<p><strong>Diffusion maps (destiny).</strong> Models cell-to-cell transitions as a random walk. Cells connected by many short paths are close in diffusion pseudotime. This approach is more robust to noise than MST-based methods because it considers all paths, not just the single shortest. Diffusion maps are particularly effective for datasets with continuous gradients (e.g., cell cycle) rather than discrete branching (e.g., differentiation with two daughter fates).</p>
+<p><strong>Sliding principal curves (Slingshot).</strong> Simultaneously identifies multiple trajectories and branch points. The algorithm constructs a principal curve through the data (the path of maximal variance) and projects each cell onto the curve for its pseudotime value. For branching lineages, Slingshot first identifies clusters, then constructs a minimum spanning tree between clusters, and finally fits principal curves along each branch. This hybrid approach (clustering followed by continuous trajectory) bridges the discrete-to-continuous gap that Chapter 13’s clustering framework leaves open.</p>
+<p><strong>The root assumption.</strong> Every pseudotime method requires a root; a cell or set of cells designated as the starting point. The root is typically identified from prior biological knowledge (e.g., the earliest developmental stage in the dataset) or from expression of known marker genes. The critical caveat: different root choices produce different pseudotime orderings, and there is no computational way to validate the correct root from the expression data alone. RNA velocity (below) removes this requirement by inferring directionality from splicing kinetics.</p>
 </section>
-<section id="somatic-pipeline-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="somatic-pipeline-architecture">Somatic Pipeline Architecture</h3>
-<p>The somatic pipeline extends the germline framework with a matched normal (Chapter 10) at every step:</p>
-<pre class="code"><code>Tumor FASTQ + Normal FASTQ → BWA → MarkDuplicates → BQSR → Mutect2 →
-FilterMutectCalls (PON) → Cross-sample contamination check →
-VEP → Tumorigenic Classification → Report</code></pre>
-<p>Mutect2 differs from HaplotypeCaller in three critical ways: it uses the tumor-normal pair to subtract germline polymorphisms, it models cross-sample contamination as a prior on VAF, and it applies a panel of normals (PON) (~100 normal samples processed identically) to capture site-specific sequencing errors that would otherwise appear as false-positive somatic calls. Without a PON, the somatic pipeline produces 2-5× more false positives, particularly at recurrent artifact hotspots in the genome.</p>
-</section>
-<section id="validation-and-regulatory-requirements" class="level3">
-<h3 class="anchored" data-anchor-id="validation-and-regulatory-requirements">Validation and Regulatory Requirements</h3>
-<p>CLIA/CAP validation requires measurement of:</p>
+<section id="rna-velocity-the-physics-of-splicing" class="level3">
+<h3 class="anchored" data-anchor-id="rna-velocity-the-physics-of-splicing">RNA Velocity: The Physics of Splicing</h3>
+<p>Pseudotime orders cells but cannot determine direction; it requires the user to specify a root. RNA velocity solves this by adding a directional signal from RNA splicing kinetics.</p>
+<p>RNA velocity infers transcriptional direction from the balance of unspliced pre-mRNA and spliced mRNA. When a gene is activated, transcription produces unspliced pre-mRNA, which is then spliced into mature mRNA and eventually degraded. A high ratio of unspliced to spliced mRNA for a given gene means transcription has recently increased; unspliced molecules have accumulated and have not yet been fully spliced. A low ratio means transcription has slowed and the remaining spliced mRNA is decaying.</p>
+<p>The kinetics follow a coupled pair of ordinary differential equations:</p>
+<p><span class="math display">\[\frac{du}{dt} = \alpha - \beta u \quad \text{(unspliced)}\]</span></p>
+<p><span class="math display">\[\frac{ds}{dt} = \beta u - \gamma s \quad \text{(spliced)}\]</span></p>
+<p>where <span class="math inline">\(u\)</span> is unspliced counts, <span class="math inline">\(s\)</span> is spliced counts, <span class="math inline">\(\alpha\)</span> is the transcription rate, <span class="math inline">\(\beta\)</span> the splicing rate, and <span class="math inline">\(\gamma\)</span> the degradation rate.</p>
+<p><strong>Steady state.</strong> When <span class="math inline">\(\alpha\)</span> is constant and enough time has passed, both <span class="math inline">\(u\)</span> and <span class="math inline">\(s\)</span> reach equilibrium (<span class="math inline">\(du/dt = 0\)</span>, <span class="math inline">\(ds/dt = 0\)</span>):</p>
+<p><span class="math display">\[u^* = \frac{\alpha}{\beta}, \quad s^* = \frac{\alpha}{\gamma} = \frac{\beta}{\gamma}\,u^*\]</span></p>
+<p>At steady state, cells lie along the line <span class="math inline">\(s = (\beta/\gamma)u\)</span> in the phase portrait (unspliced vs.&nbsp;spliced counts per gene, each point is a cell). The ratio <span class="math inline">\(s/u = \beta/\gamma\)</span> is constant, splicing and degradation are balanced.</p>
+<p><strong>Interpreting the phase portrait.</strong> When transcription changes, cells deviate from the steady-state line:</p>
 <ul>
-<li><strong>Accuracy:</strong> Concordance with orthogonal method (Sanger sequencing, array) across known reference standards (GIAB NA12878).</li>
-<li><strong>Precision:</strong> Reproducibility across runs, operators, and reagent lots.</li>
-<li><strong>Limit of detection (LoD):</strong> Minimum VAF reliably detected (typically 5-10% for somatic, 20% for germline).</li>
-<li><strong>Reportable range:</strong> The spectrum of variant types the pipeline can detect (SNP, indel, SV, CNV).</li>
+<li><p>Cells <strong>above</strong> the line (<span class="math inline">\(s/u &gt; \beta/\gamma\)</span>) have excess spliced mRNA; transcription was recently <strong>downregulated</strong>; spliced mRNA persists while unspliced decays.</p></li>
+<li><p>Cells <strong>below</strong> the line (<span class="math inline">\(s/u &lt; \beta/\gamma\)</span>) have excess unspliced mRNA; transcription was recently <strong>upregulated</strong>; unspliced is accumulating while splicing and degradation lag.</p></li>
+<li><p>Over time, the system relaxes back toward steady state, tracing a loop in the phase portrait. The direction of this loop (upregulation → below line → recovery, or downregulation → above line → recovery) encodes the velocity signal.</p></li>
 </ul>
-<p>The pipeline must demonstrate all four metrics across representative genomic regions; GC-rich regions, segmental duplications, and tandem repeats have systematically lower performance regardless of pipeline.</p>
+<p>The original RNA velocity model (La Manno et al., 2018) estimated <span class="math inline">\(\beta/\gamma\)</span> from cells assumed to be at steady state, then computed each cell’s velocity as its residual from the steady-state line. <strong>scVelo</strong> (Bergen et al., 2020) replaces this steady-state assumption with a <strong>dynamical model</strong> that estimates <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span> per gene by fitting the full ODE system across all cells. This is essential for transient states; in a developing tissue, few genes are at equilibrium, and the steady-state assumption systematically underestimates velocity for recently induced genes.</p>
+<p><strong>Preprocessing.</strong> Unspliced and spliced counts are not available from standard scRNA-seq quantification. The preprocessing step (velocyto, or spliced/unspliced quantification in alevin-fry and kallisto-bustools) classifies each read as unspliced (overlapping intronic sequence) or spliced (spanning exon-exon junctions) against an annotated transcriptome.</p>
 </section>
-<section id="data-management-and-chain-of-custody" class="level3">
-<h3 class="anchored" data-anchor-id="data-management-and-chain-of-custody">Data Management and Chain of Custody</h3>
-<p>Every file requires a checksum (MD5 or SHA-256) recorded at each processing step:</p>
-<pre class="code"><code>raw FASTQ (SHA256: abc123...) → aligned BAM (SHA256: def456...) →
-called VCF (SHA256: ghi789...)</code></pre>
-<p>If any checksum changes, the chain of custody is broken, and the result cannot be used for clinical decision-making.</p>
-<p>Infrastructure components: compute (SLURM/AWS Batch), storage (S3 with versioning, Glacier for archival), database (variant + sample metadata), workflow engine (Cromwell/Nextflow Tower).</p>
-<p><strong>Secondary findings management.</strong> The pipeline must explicitly handle the ACMG secondary findings (SF) list (81 genes where pathogenic variants are actionable regardless of the testing indication. SF analysis runs as a separate pipeline branch with independent quality thresholds and orthogonal confirmation (Sanger sequencing) before reporting. The patient’s opt-in/opt-out consent status must be tracked in the metadata chain) reporting an incidental finding that the patient declined is as serious a regulatory failure as missing a primary finding.</p>
-</section>
-<section id="artificial-intelligence-as-a-medical-device-samd" class="level3">
-<h3 class="anchored" data-anchor-id="artificial-intelligence-as-a-medical-device-samd">Artificial Intelligence as a Medical Device (SaMD)</h3>
-<p>The FDA recognizes AI/ML-enabled software as a medical device (SaMD) for clinical genomics. Requirements:</p>
+<section id="cellrank-integrating-velocity-with-connectivity" class="level3">
+<h3 class="anchored" data-anchor-id="cellrank-integrating-velocity-with-connectivity">CellRank: Integrating Velocity with Connectivity</h3>
+<p>CellRank (2021) combines RNA velocity with transcriptomic similarity to model cell fate probabilities. It constructs a transition matrix where each entry <span class="math inline">\(T_{ij}\)</span> is the probability that cell <span class="math inline">\(i\)</span> transitions to cell <span class="math inline">\(j\)</span>, combining:</p>
 <ul>
-<li><strong>Locked model:</strong> The model parameters are frozen at the time of regulatory approval.</li>
-<li><strong>Algorithm Change Protocol (ACP):</strong> A pre-specified plan for updating the model without re-submission.</li>
-<li><strong>Data drift monitoring:</strong> Continuous monitoring for changes in data distribution that could degrade model performance (e.g., new sequencing chemistry, different patient population).</li>
-<li><strong>Ongoing validation:</strong> Periodic re-validation against reference standards.</li>
+<li><p><strong>Transcriptomic similarity:</strong> cells with similar expression profiles are more likely to be adjacent in developmental time.</p></li>
+<li><p><strong>Velocity direction:</strong> cells should transition in the direction of the velocity field, not against it.</p></li>
 </ul>
+<p>The combined Markov chain is analyzed to identify absorbing states (terminal cell types) and compute the probability of reaching each terminal state from every starting cell. This identifies:</p>
+<ul>
+<li><p><strong>Root cells:</strong> high probability of transitioning away from</p></li>
+<li><p><strong>Terminal states:</strong> high probability of transitioning toward</p></li>
+<li><p><strong>Driver genes:</strong> genes whose velocity best predicts the fate decision</p></li>
+</ul>
+<p>Unlike pseudotime alone, CellRank does not require an explicit root assumption; directionality is inferred from the velocity field. The Markov chain formulation also provides a natural measure of fate commitment: cells with high entropy in their transition probabilities are multipotent progenitors; cells with low entropy are committed to a specific fate.</p>
+</section>
+<section id="validation-when-the-trajectory-is-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="validation-when-the-trajectory-is-wrong">Validation: When the Trajectory is Wrong</h3>
+<p>Trajectory inference produces a compelling visual output; cells arranged along a smooth path from start to end, but this ordering is an inference, not an observation. The trajectory can be wrong in several ways that are invisible from the output alone:</p>
+<ul>
+<li><p><strong>False trajectories:</strong> Pseudotime algorithms will order any dataset, even one with no biological trajectory. Clustering followed by trajectory inference on random noise produces a smooth path through the noise.</p></li>
+<li><p><strong>Cell cycle as dominant signal:</strong> A velocity field that points in circles instead of along a trajectory suggests the dominant signal is the cell cycle, not differentiation. Before interpreting velocity as differentiation direction, validate against cell cycle phase markers; if the top velocity-driven genes are histone genes and cyclins, the signal is likely cycling, not development.</p></li>
+<li><p><strong>Splicing rate assumptions:</strong> RNA velocity assumes constant splicing rates across cells. These fail in cell cycle, stress response, and metabolic transitions where splicing rates change rapidly. The phase portrait (unspliced vs.&nbsp;spliced per gene) is the most informative diagnostic: genes with clear loops are the best candidates for driving the trajectory; genes with diffuse clouds are consistent with steady-state noise or cell cycle variation.</p></li>
+<li><p><strong>Root sensitivity:</strong> Pseudotime results depend on the root choice. A trajectory that appears robust to different root choices is more trustworthy than one that rearranges completely.</p></li>
+</ul>
+<p>Velocity and pseudotime should be validated against known time points or orthogonal markers before trusting the inferred ordering. A trajectory that looks biologically plausible but disagrees with well-established developmental markers should be regarded with skepticism.</p>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>Validation with reference standards (NA12878, GIAB) establishes baseline accuracy, but clinical accuracy varies by genomic region: GC-rich regions, segmental duplications, and tandem repeats have systematically lower performance regardless of pipeline. The pipeline should report per-region confidence intervals, not just global accuracy across the genome.</p>
-<p>The duty to reanalyze is an emerging legal and ethical obligation. A VUS classified in 2020 may have sufficient evidence for reclassification by 2025. Labs with automated VUS reanalysis pipelines (2-year cycle) systematically reclassify 5-10% of VUS annually, with the majority being downgraded to Benign. Labs without automated reanalysis are accumulating VUS backlogs that represent potential missed diagnoses.</p>
-<p>Every evidence code in an ACMG classification must be traceable to a specific data point, which read, which allele frequency database version, which publication. If this trace is broken, the classification cannot be defended in a regulatory audit.</p>
+<p>Pseudotime requires an explicit root assumption; changing the root changes all downstream interpretations. RNA velocity removes the root assumption but adds assumptions about constant splicing rates across cells; these fail in cell cycle, stress response, and metabolic transitions where splicing rates change rapidly.</p>
+<p>The trajectory is only as good as the clustering it builds on. If the underlying cell types are incorrectly identified (Chapter 13), the trajectory connecting them is meaningless. Conversely, a good trajectory can reveal that what appeared as two distinct clusters are actually endpoints of a continuous gradient; a common case in immune activation, where resting and activated states of the same cell type are separated by a continuum of intermediate states.</p>
+<p>Trajectory inference from a single time point is fundamentally underdetermined. Multiple distinct biological processes can produce the same observed expression patterns. The trajectory is a hypothesis about the developmental process, not a measurement of it. Independent validation (time series experiments, genetic perturbations, or orthogonal assays) is required to confirm the inferred ordering.</p>
+<p>The phase portrait visualization (unspliced vs.&nbsp;spliced per gene) is the most informative diagnostic: genes with clear loops (hysteresis) are the best candidates for driving the trajectory; genes with diffuse clouds are consistent with steady-state noise or cell cycle variation. A trajectory driven entirely by genes with weak phase portraits should be treated as a tentative hypothesis.</p>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>CLIA/CAP validation</strong> requires accuracy, precision, limit of detection, and reportable range; measured across all genomic contexts.</p></li>
-<li><p><strong>Chain of custody</strong> with checksums at every step ensures auditability; without it, results are not clinically defensible.</p></li>
-<li><p><strong>AI/ML SaMD</strong> requires locked models, Algorithm Change Protocols, and data drift monitoring.</p></li>
-<li><p><strong>Duty to reanalyze</strong>: VUS backlogs grow annually without automated reanalysis pipelines.</p></li>
+<li><p><strong>Pseudotime orders cells along a developmental trajectory</strong> using transcriptional similarity; requires explicit root specification; changing the root changes all results.</p></li>
+<li><p><strong>RNA velocity uses unspliced/spliced ratios</strong> to predict future expression states from a single snapshot, removing the root assumption.</p></li>
+<li><p><strong>scVelo’s dynamical model</strong> relaxes the steady-state assumption for more accurate velocity in transient states, fitting splicing kinetics per gene.</p></li>
+<li><p><strong>CellRank integrates velocity with connectivity</strong> to identify root and terminal states and driver genes without requiring an explicit root.</p></li>
+<li><p><strong>Trajectory inference is fundamentally underdetermined</strong>: validate against known time points, orthogonal markers, or perturbation data before trusting the inferred ordering.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Roy et al.: “Toward accurate clinical reporting of sequence variants” (Genetics in Medicine, 2020).</p></li>
-<li><p>CLIA guidelines for NGS-based tests (CMS).</p></li>
+<li><p>Trapnell et al.: “The dynamics and regulators of cell fate decisions” (<em>Nature Biotechnology</em>, 2014).</p></li>
+<li><p>Bergen et al.: “Generalizing RNA velocity to transient cell states through dynamical modeling” (<em>Nature Biotechnology</em>, 2020).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> If you cannot trace every evidence code to a specific data point, the classification is not clinically defensible.</p>
+<p><strong>Johnson’s Rule:</strong> Biology is a fluid continuum. If you force developing cells into discrete clusters, you destroy the timeline of their evolution.</p>
 </blockquote>
 
 
@@ -462,8 +442,8 @@ called VCF (SHA256: ghi789...)</code></pre>
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -875,13 +855,13 @@ called VCF (SHA256: ghi789...)</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-6-clinical/chapter-30.html" class="pagination-link" aria-label="Chapter 30: Pathogen Genomics and Genomic Epidemiology">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></span>
+      <a href="../tier-3-high-res-systems/chapter-15.html" class="pagination-link" aria-label="Chapter 15: Single-Cell RNA-seq and Dimensionality Escape">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-6-clinical/chapter-32.html" class="pagination-link" aria-label="Chapter 32: Career Dynamics and the Bioinformatic Mindset">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-3-high-res-systems/chapter-17.html" class="pagination-link" aria-label="Chapter 17: Spatial Transcriptomics and Coordinate Math">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -906,7 +886,7 @@ called VCF (SHA256: ghi789...)</code></pre>
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: June 19, 2026</p>
+<p>Last Modified: July 5, 2026</p>
 </div>
   </div>
 </footer>

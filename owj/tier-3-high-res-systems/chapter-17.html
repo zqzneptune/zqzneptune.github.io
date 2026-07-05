@@ -11,13 +11,13 @@
 </script>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 26: Foundation Models and Generative AI in Biology – Omics with Johnson 101</title>
+<title>Chapter 17: Spatial Transcriptomics and Coordinate Math – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,15 +43,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tier-5-ai/chapter-27.html" rel="next">
-<link href="../tier-5-ai/chapter-25.html" rel="prev">
+<link href="../tier-3-high-res-systems/chapter-18.html" rel="next">
+<link href="../tier-3-high-res-systems/chapter-16.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,106 +213,56 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-single-cell" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Single-Cell</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">High-Resolution &amp; Systems</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-single-cell">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-15.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
  <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-16.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
  <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-3-high-res/chapter-17.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
  <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-systems">    
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-18.html">
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
  <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Mass Spectrometry and Proteomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
+ <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: Multi-Omics Integration</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
+ <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-systems/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Perturb-seq and Functional Genomics</span></a>
+    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
+ <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aiml" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">AI/ML</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Mass-Based Omics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-aiml">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Machine Learning Fundamentals for Biology</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
+ <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Tree-Based Models and Interpretable ML</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
+ <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-25.html">
- <span class="dropdown-text">Chapter 25: Neural Networks and Deep Learning in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-26.html">
- <span class="dropdown-text">Chapter 26: Foundation Models and Generative AI in Biology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-5-ai/chapter-27.html">
- <span class="dropdown-text">Chapter 27: DNA Foundation Models and Genomic AI</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clinical" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Clinical</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-clinical">    
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-28.html">
- <span class="dropdown-text">Chapter 28: Variant Interpretation and ACMG Guidelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-29.html">
- <span class="dropdown-text">Chapter 29: Cancer Genomics and Somatic Evolution</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-30.html">
- <span class="dropdown-text">Chapter 30: Pathogen Genomics and Genomic Epidemiology</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-31.html">
- <span class="dropdown-text">Chapter 31: The Capstone: Architecting the Clinical Pipeline</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-32.html">
- <span class="dropdown-text">Chapter 32: Career Dynamics and the Bioinformatic Mindset</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-6-clinical/chapter-33.html">
- <span class="dropdown-text">Chapter 33: Epilogue: The Unresolved Problems</span></a>
+    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
+ <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
   </li>  
     </ul>
   </li>
@@ -346,10 +296,10 @@ window.Quarto = {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#the-transformer-architecture" id="toc-the-transformer-architecture" class="nav-link" data-scroll-target="#the-transformer-architecture">The Transformer Architecture</a></li>
-  <li><a href="#self-supervised-learning" id="toc-self-supervised-learning" class="nav-link" data-scroll-target="#self-supervised-learning">Self-Supervised Learning</a></li>
-  <li><a href="#protein-language-models-and-alphafold" id="toc-protein-language-models-and-alphafold" class="nav-link" data-scroll-target="#protein-language-models-and-alphafold">Protein Language Models and AlphaFold</a></li>
-  <li><a href="#the-generative-frontier-designing-new-biology" id="toc-the-generative-frontier-designing-new-biology" class="nav-link" data-scroll-target="#the-generative-frontier-designing-new-biology">The Generative Frontier: Designing New Biology</a></li>
+  <li><a href="#the-spatial-resolution-tradeoff" id="toc-the-spatial-resolution-tradeoff" class="nav-link" data-scroll-target="#the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</a></li>
+  <li><a href="#deconvolution-unmixing-mixed-spots" id="toc-deconvolution-unmixing-mixed-spots" class="nav-link" data-scroll-target="#deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</a></li>
+  <li><a href="#neighborhood-analysis-from-spots-to-tissue-organization" id="toc-neighborhood-analysis-from-spots-to-tissue-organization" class="nav-link" data-scroll-target="#neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</a></li>
+  <li><a href="#registration-aligning-data-to-anatomy" id="toc-registration-aligning-data-to-anatomy" class="nav-link" data-scroll-target="#registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -362,9 +312,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-23.html">TIER 5: Advanced AI and Machine Learning in Biology</a></li><li class="breadcrumb-item"><a href="../tier-5-ai/chapter-26.html"><span class="chapter-title">Chapter 26: Foundation Models and Generative AI in Biology</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-15.html">TIER 3: High-Resolution &amp; Systems</a></li><li class="breadcrumb-item"><a href="../tier-3-high-res-systems/chapter-17.html"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 26: Foundation Models and Generative AI in Biology</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></h1>
 </div>
 
 
@@ -394,72 +344,113 @@ window.Quarto = {
 
 
 <blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Biological Sequences Inherit the Grammars of Natural Language</p>
+<p><strong>Johnson’s First Principle:</strong> A Cell Without Spatial Coordinates is Headless</p>
 </blockquote>
-<p>DNA: a 4-letter alphabet, sequence → function. Proteins: a 20-letter alphabet, sequence → 3D structure → function. The same architectures that model human language (transformers) model biological sequences. The reason transformers work on biology is that biology is combinatorial, hierarchical, and contextual; just like language.</p>
-<p>Chapter 23 showed how neural networks learn hierarchical features; first-layer CNN kernels detect short sequence motifs, deeper layers detect regulatory combinations. Transformers generalize this hierarchical learning to arbitrary-length dependencies: a single attention head can connect a promoter to an enhancer 100 kb away, which no CNN of reasonable depth can do. This chapter extends deep learning from supervised neural networks to self-supervised foundation models that learn biological grammar from unlabeled data.</p>
+<p>Dissolving a tissue to isolate single cells destroys the biological map. A macrophage surrounded by healthy epithelium behaves entirely differently than one surrounded by necrotic tumor. Chapter 13 taught you to identify cell types; Chapter 14 taught you to order them in time. But development and function unfold not only in time; they are embedded in three-dimensional tissue architecture. Without spatial context, single-cell data reveals the molecules but obscures the anatomy.</p>
+<p>Spatial transcriptomics solves this by measuring gene expression while preserving tissue coordinates. The core operation is coordinate math, mapping every measurement to a position <span class="math inline">\((x, y)\)</span> in tissue space, then asking which genes vary across those coordinates, which cell types occupy which coordinates, and which neighboring coordinates communicate with each other.</p>
+<hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<section id="the-transformer-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="the-transformer-architecture">The Transformer Architecture</h3>
-<p><strong>Self-attention from first principles.</strong> Each position in the input projects its embedding into three spaces through learned weight matrices: <span class="math inline">\(Q = XW_Q\)</span> (query), <span class="math inline">\(K = XW_K\)</span> (key), <span class="math inline">\(V = XW_V\)</span> (value). The attention score between position <span class="math inline">\(i\)</span> and position <span class="math inline">\(j\)</span> is the dot product <span class="math inline">\(Q_i \cdot K_j\)</span>; how much should position <span class="math inline">\(i\)</span> attend to position <span class="math inline">\(j\)</span>? The full attention matrix is <span class="math inline">\(QK^T\)</span>, scaled and normalized:</p>
-<p><span class="math display">\[Attention(Q, K, V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V\]</span></p>
-<p>The softmax converts each row into a probability distribution over positions; multiplying by <span class="math inline">\(V\)</span> produces a weighted sum of all values, weighted by attention. The Q, K, V projections are the learned parameters that make attention adapt to the task; they transform raw token representations into the spaces where compatibility is measured and information is extracted.</p>
-<p><strong>The <span class="math inline">\(\sqrt{d_k}\)</span> scaling.</strong> Dot products grow with dimension. In <span class="math inline">\(d_k = 512\)</span>, even random vectors produce dot products of magnitude ~<span class="math inline">\(\sqrt{512} \approx 22.6\)</span>, pushing softmax into a near-one-hot regime where gradients vanish. Dividing by <span class="math inline">\(\sqrt{d_k}\)</span> restores well-behaved gradients (the vanishing gradient problem from Chapter 23 reappears in attention if this scaling is omitted).</p>
-<p><strong>Permutation invariance and positional encoding.</strong> Self-attention alone is order-agnostic: “the cat sat” and “sat cat the” produce identical <span class="math inline">\(QK^T\)</span> matrices because the attention score between any two tokens depends only on their content, not their positions. <strong>Positional encoding</strong> breaks this symmetry by adding position-dependent signals to each token embedding. The original transformer used fixed sine/cosine waves of different frequencies; modern models typically learn positional embeddings from data. Either approach ensures that “cat” at position 2 and “cat” at position 10 attend to different neighbors.</p>
-<p><strong>Multi-head attention.</strong> A single attention head learns one relationship pattern. Eight heads in parallel learn complementary patterns; one head might attend to local syntax, another to long-range dependencies (an enhancer 100 kb from its promoter). Head outputs are concatenated and projected back to the model dimension: <span class="math inline">\(MultiHead(Q,K,V) = Concat(head_1, \ldots, head_h)W_O\)</span>.</p>
-<p><strong>The residual stream.</strong> Every sub-layer is followed by <span class="math inline">\(x = LayerNorm(x + Sublayer(x))\)</span>: a residual connection plus layer normalization. Residual connections (Chapter 23) let gradients bypass layers during backpropagation, enabling 12-96 layer stacks. Layer normalization stabilizes each token’s hidden state to zero mean and unit variance across the hidden dimension.</p>
-<p><strong>Why transformers beat RNNs.</strong> RNNs process tokens sequentially; the hidden state at position <span class="math inline">\(t\)</span> depends on position <span class="math inline">\(t-1\)</span>, so training cannot be parallelized. Transformers process all tokens simultaneously: the attention matrix is a single tensor operation, fully parallelizable on GPUs. Long-range dependencies are also fundamentally different: self-attention connects position 1 to position 10,000 in one operation (RNNs need 10,000 sequential steps).</p>
-<p><strong>The cost of parallelism is quadratic memory.</strong> The attention matrix is <span class="math inline">\(L \times L\)</span>, so memory grows as <span class="math inline">\(O(L^2)\)</span>. For a 400-residue protein this is negligible; for a 100 kb DNA sequence it is prohibitive (<span class="math inline">\(10^{10}\)</span> entries). Solutions: linear attention (Performer approximates <span class="math inline">\(softmax(QK^T)\)</span> with kernel feature maps), sparse attention (BigBird restricts each position to local + random + global positions), and convolution-based alternatives (Hyena replaces attention with implicit convolutions, achieving <span class="math inline">\(O(L \log L)\)</span>).</p>
-<p><strong>Encoder vs.&nbsp;decoder architectures.</strong> The original transformer has two stacks serving different purposes, and modern biology uses all three variants. <strong>Encoder-only</strong> models (ESM) use bidirectional self-attention (every token attends to every other token), producing contextualized embeddings ideal for representation learning and classification. <strong>Decoder-only</strong> models (GPT-style protein generators) use masked self-attention; each token attends only to previous tokens, making them autoregressive and ideal for sequence generation. <strong>Encoder-decoder</strong> models (AlphaFold) use an encoder to produce representations and a decoder with cross-attention (decoder queries attend to encoder keys/values), enabling sequence-to-structure mapping. Practical rule: encoder-only for embedding and classification, decoder-only for generation, encoder-decoder for mapping between modalities.</p>
+<section id="the-spatial-resolution-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="the-spatial-resolution-tradeoff">The Spatial Resolution Tradeoff</h3>
+<p>Spatial transcriptomics is defined by a fundamental tradeoff: whole-transcriptome coverage vs.&nbsp;single-cell resolution. No current technology achieves both. Choosing a technology means choosing where on this tradeoff curve to operate, and that choice determines what biological questions can be addressed.</p>
+<p><strong>Spatial barcoding (10x Visium, HD, Slide-seq)</strong> uses a slide printed with spatially barcoded oligonucleotides. A tissue cryosection is placed on the slide; cellular mRNA diffuses vertically into the capture probes. The barcode encodes the <span class="math inline">\((x, y)\)</span> coordinate of each capture spot, enabling reconstruction of measurement positions after sequencing. Visium spots are 55 <span class="math inline">\(\mu\)</span>m diameter at 100 <span class="math inline">\(\mu\)</span>m spacing, each capturing RNA from ~1-10 cells. Visium HD (2 <span class="math inline">\(\mu\)</span>m pixels) achieves near-single-cell resolution. The key property: whole-transcriptome coverage (all poly-adenylated RNA is captured), enabling discovery of unanticipated gene expression patterns.</p>
+<p><strong>In situ hybridization (MERFISH, Xenium, CosMx)</strong> uses fluorescent probes that hybridize directly to mRNA in the intact tissue section. Sequential barcoding cycles decode transcripts: each gene receives a binary code, and 10-20 imaging cycles decode hundreds to thousands of genes at subcellular resolution (~100-200 nm). The key property: resolution sufficient to resolve individual transcripts, enabling subcellular localization and single-cell assignment. The tradeoff: limited panel size (hundreds to thousands of genes, not the full transcriptome).</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 36%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Spatial Barcoding</th>
+<th>In Situ Hybridization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coverage</td>
+<td>Whole transcriptome (20K genes)</td>
+<td>Targeted panel (100-5,000 genes)</td>
+</tr>
+<tr class="even">
+<td>Resolution</td>
+<td>Multi-cell (55 <span class="math inline">\(\mu\)</span>m spots) to near-single-cell (HD)</td>
+<td>Subcellular (~200 nm)</td>
+</tr>
+<tr class="odd">
+<td>Discovery power</td>
+<td>High (unbiased gene discovery)</td>
+<td>Low (only panel genes detected)</td>
+</tr>
+<tr class="even">
+<td>Bioinformatic challenge</td>
+<td>Deconvolution of mixed spots</td>
+<td>Molecular decoding, registration</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="self-supervised-learning" class="level3">
-<h3 class="anchored" data-anchor-id="self-supervised-learning">Self-Supervised Learning</h3>
-<p>Paradigm shift: traditional ML requires labeled data; self-supervised uses the data itself as the label.</p>
-<p>Masked Language Modeling (BERT-style): mask 15% of amino acids in a protein sequence. Train the model to predict the masked residues. The model learns evolutionary constraints, structure, and function without labels.</p>
-<p>Auto-Regressive Modeling (GPT-style): predict the next token given previous tokens. Generates novel sequences (protein design).</p>
-<p>Why this changed bioinformatics: ESM (Evolutionary Scale Modeling) trained on 250M protein sequences learned the grammar of protein folding without seeing a single structure. ESM embeddings provide dense vector representations capturing structure and function.</p>
+<section id="deconvolution-unmixing-mixed-spots" class="level3">
+<h3 class="anchored" data-anchor-id="deconvolution-unmixing-mixed-spots">Deconvolution: Unmixing Mixed Spots</h3>
+<p>Each Visium spot captures RNA from multiple cells. Deconvolution is the inverse problem: given the mixed expression profile of a spot, estimate the cell type composition. Formally, each spot’s expression vector <span class="math inline">\(\mathbf{y}_s\)</span> is a weighted sum of cell type reference profiles:</p>
+<p><span class="math display">\[\mathbf{y}_s = \sum_{k=1}^K \beta_{sk} \cdot \boldsymbol{\mu}_k + \boldsymbol{\epsilon}_s\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mu}_k\)</span> is the reference expression profile of cell type <span class="math inline">\(k\)</span>, <span class="math inline">\(\beta_{sk}\)</span> is the proportion of type <span class="math inline">\(k\)</span> in spot <span class="math inline">\(s\)</span>, and <span class="math inline">\(\boldsymbol{\epsilon}_s\)</span> is residual noise. This requires a reference scRNA-seq dataset with annotated cell types from the same tissue. Deconvolution solves for the <span class="math inline">\(\beta_{sk}\)</span> coefficients per spot.</p>
+<p><strong>RCTD</strong> (Robust Cell Type Decomposition) models each spot’s expression as a linear combination of cell type profiles, with statistical significance testing to determine which cell types are present in each spot. The “robust” in the name refers to its handling of genes that are poorly fit by the linear model; it downweights genes whose expression deviates from the reference, preventing a few discordant genes from driving the deconvolution result.</p>
+<p><strong>Cell2location</strong> uses a Bayesian Negative Binomial model that accounts for both technical variation (NB count distribution) and biological variation (cell type abundance heterogeneity). Unlike RCTD, which estimates relative proportions, Cell2location estimates the absolute number of cells of each type per spot. This is more interpretable but requires stronger modeling assumptions about cell type expression profiles.</p>
+<p><strong>CARD</strong> incorporates spatial correlation into deconvolution, assuming that cell type abundances vary smoothly across tissue sections. This makes biological sense; a B-cell zone in the lymph node grades into a T-cell zone gradually, not in isolated spots, and improves deconvolution accuracy for spatially structured tissues.</p>
+<p><strong>The reference dependency problem.</strong> All deconvolution methods depend critically on the reference scRNA-seq dataset. If the reference lacks a cell type present in the tissue, that cell type’s contribution will be misassigned to the most transcriptionally similar available type. If the reference and spatial data come from different tissue sections, different donors, or different processing protocols, batch effects between the two datasets will distort the deconvolution. A deconvolution result is only as good as the reference it builds on.</p>
 </section>
-<section id="protein-language-models-and-alphafold" class="level3">
-<h3 class="anchored" data-anchor-id="protein-language-models-and-alphafold">Protein Language Models and AlphaFold</h3>
-<p>ESM-2: inputs amino acid sequence, outputs per-residue embedding vectors. Applications include predicting function from sequence, predicting structure from sequence (ESMFold), and designing new proteins (ProteinMPNN). Key result: ESM embeddings capture evolutionary information without a multiple sequence alignment.</p>
-<p>AlphaFold2: inputs amino acid sequence + MSA. Architecture: the <strong>Evoformer</strong> maintains a <strong>pair representation</strong>: a 2D tensor <span class="math inline">\(z_{ij}\)</span> for every residue pair <span class="math inline">\((i,j)\)</span> that encodes predicted distance and orientation relationships. The Evoformer applies attention across both MSA rows (which sequences co-vary?) and MSA columns (which positions are conserved?), then updates the pair representation through <strong>triangular attention</strong> and <strong>triangular multiplicative updates</strong> that enforce geometric consistency; if residue A is close to B and B is close to C, then A must be close to C. The <strong>structure module</strong> converts the pair representation to 3D coordinates using <strong>Invariant Point Attention (IPA)</strong> , which operates on 3D points rather than abstract embeddings: the attention score between two residues depends on their predicted 3D distance. A <strong>recycling</strong> mechanism runs the model for multiple iterations (typically 3-8), feeding the output structure back as input to progressively refine predictions. Accuracy: near-experimental for single-domain proteins (&lt;1Å backbone RMSD). Limitations: multimer complexes, conformational dynamics, disordered regions.</p>
-<p>AlphaFold’s impact: 200M+ protein structures predicted (covering all known proteins). Drug discovery applications in target structure identification and virtual screening.</p>
+<section id="neighborhood-analysis-from-spots-to-tissue-organization" class="level3">
+<h3 class="anchored" data-anchor-id="neighborhood-analysis-from-spots-to-tissue-organization">Neighborhood Analysis: From Spots to Tissue Organization</h3>
+<p>Once cell types are assigned to coordinates, the next question is tissue organization, which cell types are near which others, and how that proximity shapes function.</p>
+<p><strong>Spatial autocorrelation (Moran’s I)</strong> quantifies whether neighboring spots are more similar than expected by chance:</p>
+<p><span class="math display">\[I = \frac{n}{W} \frac{\sum_i \sum_j w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_i (x_i - \bar{x})^2}\]</span></p>
+<p>where <span class="math inline">\(w_{ij}\)</span> is a spatial weight matrix (1 if spots <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are neighbors, 0 otherwise), <span class="math inline">\(W\)</span> is the sum of all weights, and <span class="math inline">\(n\)</span> is the number of spots. Moran’s <span class="math inline">\(I\)</span> ranges from <span class="math inline">\([-1, +1]\)</span>: <span class="math inline">\(I &gt; 0\)</span> indicates spatial clustering (neighboring spots are more similar than expected), <span class="math inline">\(I &lt; 0\)</span> indicates a “checkerboard” pattern (neighboring spots are systematically different), and <span class="math inline">\(I \approx 0\)</span> indicates random spatial organization.</p>
+<p><strong>The null expectation.</strong> Under the null hypothesis of no spatial autocorrelation, the expected value of Moran’s <span class="math inline">\(I\)</span> is:</p>
+<p><span class="math display">\[E[I] = -\frac{1}{n-1}\]</span></p>
+<p>For large <span class="math inline">\(n\)</span> (thousands of spots), <span class="math inline">\(E[I] \approx 0\)</span>, but for small tissue sections with <span class="math inline">\(n &lt; 100\)</span>, the null expectation is meaningfully negative; a value near zero can actually indicate weak positive autocorrelation. Significance is assessed by permutation testing: randomly shuffling expression values across spots (breaking spatial structure), recomputing <span class="math inline">\(I\)</span> thousands of times, and comparing the observed <span class="math inline">\(I\)</span> to the empirical null distribution. A <span class="math inline">\(p\)</span>-value is the fraction of permuted <span class="math inline">\(I\)</span> values more extreme than the observed <span class="math inline">\(I\)</span>.</p>
+<p><strong>Neighborhood definition.</strong> The weight matrix <span class="math inline">\(w_{ij}\)</span> encodes which spots are considered neighbors. The choice of neighborhood definition determines <span class="math inline">\(W\)</span> and directly affects the computed <span class="math inline">\(I\)</span> value. Two common approaches exist: <strong><span class="math inline">\(k\)</span>-nearest neighbors</strong> (each spot connects to its <span class="math inline">\(k\)</span> closest neighbors by Euclidean distance, ensuring every spot has the same number of neighbors) and <strong>radius-based</strong> (all spots within a fixed distance threshold are neighbors, which can leave isolated spots on tissue edges with few or no neighbors). For Visium’s hexagonal grid, <span class="math inline">\(k = 6\)</span> is the natural choice; each spot has exactly six immediate neighbors corresponding to the six faces of a hexagon. Using fewer than 6 neighbors underweights spatial structure; using more than 6 dilutes local signal by including spots beyond the immediate tissue neighborhood.</p>
+<p>Moran’s <span class="math inline">\(I\)</span> is widely used to identify spatially variable genes, but the signal must be interpreted cautiously. A gene may appear spatially variable due to: biological compartmentalization (e.g., crypt vs.&nbsp;villus in intestine), tissue edge artifacts (higher signal at tissue periphery due to probe penetration), or technical variation (uneven permeabilization across the section). Comparing Moran’s <span class="math inline">\(I\)</span> across genes within the same tissue section controls for the last two sources.</p>
+<p><strong>Ligand-receptor inference (NicheNet, CellChat, SpaTalk)</strong> predicts cell-cell communication from co-expression of ligands and receptors in adjacent cell types. The approach: if cell type A expresses a ligand gene and adjacent cell type B expresses its cognate receptor, then signaling from A to B is plausible. Scores are based on prior knowledge databases of known ligand-receptor pairs and downstream signaling targets.</p>
+<p><strong>The communication inference gap.</strong> Detecting mRNA for a ligand in one cell type and its receptor in an adjacent cell type is consistent with signaling but does not prove it. mRNA abundance correlates weakly with protein secretion, and secretion does not guarantee binding or downstream pathway activation. Ligand-receptor inference identifies candidates for experimental validation, not confirmed interactions.</p>
 </section>
-<section id="the-generative-frontier-designing-new-biology" class="level3">
-<h3 class="anchored" data-anchor-id="the-generative-frontier-designing-new-biology">The Generative Frontier: Designing New Biology</h3>
-<p><strong>Diffusion models</strong> (used by RFdiffusion) learn to reverse a noising process. The <strong>forward process</strong> is a fixed Markov chain: starting from a real protein backbone <span class="math inline">\(x_0\)</span>, Gaussian noise is added at each timestep according to a predetermined schedule, until <span class="math inline">\(x_T\)</span> is pure noise. This requires no learned parameters. The <strong>reverse process</strong> is learned: a neural network (typically a U-Net or transformer) predicts the noise added at each timestep, enabling step-by-step denoising from random noise <span class="math inline">\(x_T\)</span> back to a valid backbone <span class="math inline">\(x_0\)</span>. The training objective is straightforward; given a noisy structure <span class="math inline">\(x_t\)</span>, predict the noise <span class="math inline">\(\epsilon\)</span> that was added, and conditioning on pocket sequence, target structure, or desired function is achieved by providing these as additional inputs to the denoising network. RFdiffusion enables generating millions of candidate protein backbones in silico; a subset pass computational filters (structural plausibility, binding energy) and proceed to wet-lab validation.</p>
-<p>Generative models for drug discovery (REINVENT, MolDQN) use reinforcement learning for molecular generation conditioned on binding site structure.</p>
-<p>The hallucination problem: generative models can create sequences that look plausible but are not functional. Validation bottleneck: only a fraction of designed molecules pass assay tests. AI-designed drugs are entering clinical trials but none have passed Phase III yet.</p>
+<section id="registration-aligning-data-to-anatomy" class="level3">
+<h3 class="anchored" data-anchor-id="registration-aligning-data-to-anatomy">Registration: Aligning Data to Anatomy</h3>
+<p>Spatial transcriptomics data measures gene expression, but the biological interpretation depends on knowing which anatomical region each spot corresponds to. Registration aligns the sequencing data to the tissue histology image (H&amp;E or immunofluorescence): an affine transformation that rotates, scales, and translates the spot grid to match the tissue image coordinates.</p>
+<p>Registration is not a biologically neutral preprocessing step. An affine transformation maps original coordinates <span class="math inline">\(\mathbf{x}\)</span> to transformed coordinates <span class="math inline">\(\mathbf{x}'\)</span> via a 2×2 rotation-scaling matrix and a translation vector:</p>
+<p><span class="math display">\[\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} t_x \\ t_y \end{pmatrix}\]</span></p>
+<p>The six parameters <span class="math inline">\((a, b, c, d, t_x, t_y)\)</span> are optimized to minimize mismatch between the spot grid and the tissue boundary in the histology image. The quality of this transformation directly determines whether transcriptomic measurements map to the correct anatomical regions. A misregistration of 100 <span class="math inline">\(\mu\)</span>m (one Visium spot) can shift a spot from tumor epithelium to stroma, entirely changing its biological interpretation. For in situ methods with subcellular resolution, registration errors of a few microns can misassign transcripts to the wrong cell.</p>
+<p>The registration challenge is compounded by tissue deformation during sectioning. The tissue on the slide is not identical to the tissue in the fresh block; it has been stretched, folded, or torn. Computational registration must account for non-linear warping, not just affine transformations, to accurately map sequencing data to histology.</p>
+<hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>A foundation model prediction is a hypothesis, never a fact. The self-supervised training objective (predict masked tokens, predict next token) does not inherently learn causality; it learns statistical co-occurrence. A model that accurately predicts masked amino acids may encode evolutionarily permissible substitutions, but this does not mean it understands the biological function of those residues.</p>
-<p>AlphaFold’s predicted structures are remarkably accurate for single-domain proteins, but the confidence metrics (pLDDT, PAE) must be inspected per-residue. A high-confidence prediction in a well-structured domain is near-experimental. A low-confidence prediction in a disordered region is not a failure; it is the correct identification of physical disorder.</p>
-<p>Generative protein design faces a fundamental asymmetry: generating sequences that pass computational filters (structural plausibility, evolutionary likelihood) is easy. Generating sequences that actually function in a cell is hard. The validation bottleneck (not the generative model) is the rate-limiting step in AI-driven protein design.</p>
-<p>The transformer and self-supervised learning principles in this chapter extend directly to DNA. Chapter 25 shows how the same architectures scale to whole-genome models; the 4-letter nucleotide code, the 3 Gbp genome, and a regulatory grammar that spans megabases. Where protein models predict structure, DNA models predict regulatory function; the architectural innovations (Hyena, Mamba, Enformer) are direct responses to the <span class="math inline">\(O(L^2)\)</span> scaling problem introduced in this chapter.</p>
+<p>Spatial data is a hypothesis generator, not proof. Detecting ligand-receptor pairs in adjacent cells generates candidates for cell-cell communication, but confirmation requires perturbation, knocking out the ligand or receptor and measuring the effect on the recipient cell. A correlation between a gene’s spatial expression pattern and a tissue compartment is suggestive of compartment-specific function, but the same correlation can arise from technical artifacts (tissue edge effects, permeabilization gradients) or from correlated but non-causal biological processes.</p>
+<p>The deconvolution of multi-cell spots is a statistical inference, not a measurement. Results depend heavily on the quality and relevance of the scRNA-seq reference used. A deconvolution that assigns 30% T-cells to every tumor spot likely reflects a reference artifact (e.g., shared stress-response genes between T-cells and tumor cells) rather than true T-cell infiltration. Validating deconvolution results against independent methods (immunohistochemistry, flow cytometry) is essential but rarely done.</p>
+<p>Spatial autocorrelation (Moran’s <span class="math inline">\(I\)</span>) identifies spatially variable genes, but biological interpretation requires distinguishing genuine compartment-specific expression from technical artifacts. A gene with high Moran’s <span class="math inline">\(I\)</span> that encodes a known structural protein of the extracellular matrix is plausibly compartment-specific; a gene with high Moran’s <span class="math inline">\(I\)</span> that is uniformly expressed in bulk RNA-seq is more likely an artifact of uneven tissue permeabilization.</p>
+<hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Self-attention</strong> computes <span class="math inline">\(softmax(QK^T/\sqrt{d_k})V\)</span> where Q, K, V are learned projections of the input; the <span class="math inline">\(\sqrt{d_k}\)</span> scaling prevents softmax saturation at high dimensions, and positional encoding breaks the permutation invariance of raw self-attention. Encoder-only, decoder-only, and encoder-decoder architectures serve different biological tasks (embedding, generation, mapping respectively).</p></li>
-<li><p><strong>Self-supervised learning (masked language modeling, autoregressive prediction)</strong> enables models to learn evolutionary constraints, structure, and function from unlabeled sequence data alone.</p></li>
-<li><p><strong>Protein language models (ESM) capture folding grammar</strong> without MSAs; ESM embeddings provide dense representations for structure and function prediction.</p></li>
-<li><p><strong>AlphaFold achieves near-experimental accuracy</strong> for single-domain protein structures, but pLDDT and PAE must be inspected per-residue; disordered regions are correctly identified as low-confidence, not failures.</p></li>
-<li><p><strong>Generative models (RFdiffusion, ProteinMPNN) can design novel proteins</strong>: but the validation bottleneck limits success: ~80-90% of AI-designed proteins fail in wet-lab validation.</p></li>
+<li><p><strong>Spatial transcriptomics faces a fundamental tradeoff</strong>: whole-transcriptome coverage (Visium, Slide-seq) vs.&nbsp;single-cell resolution (MERFISH, Xenium). Technology choice determines what questions can be addressed.</p></li>
+<li><p><strong>Deconvolution (RCTD, Cell2location, CARD)</strong> estimates cell type composition per spot using scRNA-seq references; results depend critically on reference quality and relevance.</p></li>
+<li><p><strong>Moran’s <span class="math inline">\(I\)</span> quantifies spatial autocorrelation</strong> of gene expression; <strong>ligand-receptor inference</strong> identifies candidate cell-cell communication. Both require validation against artifacts.</p></li>
+<li><p><strong>Registration aligns sequencing data to histology</strong> via affine transformations; registration quality directly determines anatomical interpretability.</p></li>
+<li><p><strong>Spatial data is a hypothesis generator</strong>: correlations between expression patterns and tissue compartments suggest function but do not prove it. Perturbation experiments are required for confirmation.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Vaswani et al.: “Attention is All You Need” (NeurIPS, 2017): the original transformer.</p></li>
-<li><p>Devlin et al.: “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding” (NAACL, 2019): masked language modeling.</p></li>
-<li><p>Jumper et al.: “Highly accurate protein structure prediction with AlphaFold” (Nature, 2021).</p></li>
-<li><p>Lin et al.: “Evolutionary-scale prediction of atomic-level protein structure with a language model” (Science, 2023): ESM-2.</p></li>
-<li><p>Watson et al.: “De novo design of protein structure and function with RFdiffusion” (Nature, 2023).</p></li>
+<li><p>Ståhl et al.: “Visualization and analysis of gene expression in tissue sections by spatial transcriptomics” (<em>Science</em>, 2016).</p></li>
+<li><p>Cable et al.: “Robust decomposition of cell type mixtures in spatial transcriptomics” (<em>Nature Biotechnology</em>, 2022).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> A foundation model prediction is a hypothesis. Validate it experimentally before publishing.</p>
+<p><strong>Johnson’s Rule:</strong> Without spatial context, single-cell data is headless; you know the molecules but not the anatomy.</p>
 </blockquote>
 
 
@@ -470,8 +461,8 @@ window.Quarto = {
 <div class="bmc-cta-container">
   <div class="bmc-cta-card">
     <div class="bmc-cta-content">
-      <h3 class="bmc-cta-title">Support the Curriculum</h3>
-      <p class="bmc-cta-text">If you find these computational biology chapters valuable, consider supporting the
+      <h3 class="bmc-cta-title">Support the Author</h3>
+      <p class="bmc-cta-text">If you find these bioinformatics chapters valuable, consider supporting the
         curation of this resource. Every contribution helps sustain and update this open-access curriculum.</p>
     </div>
     <div class="bmc-cta-action">
@@ -883,13 +874,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tier-5-ai/chapter-25.html" class="pagination-link" aria-label="Chapter 25: Neural Networks and Deep Learning in Biology">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 25: Neural Networks and Deep Learning in Biology</span></span>
+      <a href="../tier-3-high-res-systems/chapter-16.html" class="pagination-link" aria-label="Chapter 16: Trajectory Inference and RNA Velocity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chapter 16: Trajectory Inference and RNA Velocity</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-5-ai/chapter-27.html" class="pagination-link" aria-label="Chapter 27: DNA Foundation Models and Genomic AI">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 27: DNA Foundation Models and Genomic AI</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-3-high-res-systems/chapter-18.html" class="pagination-link" aria-label="Chapter 18: Systems Biology and Network Graphing">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 18: Systems Biology and Network Graphing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
