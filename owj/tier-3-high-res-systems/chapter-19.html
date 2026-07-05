@@ -344,11 +344,11 @@ window.Quarto = {
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Integrating Bad Data from Two Assays Yields Twice as Much Bad Data</p>
-</blockquote>
+<div class="callout-first-principles">
+<p><strong>Integrating Bad Data from Two Assays Yields Twice as Much Bad Data</strong></p>
 <p>Intersecting lists of statistically significant genes from RNA-seq and proteomics does not integrate data; it compounds error rates. The overlap is dominated by the most highly expressed, easiest-to-measure genes, not by the biologically most relevant ones. True integration requires dimensionality reduction algorithms that mathematically identify shared variance between molecular layers, independent of arbitrary significance thresholds.</p>
 <p>A gene with p-value <span class="math inline">\(10^{-10}\)</span> in RNA-seq and p-value <span class="math inline">\(10^{-10}\)</span> in proteomics may appear to be a biologically validated hit. But if the top 100 genes from each dataset overlap by only 20 genes, and those 20 are the most abundant housekeeping genes, the “validated” list is dominated by measurement convenience rather than biological importance. This chapter covers the methods that avoid this trap.</p>
+</div>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>

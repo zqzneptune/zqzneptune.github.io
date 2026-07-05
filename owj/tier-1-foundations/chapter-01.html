@@ -354,36 +354,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Johnson’s First Principle:</strong> Compute is a Physical, Not a Magical Resource</p>
+<div class="callout-first-principles">
+<p><strong>Compute is a Physical, Not a Magical Resource</strong></p>
 <p>All bioinformatics is performed on computers. Every command you run—whether aligning millions of sequencing reads, filtering genomic variants, or plotting gene expression—must direct physical electrons through a silicon chip. If you do not understand the hardware limits of your computer, your analysis will fail. You will try to open a 10-gigabyte sequencing file in a basic text editor or Excel, your system will freeze, and you will not understand why. A professional understands that hardware capacity governs data capacity.</p>
-</blockquote>
+</div>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<p>As a biological researcher, you will rarely write complex, multi-node supercomputing scripts. Most of your daily work will involve processing a single dataset at a time on your local laptop, a high-performance desktop workstation, or a remote institutional server. However, biological data is inherently large. Even a single RNA-seq or metagenomic sample can easily exceed 5 to 50 gigabytes of raw data.</p>
-<p>To manage this volume without crashing your computer, you must understand the three physical bottlenecks of computation: <strong>CPU (processing power)</strong>, <strong>RAM (working memory)</strong>, and <strong>Storage I/O (disk read/write speed)</strong>.</p>
+<p>I suggest you think of your computing environment not as a software sandbox, but as a collection of physical resources. As a biological researcher, you will rarely write complex, multi-node supercomputing scripts. Most of your daily work will involve processing a single dataset at a time on your local laptop, a high-performance desktop workstation, or a remote institutional server. However, biological data is inherently large. Even a single RNA-seq or metagenomic sample can easily exceed 5 to 50 gigabytes of raw data.</p>
+<p>To manage this volume without crashing your computer, I will teach you to understand the three physical bottlenecks of computation: <strong>CPU (processing power)</strong>, <strong>RAM (working memory)</strong>, and <strong>Storage I/O (disk read/write speed)</strong>.</p>
 <section id="the-three-bottlenecks" class="level3">
 <h3 class="anchored" data-anchor-id="the-three-bottlenecks">The Three Bottlenecks</h3>
+<p>I recommend you monitor these three resources constantly during any pipeline execution:</p>
 <ol type="1">
-<li><p><strong>CPU (Central Processing Unit):</strong> The brain of the computer. It executes instructions. CPU bottlenecks occur when you run complex algorithms (like sequence alignment or clustering). If your CPU is running at 100% across all cores, your task is CPU-bound; it is computation-limited.</p></li>
-<li><p><strong>RAM (Random Access Memory):</strong> The temporary, high-speed workspace of the computer. When a program runs, it loads data into RAM so the CPU can access it instantly. RAM is volatile (erased when the computer turns off) and limited. If your data exceeds your physical RAM, your operating system will crash or force-kill the program.</p></li>
-<li><p><strong>Storage I/O (Input/Output):</strong> Your hard drive (SSD or HDD) where files are stored long-term. Disk I/O bottlenecks occur when the CPU is sitting idle because it cannot read data off the disk fast enough. If you read a massive file from a slow mechanical hard drive, your pipeline stalls.</p></li>
+<li><p><strong>CPU (Central Processing Unit):</strong> The brain of the computer that executes mathematical instructions. CPU bottlenecks occur when you run computationally intensive algorithms (such as sequence alignment or graph-based assembly). If your CPU utilization is running at 100% across all allocated cores, your task is CPU-bound; it is computation-limited.</p></li>
+<li><p><strong>RAM (Random Access Memory):</strong> The temporary, high-speed workspace of the computer. When a program runs, it loads data into RAM so the CPU can access it instantly. RAM is volatile (erased when the computer turns off) and finite. If your data volume exceeds your physical RAM, the operating system will crash or force-kill the program.</p></li>
+<li><p><strong>Storage I/O (Input/Output):</strong> The read and write channels connecting your long-term storage (SSD or HDD) to the motherboard. Disk I/O bottlenecks occur when the CPU sits idle because it cannot read data off the disk fast enough. If you read a massive file from a slow mechanical hard drive, your pipeline stalls.</p></li>
 </ol>
 </section>
 <section id="the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop" class="level3">
 <h3 class="anchored" data-anchor-id="the-memory-wall-why-opening-a-10gb-file-crashes-your-laptop">The Memory Wall: Why Opening a 10GB File Crashes Your Laptop</h3>
-<p>A common mistake for young researchers is trying to view a raw biological data file (like a <code>.fastq</code> or <code>.sam</code> file) using default software (like Microsoft Word, Excel, or TextEdit).</p>
-<p>Standard office applications are designed to load the <strong>entire file</strong> into RAM before displaying it. If you try to open a 15GB FASTQ file on an 8GB RAM laptop, the operating system is forced to search for space. When physical RAM is exhausted, the OS tries to write temporary data to your hard drive (called “swapping”), slowing your computer to a crawl. Eventually, the Linux kernel invokes a mechanism called the <strong>OOM (Out-of-Memory) Killer</strong> to force-terminate the text editor to save the machine from freezing.</p>
+<p>A common mistake for young researchers is trying to view a raw biological data file (like a <code>.fastq</code> or <code>.sam</code> file) using default office software (like Microsoft Word, Excel, or TextEdit).</p>
+<p>I suggest you understand why this fails: standard applications are designed to load the <strong>entire file</strong> into RAM before displaying it. If you try to open a 15GB FASTQ file on an 8GB RAM laptop, the operating system is forced to search for space. When physical RAM is exhausted, the OS tries to write temporary data to your hard drive (called “swapping”), slowing your computer to a crawl. Eventually, the Linux kernel invokes a mechanism called the <strong>OOM (Out-of-Memory) Killer</strong> to force-terminate the text editor to save the machine from freezing.</p>
 <blockquote class="blockquote">
 <p>[!NOTE] <strong>The OOM Killer:</strong> This is a kernel safety feature. It acts as an automated emergency brake. If you run a script and it suddenly terminates with the word <code>Killed</code>, it almost always means you exceeded your machine’s physical memory.</p>
 </blockquote>
-<p>To process genomic scale datasets, you cannot use office software. You must use the UNIX command line and the concept of <strong>stream processing</strong>.</p>
+<p>To process genomic scale datasets, you cannot use office software. I will teach you to use the UNIX command line and the concept of <strong>stream processing</strong>.</p>
 </section>
 <section id="the-leverage-of-the-terminal-unix-streams-and-pipes" class="level3">
 <h3 class="anchored" data-anchor-id="the-leverage-of-the-terminal-unix-streams-and-pipes">The Leverage of the Terminal: UNIX Streams and Pipes</h3>
 <p>The UNIX operating system dominates bioinformatics because of a simple, elegant abstraction: <strong>everything is treated as a file</strong>.</p>
-<p>Instead of loading a massive file into memory all at once, the terminal allows you to stream data line-by-line. This is called <strong>stream processing</strong>. The memory footprint of the program remains constant (usually just a few megabytes), regardless of whether the file is 10 megabytes or 10 terabytes.</p>
+<p>Instead of loading a massive file into memory all at once, the terminal allows you to stream data line-by-line. This is called <strong>stream processing</strong>—processing data in small, continuous chunks rather than in a single batch. The memory footprint of the program remains constant (usually just a few megabytes), regardless of whether the file is 10 megabytes or 10 terabytes.</p>
 <p>The key leverage tool is the <strong>pipe operator (<code>|</code>)</strong>. It redirects the output of one program directly into the input of another, entirely in RAM, without writing intermediate temporary files to your disk.</p>
 <p>Let us look at a practical example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Novice Approach: writes huge intermediate files to disk, wasting I/O and RAM</span></span>
@@ -397,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="essential-command-line-streams" class="level3">
 <h3 class="anchored" data-anchor-id="essential-command-line-streams">Essential Command-Line Streams</h3>
-<p>To navigate biological data, you must master a small set of general-purpose UNIX utilities:</p>
+<p>I suggest you master a small set of general-purpose UNIX utilities to navigate biological data:</p>
 <ul>
 <li><p><code>cat</code> and <code>zcat</code>: Display files (or compressed <code>.gz</code> files) as a stream.</p></li>
 <li><p><code>head</code> and <code>tail</code>: View the first or last few lines of a file (essential for checking file formats without loading the whole file).</p></li>
@@ -412,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You connect to this server using <strong>SSH (Secure Shell)</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> username@server.university.edu</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once connected, your terminal is executing commands directly on the remote machine. However, if your internet connection drops—even for a split second—your SSH session will disconnect. The operating system sends a termination signal (SIGHUP) to your running programs, killing your analysis midway.</p>
-<p>To prevent this, you must run your commands inside a <strong>persistent terminal multiplexer</strong>, such as <code>tmux</code> (or <code>screen</code>).</p>
+<p>To prevent this, I recommend you run your commands inside a <strong>persistent terminal multiplexer</strong>—a utility that maintains active shell sessions independently of your network connection—such as <code>tmux</code> (or <code>screen</code>).</p>
 <p><code>tmux</code> creates an isolated shell session that runs independently of your SSH connection. If your laptop loses power or internet, the process on the server continues to execute uninterrupted.</p>
 <ul>
 <li><p><code>tmux new -s my_analysis</code>: Create a new session named “my_analysis”.</p></li>
@@ -424,19 +425,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>When your analysis runs slowly or crashes, you must diagnose the hardware bottleneck before trying to change your biological parameters or software tools.</p>
+<p>When your analysis runs slowly or crashes, I recommend you diagnose the hardware bottleneck before trying to alter your biological parameters or software versions. Let me ask you: if a pipeline runs overnight and fails with a generic error code, how do you distinguish an algorithmic error from an Out-Of-Memory termination? If you cannot answer this, you are wasting compute time.</p>
 <section id="how-to-diagnose-bottlenecks-locally" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-diagnose-bottlenecks-locally">How to Diagnose Bottlenecks Locally</h3>
 <ol type="1">
-<li><p><strong>Check Resource Utilization with <code>htop</code>:</strong> Open a terminal window and run <code>htop</code>. This displays a visual representation of your CPU cores and RAM usage.</p>
+<li><p><strong>Check Resource Utilization with <code>htop</code>:</strong> I suggest you open a terminal window and run <code>htop</code> to display a real-time visual representation of your CPU cores and RAM usage.</p>
 <ul>
-<li><p>If you see 8 CPU bars all at 100%, your task is CPU-bound. If your tool supports multi-threading (e.g., using <code>-t</code> or <code>-p</code> flags in aligners), you can speed it up by allocating more cores.</p></li>
-<li><p>If you see your memory bar (RAM) full, and the computer is unresponsive, your task is memory-bound. You must stream the file in smaller chunks rather than loading it all at once.</p></li>
+<li>If you see all CPU bars pegged at 100%, your task is CPU-bound. If your tool supports multi-threading (e.g., using <code>-t</code> or <code>-p</code> flags in aligners), you can accelerate it by allocating more cores.</li>
+<li>If you see your memory bar (RAM) full, and the computer is unresponsive, your task is memory-bound. I recommend you rewrite your pipeline to stream the files in smaller chunks rather than loading them in their entirety.</li>
 </ul></li>
-<li><p><strong>Verify Memory Crashes with <code>dmesg</code>:</strong> If your script abruptly stopped and displayed the word <code>Killed</code>, run the following command to check if the operating system killed it due to memory limits:</p>
+<li><p><strong>Verify Memory Crashes with <code>dmesg</code>:</strong> If your script abruptly stopped and displayed the word <code>Killed</code>, I recommend you run the following command to inspect the kernel buffer:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmesg</span> <span class="at">-T</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="at">-E</span> <span class="st">"oom|kill"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you see a line stating <code>Out of memory: Kill process</code>, you have hit the memory wall. You must rewrite your code to process data in chunks or move to a server with more RAM.</p></li>
-<li><p><strong>Monitor Disk Capacity with <code>df -h</code>:</strong> Before downloading massive FASTQ datasets from repositories like the Sequence Read Archive (SRA), check your remaining storage:</p>
+<p>If you see a line stating <code>Out of memory: Kill process</code>, you have hit the memory wall. You must rewrite your code to process data in chunks or migrate to a server with higher memory capacity.</p></li>
+<li><p><strong>Monitor Disk Capacity with <code>df -h</code>:</strong> Before downloading massive FASTQ datasets from the Sequence Read Archive (SRA), I recommend checking your remaining storage:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Running out of disk space midway through a sequence alignment will corrupt your output files, forcing you to restart the process.</p></li>
 </ol>
