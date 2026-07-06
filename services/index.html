@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-L5446ZHH5E');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting — Dr. Qingzhou Zhang</title>
+    <meta name="description"
+        content="Multi-omics analysis consulting: from raw data to target-ready findings. Fixed-price, one-off project engagements.">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        .services-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .services-hero .greeting {
+            font-size: 0.9rem;
+        }
+
+        .services-hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 1rem 0 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background-color: var(--accent-color);
+            color: #fff !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 2rem;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
+        }
+
+        .service-card .card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card .pain-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .service-card .pain-point {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: var(--bg-alt);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .service-card .delivery {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .service-card .delivery strong {
+            color: var(--text-primary);
+        }
+
+        .service-card .tier-price {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        /* Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .process-step {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .process-step:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 28px;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 50px 0 40px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo">Dr. Qingzhou Zhang</a>
+
+            <div class="header-actions">
+                <nav class="navbar" id="navbar">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                    <a href="../index.html#book" class="nav-link">Book</a>
+                    <a href="./index.html" class="nav-link active">Services</a>
+                    <a href="../index.html#case-studies" class="nav-link">Case Studies</a>
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                    <a href="../index.html#publications" class="nav-link">Publications</a>
+                </nav>
+
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <ion-icon name="moon-outline"></ion-icon>
+                </button>
+
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="services-hero">
+            <div class="container">
+                <span class="greeting">Consulting</span>
+                <h1>Multi-Omics Analysis &<br>Drug Target Discovery</h1>
+                <p class="subtitle">
+                    Fixed-price, one-off project engagements. No retainers, no long-term commitments.<br>
+                    You describe the problem — I build the analysis, interpret the results, and deliver a structured report.
+                </p>
+                <div class="cta-group">
+                    <a href="#" class="cta-primary" href="https://calendly.com/zqzneptune/30min" target="_blank">
+                        Book a Free 30-Min Call
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </a>
+                    <a href="#services" class="cta-secondary">
+                        See Services
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="section bg-alt">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Services</h2>
+                    <p class="section-subtitle">Each engagement is a fixed-price project with a structured report, reproducible code, and a clear deliverable.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Card 1 -->
+                    <div class="service-card fade-in-up">
+                        <div class="card-icon"><ion-icon name="pulse-outline"></ion-icon></div>
+                        <div class="pain-label">Pain Point</div>
+                        <h3>Omics Analysis & Biological Interpretation</h3>
+                        <div class="pain-point">"I got the sequencing results back, but I only have a list of DEGs — I don't know what to follow up on."</div>
+                        <div class="delivery">
+                            <strong>What I do:</strong> Full analysis pipeline from raw data (FASTQ/BCL) to interpretable results. Handles scRNA-seq, bulk RNA-seq, ATAC-seq, CITE-seq, proteomics (mass-spec), metabolomics, and spatial transcriptomics.
+                            <br><br>
+                            <strong>Deliverable:</strong> Differential analysis + pathway enrichment + actionable target highlights + publication-ready figures.
+                        </div>
+                        <div class="tier-price">From $3,000 USD</div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="service-card fade-in-up delay-1">
+                        <div class="card-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+                        <div class="pain-label">Pain Point</div>
+                        <h3>Multi-Omics Integration & Deep Mining</h3>
+                        <div class="pain-point">"I have transcriptomics, proteomics, and metabolomics from the same study — but I don't know how to combine them to see the full picture."</div>
+                        <div class="delivery">
+                            <strong>What I do:</strong> Cross-omics integration, large-sample deep mining, and signal decomposition. Systematic batch effect evaluation, latent factor analysis, sample-level modeling, and cross-modal validation.
+                            <br><br>
+                            <strong>Deliverable:</strong> Integrated model + cross-omics association networks + target priority ranking with confidence scoring + fully reproducible pipeline.
+                        </div>
+                        <div class="tier-price">From $8,000 USD</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="service-card fade-in-up delay-2">
+                        <div class="card-icon"><ion-icon name="document-text-outline"></ion-icon></div>
+                        <div class="pain-label">Pain Point</div>
+                        <h3>Statistical Modeling & Methods Review</h3>
+                        <div class="pain-point">"The reviewer said our methods section isn't rigorous enough — but we need to know exactly what to fix, not just a general comment."</div>
+                        <div class="delivery">
+                            <strong>What I do:</strong> Statistical audit of analysis methodology, experimental design review, power analysis, multiple testing correction strategy, and batch effect handling. Also available for custom model building and predictive modeling from large datasets.
+                            <br><br>
+                            <strong>Deliverable:</strong> Methodology appendix that shuts down reviewer concerns + pipeline design document + grant-ready methods section.
+                        </div>
+                        <div class="tier-price">From $3,000 USD</div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="service-card fade-in-up delay-3">
+                        <div class="card-icon"><ion-icon name="sparkles-outline"></ion-icon></div>
+                        <div class="pain-label">Pain Point</div>
+                        <h3>AI Application Assessment & Deployment</h3>
+                        <div class="pain-point">"I keep hearing about AlphaFold, scGPT, and protein language models — but I have no idea which ones actually work for my data."</div>
+                        <div class="delivery">
+                            <strong>What I do:</strong> Evaluate cutting-edge AI tools (foundation models for single-cell, protein language models, deep learning architectures) on your specific dataset. I tell you which tools add value, which are hype, and configure a working prototype.
+                            <br><br>
+                            <strong>Deliverable:</strong> Honest assessment report + best-model recommendation + configured and documented pipeline for your data type.
+                        </div>
+                        <div class="tier-price">From $5,000 USD</div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="service-card fade-in-up delay-4">
+                        <div class="card-icon"><ion-icon name="search-outline"></ion-icon></div>
+                        <div class="pain-label">Pain Point</div>
+                        <h3>Exploratory Analysis from Public Data</h3>
+                        <div class="pain-point">"I have a hypothesis but no sequencing budget yet — can you find evidence in public datasets to support my grant proposal?"</div>
+                        <div class="delivery">
+                            <strong>What I do:</strong> Mine public repositories (GEO, TCGA, GTEx, ENCODE, SRA, etc.) to validate your hypothesis, generate preliminary data for grant applications, or discover new patterns from published studies. You bring a biological question — I find the data and the answers.
+                            <br><br>
+                            <strong>Deliverable:</strong> Comprehensive analysis report based on curated public datasets + publication-ready figures + preliminary data section for your grant.
+                        </div>
+                        <div class="tier-price">From $3,000 USD</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section id="process" class="section">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">From first conversation to delivered report.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-step fade-in-up">
+                        <div class="step-number">1</div>
+                        <h4>Free Scoping Call</h4>
+                        <p>30-minute call to understand your data, your question, and your timeline. No commitment.</p>
+                    </div>
+                    <div class="process-step fade-in-up delay-1">
+                        <div class="step-number">2</div>
+                        <h4>Fixed-Price Proposal</h4>
+                        <p>One-page proposal with deliverables, timeline, data handling terms, and a single fixed price.</p>
+                    </div>
+                    <div class="process-step fade-in-up delay-2">
+                        <div class="step-number">3</div>
+                        <h4>Analysis & Checkpoints</h4>
+                        <p>I run the analysis, share interim results, and incorporate your feedback at agreed milestones.</p>
+                    </div>
+                    <div class="process-step fade-in-up delay-3">
+                        <div class="step-number">4</div>
+                        <h4>Final Report</h4>
+                        <p>Structured report with methods, results, visualizations, and actionable conclusions. Code and data included.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section bg-alt">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">FAQs</h2>
+                    <p class="section-subtitle">Common questions about working together.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item fade-in-up">
+                        <h4>What data types do you work with?</h4>
+                        <p>
+                            scRNA-seq, bulk RNA-seq, ATAC-seq, CITE-seq, proteomics (mass-spec), metabolomics,
+                            spatial transcriptomics, and any combination of these for multi-omics integration.
+                        </p>
+                    </div>
+                    <div class="faq-item fade-in-up delay-1">
+                        <h4>Do I need a long-term contract?</h4>
+                        <p>
+                            No. Every engagement is a one-off, fixed-price project. No retainers, no minimums, no ongoing commitment.
+                        </p>
+                    </div>
+                    <div class="faq-item fade-in-up delay-2">
+                        <h4>How do you handle confidentiality?</h4>
+                        <p>
+                            All data stays in secure, access-controlled environments. I sign NDAs and data processing agreements as standard practice. No client data is used for content or shared publicly.
+                        </p>
+                    </div>
+                    <div class="faq-item fade-in-up delay-3">
+                        <h4>I'm used to university contracts with hourly billing. How does fixed-price work?</h4>
+                        <p>
+                            After a free scoping call, I quote a single price for the full deliverable. You pay per project, not per hour — so you know the total cost upfront, and I'm incentivized to deliver efficiently.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container" style="text-align: center;">
+                <div class="fade-in-up">
+                    <h2 class="section-title" style="display: inline-block;">Not Sure Which Tier Fits?</h2>
+                    <p class="section-subtitle" style="margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto;">
+                        Describe your data and what you need — I'll recommend the right scope and give you a fixed price. No charge for the conversation.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="cta-primary" href="https://calendly.com/zqzneptune/30min" target="_blank">
+                            Book a Free 30-Min Call
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2014-2026 Qingzhou Zhang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navbar = document.getElementById('navbar');
+        const icon = mobileBtn.querySelector('ion-icon');
+
+        mobileBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            icon.setAttribute('name', navbar.classList.contains('active') ? 'close-outline' : 'menu-outline');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                icon.setAttribute('name', 'menu-outline');
+            });
+        });
+    </script>
+</body>
+
+</html>
