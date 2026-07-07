@@ -132,41 +132,54 @@
             margin-bottom: 0.75rem;
         }
 
-        .service-card .pain-label {
-            font-size: 0.8rem;
-            font-weight: 600;
+        .service-card .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
             color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
         }
 
         .service-card h3 {
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             line-height: 1.3;
         }
 
-        .service-card .pain-point {
-            font-size: 0.85rem;
+        .service-card .card-summary {
             color: var(--text-secondary);
-            background: var(--bg-alt);
-            border-radius: 8px;
-            padding: 8px 12px;
-            margin-bottom: 1rem;
-            border-left: 3px solid var(--accent-color);
+            font-size: 0.9rem;
+            line-height: 1.55;
+            margin-bottom: 0.75rem;
         }
 
-        .service-card .delivery {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.6;
+        .service-card .card-details {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0 0;
             flex-grow: 1;
         }
 
-        .service-card .delivery strong {
-            color: var(--text-primary);
+        .service-card .card-details li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            padding: 3px 0 3px 16px;
+            position: relative;
+        }
+
+        .service-card .card-details li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            opacity: 0.5;
         }
 
         .service-card .tier-price {
@@ -302,10 +315,10 @@
         <section class="services-hero">
             <div class="container">
                 <span class="greeting">Consulting</span>
-                <h1>Multi-Omics Analysis &<br>Drug Target Discovery</h1>
+                <h1>Computational Omics<br>Consulting</h1>
                 <p class="subtitle">
-                    Fixed-price, one-off project engagements. No retainers, no long-term commitments.<br>
-                    You describe the problem — I build the analysis, interpret the results, and deliver a structured report.
+                    Fixed-price project engagements &mdash; from raw data to discovery.<br>
+                    Standard analysis, multi-omics integration, AI assessments, and public data mining.
                 </p>
                 <div class="cta-group">
                     <a class="cta-primary" href="https://calendly.com/zqzneptune/30min" target="_blank">
@@ -325,78 +338,83 @@
             <div class="container">
                 <div class="section-header fade-in-up">
                     <h2 class="section-title">Services</h2>
-                    <p class="section-subtitle">Each engagement is a fixed-price project with a structured report, reproducible code, and a clear deliverable.</p>
+                    <p class="section-subtitle">Three core offerings for common needs, two advanced tracks for complex challenges. Each is a fixed-price project with a structured deliverable.</p>
                 </div>
 
                 <div class="services-grid">
                     <!-- Card 1 -->
                     <div class="service-card fade-in-up">
                         <div class="card-icon"><ion-icon name="pulse-outline"></ion-icon></div>
-                        <div class="pain-label">Pain Point</div>
-                        <h3>Omics Analysis & Biological Interpretation</h3>
-                        <div class="pain-point">"I got the sequencing results back, but I only have a list of DEGs — I don't know what to follow up on."</div>
-                        <div class="delivery">
-                            <strong>What I do:</strong> Full analysis pipeline from raw data (FASTQ/BCL) to interpretable results. Handles scRNA-seq, bulk RNA-seq, ATAC-seq, CITE-seq, proteomics (mass-spec), metabolomics, and spatial transcriptomics.
-                            <br><br>
-                            <strong>Deliverable:</strong> Differential analysis + pathway enrichment + actionable target highlights + publication-ready figures.
-                        </div>
+                        <div class="card-tag">Core</div>
+                        <h3>Data Analysis & Interpretation</h3>
+                        <p class="card-summary">Raw data to publication-ready results. QC, troubleshooting, and custom analyses across all omics modalities.</p>
+                        <ul class="card-details">
+                            <li>Bulk/scRNA-seq, ATAC-seq, CITE-seq, proteomics, metabolomics, spatial</li>
+                            <li>Differential analysis &rarr; pathway enrichment &rarr; publication figures</li>
+                            <li>QC troubleshooting for problematic datasets</li>
+                            <li>Structured methods + results document</li>
+                        </ul>
                         <div class="tier-price">From $3,000 USD</div>
                     </div>
 
                     <!-- Card 2 -->
                     <div class="service-card fade-in-up delay-1">
-                        <div class="card-icon"><ion-icon name="git-network-outline"></ion-icon></div>
-                        <div class="pain-label">Pain Point</div>
-                        <h3>Multi-Omics Integration & Deep Mining</h3>
-                        <div class="pain-point">"I have transcriptomics, proteomics, and metabolomics from the same study — but I don't know how to combine them to see the full picture."</div>
-                        <div class="delivery">
-                            <strong>What I do:</strong> Cross-omics integration, large-sample deep mining, and signal decomposition. Systematic batch effect evaluation, latent factor analysis, sample-level modeling, and cross-modal validation.
-                            <br><br>
-                            <strong>Deliverable:</strong> Integrated model + cross-omics association networks + target priority ranking with confidence scoring + fully reproducible pipeline.
-                        </div>
-                        <div class="tier-price">From $8,000 USD</div>
+                        <div class="card-icon"><ion-icon name="search-outline"></ion-icon></div>
+                        <div class="card-tag">Core</div>
+                        <h3>Public Data Discovery</h3>
+                        <p class="card-summary">New biology from existing data. Mine public repositories to validate hypotheses or uncover novel signals.</p>
+                        <ul class="card-details">
+                            <li>Hypothesis validation from GEO, TCGA, GTEx, SRA, ENCODE</li>
+                            <li>Custom re-analysis of published studies from raw data</li>
+                            <li>Grant-ready preliminary data and figures</li>
+                            <li>Full pipeline: FASTQ &rarr; discovery</li>
+                        </ul>
+                        <div class="tier-price">From $3,000 &ndash; $8,000+</div>
                     </div>
 
                     <!-- Card 3 -->
                     <div class="service-card fade-in-up delay-2">
                         <div class="card-icon"><ion-icon name="document-text-outline"></ion-icon></div>
-                        <div class="pain-label">Pain Point</div>
-                        <h3>Statistical Modeling & Methods Review</h3>
-                        <div class="pain-point">"The reviewer said our methods section isn't rigorous enough — but we need to know exactly what to fix, not just a general comment."</div>
-                        <div class="delivery">
-                            <strong>What I do:</strong> Statistical audit of analysis methodology, experimental design review, power analysis, multiple testing correction strategy, and batch effect handling. Also available for custom model building and predictive modeling from large datasets.
-                            <br><br>
-                            <strong>Deliverable:</strong> Methodology appendix that shuts down reviewer concerns + pipeline design document + grant-ready methods section.
-                        </div>
+                        <div class="card-tag">Core</div>
+                        <h3>Methods & Statistics Audit</h3>
+                        <p class="card-summary">Statistical review that shuts down reviewer concerns. Experimental design, power analysis, batch effects, multiple testing.</p>
+                        <ul class="card-details">
+                            <li>Analysis methodology audit &amp; experimental design review</li>
+                            <li>Power analysis &amp; multiple testing correction strategy</li>
+                            <li>Batch effect diagnosis &amp; remediation</li>
+                            <li>Reviewer-ready methods appendix</li>
+                        </ul>
                         <div class="tier-price">From $3,000 USD</div>
                     </div>
 
                     <!-- Card 4 -->
                     <div class="service-card fade-in-up delay-3">
-                        <div class="card-icon"><ion-icon name="sparkles-outline"></ion-icon></div>
-                        <div class="pain-label">Pain Point</div>
-                        <h3>AI Application Assessment & Deployment</h3>
-                        <div class="pain-point">"I keep hearing about AlphaFold, scGPT, and protein language models — but I have no idea which ones actually work for my data."</div>
-                        <div class="delivery">
-                            <strong>What I do:</strong> Evaluate cutting-edge AI tools (foundation models for single-cell, protein language models, deep learning architectures) on your specific dataset. I tell you which tools add value, which are hype, and configure a working prototype.
-                            <br><br>
-                            <strong>Deliverable:</strong> Honest assessment report + best-model recommendation + configured and documented pipeline for your data type.
-                        </div>
-                        <div class="tier-price">From $5,000 USD</div>
+                        <div class="card-icon"><ion-icon name="git-network-outline"></ion-icon></div>
+                        <div class="card-tag">Advanced</div>
+                        <h3>Multi-Omics Integration</h3>
+                        <p class="card-summary">Cross-modality modeling that reveals the full biological picture &mdash; not just stacking datasets together.</p>
+                        <ul class="card-details">
+                            <li>Cross-omics integration (transcriptome &times; proteome &times; epigenome)</li>
+                            <li>Latent factor analysis &amp; signal decomposition</li>
+                            <li>Systematic batch effect evaluation across modalities</li>
+                            <li>Fully reproducible pipeline</li>
+                        </ul>
+                        <div class="tier-price">From $8,000 USD</div>
                     </div>
 
                     <!-- Card 5 -->
                     <div class="service-card fade-in-up delay-4">
-                        <div class="card-icon"><ion-icon name="search-outline"></ion-icon></div>
-                        <div class="pain-label">Pain Point</div>
-                        <h3>Exploratory Analysis from Public Data</h3>
-                        <div class="pain-point">"I have a hypothesis but no sequencing budget yet — can you find evidence in public datasets to support my grant proposal?"</div>
-                        <div class="delivery">
-                            <strong>What I do:</strong> Mine public repositories (GEO, TCGA, GTEx, ENCODE, SRA, etc.) to validate your hypothesis, generate preliminary data for grant applications, or discover new patterns from published studies. You bring a biological question — I find the data and the answers.
-                            <br><br>
-                            <strong>Deliverable:</strong> Comprehensive analysis report based on curated public datasets + publication-ready figures + preliminary data section for your grant.
-                        </div>
-                        <div class="tier-price">From $3,000 USD</div>
+                        <div class="card-icon"><ion-icon name="sparkles-outline"></ion-icon></div>
+                        <div class="card-tag">Advanced</div>
+                        <h3>AI Strategy &amp; Deep Learning Assessment</h3>
+                        <p class="card-summary">Which AI tools actually work on your data. Honest assessment, not hype. Foundation models to custom architectures.</p>
+                        <ul class="card-details">
+                            <li>Evaluate foundation models (scGPT, Geneformer, protein LMs) on your data</li>
+                            <li>Honest assessment: what adds value vs. what's overhead</li>
+                            <li>Configured, documented pipeline for your data type</li>
+                            <li>Custom deep learning architecture design</li>
+                        </ul>
+                        <div class="tier-price">From $5,000 USD</div>
                     </div>
                 </div>
             </div>
@@ -475,7 +493,7 @@
         <section class="section">
             <div class="container" style="text-align: center;">
                 <div class="fade-in-up">
-                    <h2 class="section-title" style="display: inline-block;">Not Sure Which Tier Fits?</h2>
+                    <h2 class="section-title" style="display: inline-block;">Not Sure Which Service Fits?</h2>
                     <p class="section-subtitle" style="margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto;">
                         Describe your data and what you need — I'll recommend the right scope and give you a fixed price. No charge for the conversation.
                     </p>
