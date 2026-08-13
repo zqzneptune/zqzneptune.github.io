@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-06-05">
 
-<title>Chapter 2: Organizing and Securing Your Analysis (Git &amp; Conda) – Omics with Johnson 101</title>
+<title>Chapter 2: Engineering Reproducibility and Computational Provenance – Omics with Johnson 101</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -170,99 +199,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Core Omics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
- <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
- <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
- <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
- <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
- <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
- <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">High-Resolution &amp; Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Mass-Based Omics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -293,13 +229,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#structuring-your-project-directory" id="toc-structuring-your-project-directory" class="nav-link" data-scroll-target="#structuring-your-project-directory">Structuring Your Project Directory</a></li>
-  <li><a href="#layer-1-version-control-with-git" id="toc-layer-1-version-control-with-git" class="nav-link" data-scroll-target="#layer-1-version-control-with-git">Layer 1: Version Control with Git</a></li>
-  <li><a href="#layer-2-environment-isolation-with-conda-and-mamba" id="toc-layer-2-environment-isolation-with-conda-and-mamba" class="nav-link" data-scroll-target="#layer-2-environment-isolation-with-conda-and-mamba">Layer 2: Environment Isolation with Conda and Mamba</a></li>
+  <li><a href="#layer-1-structural-isolation-of-data-and-code" id="toc-layer-1-structural-isolation-of-data-and-code" class="nav-link" data-scroll-target="#layer-1-structural-isolation-of-data-and-code">Layer 1: Structural Isolation of Data and Code</a></li>
+  <li><a href="#layer-2-temporal-provenance-via-version-control-git" id="toc-layer-2-temporal-provenance-via-version-control-git" class="nav-link" data-scroll-target="#layer-2-temporal-provenance-via-version-control-git">Layer 2: Temporal Provenance via Version Control (Git)</a></li>
+  <li><a href="#layer-3-environmental-provenance-via-software-isolation-conda-and-mamba" id="toc-layer-3-environmental-provenance-via-software-isolation-conda-and-mamba" class="nav-link" data-scroll-target="#layer-3-environmental-provenance-via-software-isolation-conda-and-mamba">Layer 3: Environmental Provenance via Software Isolation (Conda and Mamba)</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
   <ul class="collapse">
-  <li><a href="#the-reviewer-mindset-guarding-against-silent-shifts" id="toc-the-reviewer-mindset-guarding-against-silent-shifts" class="nav-link" data-scroll-target="#the-reviewer-mindset-guarding-against-silent-shifts">The Reviewer Mindset: Guarding Against “Silent Shifts”</a></li>
+  <li><a href="#the-forensic-reviewer-mindset-causal-attribution-of-shifting-signals" id="toc-the-forensic-reviewer-mindset-causal-attribution-of-shifting-signals" class="nav-link" data-scroll-target="#the-forensic-reviewer-mindset-causal-attribution-of-shifting-signals">The Forensic Reviewer Mindset: Causal Attribution of Shifting Signals</a></li>
   </ul></li>
   <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
@@ -312,9 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-00.html">TIER 1: Foundations: Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-02.html"><span class="chapter-title">Chapter 2: Organizing and Securing Your Analysis (Git &amp; Conda)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-00.html">TIER 1: Foundations: Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-02.html"><span class="chapter-title">Chapter 2: Engineering Reproducibility and Computational Provenance</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Chapter 2: Organizing and Securing Your Analysis (Git &amp; Conda)</span></h1>
+<h1 class="title"><span class="chapter-title">Chapter 2: Engineering Reproducibility and Computational Provenance</span></h1>
 </div>
 
 
@@ -332,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 5, 2026</p>
+      <p class="date-modified">August 13, 2026</p>
     </div>
   </div>
     
@@ -345,129 +281,170 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="callout-first-principles">
 <p><strong>An Unrecorded Step is Scientific Fiction</strong></p>
-<p>In bioinformatics, your code is your experimental record. If you run a script, generate a figure, and cannot trace the exact code version and software packages that produced it, your results are not science—they are a draft. Bioinformatics reproducibility is not about making your code pretty; it is about ensuring that your future self, your principal investigator (PI), and scientific reviewers can recreate your exact results from your raw data.</p>
+<p>In bioinformatics, your code and software environment form your experimental record. If you run a script, generate a figure, and cannot trace the exact code revision, software dependencies, and reference parameters that produced it, your results are not science—they are an unverified assertion. Computational history is part of the experiment.</p>
 </div>
 <hr>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<p>When you start analyzing a biological dataset, the immediate temptation is to write quick, messy scripts and save files all over your desktop. This habit leads to the “reproducibility crisis”: a year later, when a reviewer asks you to re-plot a figure with a new threshold, you will find yourself staring at files named <code>script_v2_final_edit.R</code> or <code>results_table_new_corrected.csv</code>, unable to recall which one is correct.</p>
-<p>Reproducibility for a sole researcher requires two simple, non-negotiable tools: <strong>project organization (directories)</strong>, <strong>version control (Git)</strong>, and <strong>environment isolation (Conda/Mamba)</strong>.</p>
-<section id="structuring-your-project-directory" class="level3">
-<h3 class="anchored" data-anchor-id="structuring-your-project-directory">Structuring Your Project Directory</h3>
-<p>Before writing a single line of code, you must establish a standard, consistent folder structure. Do not store your raw sequencing files in the same directory as your scripts or figures.</p>
-<p>A standard biological project directory should look like this:</p>
+<p>Imagine a scenario that unfolds in computational research every day: You spend four months analyzing an RNA-seq dataset of 120 samples. You identify a novel gene expression signature, write a clean script, generate Figure 3 for a manuscript draft, and submit the paper to a journal. Six months later, during peer review, Reviewer 2 asks a straightforward scientific question: <em>Can you re-plot Figure 3 after excluding 4 samples that had borderline RNA integrity (RIN) scores, and apply a slightly more stringent false discovery rate (FDR &lt; 0.01) threshold?</em></p>
+<p>You open your project folder on your laptop. You locate a script named <code>normalize_counts_v2_final.R</code>. You load the original raw data, modify the sample filter line, adjust the threshold parameter, and rerun the code.</p>
+<p>To your horror, the output plot shifts dramatically. Genes that were previously highlighted as top biological targets vanish, while new, uncharacterized transcripts appear at the top of the table. You check your script edits—you only modified the sample exclusion list and the FDR threshold.</p>
+<p>I ask you to consider the fundamental question: <em>Why did the exact same analysis script produce an entirely different computational result?</em></p>
+<p>The answer exposes a fundamental truth: <strong>Same code <span class="math inline">\(\neq\)</span> same computation.</strong></p>
+<p>A computational result in bioinformatics is never the output of a single script file in isolation. A result is the output of a multi-layered historical state—a system equation:</p>
+<p><span class="math display">\[\text{Result} = f(\text{Code}, \text{Software Dependencies}, \text{Execution Environment}, \text{Parameters}, \text{Reference Data})\]</span></p>
+<p>If any layer of that historical state changes—if an underlying R library updated automatically, if default parameters in a Bioconductor package shifted between minor versions, or if a reference GTF annotation file was updated on your machine—the computation changes.</p>
+<p>To make a computational experiment scientific, you must capture its <strong>provenance</strong>: the complete, verifiable record of every code transformation, software dependency, and environment setting that produced the result.</p>
+<section id="layer-1-structural-isolation-of-data-and-code" class="level3">
+<h3 class="anchored" data-anchor-id="layer-1-structural-isolation-of-data-and-code">Layer 1: Structural Isolation of Data and Code</h3>
+<p>Before tracking code history or software packages, an analyst must establish a clear physical boundary between immutable inputs, transformation logic, and derived outputs.</p>
+<p>A common failure mode in bioinformatics is treating a project folder as a sandbox—saving raw FASTQ files, intermediate script edits, temporary text files, and final PDF plots in a single unorganized directory. When scripts output files into their working directory, raw sequencing data risks being accidentally overwritten, truncated, or modified.</p>
+<p>I suggest you enforce a fundamental rule: <strong>Raw biological data must be treated as immutable physical inputs.</strong> Once raw sequencing files (<code>.fastq.gz</code>, <code>.bam</code>) are written to storage, no script should ever modify or overwrite them.</p>
+<p>A robust, explicit project directory architecture separates these concerns:</p>
 <pre><code>my_project/
-├── .gitignore         # Tells Git what files to ignore (e.g., massive fastq files)
-├── environment.yml    # Lists all software packages and versions used
-├── README.md          # Documents the project overview and execution order
+├── .gitignore         # Declares files excluded from version control (e.g., raw data)
+├── environment.yml    # Declares exact software dependencies and versions
+├── README.md          # Documents project overview, execution order, and biological goals
 ├── data/
-│   ├── raw/           # Raw sequencing reads (read-only, never edit)
-│   └── processed/     # Intermediate filtered files (e.g., cleaned BAMs)
-├── scripts/           # Python/R scripts that execute the analysis
-└── results/           # Final figures, tables, and statistics</code></pre>
-<p>By keeping raw data strictly read-only and separate from your scripts, you ensure that your raw input remains untainted, and your results are always a predictable output of your scripts.</p>
+│   ├── raw/           # Immutable raw sequencing data (strictly read-only)
+│   └── processed/     # Derived, reproducible data products (filtered matrices, BAMs)
+├── scripts/           # Version-controlled code executing the analysis pipeline
+└── results/           # Derived outputs (figures, summary tables, published statistics)</code></pre>
+<p>The deeper computational principle is not about memorizing a rigid folder naming convention. It is about establishing <strong>structural isolation</strong>: an explicit, predictable organization where raw inputs, transformation logic, intermediate state, and published results are clearly segregated.</p>
 </section>
-<section id="layer-1-version-control-with-git" class="level3">
-<h3 class="anchored" data-anchor-id="layer-1-version-control-with-git">Layer 1: Version Control with Git</h3>
-<p>Git is a tool that records changes to your files over time. It creates a cryptographic history of your code. If you make a mistake that breaks your analysis, Git allows you to instantly roll back your files to a working state.</p>
-<p>For a sole researcher, the core Git workflow is simple:</p>
+<section id="layer-2-temporal-provenance-via-version-control-git" class="level3">
+<h3 class="anchored" data-anchor-id="layer-2-temporal-provenance-via-version-control-git">Layer 2: Temporal Provenance via Version Control (Git)</h3>
+<p>Once your project directory is structured, you need a mechanism to record how your code evolves over time.</p>
+<p>Standard file backup strategies (saving copies named <code>script_v1.R</code>, <code>script_v2_final.R</code>, <code>script_v2_edit_final.R</code>) fail because they provide no cryptographic record of what lines of code changed, why they changed, or which exact version generated a specific figure.</p>
+<p><strong>Git</strong> is a version control system that models code history as a Directed Acyclic Graph (DAG) of cryptographic snapshots (commits). Each commit records the exact author, timestamp, commit message, and SHA-1/SHA-256 hash representing the complete state of your codebase at a specific point in time.</p>
+<p>The essential Git workflow for scientific tracking:</p>
 <ol type="1">
-<li><p><strong>Initialize:</strong> Create a Git repository in your project folder:</p>
+<li><p><strong>Initialize:</strong> Create a Git repository inside your project directory:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init my_project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Inspect:</strong> Check which files have changed:</p>
+<li><p><strong>Inspect:</strong> Check which files have been modified or staged:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Stage:</strong> Mark changes you want to save:</p>
+<li><p><strong>Stage:</strong> Mark specific code modifications for snapshotting:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/normalize_counts.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Commit:</strong> Save the staged snapshot to history with a clear description:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add DESeq2 normalization script"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Review:</strong> Look at the changes between your current file and the last saved version:</p>
+<li><p><strong>Commit:</strong> Save the staged snapshot into permanent cryptographic history with an explanatory message:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Filter low-count genes using DESeq2 independent filtering"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Review:</strong> Inspect line-by-line changes between your active file and the last committed version:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff scripts/normalize_counts.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
-<section id="what-not-to-track-with-git-the-.gitignore-file" class="level4">
-<h4 class="anchored" data-anchor-id="what-not-to-track-with-git-the-.gitignore-file">What NOT to Track with Git: The <code>.gitignore</code> file</h4>
-<p>Git is designed for text files (code scripts). It is not designed to track massive binary datasets (such as raw <code>.fastq.gz</code> sequencing reads, 50GB alignment <code>.bam</code> files, or binary R workspaces). If you try to commit large data files to Git, your repository will become bloated, slow, and impossible to upload to repositories like GitHub.</p>
-<p>You must create a file named <code>.gitignore</code> at the root of your project folder to tell Git to ignore large data and temporary files:</p>
-<pre class="text"><code># Exclude raw and processed data
+<section id="first-principles-of-.gitignore-why-git-fails-on-large-binary-files" class="level4">
+<h4 class="anchored" data-anchor-id="first-principles-of-.gitignore-why-git-fails-on-large-binary-files">First Principles of <code>.gitignore</code>: Why Git Fails on Large Binary Files</h4>
+<p>Young researchers often make the mistake of running <code>git add .</code> on a folder containing 50-gigabyte <code>.fastq.gz</code> or <code>.bam</code> files. Within minutes, Git stalls, memory usage spikes, and the repository becomes corrupt or unpushable.</p>
+<p>I ask you to understand why this fails from first principles:</p>
+<ul>
+<li>Git is designed around <strong>line-by-line text delta algorithms</strong>. For text files (like <code>.R</code>, <code>.py</code>, or <code>.sh</code> scripts), Git stores compact diffs—tracking only the specific lines added or deleted (<span class="math inline">\(O(\Delta N)\)</span> storage complexity).</li>
+<li>Sequencing files (<code>.fastq.gz</code>, <code>.bam</code>, <code>.vcf.gz</code>) are massive, compressed binary blobs. A single byte change in a compressed block invalidates the entire file hash. Git cannot compute line deltas; it is forced to store full, uncompressed binary copies of the entire file in its internal object database for every commit (<span class="math inline">\(O(N)\)</span> space expansion).</li>
+</ul>
+<p>To prevent repository bloat, you must create a <code>.gitignore</code> file at the root of your repository to explicitly exclude data directories and large binary formats:</p>
+<pre class="text"><code># Exclude data and results directories from Git tracking
 data/
 results/
 
-# Exclude large sequencing formats
+# Exclude raw and binary genomic file formats
 *.fastq
 *.fastq.gz
 *.bam
 *.bai
+*.cram
 *.vcf
-*.sam
+*.vcf.gz
+*.h5ad
 
-# Exclude temporary system files
+# Exclude temporary operating system and R files
 .DS_Store
 .Rhistory
 .RData</code></pre>
 </section>
 </section>
-<section id="layer-2-environment-isolation-with-conda-and-mamba" class="level3">
-<h3 class="anchored" data-anchor-id="layer-2-environment-isolation-with-conda-and-mamba">Layer 2: Environment Isolation with Conda and Mamba</h3>
-<p>Git tracks the code you write, but it does not track the software packages you run.</p>
-<p>If you write an R script that uses the package <code>DESeq2</code> version 1.38, and a collaborator runs the same script on their laptop with <code>DESeq2</code> version 1.44, the script may crash or produce slightly different results due to changes in default parameters. This is the package dependency conflict problem.</p>
-<p>Conda (and its faster drop-in replacement, Mamba) solves this by creating <strong>isolated software environments</strong>. Mamba installs tools and libraries inside a dedicated directory, keeping them completely separate from your computer’s default system libraries.</p>
-<section id="pinning-your-environment-with-environment.yml" class="level4">
-<h4 class="anchored" data-anchor-id="pinning-your-environment-with-environment.yml">Pinning Your Environment with <code>environment.yml</code></h4>
-<p>To make your analysis reproducible, you must document every software package and version you used. You do this by exporting your environment to a configuration file called <code>environment.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> rna_seq_analysis</span></span>
+<section id="layer-3-environmental-provenance-via-software-isolation-conda-and-mamba" class="level3">
+<h3 class="anchored" data-anchor-id="layer-3-environmental-provenance-via-software-isolation-conda-and-mamba">Layer 3: Environmental Provenance via Software Isolation (Conda and Mamba)</h3>
+<p>Git records the code you write, but it does not record the software environment that executes your code.</p>
+<p>Suppose you write a Python script using <code>scanpy</code> version 1.8 to cluster single-cell RNA-seq data. A year later, a colleague runs your exact Git commit on a fresh machine where the system administrator installed <code>scanpy</code> version 1.9. Between these minor releases, the default community detection algorithm in <code>scanpy.tl.leiden</code> changed its default resolution parameter.</p>
+<p>The Git commit is identical. The raw FASTQ data is identical. Yet the resulting cell cluster counts and UMAP plot are different.</p>
+<p><strong>Conda</strong> (and its accelerated solver, <strong>Mamba</strong>) solves the package dependency crisis by creating <strong>isolated software environments</strong>. Mamba downloads, compiles, and links binaries, R libraries, and Python packages into a dedicated, self-contained directory tree—completely isolated from the operating system’s global libraries.</p>
+<section id="declarative-environments-with-environment.yml" class="level4">
+<h4 class="anchored" data-anchor-id="declarative-environments-with-environment.yml">Declarative Environments with <code>environment.yml</code></h4>
+<p>To achieve environmental provenance, you must document every software tool, language runtime, and library version in a declarative configuration file named <code>environment.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> rnaseq_provenance</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> defaults</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.9</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.10</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> r-base=4.2.3</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconductor-deseq2=1.38.0</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconductor-salmon=1.9.0</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools=1.17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A collaborator (or your future self) can recreate your exact software environment on a new machine with a single command:</p>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> salmon=1.10.0</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools=1.17</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> subread=2.0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Any researcher can recreate your isolated execution environment on a new machine using a single declarative command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This guarantees that the exact same package versions are resolved and installed, preventing library conflicts.</p>
+</section>
+<section id="the-chain-of-controlled-dependencies-why-reproducibility-is-not-binary" class="level4">
+<h4 class="anchored" data-anchor-id="the-chain-of-controlled-dependencies-why-reproducibility-is-not-binary">The Chain of Controlled Dependencies: Why Reproducibility is Not Binary</h4>
+<p>I recommend you avoid treating reproducibility as a binary state (“100% exact” vs.&nbsp;“unreproducible”). In physical computation, reproducibility is a <strong>chain of controlled dependencies</strong>.</p>
+<p>Pinning an <code>environment.yml</code> constrains software package versions, but subtle variations can still arise across different hardware platforms (x86_64 vs.&nbsp;ARM64), operating system C-libraries (glibc version shifts), or underlying linear algebra libraries (BLAS/LAPACK floating-point rounding differences).</p>
+<p>Understanding reproducibility as a continuous spectrum allows you to choose the appropriate level of control:</p>
+<ol type="1">
+<li><p><strong>Directory Architecture:</strong> Segregates data inputs from transformation logic.</p></li>
+<li><p><strong>Git Commit History:</strong> Controls code logic state over time.</p></li>
+<li><p><strong>Conda/Mamba Environments:</strong> Controls software library dependencies across machines.</p></li>
+<li><p><strong>OCI Containers (Docker/Apptainer):</strong> Controls operating system user-space libraries.</p></li>
+<li><p><strong>Workflow Orchestration (Nextflow/Snakemake):</strong> Controls graph execution, caching, and state transitions.</p></li>
+</ol>
 <hr>
 </section>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>For a researcher, reproducibility is not a theoretical exercise; it has direct consequences during peer review.</p>
-<section id="the-reviewer-mindset-guarding-against-silent-shifts" class="level3">
-<h3 class="anchored" data-anchor-id="the-reviewer-mindset-guarding-against-silent-shifts">The Reviewer Mindset: Guarding Against “Silent Shifts”</h3>
-<p>When you submit a manuscript, a reviewer may request that you rerun your analysis using an updated reference genome or different threshold parameters. If you have not pinned your environment and tracked your code:</p>
+<p>For a biological researcher, computational provenance is not an administrative burden; it is your scientific defense during peer review and post-publication discovery.</p>
+<section id="the-forensic-reviewer-mindset-causal-attribution-of-shifting-signals" class="level3">
+<h3 class="anchored" data-anchor-id="the-forensic-reviewer-mindset-causal-attribution-of-shifting-signals">The Forensic Reviewer Mindset: Causal Attribution of Shifting Signals</h3>
+<p>When a reviewer asks you to re-evaluate an analysis, or when a follow-up experiment in your lab fails to replicate a published result, the fundamental question is never merely: <em>Can I re-execute this script?</em></p>
+<p>The forensic question is: <strong>Can I determine exactly WHY the result changed?</strong></p>
+<p>Suppose a differential expression analysis produces 150 significant genes in Draft 1, but only 45 significant genes in Draft 2. Without explicit provenance, you cannot determine the cause of the discrepancy. Was the shift caused by:</p>
 <ul>
-<li><p>You will spend weeks trying to reconstruct which versions of software you used.</p></li>
-<li><p>Updating a package globally on your computer to solve one problem will break a different project’s scripts.</p></li>
-<li><p>Your output plots may shift slightly, raising doubts about the robustness of your findings.</p></li>
+<li>A change in your filtering logic in the R script?</li>
+<li>A minor version update in <code>DESeq2</code> shifting dispersion estimation trends?</li>
+<li>A patch in the reference GTF gene annotation file changing exon lengths?</li>
+<li>A change in the FDR threshold parameter?</li>
+<li>System-level floating-point differences across compute nodes?</li>
 </ul>
-<p>A robust directory structure with a version-controlled Git history and a pinned <code>environment.yml</code> means you can address reviewer comments in hours rather than weeks.</p>
+<p>When your project has complete provenance—a recorded Git commit hash, a pinned <code>environment.yml</code>, and an isolated directory structure—you can perform <strong>forensic attribution</strong>. You can check out the exact Git commit that produced Draft 1, compare it line-by-line (<code>git diff</code>) against Draft 2, and isolate the exact parameter or package version responsible for the biological shift.</p>
 <hr>
 </section>
 </section>
 <section id="current-landscape" class="level2">
 <h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
-<p>While Conda/Mamba environments are the baseline standard for sole researchers, larger core facilities and clinical labs use <strong>containers</strong> (like Docker or Singularity) and <strong>workflow managers</strong> (like Nextflow) to scale analysis across thousands of samples in the cloud. However, as a researcher processing one or two datasets at a time, local Conda/Mamba environments provide the ideal balance of simplicity, speed, and absolute reproducibility.</p>
+<p>Modern bioinformatics infrastructure has expanded the chain of provenance to support large-scale distributed pipelines:</p>
+<ul>
+<li><strong>Environment Lockfiles (Conda-lock and Pixi):</strong> While <code>environment.yml</code> declares target package versions, exact resolution can vary slightly if channel index metadata updates over time. Tools like <code>conda-lock</code> and <code>pixi</code> generate fully resolved lockfiles containing exact SHA-256 hashes and download URLs for every transitive binary dependency, guaranteeing identical environment resolution across time.</li>
+<li><strong>Containerized Execution (Docker and Apptainer):</strong> High-Performance Computing (HPC) centers increasingly package Conda environments inside lightweight Open Container Initiative (OCI) images using Apptainer (formerly Singularity). Containers encapsulate both the software packages and the underlying OS distribution, eliminating system library incompatibilities between Ubuntu desktop workstations and RHEL cluster nodes.</li>
+<li><strong>Declarative Provenance Graphs (RO-Crate and W3C PROV):</strong> Production pipelines and clinical genomics hubs auto-generate machine-readable provenance metadata (such as Research Object Crates [RO-Crate]). These frameworks log the exact input URIs, workflow DAG step executions, tool container digests, and output checksums, producing immutable cryptographic records of clinical genomic assertions.</li>
+</ul>
 <hr>
 </section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Code is your experimental record</strong>: Always write scripts; never perform manual Excel formatting on raw data.</p></li>
-<li><p><strong>Separate data from code</strong>: Keep raw data read-only in <code>data/raw/</code> and script code in <code>scripts/</code>.</p></li>
-<li><p><strong>Git tracks code, not data</strong>: Never commit massive biological files (<code>.fastq</code>, <code>.bam</code>) to Git. Use a <code>.gitignore</code> file.</p></li>
-<li><p><strong>Mamba isolates environments</strong>: Create isolated software environments and pin exact package versions in <code>environment.yml</code>.</p></li>
-<li><p><strong>Recreate in one step</strong>: Use <code>mamba env create -f environment.yml</code> to clone environments across machines.</p></li>
+<li><p><strong>Same code does not equal same computation</strong>: A result is a function of code logic, software dependencies, execution environment, parameters, and reference data.</p></li>
+<li><p><strong>Raw data is immutable</strong>: Treat raw sequencing reads (<code>data/raw/</code>) as read-only physical inputs; never overwrite raw inputs with intermediate script outputs.</p></li>
+<li><p><strong>Git tracks code deltas, not binary data</strong>: Use Git to record text code transformations over time, and exclude large sequencing files (<code>.fastq</code>, <code>.bam</code>) using <code>.gitignore</code>.</p></li>
+<li><p><strong>Mamba isolates software environments</strong>: Document execution dependencies in <code>environment.yml</code> to prevent package version drift and dynamic linking conflicts across machines.</p></li>
+<li><p><strong>Provenance enables forensic attribution</strong>: Complete provenance allows you to isolate the exact code edit, package update, or parameter shift responsible for a biological change.</p></li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li><p>Conda / Mamba Guide: Learn how to create, activate, and export environments.</p></li>
-<li><p>Git Basics: Practice initializing a repository, staging files (<code>git add</code>), and committing changes.</p></li>
+<li>Chacon &amp; Straub: <em>Pro Git</em> (2nd Edition), Chapter 1 (Getting Started) and Chapter 2 (Git Basics).</li>
+<li>Blischak, Davenport, &amp; Reshef: “A Quick Guide to Organizing Computational Biology Projects” (PLOS Computational Biology, 2016).</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> A peer-reviewed paper whose code cannot be run by a reviewer on a cold machine is a scientific claim without evidence. Pin your software environment, commit your scripts, and treat your analysis as a published protocol.</p>
+<p><strong>Johnson’s Rule:</strong> A computational result without explicit provenance is a hypothesis without evidence. Document your software environment, commit your code history, and render your execution path traceable.</p>
 </blockquote>
 
 
@@ -896,8 +873,8 @@ results/
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tier-1-foundations/chapter-03.html" class="pagination-link" aria-label="Chapter 3: Programming Paradigms and Project Organization (Python &amp; R)">
-        <span class="nav-page-text"><span class="chapter-title">Chapter 3: Programming Paradigms and Project Organization (Python &amp; R)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tier-1-foundations/chapter-03.html" class="pagination-link" aria-label="Chapter 3: Programming Paradigms and Project Organization">
+        <span class="nav-page-text"><span class="chapter-title">Chapter 3: Programming Paradigms and Project Organization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -922,7 +899,7 @@ results/
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: July 5, 2026</p>
+<p>Last Modified: August 13, 2026</p>
 </div>
   </div>
 </footer>

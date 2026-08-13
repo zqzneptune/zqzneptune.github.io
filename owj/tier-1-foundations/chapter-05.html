@@ -46,6 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-44a89743874c271fad46a5b465eff9fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,6 +78,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/johnson-research.css">
 </head>
@@ -135,99 +167,6 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-core-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Core Omics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-core-omics">    
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-07.html">
- <span class="dropdown-text">Chapter 7: Sequencing Physics and Data Formats</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-08.html">
- <span class="dropdown-text">Chapter 8: Algorithmic Foundations of Sequence Alignment</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-09.html">
- <span class="dropdown-text">Chapter 9: De Novo Assembly and Graph Algorithms</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-10.html">
- <span class="dropdown-text">Chapter 10: Variant Calling and Hidden Markov Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-11.html">
- <span class="dropdown-text">Chapter 11: Transcriptomics and Expectation-Maximization</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-12.html">
- <span class="dropdown-text">Chapter 12: Epigenomics and Hidden Signals</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-13.html">
- <span class="dropdown-text">Chapter 13: Metagenomics and the Human Microbiome</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-2-core-omics/chapter-14.html">
- <span class="dropdown-text">Chapter 14: Genome-Wide Association Studies (GWAS) and Statistical Genetics</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-high-resolution--systems" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">High-Resolution &amp; Systems</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-high-resolution--systems">    
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-15.html">
- <span class="dropdown-text">Chapter 15: Single-Cell RNA-seq and Dimensionality Escape</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-16.html">
- <span class="dropdown-text">Chapter 16: Trajectory Inference and RNA Velocity</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-17.html">
- <span class="dropdown-text">Chapter 17: Spatial Transcriptomics and Coordinate Math</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-18.html">
- <span class="dropdown-text">Chapter 18: Systems Biology and Network Graphing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-19.html">
- <span class="dropdown-text">Chapter 19: Multi-Omics Integration</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-20.html">
- <span class="dropdown-text">Chapter 20: 3D Genome Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-3-high-res-systems/chapter-21.html">
- <span class="dropdown-text">Chapter 21: Perturb-seq and Functional Genomics</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mass-based-omics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Mass-Based Omics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-mass-based-omics">    
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-22.html">
- <span class="dropdown-text">Chapter 22: Mass Spectrometry and Proteomics</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-23.html">
- <span class="dropdown-text">Chapter 23: Metabolomics and Mass-Based Profiling</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../tier-4-mass-based/chapter-24.html">
- <span class="dropdown-text">Chapter 24: Lipidomics and Other Mass Spectrometry Assays</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -258,15 +197,16 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link active" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#pca-intuitive-coordinate-rotation" id="toc-pca-intuitive-coordinate-rotation" class="nav-link" data-scroll-target="#pca-intuitive-coordinate-rotation">PCA: Intuitive Coordinate Rotation</a></li>
-  <li><a href="#how-to-read-a-pca-plot" id="toc-how-to-read-a-pca-plot" class="nav-link" data-scroll-target="#how-to-read-a-pca-plot">How to Read a PCA Plot</a></li>
-  <li><a href="#the-scree-plot-deciding-how-many-pcs-matter" id="toc-the-scree-plot-deciding-how-many-pcs-matter" class="nav-link" data-scroll-target="#the-scree-plot-deciding-how-many-pcs-matter">The Scree Plot: Deciding How Many PCs Matter</a></li>
+  <li><a href="#preprocessing-prerequisites-transforming-counts-for-linear-projection" id="toc-preprocessing-prerequisites-transforming-counts-for-linear-projection" class="nav-link" data-scroll-target="#preprocessing-prerequisites-transforming-counts-for-linear-projection">Preprocessing Prerequisites: Transforming Counts for Linear Projection</a></li>
+  <li><a href="#principal-component-analysis-pca-rotating-orthogonal-axes" id="toc-principal-component-analysis-pca-rotating-orthogonal-axes" class="nav-link" data-scroll-target="#principal-component-analysis-pca-rotating-orthogonal-axes">Principal Component Analysis (PCA): Rotating Orthogonal Axes</a></li>
+  <li><a href="#unsupervised-clustering-partitioning-feature-space" id="toc-unsupervised-clustering-partitioning-feature-space" class="nav-link" data-scroll-target="#unsupervised-clustering-partitioning-feature-space">Unsupervised Clustering: Partitioning Feature Space</a></li>
   </ul></li>
   <li><a href="#biological-interpretation" id="toc-biological-interpretation" class="nav-link" data-scroll-target="#biological-interpretation">Biological Interpretation</a>
   <ul class="collapse">
-  <li><a href="#rule-1-color-by-batch-before-you-color-by-biology" id="toc-rule-1-color-by-batch-before-you-color-by-biology" class="nav-link" data-scroll-target="#rule-1-color-by-batch-before-you-color-by-biology">Rule 1: Color by Batch Before You Color by Biology</a></li>
-  <li><a href="#rule-2-inspect-the-loadings-for-biological-sanity" id="toc-rule-2-inspect-the-loadings-for-biological-sanity" class="nav-link" data-scroll-target="#rule-2-inspect-the-loadings-for-biological-sanity">Rule 2: Inspect the Loadings for Biological Sanity</a></li>
+  <li><a href="#the-confounded-experiment-running-visual-scenario" id="toc-the-confounded-experiment-running-visual-scenario" class="nav-link" data-scroll-target="#the-confounded-experiment-running-visual-scenario">The Confounded Experiment: Running Visual Scenario</a></li>
+  <li><a href="#three-golden-rules-of-pca-interpretation" id="toc-three-golden-rules-of-pca-interpretation" class="nav-link" data-scroll-target="#three-golden-rules-of-pca-interpretation">Three Golden Rules of PCA Interpretation</a></li>
   </ul></li>
+  <li><a href="#current-landscape" id="toc-current-landscape" class="nav-link" data-scroll-target="#current-landscape">Current Landscape</a></li>
   <li><a href="#summary-and-required-reading" id="toc-summary-and-required-reading" class="nav-link" data-scroll-target="#summary-and-required-reading">Summary and Required Reading</a>
   <ul class="collapse">
   <li><a href="#required-reading" id="toc-required-reading" class="nav-link" data-scroll-target="#required-reading">Required Reading</a></li>
@@ -275,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-00.html">TIER 1: Foundations: Computing and Mathematical Logic</a></li><li class="breadcrumb-item"><a href="../tier-1-foundations/chapter-05.html"><span class="chapter-title">Chapter 5: Visualizing High-Dimensional Biology (PCA and Clustering)</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -297,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 5, 2026</p>
+      <p class="date-modified">August 13, 2026</p>
     </div>
   </div>
     
@@ -310,74 +250,142 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="callout-first-principles">
 <p><strong>Dimensionality Reduction Compresses Space, Not Signal</strong></p>
-<p>An RNA-seq dataset measuring 20,000 genes across 50 samples is not a simple spreadsheet; it is a mathematical matrix in 20,000-dimensional space. Every sample is a vector positioned along 20,000 gene coordinate axes. The human brain cannot visualize anything beyond three dimensions. We must rely on linear algebra to rotate and compress this high-dimensional space into a two-dimensional plot, allowing us to see how biological samples relate.</p>
+<p>An RNA-seq dataset measuring 20,000 genes across 50 samples is a mathematical matrix in 20,000-dimensional vector space. Linear algebra allows us to project this space into two dimensions, but dimensionality reduction finds directions of maximum variation—not biological truth. Never confuse a projection of data with biological reality.</p>
 </div>
 <hr>
-<section id="core-concepts" class="level2">
+<section id="core-concepts" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
-<p>In genomics, the data you analyze has far more dimensions (variables) than samples. This is the <strong>high-dimensional data problem</strong>.</p>
-<p>However, genes do not act independently. Biological processes (like cell division, immune activation, or tissue differentiation) involve the coordinated expression of hundreds of genes simultaneously. This means the true biological signal does not occupy 20,000 independent dimensions—it is low-rank, meaning it is governed by a small number of coordinated biological pathways.</p>
-<p>We use <strong>Principal Component Analysis (PCA)</strong> to find these coordinated signals and project them onto a 2D or 3D plot.</p>
-<section id="pca-intuitive-coordinate-rotation" class="level3">
-<h3 class="anchored" data-anchor-id="pca-intuitive-coordinate-rotation">PCA: Intuitive Coordinate Rotation</h3>
-<p>Imagine a cloud of points representing your samples. PCA rotates this cloud of data points in high-dimensional space until it finds the direction of <strong>maximum variation</strong>.</p>
-<ul>
-<li><p><strong>Principal Component 1 (PC1):</strong> The single coordinate axis along which the data points are most spread out. It captures the strongest signal (variance) in the dataset.</p></li>
-<li><p><strong>Principal Component 2 (PC2):</strong> The second axis, chosen to be completely perpendicular (orthogonal) to PC1, capturing the next largest amount of variation.</p></li>
-</ul>
-<p>By plotting your samples using PC1 as the X-axis and PC2 as the Y-axis, you compress 20,000 genes into a simple 2D scatter plot.</p>
-</section>
-<section id="how-to-read-a-pca-plot" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-read-a-pca-plot">How to Read a PCA Plot</h3>
+<p>In high-throughput genomics, data matrices are inherently high-dimensional: <span class="math inline">\(N\)</span> samples measured across <span class="math inline">\(P\)</span> features (e.g., <span class="math inline">\(P = 20,000\)</span> genes).</p>
+<p>I suggest you visualize this mathematically: Each sample is not a row in a spreadsheet; it is a single vector positioned in 20,000-dimensional gene coordinate space:</p>
+<p><span class="math display">\[\mathbf{x}_i = \begin{bmatrix} x_{i,1} \\ x_{i,2} \\ \vdots \\ x_{i,20000} \end{bmatrix} \in \mathbb{R}^{20000}\]</span></p>
+<p>The human brain cannot visualize geometry beyond three dimensions. We must project this 20,000-dimensional space down to two or three dimensions to inspect sample relationships visually.</p>
+<p>Fortunately, genes do not act independently. Biological pathways, cellular sub-types, and transcriptional networks involve the coordinated co-expression of hundreds of genes. Because variables are strongly correlated, the effective dimensionality of the transcriptomic matrix is far lower than 20,000. It is <strong>low-rank</strong>—meaning the data cloud occupies a lower-dimensional subspace embedded within 20,000-dimensional space.</p>
+<section id="preprocessing-prerequisites-transforming-counts-for-linear-projection" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing-prerequisites-transforming-counts-for-linear-projection">Preprocessing Prerequisites: Transforming Counts for Linear Projection</h3>
+<p>Before applying dimensionality reduction, I recommend you connect directly back to the statistical lessons of Chapter 4.</p>
+<p>Why can you not run PCA directly on raw sequencing counts?</p>
 <ol type="1">
-<li><p><strong>PCA Scores (The Sample Points):</strong> Each point on a PCA plot represents a single biological sample. If two sample points are close to each other on the plot, it means they have highly similar transcriptomes. If they are far apart, their gene expression profiles differ.</p></li>
-<li><p><strong>PCA Loadings (The Genes):</strong> Loadings are weights that define how much each gene contributes to a given PC. A gene with a high positive loading on PC1 is highly expressed in samples positioned on the right side of the plot and lowly expressed in samples on the left. Loadings connect the mathematical axes back to biological pathways.</p></li>
-<li><p><strong>Variance Explained:</strong> Every PC has an associated percentage (e.g., “PC1: 45% variance explained”). This tells you what proportion of the total transcriptomic variation is captured by that PC. If PC1 and PC2 together explain 60% of the variance, a 2D scatter plot represents the majority of the signal in your data.</p></li>
+<li><p><strong>Library Size Dominance:</strong> Raw counts reflect total flow cell sequencing depth. A sample sequenced to 40 million reads will sit far apart from a sample sequenced to 10 million reads along the first principal component, regardless of biology.</p></li>
+<li><p><strong>Mean-Variance Heteroscedasticity:</strong> In raw counts, variance scales quadratically with the mean (<span class="math inline">\(\text{Var} = \mu + \alpha \mu^2\)</span>). Highly expressed genes (such as ribosomal proteins with 50,000 counts) exhibit massive absolute variance (<span class="math inline">\(s^2 \approx 10^7\)</span>), completely dominating the linear algebra calculation while subtle regulatory transcription factors (50 counts) are ignored.</p></li>
+</ol>
+<p>To prepare a dataset for PCA or clustering, you must pass raw counts through a rigorous 4-step preprocessing transformation:</p>
+<p><span class="math display">\[\text{Raw Counts} \xrightarrow{\text{1. Size Factor Norm.}} \text{Normalized Counts} \xrightarrow{\text{2. VST / log-CPM}} \text{Variance Stabilization} \xrightarrow{\text{3. HVG Selection}} \text{HVG Matrix} \xrightarrow{\text{4. Centering \&amp; Scaling}} \text{PCA Input Matrix}\]</span></p>
+<ol type="1">
+<li><p><strong>Size Factor Normalization:</strong> Divide raw counts by DESeq2/edgeR size factors (<span class="math inline">\(s_j\)</span>) to equalize sequencing depth.</p></li>
+<li><p><strong>Variance Stabilization:</strong> Apply log-CPM or Variance Stabilizing Transformation (VST) so that variance is approximately homoscedastic across all expression levels.</p></li>
+<li><p><strong>Highly Variable Gene (HVG) Selection:</strong> Filter the matrix to the top 1,000–3,000 most variable genes, stripping uninformative static background noise.</p></li>
+<li><p><strong>Centering and Scaling:</strong> Subtract the mean (<span class="math inline">\(\mu_g = 0\)</span>) and scale to unit variance (<span class="math inline">\(\sigma_g = 1\)</span>) across genes so that every gene contributes equally to coordinate rotation.</p></li>
 </ol>
 </section>
-<section id="the-scree-plot-deciding-how-many-pcs-matter" class="level3">
-<h3 class="anchored" data-anchor-id="the-scree-plot-deciding-how-many-pcs-matter">The Scree Plot: Deciding How Many PCs Matter</h3>
-<p>A scree plot shows the percentage of variance explained by each Principal Component in descending order.</p>
-<p>You look for the <strong>“elbow”</strong> in the plot—the point where the variance explained drops sharply and flattens out. The PCs before the elbow contain the biological signal; the flat tail after the elbow contains random technical noise. For downstream analyses (like clustering), researchers typically keep only the top PCs (usually 10 to 30) before the elbow, discarding the noise-only dimensions.</p>
+<section id="principal-component-analysis-pca-rotating-orthogonal-axes" class="level3">
+<h3 class="anchored" data-anchor-id="principal-component-analysis-pca-rotating-orthogonal-axes">Principal Component Analysis (PCA): Rotating Orthogonal Axes</h3>
+<p>Principal Component Analysis is a linear algebra technique (computed via Singular Value Decomposition [SVD] of the centered covariance matrix) that rotates the high-dimensional coordinate system to align new orthogonal axes with the directions of <strong>maximum total sample variance</strong>.</p>
+<ul>
+<li><p><strong>Principal Component 1 (PC1):</strong> The single axis in 20,000-dimensional space along which sample data points exhibit the greatest spread (variance).</p></li>
+<li><p><strong>Principal Component 2 (PC2):</strong> The second axis, constrained to be strictly perpendicular (orthogonal) to PC1, capturing the next largest amount of remaining variance.</p></li>
+</ul>
+<section id="scores-loadings-and-eigenvalues" class="level4">
+<h4 class="anchored" data-anchor-id="scores-loadings-and-eigenvalues">Scores, Loadings, and Eigenvalues</h4>
+<ul>
+<li><p><strong>PCA Scores (Sample Coordinates):</strong> The coordinates of each sample projected onto the new principal components. Plotting PC1 vs.&nbsp;PC2 creates a 2D map of sample relationships.</p></li>
+<li><p><strong>PCA Loadings (Feature Weights):</strong> The entries of the rotation matrix (eigenvectors) that define how much each gene contributes to a principal component. A gene with a large absolute loading on PC1 strongly drives sample separation along that axis.</p>
+<ul>
+<li><em>Mathematical Nuance:</em> The sign of PCA loadings (<span class="math inline">\(\pm\)</span>) is arbitrary; multiplying an eigenvector by <span class="math inline">\(-1\)</span> produces an identical PC coordinate projection. Always interpret loading directions relative to sample score positions.</li>
+</ul></li>
+<li><p><strong>Variance Explained &amp; Scree Plots:</strong> The proportion of total variance captured by each component. A scree plot displays variance explained per PC in descending order.</p>
+<ul>
+<li><em>Scree Plot Nuance:</em> Do not assume an “elbow” cleanly separates “biological signal” from “random noise.” Later PCs (PC3, PC4, PC5) often contain critical secondary biological signals, tissue sub-types, or subtle experimental effects.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="unsupervised-clustering-partitioning-feature-space" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="unsupervised-clustering-partitioning-feature-space">Unsupervised Clustering: Partitioning Feature Space</h3>
+<p>While PCA rotates continuous space to display variance, <strong>unsupervised clustering</strong> partitions samples or features into discrete groups based on a mathematical definition of distance.</p>
+<p>PCA and clustering are complementary: <strong>PCA asks where variance lies; clustering asks which samples form distinct neighborhoods.</strong></p>
+<ol type="1">
+<li><p><strong>Hierarchical Clustering:</strong> Builds a nested tree (dendrogram) of sample relationships.</p>
+<ul>
+<li><p><em>Distance Metrics:</em> Calculates pairwise sample distances using Euclidean distance (<span class="math inline">\(d = \sqrt{\sum (x_i - y_i)^2}\)</span>) for absolute magnitude differences, or Pearson/Spearman correlation distance (<span class="math inline">\(d = 1 - r\)</span>) to measure profile shape similarity regardless of baseline magnitude.</p></li>
+<li><p><em>Linkage Criteria:</em> Agglomerates samples using Ward’s minimum variance or average linkage to build hierarchical trees.</p></li>
+</ul></li>
+<li><p><strong>K-Means &amp; Graph-Based Clustering:</strong> Partitions samples into <span class="math inline">\(K\)</span> distinct centroids or constructs nearest-neighbor graphs (SNN graphs in single-cell omics).</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>[!WARNING] <strong>Clustering Algorithms Do Not Know Biology:</strong> Clustering algorithms will partition any distance matrix into <span class="math inline">\(K\)</span> clusters, even if fed completely random noise. Clusters are mathematical partitions, not automatic biological cell types or disease subtypes.</p>
+</blockquote>
+<hr>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="../assets/confounded_pca_scenario.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Confounded PCA Scenario"><img src="../assets/confounded_pca_scenario.png" class="img-fluid figure-img" alt="The Confounded PCA Scenario"></a></p>
+<figcaption class="margin-caption">The Confounded PCA Scenario</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Figure 5.1: The Confounded PCA Scenario.</strong> A two-panel schematic illustrating technical batch effect confounding across 50 RNA-seq samples. <strong>(Panel A)</strong> PCA scatter plot colored by Biological Treatment (Control vs.&nbsp;Drug-Treated), showing apparent sample separation along the primary axis of variance (PC1, 55% variance explained). <strong>(Panel B)</strong> The identical PCA coordinates re-colored by Technical Sequencing Date (Batch A in January vs.&nbsp;Batch B in June). The overlay demonstrates that PC1 is entirely driven by technical sequencing date rather than biological drug response, while the true treatment effect separates vertically along PC2 (12% variance explained).</p>
+</blockquote>
 <hr>
 </section>
 </section>
 <section id="biological-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="biological-interpretation">Biological Interpretation</h2>
-<p>PCA is the primary quality control tool in genomics. Before you analyze your data for biological significance, you must audit the PCA plot.</p>
-<section id="rule-1-color-by-batch-before-you-color-by-biology" class="level3">
-<h3 class="anchored" data-anchor-id="rule-1-color-by-batch-before-you-color-by-biology">Rule 1: Color by Batch Before You Color by Biology</h3>
-<p>When you receive your sequencing data, the first thing you should do is plot a PCA of the samples and color the points by <strong>technical variables</strong> (e.g., sequencing run day, library preparation batch, or technician).</p>
+<section id="the-confounded-experiment-running-visual-scenario" class="level3">
+<h3 class="anchored" data-anchor-id="the-confounded-experiment-running-visual-scenario">The Confounded Experiment: Running Visual Scenario</h3>
+<p>Consider a dataset of 50 RNA-seq samples evaluating a novel targeted therapy: 25 Control samples and 25 Drug-Treated samples. The samples were prepped and sequenced across two calendar dates (Batch A in January, Batch B in June).</p>
+<p>You execute preprocessing, compute PCA, and plot PC1 vs.&nbsp;PC2:</p>
 <ul>
-<li><p>If the samples cluster cleanly by biological group (e.g., tumor vs.&nbsp;normal), your biological signal is strong.</p></li>
-<li><p>If the samples cluster by the date they were prepped, the primary driver of variation in your dataset is a <strong>technical batch effect</strong>. You must correct for this batch effect before you can trust any biological discoveries (as discussed in Chapter 6).</p></li>
+<li>You color the plot by <strong>Biological Treatment</strong> (Control vs.&nbsp;Treated). You observe two distinct clusters separated along the X-axis (PC1, 55% variance explained). You celebrate an apparent biological breakthrough.</li>
+<li>You then color the exact same PCA plot by <strong>Sequencing Batch Date</strong> (Batch A vs.&nbsp;Batch B). To your horror, Batch A samples sit entirely on the left side of PC1, and Batch B samples sit entirely on the right.</li>
 </ul>
-</section>
-<section id="rule-2-inspect-the-loadings-for-biological-sanity" class="level3">
-<h3 class="anchored" data-anchor-id="rule-2-inspect-the-loadings-for-biological-sanity">Rule 2: Inspect the Loadings for Biological Sanity</h3>
-<p>Do not treat the principal components as abstract numbers. Look at the top 10 genes with the highest loadings on PC1 and PC2.</p>
+<p><strong>What did PCA actually discover?</strong></p>
+<p>PCA did not discover a drug treatment response on PC1. It discovered a massive <strong>technical batch effect</strong> (55% of total variance) caused by differences in kit reagents, temperature, or flow cell optics between January and June. The biological treatment effect was secondary, captured along PC2 (12% variance explained).</p>
+<section id="batch-modeling-vs.-irreparable-confounding" class="level4">
+<h4 class="anchored" data-anchor-id="batch-modeling-vs.-irreparable-confounding">Batch Modeling vs.&nbsp;Irreparable Confounding</h4>
 <ul>
-<li><p>In cancer samples, PC1 is often driven by cell proliferation genes (e.g., <em>MKI67</em>, <em>PCNA</em>).</p></li>
-<li><p>If your top loadings are dominated by mitochondrial genes (e.g., <em>MT-CO1</em>), it is a technical warning sign: high mitochondrial expression indicates dying cells, meaning the primary variation in your experiment is cell death, not biology.</p></li>
+<li><strong>Balanced Batch Design:</strong> If Batch A contained 12 Controls and 13 Treated samples, and Batch B contained 13 Controls and 12 Treated samples, the batch effect is balanced. Statistical linear models (such as <code>ComBat</code> or DESeq2 design formulas <code>~ batch + treatment</code>) can model and remove the batch variance, isolating the true treatment effect.</li>
+<li><strong>Confounded Batch Design:</strong> If all 25 Controls were prepped in Batch A (January) and all 25 Treated samples were prepped in Batch B (June), <strong>treatment and batch are 100% confounded</strong>. No linear algebra, batch correction algorithm, or AI model can separate biological drug response from technical date artifacts. The experiment is scientifically dead.</li>
 </ul>
 <hr>
 </section>
 </section>
+<section id="three-golden-rules-of-pca-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="three-golden-rules-of-pca-interpretation">Three Golden Rules of PCA Interpretation</h3>
+<p>I recommend you internalize three critical rules whenever auditing a PCA plot:</p>
+<ol type="1">
+<li><strong>Separated clusters do not prove biological difference:</strong> A clear separation of sample clusters on PC1/PC2 can be driven by technical batch, cell viability differences, or sample collection site rather than true biology. Always color PCA plots by all recorded technical metadata before drawing biological conclusions.</li>
+<li><strong>Lack of separation on PC1/PC2 does not prove absence of biological effect:</strong> If technical noise or biological background variation is large, PC1 and PC2 may capture uninteresting variance (such as sex or age). A genuine treatment effect may align along PC3 or PC4.</li>
+<li><strong>PC1 measures maximum variance, not biological importance:</strong> Linear algebra maximizes spread (<span class="math inline">\(\sum (\hat{x} - \mu)^2\)</span>), not scientific significance. The largest variance in a tissue dataset may reflect muscle vs.&nbsp;fat tissue proportion rather than therapeutic response.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="current-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="current-landscape">Current Landscape</h2>
+<p>Dimensionality reduction and clustering infrastructure have expanded for complex single-cell and spatial omics:</p>
+<ul>
+<li><strong>Non-Linear Manifold Learning (t-SNE and UMAP):</strong> While PCA uses linear rotation to preserve global Euclidean distance, single-cell omics uses non-linear manifold learning—such as t-Distributed Stochastic Neighbor Embedding (t-SNE) and Uniform Manifold Approximation and Projection (UMAP). These algorithms optimize local k-nearest neighbor distances, compressing complex single-cell trajectory manifolds into 2D plots for cell-type cluster visualization.</li>
+<li><strong>PCA as the Foundation for Manifold Learning:</strong> Non-linear methods like UMAP and t-SNE suffer from severe noise if calculated directly on 20,000 genes. Modern single-cell pipelines (Seurat, Scanpy) run PCA first to compress 20,000 genes into the top 30–50 principal components, then run UMAP and graph-based Louvain/Leiden clustering on the PCA space.</li>
+<li><strong>High-Dimensional Batch Integration (Harmony and Seurat CCA):</strong> When merging single-cell datasets across laboratories, algorithms like Harmony and Canonical Correlation Analysis (CCA) operate directly within PCA subspace. They iteratively align batch-specific cluster centroids while preserving biological cell-type variance.</li>
+</ul>
+<hr>
+</section>
 <section id="summary-and-required-reading" class="level2">
 <h2 class="anchored" data-anchor-id="summary-and-required-reading">Summary and Required Reading</h2>
 <ol type="1">
-<li><p><strong>Genomic data is high-dimensional</strong>: PCA compresses thousands of genes into a low-dimensional space we can visualize.</p></li>
-<li><p><strong>PCs are directions of maximum variation</strong>: PC1 captures the strongest signal; PC2 captures the second strongest.</p></li>
-<li><p><strong>Distance equals similarity</strong>: Samples that cluster close together on a PCA plot have similar expression profiles.</p></li>
-<li><p><strong>Use PCA for quality control</strong>: Color by technical variables first to detect batch effects, and audit gene loadings for biological sanity.</p></li>
+<li><strong>Genomic data forms high-dimensional vector space</strong>: <span class="math inline">\(N\)</span> samples across 20,000 genes represent vectors in 20,000-dimensional space; gene co-expression makes this space low-rank.</li>
+<li><strong>Never run PCA directly on raw counts</strong>: Normalize size factors, apply variance-stabilizing transformations (VST), select highly variable genes, and center/scale features first.</li>
+<li><strong>PCA maximizes variance, not biological truth</strong>: PC1 is the axis of maximum sample variance; it captures whatever varies most, whether biology or technical batch.</li>
+<li><strong>Clustering partitions distance metrics</strong>: Hierarchical and K-means algorithms group samples based on defined distances (Euclidean, Pearson correlation); clusters are mathematical partitions, not automatic biological identities.</li>
+<li><strong>Color by technical variables first</strong>: Always color PCA plots by batch, date, and technician before coloring by treatment. Confounded experimental designs cannot be fixed computationally.</li>
 </ol>
 <section id="required-reading" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading">Required Reading</h3>
 <ul>
-<li>Bioconductor PCA Workflow: Practice loading a count table in R, centering the data, running <code>prcomp()</code>, and plotting the results.</li>
+<li>Wall, M. E., Rechtsteiner, A., &amp; Rocha, L. M. (2003): “Singular value decomposition and principal component analysis.” <em>A Practical Approach to Microarray Data Analysis</em>, 91-109.</li>
+<li>Jolliffe, I. T., &amp; Cadima, J. (2016): “Principal component analysis: a review and recent developments.” <em>Philosophical Transactions of the Royal Society A</em>, 374(2065), 20150202.</li>
 </ul>
 <blockquote class="blockquote">
-<p><strong>Johnson’s Rule:</strong> A PCA plot is the mirror of your experiment. If your samples cluster by the day they were prepped rather than the drug they were treated with, no statistical trick can save your analysis. Find the batch confounder before you write the manuscript.</p>
+<p><strong>Johnson’s Rule:</strong> A PCA plot is the mirror of your experimental design. If your biological treatment is completely confounded with your technical batch, no linear algebra or statistical model can rescue your analysis. Audit variance before you claim discovery.</p>
 </blockquote>
 
 
@@ -832,10 +840,42 @@ ul.task-list li input[type="checkbox"] {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: July 5, 2026</p>
+<p>Last Modified: August 13, 2026</p>
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
