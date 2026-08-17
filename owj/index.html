@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 30, 2026</p>
+      <p class="date-modified">August 16, 2026</p>
     </div>
   </div>
     
@@ -200,39 +200,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="hero-header">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Textbook &amp; Open-Access Curriculum • 33 Chapters
+  </div>
+  <h1>Omics with Johnson</h1>
+  <p class="lead">
+    A first-principles guide to modern bioinformatics. Master the physics of sequencing instruments, the mathematics of biological distributions, and the architecture of clinical-grade computational workflows.
+  </p>
+  <div class="hero-actions">
+    <a href="./tier-1-foundations/chapter-00.html" class="btn-primary-cta">
+      Start Reading: Lecture 0 →
+    </a>
+    <a href="#curriculum-roadmap" class="btn-secondary-cta">
+      Explore 5-Tier Curriculum
+    </a>
+  </div>
+</div>
 
-<div class="hero-slideshow">
+<div class="hero-slideshow" role="region" aria-label="Curriculum Highlights">
   <div class="slide active">
     <div class="slide-overlay"></div>
-    <img src="assets/slideshow_physics.png" alt="Sequencing Physics">
+    <img src="assets/slideshow_physics.png" alt="Sequencing Physics and Raw Data Formats">
     <div class="slide-content">
       <h3 class="anchored">Biological Data is Physical Data</h3>
-      <p>Stop running pipelines. Understand the fluorescence, chemistry, and algorithms that shape your signal.</p>
+      <p>Stop treating pipelines as black boxes. Trace fluorescence kinetics, ionic currents, and Phred quality physics from the flowcell to the bitwise BAM flag.</p>
     </div>
   </div>
   <div class="slide">
     <div class="slide-overlay"></div>
-    <img src="assets/slideshow_algorithms.png" alt="Bioinformatics Algorithms">
+    <img src="assets/slideshow_algorithms.png" alt="Bioinformatics Algorithms and Statistics">
     <div class="slide-content">
-      <h3 class="anchored">Open the Computational Black Box</h3>
-      <p>From the Burrows-Wheeler Transform to deep neural networks, master the foundations of genomic AI.</p>
+      <h3 class="anchored">Mathematical &amp; Algorithmic Foundations</h3>
+      <p>From the Burrows-Wheeler Transform and De Bruijn assembly graphs to Negative Binomial dispersion and SVD matrix decomposition.</p>
     </div>
   </div>
   <div class="slide">
     <div class="slide-overlay"></div>
     <img src="assets/slideshow_clinical.png" alt="High-Resolution Systems and Mass Spectrometry">
     <div class="slide-content">
-      <h3 class="anchored">From Single Cells to Mass Spectrometry</h3>
-      <p>Map the high-dimensional landscape of biological systems using single-cell transcriptomics, spatial coordinates, and proteomics.</p>
+      <h3 class="anchored">High-Resolution Systems to Mass Spectrometry</h3>
+      <p>Dissect high-dimensional biology across single-cell manifolds, spatial transcriptomic coordinates, mass spec proteomics, and clinical pipelines.</p>
     </div>
   </div>
-  <button class="slide-prev" onclick="moveSlide(-1)">❮</button>
-  <button class="slide-next" onclick="moveSlide(1)">❯</button>
+  
+  <button class="slide-prev" onclick="moveSlide(-1)" aria-label="Previous Slide">❮</button>
+  <button class="slide-next" onclick="moveSlide(1)" aria-label="Next Slide">❯</button>
+  
   <div class="slide-dots">
-    <span class="dot active" onclick="currentSlide(0)"></span>
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot active" onclick="currentSlide(0)" aria-label="Slide 1"></span>
+    <span class="dot" onclick="currentSlide(1)" aria-label="Slide 2"></span>
+    <span class="dot" onclick="currentSlide(2)" aria-label="Slide 3"></span>
   </div>
 </div>
 
@@ -242,6 +261,7 @@ const slides = document.querySelectorAll('.hero-slideshow .slide');
 const dots = document.querySelectorAll('.hero-slideshow .dot');
 
 function showSlides(n) {
+  if (!slides.length) return;
   if (n >= slides.length) slideIndex = 0;
   if (n < 0) slideIndex = slides.length - 1;
   
@@ -249,7 +269,7 @@ function showSlides(n) {
   dots.forEach(dot => dot.classList.remove('active'));
   
   slides[slideIndex].classList.add('active');
-  dots[slideIndex].classList.add('active');
+  if (dots[slideIndex]) dots[slideIndex].classList.add('active');
 }
 
 function moveSlide(n) {
@@ -260,26 +280,128 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
-let slideInterval = setInterval(() => moveSlide(1), 4300);
+let slideInterval = setInterval(() => moveSlide(1), 5000);
 
-document.querySelector('.hero-slideshow').addEventListener('mouseenter', () => {
-  clearInterval(slideInterval);
-});
-
-document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
-  slideInterval = setInterval(() => moveSlide(1), 4300);
-});
+const slideshowEl = document.querySelector('.hero-slideshow');
+if (slideshowEl) {
+  slideshowEl.addEventListener('mouseenter', () => clearInterval(slideInterval));
+  slideshowEl.addEventListener('mouseleave', () => {
+    slideInterval = setInterval(() => moveSlide(1), 5000);
+  });
+}
 </script>
 
-<div class="hero-intro">
-  <h2 class="anchored">A Core Paradigm for Bioinformatics</h2>
-  <ul>
-    <li><strong>Principles Over Pipelines:</strong> The ultimate asset is not any single programming language or workflow manager, but the physical, mathematical, and statistical fundamentals that govern biological data.</li>
-    <li><strong>No Black Boxes:</strong> Every sequence mapping, statistical model, and neural network output rests on concrete physical truths—not default parameters.</li>
-    <li><strong>First-Principles Mastery:</strong> Stop simply running tools; start designing experiments by understanding how biological signals are physically captured and mathematically modeled.</li>
-  </ul>
+<div class="pillars-section">
+  <div class="section-eyebrow">The Pedagogical Architecture</div>
+  <h2 class="section-title anchored">Built on the Triangle of Authority</h2>
+  
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon">▲</div>
+      <h3 class="pillar-title anchored">1. The Academy (Theory)</h3>
+      <p class="pillar-text">
+        Every chapter starts from first principles: hardware limits, probability distributions of counts, Burrows-Wheeler index mechanics, and empirical Bayes shrinkage.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">⚖</div>
+      <h3 class="pillar-title anchored">2. Literature Critique</h3>
+      <p class="pillar-text">
+        Cultivate the Reviewer Mindset. Learn to audit published papers, identify batch confounders, spot over-fitting in manifolds, and catch p-value inflation.
+      </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">⚙</div>
+      <h3 class="pillar-title anchored">3. The Research Bench</h3>
+      <p class="pillar-text">
+        Industrial-grade reproducibility: POSIX strict mode, streaming memory bounds, Docker/Singularity isolation, and Nextflow DAG execution standards.
+      </p>
+    </div>
+  </div>
 </div>
 
+<div id="curriculum-roadmap" class="pillars-section">
+  <div class="section-eyebrow">Structured Curriculum</div>
+  <h2 class="section-title anchored">Five Progressive Tiers</h2>
+  
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <div class="tier-card-header">
+        <span class="tier-card-badge">Tier 1 • Active</span>
+        <h3 class="tier-card-title anchored">Foundations</h3>
+      </div>
+      <ul class="tier-card-chapters">
+        <li><a href="./tier-1-foundations/chapter-00.html">Lecture 0: The First Principles Paradigm</a></li>
+        <li><a href="./tier-1-foundations/chapter-01.html">Ch 1: Computing Environment &amp; Hardware</a></li>
+        <li><a href="./tier-1-foundations/chapter-02.html">Ch 2: Containers &amp; Nextflow DAGs</a></li>
+        <li><a href="./tier-1-foundations/chapter-03.html">Ch 3: Programming Paradigms</a></li>
+        <li><a href="./tier-1-foundations/chapter-04.html">Ch 4: Negative Binomial Overdispersion</a></li>
+        <li><a href="./tier-1-foundations/chapter-05.html">Ch 5: Linear Algebra &amp; SVD Matrices</a></li>
+        <li><a href="./tier-1-foundations/chapter-06.html">Ch 6: Inference &amp; Confounders</a></li>
+      </ul>
+    </div>
+    
+    <div class="tier-card">
+      <div class="tier-card-header">
+        <span class="tier-card-badge">Tier 2</span>
+        <h3 class="tier-card-title anchored">Core Omics</h3>
+      </div>
+      <ul class="tier-card-chapters">
+        <li>Ch 7: Sequencing Physics &amp; Raw Formats</li>
+        <li>Ch 8: Dynamic Programming &amp; BWT Alignment</li>
+        <li>Ch 9: De Novo Assembly &amp; De Bruijn Graphs</li>
+        <li>Ch 10: Variant Calling &amp; Hidden Markov Models</li>
+        <li>Ch 11: Transcriptomics &amp; EM Isoform Quant</li>
+        <li>Ch 12: Epigenomics &amp; Peak Signals</li>
+        <li>Ch 13: Metagenomics &amp; Compositional Ratios</li>
+        <li>Ch 14: GWAS &amp; Statistical Genetics</li>
+      </ul>
+    </div>
+    
+    <div class="tier-card">
+      <div class="tier-card-header">
+        <span class="tier-card-badge">Tier 3</span>
+        <h3 class="tier-card-title anchored">High-Resolution Systems</h3>
+      </div>
+      <ul class="tier-card-chapters">
+        <li>Ch 15: Single-Cell RNA-seq &amp; Manifolds</li>
+        <li>Ch 16: Trajectory Inference &amp; RNA Velocity</li>
+        <li>Ch 17: Spatial Transcriptomics</li>
+        <li>Ch 18: Network Biology &amp; WGCNA Modules</li>
+        <li>Ch 19: Multi-Omics Integration (MOFA+)</li>
+        <li>Ch 20: 3D Genome &amp; Hi-C Topologies</li>
+        <li>Ch 21: Perturb-seq &amp; CRISPR Screens</li>
+      </ul>
+    </div>
+    
+    <div class="tier-card">
+      <div class="tier-card-header">
+        <span class="tier-card-badge">Tier 4</span>
+        <h3 class="tier-card-title anchored">Mass-Based Omics</h3>
+      </div>
+      <ul class="tier-card-chapters">
+        <li>Ch 22: Mass Spectrometry Proteomics (DIA/TMT)</li>
+        <li>Ch 23: Metabolomics &amp; Mass Profiling</li>
+        <li>Ch 24: Lipidomics &amp; Membrane Signaling</li>
+      </ul>
+    </div>
+    
+    <div class="tier-card">
+      <div class="tier-card-header">
+        <span class="tier-card-badge">Tier 5</span>
+        <h3 class="tier-card-title anchored">Clinical &amp; Applied</h3>
+      </div>
+      <ul class="tier-card-chapters">
+        <li>Ch 25: Variant Interpretation (ACMG Criteria)</li>
+        <li>Ch 26: Cancer Genomics &amp; Somatic Evolution</li>
+        <li>Ch 27: Pathogen Surveillance &amp; Phylodynamics</li>
+        <li>Ch 28: Architecting Clinical GxP Pipelines</li>
+        <li>Ch 29: Career Dynamics &amp; Bioinformatic Mindset</li>
+        <li>Ch 30: Epilogue &amp; Unresolved Frontiers</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 
@@ -728,7 +850,7 @@ document.querySelector('.hero-slideshow').addEventListener('mouseleave', () => {
 </ul>
     </div>
     <div class="nav-footer-right">
-<p>Last Modified: July 30, 2026</p>
+<p>Last Modified: August 16, 2026</p>
 </div>
   </div>
 </footer>
