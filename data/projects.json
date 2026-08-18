@@ -1,5 +1,11 @@
 [
     {
+        "title": "SpatialRenal",
+        "description": "A collection of high-resolution spatial data from the kidney, supporting detailed analysis of renal structure, cellular organization, and molecular biology.",
+        "tags": ["Spatial Transcriptomics", "Kidney", "Single-Cell", "Bioinformatics"],
+        "link": "https://github.com/zqzneptune/SpatialRenal"
+    },
+    {
         "title": "Epi-Flow",
         "description": "A unified, end-centric pipeline for processing chromatin accessibility and occupancy assays—from ATAC-seq to CUT&RUN, ChIP-seq, and beyond.",
         "tags": ["NGS", "Epigenetics", "Bash", "Workflow Automation"],
