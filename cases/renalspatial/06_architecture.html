@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>Chapter 6. The Architecture of the Kidney</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chapter 6. The Architecture of the
+Kidney</h1>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<p>The previous three chapters read the kidney cell by cell, spot by
+spot, region by region. This chapter asks the organizing question:
+<strong>does the tissue itself partition into coherent anatomical units,
+and do computational methods find the same partition that anatomy
+describes?</strong> This is spatial-domain inference: clustering the
+units of a sample by their expression <em>and</em> their physical
+proximity, so that the resulting domains correspond to actual tissue
+architecture.</p>
+<p>Across the 80 samples with coordinates, I computed spatial domains
+with two independent approaches: <strong>Leiden</strong> clustering on
+the expression-and-proximity graph (an unsupervised baseline), and
+<strong>Novae</strong>, a graph-based foundation model pretrained on ~30
+million cells across many tissues, applied zero-shot on the GPU. Every
+domain was then labeled by its dominant nephron module, producing an
+anatomy-alignment ledger.</p>
+<div id="the-cortex-to-medulla-axis-recovered" class="section level2">
+<h2>The cortex-to-medulla axis, recovered</h2>
+<p><img src="06_architecture_files/figure-html/domains-summary-plots-1.png" alt="" width="816" style="display: block; margin: auto;" /><img src="06_architecture_files/figure-html/domains-summary-plots-2.png" alt="" width="816" style="display: block; margin: auto;" /></p>
+<p>Across the single-cell and spot sections, the domains align with
+nephron architecture. On Visium cortex sections, domains resolve into
+loop-of-Henle- and stroma-dominant territories; on whole-kidney Xenium
+sections, proximal-tubule (S1/S2, S3) and loop-of-Henle domains organize
+the section along the expected axis; on Visium HD, distal-tubule,
+loop-of-Henle, and collecting-duct domains emerge at bin resolution; on
+fetal CosMx kidneys, podocyte- and stroma-dominated domains are the most
+prominent. In other words, <strong>the anatomy that the textbooks
+describe is what the domains find.</strong></p>
+<div class="float">
+<img src="figures/domains/GSM9108684_domains.png"
+alt="Domain maps on a Visium section." />
+<div class="figcaption">Domain maps on a Visium section.</div>
+</div>
+<div class="float">
+<img src="figures/domains/GSM8325616_domains.png"
+alt="Domain maps on a Xenium sham section." />
+<div class="figcaption">Domain maps on a Xenium sham section.</div>
+</div>
+<p>The same domain inference applied at bin and cell resolution across
+the cohort:</p>
+<div class="float">
+<img src="figures/domains/GSM9467249_domains.png"
+alt="Visium HD section, Leiden + Novae domains." />
+<div class="figcaption">Visium HD section, Leiden + Novae domains.</div>
+</div>
+<div class="float">
+<img src="figures/domains/GSM8551262_domains.png"
+alt="Fetal CosMx section, Leiden + Novae domains." />
+<div class="figcaption">Fetal CosMx section, Leiden + Novae
+domains.</div>
+</div>
+<div class="float">
+<img src="figures/domains/GSM8325617_domains.png"
+alt="Xenium 4 h post-ischemia, Leiden + Novae domains." />
+<div class="figcaption">Xenium 4 h post-ischemia, Leiden + Novae
+domains.</div>
+</div>
+</div>
+<div id="two-methods-two-views-near-zero-agreement"
+class="section level2">
+<h2>Two methods, two views, near-zero agreement</h2>
+<p>The most important number in this chapter is not a domain map but the
+agreement between the two methods:</p>
+<p>The median adjusted Rand index between Leiden and Novae domains is
+<strong>≈ 0.03</strong>. They partition the same tissue into domains
+that barely agree. The disagreement is information, not a bug. Leiden
+partitions what the measured genes say; Novae partitions what a
+pretrained representation of cell state says. Both are biologically
+coherent (both align to nephron anatomy); they are simply different
+views, and a domain analysis that reports only one view is hiding the
+other.</p>
+<p>The two methods sit at opposite ends of the representation spectrum,
+which is the point of running them together: Leiden sees only the genes
+measured in that sample, Novae sees a pretrained representation of cell
+state, and neither is the true partition. The domain labeling, by
+dominant marker module, is the shared language that lets me check both
+against anatomy.</p>
+</div>
+<div id="what-this-chapter-found" class="section level2">
+<h2>What this chapter found</h2>
+<ul>
+<li><p><strong>GraphST (the PyPI package) fails on full kidney
+sections</strong> with an internal numerical error. I recorded it, used
+the methods that work, and say so rather than quietly dropping it. The
+failure mode is a boolean ambiguity on one of its internal arrays, and
+it never completed any of the eighty sections; I treat that as a
+property of the tool, not of the data. Novae has its own floor: below
+about six hundred units it sits under the model’s minimum, so two very
+small Visium sections fall outside its scope, recorded as such.</p></li>
+<li><p><strong>Foundation-model and expression domains disagree (ARI ≈
+0.03).</strong> Any claim of “the” spatial domains of a tissue is
+representation-dependent; the framework reports the agreement so that
+one knows which view is being reported.</p></li>
+<li><p><strong>Domain granularity tracks platform resolution.</strong>
+Visium sections yield ~15–50 domains, Visium HD more, single-cell
+sections more still. A domain on a spot platform is a coarser object
+than a domain on a cell platform, and they are not directly
+comparable.</p></li>
+</ul>
+<p>What this chapter establishes is that <strong>the kidney’s
+architecture is recoverable from its own expression and geometry by
+multiple independent methods, aligned to known anatomy, and that the
+methods’ disagreement is itself a finding rather than a
+failure.</strong> With the organ’s organization in hand, this analysis
+turns to what happens when it is perturbed.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>Chapter 3. The Single-Cell Lens</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chapter 3. The Single-Cell Lens</h1>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<p>The first tier worth examining closely is the finest one, the
+single-cell tier. Xenium and CosMx image individual cells and count
+transcripts in place, giving roughly <strong>2M single cells</strong>
+across the 22 imaging samples. This is the platform pair that can reveal
+what the kidney is made of, cell by cell, with no unmixing required.</p>
+<div id="reading-2m-cells" class="section level2">
+<h2>Reading 2M cells</h2>
+<p>The approach is deliberately unsupervised and reference-free. I score
+every cell for eighteen curated nephron programs (podocyte, parietal
+epithelial, proximal tubule S1/S2 and S3, loop of Henle TAL and DTL,
+distal convoluted tubule, collecting-duct principal and intercalated,
+stroma/fibroblast, endothelium, mesangium, pericyte/VSMC, macrophage,
+T/NK, B/plasma, injured proximal tubule, and proliferation) using
+standard gene-set scoring on the panel genes each platform measures. A
+cell is assigned the program it scores highest on, provided the winning
+margin is clear enough; otherwise it is left unassigned.</p>
+<p>Two implementation details are worth stating. The eighteen programs
+are curated lists of three to five genes each, kept separately in human
+and mouse spelling, and the scores come from a standard gene-set scoring
+routine in the scanpy toolkit applied to the log-normalized counts of
+each cell. The assignment gate is a real threshold: a cell must beat the
+second-best program by a clear margin, and cells that do not are left
+unassigned rather than pushed into a label.</p>
+<p>The result, across all 22 samples:</p>
+<p><img src="03_single_cell_lens_files/figure-html/single-cell-yield-1.png" alt="" width="912" style="display: block; margin: auto;" /></p>
+<p><strong>An average of 90.1% of cells are confidently assigned to a
+nephron identity</strong>, with no reference data and no training. The
+remaining ~10% represent the uncertainty at the decision boundary; I
+report them rather than force them into a label.</p>
+</div>
+<div id="what-the-composition-says" class="section level2">
+<h2>What the composition says</h2>
+<p><img src="03_single_cell_lens_files/figure-html/mean-composition-1.png" alt="" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="03_single_cell_lens_files/figure-html/composition-1.png" alt="" width="960" /></p>
+<p>Two biological facts stand out, and both match the textbook biology
+of the kidney.</p>
+<p><strong>First, the adult mouse kidney’s composition is exactly what
+renal histology predicts.</strong> The loop of Henle is the dominant
+compartment (about a quarter of all cells in a whole-kidney section,
+because the medulla holds the mass of the section), followed by proximal
+tubule S1/S2 and S3 (roughly 13% each), endothelium (~9%), and a
+podocyte fraction of a few percent, consistent with the small volume
+glomerular tufts occupy in a whole kidney. The distal tubule, collecting
+system, stroma, and immune cells each sit in their expected ranges.</p>
+<p><strong>Second, the fetal human kidney is a different organ, and the
+data reflect that.</strong> The CosMx fetal kidneys (weeks 15–19) are
+<strong>stroma-dominant (~19%)</strong>, with podocytes elevated to
+~8–10% and a still-immature loop of Henle. A developing kidney is
+building its tubules and its filtering surface; it has not yet scaled up
+the adult tubular machinery. The markers capture the developmental
+switch without any prior instruction.</p>
+</div>
+<div id="cross-validation-against-an-external-atlas"
+class="section level2">
+<h2>Cross-validation against an external atlas</h2>
+<p>The assignments above are marker-based and
+<strong>reference-free</strong> by design. To check them against an
+independent reference, I transferred <strong>reference-based</strong>
+labels from the same-species kidney slice of the CELLxGENE Census with
+SCANVI and measured the adjusted Rand index (ARI) between the
+marker-based and transferred labels over the confidently assigned
+cells.</p>
+<p><img src="03_single_cell_lens_files/figure-html/label-transfer-ari-1.png" alt="" width="912" style="display: block; margin: auto;" /></p>
+<p>Across the 22 single-cell samples the agreement was <strong>0.26 on
+average</strong> (range 0.08 to 0.45). The mouse imaging samples agree
+more closely with the mouse census kidney (mean 0.28, up to 0.45) than
+the human fetal sections agree with the human reference (mean 0.13). The
+reference labels are the original studies’ annotations, harmonized to
+the same module vocabulary, so the check is genuinely external rather
+than circular. The residual disagreement marks cells where a panel and a
+whole transcriptome, or a fetal section and an adult atlas, genuinely
+differ; the marker-based assignment remains the primary lens, and the
+transfer ARI reports how far an independent reference agrees with
+it.</p>
+<p>Briefly, the label transfer was implemented using SCANVI, a
+label-transfer module of the scvi-tools stack, against the same-species
+kidney slice of the CELLxGENE Census: a whole-transcriptome reference of
+roughly twenty thousand cells per species, retrieved and harmonized to
+the same eighteen-module vocabulary. Some imaging sections hold well
+over a million cells, so I subsampled the query cells for the transfer
+to keep the joint training tractable, and I computed the ARI only over
+the cells assigned with confidence. I kept the marker-based reading
+primary and treated the transfer as a second opinion; the point of doing
+the primary pass reference-free is that the marker-based reading is my
+own, and the transfer exists to measure how far an independent atlas
+concurs.</p>
+</div>
+<div id="the-limits-of-this-lens" class="section level2">
+<h2>The limits of this lens</h2>
+<p>The single-cell lens is the sharpest in the kit, but the costs are
+worth naming:</p>
+<ul>
+<li><p><strong>The panels bound discovery.</strong> Xenium measures
+300–541 genes, CosMx 995. Every cell’s identity is decided by a curated
+panel, not the transcriptome. The programs I scored are the ones the
+panels can support; programs a panel simply does not measure are
+invisible here.</p></li>
+<li><p><strong>The unassigned ~10% is real.</strong> Cells at the
+decision boundary, including transitional states, rare types, and
+damaged cells, are left unassigned. That unassigned fraction is what the
+data show; forcing the cells into a label would be fabrication.</p></li>
+<li><p><strong>Composition differs from function.</strong> The markers
+indicate what a cell is; they do not indicate what it is doing. A
+proximal-tubule cell in an injured kidney and one in a healthy kidney
+carry the same label until the injury program is scored separately,
+which is exactly what Chapter 7 does.</p></li>
+</ul>
+<p>The take home message is: <strong>the single-cell platforms resolve
+the kidney’s composition directly, at 90% assignment, without
+supervision, and the composition is the biology the textbooks
+describe.</strong> Every other platform in this analysis will be
+evaluated, in part, by whether it can recover what the single cells
+already revealed.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

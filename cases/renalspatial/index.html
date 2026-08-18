@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>The Kidney Spatial Transcriptomics Analysis</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">The Kidney Spatial Transcriptomics
+Analysis</h1>
+<h3 class="subtitle">A systematic re-analysis of 128 publicly available
+spatial-transcriptomics samples generated across five platforms</h3>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<div class="disclaimer-box">
+<h4 class="disclaimer-title">
+⚠️ Independent Research Disclaimer &amp; Scientific Limitations
+</h4>
+<p class="disclaimer-text">
+<strong>Declaration of Independence:</strong> The author declares no
+conflicts of interest or shared affiliations with the authors of the
+original studies whose public data are re-analyzed here. The
+computational re-analysis and results presented herein are completely
+independent and have no official connection to any of the original
+publications. The original studies are referenced solely for
+experimental design, data structure, and biological context.
+</p>
+<p class="disclaimer-text">
+<strong>Educational &amp; Non-Clinical Purpose:</strong> This analysis
+is intended solely for bioinformatics educational and demonstration
+purposes. The datasets span human and mouse kidney tissue across
+development and disease. Under no circumstances should these findings be
+interpreted as clinical advice, used to guide patient care, or used as
+experimental suggestions for therapeutic interventions in patients.
+</p>
+<p class="disclaimer-text">
+<strong>Data Scope &amp; Limitations:</strong> All analyzed data were
+retrieved from the public Gene Expression Omnibus (GEO). This analysis
+is provided “as-is,” does not seek orthogonal experimental validation,
+and should be interpreted accordingly.
+</p>
+</div>
+<div id="what-this-analysis-is" class="section level1">
+<h1>What This analysis Is</h1>
+<p>This analysis presents a systematic analysis of publicly available
+kidney spatial-transcriptomics data. The underlying experiments were
+conducted by other research groups, and the original experimental
+objectives are not assumed here. Instead, the analysis begins with the
+available data: 128 samples generated using five measurement
+technologies, spanning two species and a range of biological contexts,
+including development and disease.</p>
+<p>The purpose of this analysis is to demonstrate how these data can be
+analyzed systematically to characterize kidney biology. The analysis is
+organized into ten steps, each addressing a specific analytical
+objective. Together, these steps examine the structure, quality, and
+biological content of the datasets while distinguishing findings that
+are well supported by the available evidence from interpretations that
+require additional validation.</p>
+<p>The emphasis throughout is on extracting biologically informative
+patterns from the data while clearly defining the limitations of the
+analysis.</p>
+<p>The chapters are:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="01_data_at_hand.html"><strong>The Data at
+Hand</strong></a>: the studies, platforms, conditions, and the quality
+of every sample.</p></li>
+<li><p><a href="02_unification.html"><strong>Five Platforms, One
+Language</strong></a>: how I made five incompatible technologies
+comparable, and what comparability cost.</p></li>
+<li><p><a href="03_single_cell_lens.html"><strong>The Single-Cell
+Lens</strong></a>: what 1.9 million single cells say about kidney
+composition, on Xenium and CosMx.</p></li>
+<li><p><a href="04_spot_bin_lens.html"><strong>The Spot and Bin
+Lens</strong></a>: whole-transcriptome context from Visium and Visium
+HD, and how to unmix it.</p></li>
+<li><p><a href="05_region_lens.html"><strong>The Region
+Lens</strong></a>: compartment biology from region-level GeoMx profiles
+with no coordinates at all.</p></li>
+<li><p><a href="06_architecture.html"><strong>The Architecture of the
+Kidney</strong></a>: spatial domains and the cortex-to-medulla
+program.</p></li>
+<li><p><a href="07_injury_repair.html"><strong>Injury and
+Repair</strong></a>: the ischemia-reperfusion story, read at single-cell
+resolution.</p></li>
+<li><p><a href="08_disease_readouts.html"><strong>Disease
+Readouts</strong></a>: DKD, transplant rejection, and vasculitis through
+a spatial lens.</p></li>
+<li><p><a href="09_spatial_program.html"><strong>The Spatially Variable
+Program</strong></a>: the genes that define where biology
+happens.</p></li>
+<li><p><a href="10_synthesis.html"><strong>Synthesis</strong></a>: what
+the analysis established, and what remains beyond even all five
+platforms.</p></li>
+</ol>
+<p>Every quantitative result presented in this analysis is derived from
+the analyzed data, and each substantive claim is supported by a
+corresponding table or figure. Where the available data do not provide
+sufficient evidence for a particular conclusion, this limitation is
+explicitly noted. Analytical methods that do not perform adequately are
+also documented rather than omitted. Throughout, the analysis is guided
+by the biological questions of interest, with methodological choices
+serving those questions and the limitations of the data and methods
+treated as an integral part of the analytical process.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

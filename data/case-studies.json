@@ -1,5 +1,19 @@
 [
     {
+        "title": "The Kidney Spatial Transcriptomics Analysis",
+        "description": "A systematic re-analysis of 128 publicly available spatial-transcriptomics samples generated across five platforms",
+        "tags": [
+            "Spatial transcriptomics",
+            "GeoMx",
+            "10x Visium",
+            "Xenium",
+            "Nanostring",
+            "Scanpy",
+            "Kidney"
+        ],
+        "link": "cases/renalspatial/index.html"
+    },
+    {
         "title": "Re-Analysis of CAR T Resistance Mechanisms in the GCAR1 First-in-Human Study for Alveolar Soft Part Sarcoma",
         "description": "A spatiotemporal computational re-analysis of the GCAR1 study datasets utilizing longitudinal single-cell RNA-seq, VDJ sequencing, and 10x Visium HD spatial transcriptomics to characterize CAR T cell dynamics, multi-checkpoint exhaustion kinetics, perivascular resistance barriers, and epitope spreading in Alveolar Soft Part Sarcoma (ASPS).",
         "tags": [

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>Chapter 4. The Spot and Bin Lens</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chapter 4. The Spot and Bin Lens</h1>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<p>The single-cell lens is sharp, but it is panel-bound. The
+whole-transcriptome platforms, Visium (53 sections) and Visium HD (5
+sections), trade resolution for coverage: they measure 15,000–19,000
+genes across spots and bins. The cost is that a spot is not a cell but a
+<strong>mixture of several cells</strong>, and a bin is not a cell
+either. This chapter works with those measurements as they are:
+segmenting where the images allow, unmixing where they do not, and
+checking every step against the single-cell truth developed in the
+previous chapter.</p>
+<div id="segmentation-what-the-image-can-resolve"
+class="section level2">
+<h2>Segmentation: what the image can resolve</h2>
+<p>I ran Cellpose whole-cell segmentation on the H&amp;E images embedded
+in the samples. The first result is a plain statement about image
+resolution.</p>
+<p>Visium HD recovers <strong>~10,900 cells per section</strong>;
+standard Visium recovers only <strong>~1,000</strong>. The difference is
+not the algorithm but the image: Visium hi-res images are ~2,000 pixels
+across a ~6.5 mm section (≈3 µm/pixel), at which a nucleus is 3–6 pixels
+and Cellpose’s minimum object size discards most of them. Visium HD
+images are ~1 µm/pixel and resolve cells properly.</p>
+<p>The conclusion is that <strong>standard Visium images do not contain
+enough information to segment individual cells reliably.</strong> This
+is a property of the platform. The consequence is that Visium’s
+cell-type resolution must come from unmixing a mixture rather than
+segmenting cells.</p>
+<div id="a-note-on-the-hardware" class="section level3">
+<h3>A note on the hardware</h3>
+<p>The segmentation itself used the Cellpose whole-cell model on the
+H&amp;E image, run on the GPU. Two practical notes from the run:</p>
+<ul>
+<li><p>There is Cellpose API change (it expects a torch device object
+rather than a string) broke the first pass and I fixed it, and CPU
+execution was slow enough to be impractical, so the segmentation is
+gated to a GPU.</p></li>
+<li><p>The image-resolution point above is the biological story; the
+tooling had to be made to work as well.</p></li>
+</ul>
+</div>
+</div>
+<div id="unmixing-deconvolution-and-its-single-controlling-variable"
+class="section level2">
+<h2>Unmixing: deconvolution, and its single controlling variable</h2>
+<p>To recover cell types from spots, I deconvoluted each Visium section
+against a whole-transcriptome kidney single-cell reference: human and
+mouse kidney slices retrieved from the CELLxGENE Census, with the
+original-study cell-type labels harmonized to the nephron-module
+vocabulary used throughout this analysis. Two deconvolution methods were
+run per section and compared: RCTD (full mode, where spot UMI depth
+allowed) and Tangram (cluster-mode mapping of the reference onto the
+section), with per-spot NNLS against the cell-type profiles as the
+fallback. Visium HD, whose per-bin UMI is too low for RCTD and whose
+voxel count exceeds the GPU mapping budget, used NNLS. A third method,
+DestVI, was evaluated on pilot sections and produced valid proportions,
+but its per-section training cost made full-cohort application
+impractical, so the full-cohort benchmark reports RCTD and Tangram.</p>
+<p>With no gold standard for spatial deconvolution, the concordance
+check below is the arbiter, and the strategy that matches this reference
+better is the one the data support; the section after the results
+discusses the two strategies directly.</p>
+<p>The result separates the methods sharply, and the separation is the
+controlling variable of this chapter:</p>
+<p><img src="04_spot_bin_lens_files/figure-html/deconv-concordance-summary-1.png" alt="" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="04_spot_bin_lens_files/figure-html/concordance-1.png" alt="" width="768" style="display: block; margin: auto;" /></p>
+<p>The concordance separates the methods sharply. Tangram, mapping the
+whole-transcriptome reference onto each section, reaches a
+<strong>median ρ = 0.71</strong> across the 53 Visium sections (range
+0.06 to 0.88): the unmixed spot composition reproduces the reference’s
+single-cell composition on nearly every section. RCTD, run in full mode
+against the same reference, reaches <strong>median ρ = 0.04</strong>
+(range −0.18 to 0.64). The difference is a measured property of the two
+methods and of the reference itself: the Census slice is a balanced
+cross-study composition, and RCTD’s per-cell-type modeling is more
+sensitive to that mismatch than Tangram’s mapping is. The concordance
+check is what exposes it, and it is returned alongside the fractions
+rather than hidden.</p>
+<p>The Visium HD bins, deconvoluted by NNLS, sit at <strong>median ρ =
+0.10</strong> (range −0.12 to 0.33), consistent with their low per-bin
+UMI and the NNLS fallback.</p>
+<p>The lesson, stated once and applied everywhere, is that
+<strong>deconvolution is only as good as its reference, and the
+reference-matching problem is measurable.</strong> A pipeline that
+returns spot cell-type fractions without a concordance check returns
+numbers that cannot be trusted. This framework returns both the
+fractions and the check.</p>
+</div>
+<div id="rctd-versus-tangram-two-strategies-no-gold-standard"
+class="section level2">
+<h2>RCTD versus Tangram: two strategies, no gold standard</h2>
+<p>Spatial deconvolution has no consensus best method, and I do not
+think it should be treated as if it had one. RCTD and Tangram answer the
+same question, which cell types sit under each spot, but they answer it
+from different assumptions, and in the absence of a ground truth the
+defensible move is to run both, compare them, and let the data say which
+strategy matches this reference better. That is the error-trying stance
+I have taken throughout this analysis, and this chapter is where it is
+most visible.</p>
+<p>RCTD, in full mode, is a statistical decomposition. It models each
+reference cell type as a distribution over genes, and for every spot it
+finds the mixture of cell types whose combined profiles best explain the
+observed spot expression, returning a weight per type. Its answer is
+only as good as how well each reference cell type’s profile matches the
+same cell type in the section. Tangram, in cluster mode, is a mapping
+rather than a mixture model: it aligns the reference’s cell-type
+composition onto the spatial units by matching expression across the
+whole section, and it returns a proportion per type per spot. Where RCTD
+asks how well this reference explains this spot, Tangram asks how the
+reference as a whole should be distributed across the section. The
+Python packages behind the two are rctd-py (the port of the R spacexr
+method) and tangram-sc.</p>
+<p>The concordance check separates the two strategies sharply, and the
+separation is itself the finding. Tangram reproduces the reference’s
+single-cell composition with a median Spearman ρ of 0.71 across the 53
+Visium sections; RCTD’s median is 0.04. I do not read that as one tool
+being broken. I read it as a measured property of the reference and of
+the two methods’ sensitivity to it. The Census slice is a balanced
+cross-study composition, and RCTD’s per-cell-type modeling is more
+sensitive to a reference whose composition differs from a given section
+than Tangram’s whole-distribution mapping is.</p>
+<p>The consequence is practical. For the whole-transcriptome arms,
+Tangram is the workhorse, and RCTD’s sensitivity is reported alongside
+its output rather than hidden. For Visium HD, where per-bin UMI depth is
+too low for RCTD and the voxel count exceeds Tangram’s mapping budget, a
+per-spot non-negative least squares fit against the cell-type profiles
+covers the gap. In every case the fractions and the concordance check
+are returned together, so one sees the same audit I saw.</p>
+<p>The principle underneath is one I would rather state than imply:
+deconvolution is only as good as its reference, the reference-matching
+problem is measurable, and that is why the framework measures it on
+every section rather than assuming it away.</p>
+</div>
+<div id="what-the-whole-transcriptome-lens-adds" class="section level2">
+<h2>What the whole-transcriptome lens adds</h2>
+<p>Beyond unmixing, the spot and bin platforms contribute something the
+panels cannot: the <strong>whole-transcriptome context</strong>. It is
+on these sections that the spatially variable program of the kidney,
+including renin, podocyte, loop-of-Henle, and distal-tubule genes as
+well as the metabolic gradient of the cortex-to-medulla axis, becomes
+visible in full (described later). The single cells say what cells are
+present; the spots say what those cells’ neighbors are expressing at
+genome scale. The two lenses are complements, and this analysis keeps
+both.</p>
+<p>The limit of this chapter is the one already stated:
+whole-transcriptome coverage buys context and discovery at the price of
+cell-type ambiguity, and the ambiguity is only resolvable when a
+matching reference exists. Two reference boundaries are worth naming.
+The Census kidney slices carry no S3-specific or injured-proximal-tubule
+labels, so reference-bound deconvolution cannot resolve those
+sub-states; the marker-based single-cell lens of earlier analysis is
+what recovers them. And the reference composition is a balanced
+cross-study slice, not a per-section ground truth, which is exactly why
+the concordance check is reported for every section rather than
+assumed.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>Chapter 7. Injury and Repair</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chapter 7. Injury and Repair</h1>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<p>The cleanest biology in this cohort is its clearest experiment: a
+<strong>mouse ischemia-reperfusion injury time course</strong>, profiled
+by both Xenium (single cells) and Visium (whole transcriptome), from
+sham through six weeks. Ischemia-reperfusion injury is the model of
+acute kidney injury, and the field’s central spatial question is a
+precise one: <em>which cells are affected first, and where?</em></p>
+<p>The textbook answer, taught in the first week of renal physiology, is
+that the <strong>S3 segment of the proximal tubule</strong> is the most
+vulnerable cell in the kidney: it performs the most metabolically
+expensive reabsorption in the most oxygen-poor environment, the outer
+medulla. This chapter asks whether the data recover that answer on their
+own.</p>
+<div id="four-hours-after-ischemia" class="section level2">
+<h2>Four hours after ischemia</h2>
+<p>Comparing the sham and four-hour time points on the single-cell
+platform:</p>
+<p><img src="07_injury_repair_files/figure-html/iri-composition-plot-1.png" alt="" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="07_injury_repair_files/figure-html/iri-plot-1.png" alt="" width="672" /></p>
+<p>Two facts stand out, and both are exactly the textbook biology:</p>
+<ul>
+<li><p><strong>Injured proximal-tubule cells nearly double</strong>,
+from <strong>5.3% (sham) to 10.3% (4 h)</strong>.</p></li>
+<li><p><strong>The S3 segment collapses</strong>, from <strong>12.5% to
+7.0%</strong>, as the vulnerable segment’s cells convert to the injured
+state.</p></li>
+<li><p><strong>Pericytes/vascular smooth muscle expand</strong> from
+4.5% to 7.7%, the earliest vascular response.</p></li>
+<li><p><strong>Endothelial cells</strong> decline modestly, consistent
+with early endothelial injury.</p></li>
+</ul>
+<p>The modules were not told that S3 is vulnerable. The marker set
+scored “injured proximal tubule” (VCAM1, Havcr1, Lcn2) and “S3”
+(SLC7A13, SLC22A7) independently, and the data performed the conversion:
+four hours after ischemia, S3 cells disappear into the injured state.
+This is the vulnerable-segment biology, recovered without supervision,
+at single-cell resolution, within hours.</p>
+<p>The composition numbers come from the same annotation pipeline as
+Chapter 3, applied to the three Xenium sections of the time course, so
+the cell identities here are the same reference-free marker assignments
+used across this analysis. The panels are Xenium panels, which is why
+the whole-transcriptome arm below matters: a panel cannot measure every
+gene I would want to watch during injury.</p>
+</div>
+<div id="the-whole-transcriptome-view" class="section level2">
+<h2>The whole-transcriptome view</h2>
+<p>The same experiment was profiled on Visium, and the
+whole-transcriptome sections add the genome-scale context the panel
+cannot:</p>
+<table>
+<caption>Top spatially variable genes on sham (GSM8323120) and injured
+(GSM8323122) Visium sections.</caption>
+<thead>
+<tr class="header">
+<th align="left">gsm</th>
+<th align="left">top_svg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GSM8323120</td>
+<td align="left">Slc12a1;Wfdc15b;Cyp7b1;Slc27a2;Gatm;Dbi;Cat;Pck1</td>
+</tr>
+<tr class="even">
+<td align="left">GSM8323122</td>
+<td
+align="left">Lcn2;Igfbp5;Cyp7b1;Pck1;Slc12a1;Mal;C130074G19Rik;Aif1l</td>
+</tr>
+</tbody>
+</table>
+<p>The injured Visium section’s <strong>leading spatially variable gene
+is Lcn2, also known as NGAL</strong>, the canonical acute-kidney-injury
+marker. Its spatial pattern marks where the injury landed. Alongside it
+sit metabolic genes (Pck1, Gatm) whose cortex-to-medulla gradient is the
+molecular map of the kidney’s metabolic zonation, the very zonation that
+makes the outer medulla the vulnerable zone. The Xenium panel, which
+does not measure Lcn2, instead surfaces distal-tubule and metabolic
+genes, a panel-limited but still informative view of the same
+injury.</p>
+<p>These readouts come from Moran’s I, a spatial autocorrelation
+statistic computed per gene across the section’s spots (Chapter 9
+describes the procedure in full). Lcn2 is the leading spatially variable
+gene on the injured section but is absent from the Xenium panel, so the
+panel arm cannot see it; the whole-transcriptome arm is the only one
+that can. That is the two-platform design of this study paying off in a
+single gene.</p>
+</div>
+<div id="what-the-time-course-can-and-cannot-resolve"
+class="section level2">
+<h2>What the time course can and cannot resolve</h2>
+<p>The cohort’s IRI arm extends from sham through six weeks, spanning
+acute injury, repair, and the transition to chronic fibrosis. The
+four-hour readout is the sharpest, because it captures the moment of
+insult. What the time course can resolve, at least in principle, is the
+<em>arc</em>: the initial S3 conversion, the failed-repair state, the
+fibro-inflammatory niche, and its persistence.</p>
+<p>What it cannot resolve is the mechanistic middle. The 300-gene Xenium
+panel that identifies the vulnerable segment cannot fully track the
+molecular programs of repair and fibrosis. The whole-transcriptome
+Visium arm now deconvolves well against a whole-transcriptome mouse
+kidney reference, but that reference, drawn from largely healthy kidney,
+does not carry the injured-proximal-tubule state, so the injury-specific
+programs on the Visium arm remain reference-limited. The four-hour
+biology is robust across both platforms; the later-time-point biology is
+present but panel- and reference-limited.</p>
+</div>
+<div id="the-takeaway" class="section level2">
+<h2>The takeaway</h2>
+<p>The injury story is this analysis’s clearest proof that the framework
+reads biology rather than imposing it: <strong>the most vulnerable cell
+in the kidney, at the moment of its injury, at single-cell resolution,
+across two independent platforms</strong>, recovered from data with no
+supervision. The S3-to-injured conversion is the local, early event of
+ischemic kidney injury, and it is now a routine, measurable readout.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

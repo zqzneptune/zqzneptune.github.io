@@ -1,0 +1,43 @@
+/* Make the HTML and body fill the full viewport height */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.disclaimer-box {
+padding: 24px;
+border: 1px solid #f1f5f9;
+border-left: 4px solid #b91c1c;
+background-color: #fffbfb;
+border-radius: 6px;
+margin: 2.5em 0;
+box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.disclaimer-title {
+margin: 0 0 14px 0 !important;
+color: #b91c1c !important;
+font-family: 'Inter', -apple-system, sans-serif !important;
+font-size: 16px !important;
+font-weight: 700 !important;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.disclaimer-text {
+margin: 0 0 12px 0 !important;
+color: #334155 !important;
+font-size: 15.5px !important;
+line-height: 1.6 !important;
+font-family: 'Inter', -apple-system, sans-serif !important;
+}
+.disclaimer-text strong {
+color: #0f172a;
+}
+.disclaimer-text:last-child {
+margin-bottom: 0 !important;
+}

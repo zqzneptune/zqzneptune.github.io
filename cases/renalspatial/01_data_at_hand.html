@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Johnson" />
+
+<meta name="date" content="2026-08-15" />
+
+<title>Chapter 1. The Data at Hand</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RenalSpatial</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="01_data_at_hand.html">
+    <span class="fa fa-download"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="02_unification.html">
+    <span class="fa fa-stethoscope"></span>
+     
+    Unification
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lens
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="03_single_cell_lens.html">Single Cell</a>
+    </li>
+    <li>
+      <a href="04_spot_bin_lens.html">Spot Bin</a>
+    </li>
+    <li>
+      <a href="05_region_lens.html">Regions</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="06_architecture.html">
+    <span class="fa fa-ruler"></span>
+     
+    Architecture
+  </a>
+</li>
+<li>
+  <a href="07_injury_repair.html">
+    <span class="fa fa-cubes"></span>
+     
+    IRI
+  </a>
+</li>
+<li>
+  <a href="08_disease_readouts.html">
+    <span class="fa fa-vial"></span>
+     
+    Disease
+  </a>
+</li>
+<li>
+  <a href="09_spatial_program.html">
+    <span class="fa fa-route"></span>
+     
+    Program
+  </a>
+</li>
+<li>
+  <a href="10_synthesis.html">
+    <span class="fa fa-list"></span>
+     
+    Synthesis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Chapter 1. The Data at Hand</h1>
+<h4 class="author">Johnson</h4>
+<h4 class="date">2026-08-15</h4>
+
+</div>
+
+
+<p>The emergence of spatial transcriptomics promised to restore the
+architectural context lost in single-cell dissociation studies,
+triggering a rapid proliferation of experimental modalities. Today, the
+field does not rely on a single technical standard, but operates across
+a spectrum of physical paradigms—ranging from targeted
+region-of-interest sequencing (GeoMx) and multi-cellular capture arrays
+(Visium) to sub-cellular imaging modalities (Xenium, CosMx) and
+high-density binning technologies (Visium HD). Each framework negotiates
+distinct trade-offs among transcriptomic depth, spatial capture
+efficiency, optical segmentation fidelity, and tissue throughput.</p>
+<p>As spatial datasets rapidly accumulate within nephrology, a
+foundational question requires rigorous evaluation: <em>to what extent
+do current spatial technologies capture authentic single-cell biology
+versus complex spatial mixtures and technical noise?</em> Navigating
+this landscape requires an overarching, critical audit of empirical data
+quality across platforms and tissue contexts. By surveying a
+consolidated cohort across diverse renal disease and developmental
+models, this work establishes the empirical boundaries,
+platform-specific biases, and effective resolution limits of current
+spatial data—laying a principled baseline before undertaking downstream
+biological modeling.</p>
+<div id="the-cohort-at-a-glance" class="section level2">
+<h2>The cohort at a glance</h2>
+<table>
+<caption>The 128 samples, by study, platform, and species.</caption>
+<thead>
+<tr class="header">
+<th align="left">study</th>
+<th align="left">tier</th>
+<th align="left">species</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ANCA-vasculitis</td>
+<td align="left">visium</td>
+<td align="left">human</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">CAMR-GeoMx</td>
+<td align="left">geomx</td>
+<td align="left">human</td>
+<td align="right">48</td>
+</tr>
+<tr class="odd">
+<td align="left">CAMR-scRNA-VisiumHD</td>
+<td align="left">visium_hd</td>
+<td align="left">human</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">DKD-HIF-SGLT2i</td>
+<td align="left">visium_hd</td>
+<td align="left">human</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">DKD-MEF2C</td>
+<td align="left">visium</td>
+<td align="left">human</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">EPO-cell-neighborhood</td>
+<td align="left">visium</td>
+<td align="left">mouse</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">human-kidney-dev</td>
+<td align="left">cosmx</td>
+<td align="left">human</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">hypertensive-nephropathy</td>
+<td align="left">visium</td>
+<td align="left">human</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">hyperuricemia-mouse</td>
+<td align="left">visium</td>
+<td align="left">mouse</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">kidney-PT-regen</td>
+<td align="left">visium</td>
+<td align="left">human</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">kidney-repair-matrix</td>
+<td align="left">visium</td>
+<td align="left">mouse</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">kidney-transplant-rejection</td>
+<td align="left">xenium</td>
+<td align="left">mouse</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">lupus-nephritis-mouse</td>
+<td align="left">visium</td>
+<td align="left">mouse</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">mouse-IRI-repair</td>
+<td align="left">visium</td>
+<td align="left">mouse</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse-IRI-repair</td>
+<td align="left">xenium</td>
+<td align="left">mouse</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">transplant-rejection-FCGR3A</td>
+<td align="left">visium</td>
+<td align="left">human</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p>The cohort is <strong>128 samples</strong> across <strong>15
+studies</strong>. Five platforms are represented:</p>
+<p><img src="01_data_at_hand_files/figure-html/unnamed-chunk-2-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p><strong>GeoMx</strong> (48): region-of-interest profiles, 48
+samples, one ROI each, all from a single kidney-transplant cohort
+(chronic active antibody-mediated rejection / CAMR).</p></li>
+<li><p><strong>Visium</strong> (53): whole-transcriptome spot arrays
+across ten studies.</p></li>
+<li><p><strong>Xenium</strong> (19): single-cell imaging across two
+mouse cohorts, a 12-sample ischemia-reperfusion time course and a
+7-sample kidney-transplant-rejection cohort.</p></li>
+<li><p><strong>Visium HD</strong> (5): bin-resolution whole
+transcriptome from diabetic kidney disease (4) and one transplant
+sample.</p></li>
+<li><p><strong>CosMx</strong> (3): single-cell imaging of human fetal
+kidneys at three gestational ages.</p></li>
+</ul>
+<p>The studies themselves, read plainly as data descriptors, span human
+and mouse, development and disease: <strong>human fetal kidney
+development</strong> (CosMx, weeks 15–19), <strong>mouse
+ischemia-reperfusion injury</strong> (Xenium + Visium, sham through 6
+weeks), <strong>mouse kidney transplant rejection</strong> (Xenium),
+<strong>chronic antibody-mediated transplant rejection</strong> (GeoMx),
+<strong>diabetic kidney disease</strong> (Visium + Visium HD),
+<strong>ANCA-associated vasculitis</strong> (Visium), <strong>lupus
+nephritis</strong> (Visium), <strong>hypertensive nephropathy</strong>
+(Visium), <strong>hyperuricemia</strong> (Visium),
+<strong>erythropoietin-producing cell neighborhoods</strong> (Visium),
+and <strong>proximal-tubule regeneration</strong> (Visium). This is a
+heterogeneous collection of kidney biology, which is exactly what makes
+it useful: the biology has to survive that heterogeneity to be
+believed.</p>
+</div>
+<div id="what-each-platform-measures" class="section level2">
+<h2>What each platform measures</h2>
+<p><img src="01_data_at_hand_files/figure-html/unnamed-chunk-3-1.png" alt="" width="864" style="display: block; margin: auto;" /></p>
+<p>The five platforms differ by three orders of magnitude in the size of
+what they measure.</p>
+<ul>
+<li><p>GeoMx measures <strong>one region</strong> per sample at
+~17,000–19,000 probes;</p></li>
+<li><p>Visium measures <strong>~400–5,000 spots</strong> at
+15,000–19,000 genes;</p></li>
+<li><p>Visium HD measures <strong>55,000–130,000 bins</strong> at
+~15,000 genes;</p></li>
+<li><p>Xenium measures <strong>36,000–152,000 cells</strong> at 300–541
+genes;</p></li>
+<li><p>CosMx measures <strong>118,000–230,000 cells</strong> at 995
+genes.</p></li>
+</ul>
+<p>The units are not the same kind of thing: a region, a mixture of
+cells, a partial cell, or a single cell. Every analysis that follows has
+to respect that.</p>
+<p><img src="01_data_at_hand_files/figure-html/platform-scale-1.png" alt="" width="864" style="display: block; margin: auto;" /></p>
+<p>The five platforms span orders of magnitude in unit size and
+sixty-fold in gene coverage. That is the single fact the rest of this
+analysis is built around.</p>
+</div>
+<div id="the-quality-of-the-data-sample-by-sample"
+class="section level2">
+<h2>The quality of the data, sample by sample</h2>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-797ad695ef35dc31ff26" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-797ad695ef35dc31ff26">{"x":{"filter":"none","vertical":false,"caption":"<caption>All samples: units, genes, and per-unit QC.<\/caption>","data":[["GSM8551262","GSM8551263","GSM8551264","GSM8323120","GSM8323121","GSM8323122","GSM8323123","GSM8323124","GSM8323125","GSM8325615","GSM8325616","GSM8325617","GSM8325618","GSM8325619","GSM8325620","GSM8325621","GSM8325622","GSM8325623","GSM8325624","GSM8325625","GSM8325626","GSM8110784","GSM8110785","GSM8110786","GSM8110787","GSM8691119","GSM8691120","GSM8691121","GSM8691122","GSM8691123","GSM8691124","GSM8691125","GSM9045323","GSM9108683","GSM9108684","GSM9108685","GSM9155022","GSM9155023","GSM9155024","GSM9155025","GSM9231917","GSM9231918","GSM9231919","GSM9231920","GSM9231921","GSM9231922","GSM9231923","GSM9231924","GSM9231925","GSM9231926","GSM9231927","GSM9231928","GSM9247127","GSM9247128","GSM9247129","GSM9247130","GSM9247131","GSM9247132","GSM9247133","GSM9247134","GSM9247135","GSM9247136","GSM9247137","GSM9247138","GSM9467249","GSM9467250","GSM9467251","GSM9467252","GSM9579055","GSM9579056","GSM9579057","GSM9579058","GSM9802211","GSM9895920","GSM9895921","GSM9895922","GSM9895923","GSM9938089","GSM9938090","GSM9938091","GSM9938092","GSM9938093","GSM9938094","GSM9938095","GSM9938096","GSM9938097","GSM9938098","GSM9938099","GSM9938100","GSM9938101","GSM9938102","GSM9938103","GSM9938104","GSM9938105","GSM9938106","GSM9938107","GSM9938108","GSM9938109","GSM9938110","GSM9938111","GSM9938112","GSM9938113","GSM9938114","GSM9938115","GSM9938116","GSM9938117","GSM9938118","GSM9938119","GSM9938120","GSM9938121","GSM9938122","GSM9938123","GSM9938124","GSM9938125","GSM9938126","GSM9938127","GSM9938128","GSM9938129","GSM9938130","GSM9938131","GSM9938132","GSM9938133","GSM9938134","GSM9938135","GSM9938136","GSM9026963","GSM6047778","GSM6047779"],["human-kidney-dev","human-kidney-dev","human-kidney-dev","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","mouse-IRI-repair","hyperuricemia-mouse","hyperuricemia-mouse","hyperuricemia-mouse","hyperuricemia-mouse","kidney-transplant-rejection","kidney-transplant-rejection","kidney-transplant-rejection","kidney-transplant-rejection","kidney-transplant-rejection","kidney-transplant-rejection","kidney-transplant-rejection","kidney-repair-matrix","ANCA-vasculitis","ANCA-vasculitis","ANCA-vasculitis","transplant-rejection-FCGR3A","transplant-rejection-FCGR3A","transplant-rejection-FCGR3A","transplant-rejection-FCGR3A","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","DKD-MEF2C","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","EPO-cell-neighborhood","DKD-HIF-SGLT2i","DKD-HIF-SGLT2i","DKD-HIF-SGLT2i","DKD-HIF-SGLT2i","lupus-nephritis-mouse","lupus-nephritis-mouse","lupus-nephritis-mouse","lupus-nephritis-mouse","CAMR-scRNA-VisiumHD","hypertensive-nephropathy","hypertensive-nephropathy","hypertensive-nephropathy","hypertensive-nephropathy","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","CAMR-GeoMx","kidney-PT-regen","kidney-PT-regen","kidney-PT-regen"],["cosmx","cosmx","cosmx","visium","visium","visium","visium","visium","visium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","visium","visium","visium","visium","xenium","xenium","xenium","xenium","xenium","xenium","xenium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium","visium_hd","visium_hd","visium_hd","visium_hd","visium","visium","visium","visium","visium_hd","visium","visium","visium","visium","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","geomx","visium","visium","visium"],[230536,127022,118188,2855,3085,3392,3434,2754,3912,110946,84141,99679,113560,108757,112011,101118,96601,152366,147595,152437,126104,2650,2590,2528,3362,36680,35806,40136,49288,44837,35699,45779,3134,1413,892,1277,1048,1348,992,1129,1865,1373,437,977,531,1203,1682,1394,1479,4608,1929,4569,4024,4439,4290,4759,4768,4509,4808,4615,4726,4927,4330,4257,55464,68732,56779,112893,3345,3205,3336,3313,129552,4064,4826,4913,4031,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,992,950,1028],[995,995,995,19245,19248,19261,19278,19292,19283,300,299,300,300,300,300,300,300,300,300,300,300,17716,17760,17353,17528,541,541,541,541,541,541,541,15503,17315,17100,20398,18009,17997,17926,17863,15492,15292,18028,18045,18044,18056,18006,15288,15587,18053,18030,18046,16350,16469,15708,16026,15967,15786,15400,15252,15669,15804,16267,16115,15283,15635,15613,16200,16563,16539,15643,15558,15348,18826,18847,18898,18897,16916,18068,18551,18215,18684,17728,17852,18614,18274,18720,18551,18723,18473,18722,18076,18117,18247,18026,18236,18670,18720,18728,18729,18609,18664,18661,18696,18691,18511,18693,18490,18722,18727,18610,18709,18681,18730,18730,18656,18717,18680,18708,18517,18708,18726,18730,18730,18723,15006,15903,16233],[101,72,58,5299,5474,5300.5,6310,7856,5392,35,37,47,46,44,44,53,51,44,39,46,47,4487.5,4728.5,5978.5,5627.5,159,167,211,203,194,187,201,7160,1428,1704.5,5103,3570,1189,3860,2113,4152,4671,8935,10393,9884,9725,5397,2216.5,3483,7502.5,3236,2338,374,432,729,2131,4935.5,3395,3496.5,2956,2428,4030,757.5,459,55,42,44,43,1797,1729,934.5,834,129,54.5,160.5,72,61,16916,18068,18551,18215,18684,17728,17852,18614,18274,18720,18551,18723,18473,18722,18076,18117,18247,18026,18236,18670,18720,18728,18729,18609,18664,18661,18696,18691,18511,18693,18490,18722,18727,18610,18709,18681,18730,18730,18656,18717,18680,18708,18517,18708,18726,18730,18730,18723,1567,2301.5,2384.5],[144,95,76,11933,20000,15083.5,21096,23222.5,18169,88,104,144,135,125,127,153,140,104,80,126,131,16674,19599.5,37386,32038.5,2561,2681,3163,2849,2693,2508,2506,36954.5,3062,3204.5,16631,5761.5,1689.5,7178.5,3605,9274,10255,28761,47211,39539,40878,15017.5,3900.5,6928,22307,5794,3862,431.5,498,1043,4123,16015.5,7037,8062,6300,4912.5,9628,946,547,59,44,46,45,3271,3105,1437,1198,147,59,176,75,65,68998,118515,162799,132662,255664,99603,95321,143282,103849,260137,123114,250219,108683,250585,80498,86681,94530,74567,80663,131516,200122,248182,245531,135963,143566,133399,157397,160704,101602,179882,111102,209536,225437,111018,162018,140383,358600,1873987,125948,251586,197825,234604,108856,217968,304691,463283,408485,207770,2532.5,3560,4204]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>gsm<\/th>\n      <th>study<\/th>\n      <th>tier<\/th>\n      <th>n_units<\/th>\n      <th>n_genes<\/th>\n      <th>median_genes<\/th>\n      <th>median_counts<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"lengthMenu":[25,50,100],"columnDefs":[{"className":"dt-right","targets":[3,4,5,6]},{"name":"gsm","targets":0},{"name":"study","targets":1},{"name":"tier","targets":2},{"name":"n_units","targets":3},{"name":"n_genes","targets":4},{"name":"median_genes","targets":5},{"name":"median_counts","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>Quality varies with platform in the way the physics predicts. Imaging
+platforms (Xenium, CosMx) detect <strong>35–211 median genes per
+cell</strong>, because a panel is limited and a single cell is sparse.
+Spot platforms (Visium) detect <strong>54–10,000 median genes per
+spot</strong> (a spot is a mixture, so it is richer). Visium HD bins sit
+between: <strong>42–129 median genes per bin</strong>.</p>
+<p><img src="01_data_at_hand_files/figure-html/qc-landscape-1.png" alt="" width="864" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mitochondrial-fraction-as-a-quality-metric"
+class="section level2">
+<h2>Mitochondrial fraction, as a quality metric</h2>
+<p>The mitochondrial fraction needs an explanation before it can be read
+correctly. I recomputed pct_mito per sample directly from the raw
+counts, and the pattern is a property of each reference annotation:
+human whole-transcriptome sections carry the <code>MT-</code>
+mitochondrial genes and show <strong>real values (mean ≈ 3%, up to 28%
+on disease samples)</strong>, the standard sequencing-era quality flag,
+tracked per sample. Imaging platforms (Xenium, CosMx) and the mouse
+sections whose reference annotation carries no <code>mt-</code> genes
+show <strong>0, with a per-sample note</strong>: the value is not a
+biological statement of zero mitochondrial content but a statement that
+the reference does not measure it. I report the distinction rather than
+either a misleading zero or a fabricated number.</p>
+<p>These per-sample statistics were all recomputed during ingestion
+rather than taken from the source files. Each sample runs through its
+own Docker-contained processing script that reads the original count
+matrix, computes per-unit QC (median genes, median counts, mitochondrial
+fraction) from the raw counts, and writes a QC record beside the cleaned
+matrix. I recompute rather than trust because a QC flag is only as
+useful as the data it is computed from, and recomputing from the raw
+matrix guarantees one consistent definition across all 128 samples.</p>
+</div>
+<div id="a-lesson-to-be-learned" class="section level2">
+<h2>A lesson to be learned</h2>
+<p>The <strong>heterogeneity</strong> of the data is the first fact to
+respect. A single-cell analysis on Xenium is a different measurement
+than a spot analysis on Visium, which is different again from a region
+profile on GeoMx. They are all kidney biology, but they are not
+interchangeable, and no analysis that pretends otherwise will hold up
+against the data.</p>
+<p><strong>One more thing</strong></p>
+<p>Each of the 128 samples passed the ingest QC gate of the processing
+pipeline (flagged <code>qc_pass</code>). That does not mean every sample
+is perfect, but every sample was usable enough to carry forward. The
+specific weaknesses (sparse cells, high-mitochondrial spots,
+low-resolution images) are documented per sample and will matter at
+specific steps.</p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5446ZHH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L5446ZHH5E');
+</script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+<style>
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .report-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .report-footer a:hover {
+    color: #111827;
+  }
+
+  .report-footer i {
+    font-size: 14px;
+  }
+
+  .report-footer strong {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  .report-footer > span:nth-child(2),
+  .report-footer > span:nth-child(4) {
+    color: #d1d5db;
+  }
+
+  @media (max-width: 700px) {
+    .report-footer {
+      gap: 10px;
+      font-size: 12px;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="report-footer">
+  <span>
+    &copy; 2026 <strong><a href="https://zqzneptune.github.io/" target="_blank">Dr. Qingzhou Zhang</a></strong>. All rights reserved.
+  </span>
+
+  <span>|</span>
+
+  Follow me: 
+  <a href="https://www.linkedin.com/in/qingzhou-zhang-330094395"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+
+  <a href="https://x.com/QingzhouZ78967"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="X">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://github.com/zqzneptune"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="GitHub">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
